@@ -1,0 +1,55 @@
+# Gegenereerd door build.py. Pas REDIRECTS in build.py aan, niet dit bestand.
+
+# Broncode niet uitleveren
+/build.py                                                      /404.html  404!
+/artikelen.py                                                  /404.html  404!
+/diensten_data.py                                              /404.html  404!
+/faq_data.py                                                   /404.html  404!
+/brands.json                                                   /404.html  404!
+/privacy.html                                                  /404.html  404!
+/README.md                                                     /404.html  404!
+/check.py                                                      /404.html  404!
+
+# Oude URL's van de WordPress-site (permanent)
+/seo-student-inhuren/                                          /seo-specialist-inhuren/                       301!
+/google-ads-student-inhuren/                                   /google-ads-specialist-inhuren/                301!
+/sea-student-inhuren/                                          /google-ads-specialist-inhuren/                301!
+/social-media-student-inhuren/                                 /social-media-uitbesteden/                     301!
+/linkbuilding-student-inhuren/                                 /seo-specialist-inhuren/                       301!
+/ai-specialist-student-inhuren/                                /ai-specialist-inhuren/                        301!
+/claude-specialist-student-inhuren/                            /claude-specialist-inhuren/                    301!
+/content-creator-student-inhuren/                              /contentmarketing-uitbesteden/                 301!
+/content-creatie-social-media-student-inhuren/                 /contentmarketing-uitbesteden/                 301!
+/branding-student-inhuren/                                     /huisstijl-laten-maken/                        301!
+/email-marketing-student-inhuren/                              /email-marketing-uitbesteden/                  301!
+/e-mailmarketing-student-inhuren/                              /email-marketing-uitbesteden/                  301!
+/wordpress-student-inhuren/                                    /wordpress-specialist-inhuren/                 301!
+/tiktok-student-inhuren/                                       /tiktok-uitbesteden/                           301!
+/instagram-student-inhuren/                                    /instagram-uitbesteden/                        301!
+/linkedin-student-inhuren/                                     /linkedin-marketing-uitbesteden/               301!
+/shopify-student-inhuren/                                      /shopify-specialist-inhuren/                   301!
+/studenten/                                                    /specialisaties/                               301!
+/blog/                                                         /kennisbank/                                   301!
+/marketing-blog/                                               /kennisbank/                                   301!
+/welke-social-media-is-het-populairst-onder-de-studenten/      /kennisbank/welke-social-media-kiezen/         301!
+/wat-voor-type-marketeers-zijn-er/                             /kennisbank/wat-voor-type-marketeers-zijn-er/  301!
+/wat-doet-een-head-of-marketing/                               /kennisbank/wat-doet-een-head-of-marketing/    301!
+/marketeer-inhuren/                                            /                                              301!
+/marketing-opdracht-uitbesteden/                               /werkwijze/                                    301!
+/word-student/                                                 /werken-als-student/                           301!
+/cases/                                                        /                                              301!
+/marketing-bureau-den-haag/                                    /contact/                                      301!
+/marketing-bureau-mijdrecht/                                   /contact/                                      301!
+/privacy/                                                      /privacy-policy/                               301!
+/author/blauwelink/                                            /over-ons/                                     301!
+/feed/                                                         /kennisbank/                                   301!
+/comments/feed/                                                /kennisbank/                                   301!
+
+# Definitief verwijderd
+/test-bericht/                                                 /404.html  410!
+/test-bericht-2/                                               /404.html  410!
+/category/uncategorized/                                       /404.html  410!
+/wp-json/*                                                     /404.html  410!
+/xmlrpc.php                                                    /404.html  410!
+/wp-admin/*                                                    /404.html  410!
+/wp-login.php                                                  /404.html  410!

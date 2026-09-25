@@ -352,8 +352,10 @@ def reels():
     return f'<div class="reels-wrap" data-reels style="--n:{len(ring)};--k:{k:.3f}"><div class="reels"><div class="reels__ring">{cards}</div></div>{nav}</div>'
 
 
-def reel_section():
-    return section(section_head("Zo ziet ons werk *eruit*", REEL_INTRO, center=True) + reels())
+def reel_section(more=False):
+    link = (f'<div class="btn-row" style="justify-content:center;margin-top:28px">{btn("Meer over foto en video", "/foto-en-video-laten-maken/", "outline", "arrow-right")}</div>'
+            if more else "")
+    return section(section_head("Zo ziet ons werk *eruit*", REEL_INTRO, center=True) + reels() + link)
 
 
 def steps():
@@ -668,6 +670,7 @@ def page_home():
                 hero_buttons(), offerte_form(""), home=True, movable=True)
     body += showcase(HOME_SC)
     body += section(section_head("Kies de student die past bij *jouw vraag*", "Elke specialisatie heeft een eigen pagina met taken en voorbeelden. Zo vind je sneller wat je zoekt.") + spec_grid(), "glow-left")
+    body += reel_section(more=True)
     body += section(section_head("Twee manieren om *samen te werken*", "Structureel meewerken of één afgebakende opdracht. Je kiest wat past, zonder contract.") + plans())
     body += section(with_photo("team-computer", section_head("Zo staat jouw student *klaar*") + steps()))
     body += section(section_head("Student, freelance marketeer *of bureau?*", "Een eerlijke vergelijking op de punten die voor het mkb tellen.") + compare(COMPARE), "glow-right")

@@ -418,6 +418,7 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .plan__head { display: flex; align-items: center; gap: 12px; }
 .plan__head svg { width: 26px; height: 26px; color: var(--green); flex: none; }
 .plan__head h3 { font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem); }
+@media (max-width: 359px) { .plan__head h3 { font-size: 1.0625rem; } }
 .plan__kind { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; }
 .plan__kind strong { font-size: clamp(1.625rem, 1.4rem + 0.6vw, 1.875rem); letter-spacing: -0.02em; }
 .plan__kind span { color: var(--muted); font-size: 0.9375rem; }

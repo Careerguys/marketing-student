@@ -59,6 +59,7 @@ SPECS = [
     ("linkedin-marketing-uitbesteden", "LinkedIn-marketing uitbesteden", ("brand", "linkedin"), "Zakelijke content en advertenties.", "Social media en content"),
     ("contentmarketing-uitbesteden", "Contentmarketing uitbesteden", ("icon", "camera"), "Een content creator voor foto, video en tekst.", "Social media en content"),
     ("foto-en-video-laten-maken", "Foto en video laten maken", ("icon", "video"), "Bedrijfsvideo's, reels en productfoto's.", "Social media en content"),
+    ("recruitment-marketing-uitbesteden", "Recruitment marketing", ("icon", "users"), "Vacatures, campagnes en employer branding.", "Social media en content"),
     ("huisstijl-laten-maken", "Huisstijl laten maken", ("icon", "pen"), "Logo, huisstijl, tone of voice en merkverhaal.", "Merk en e-mail"),
     ("email-marketing-uitbesteden", "E-mailmarketing uitbesteden", ("icon", "mail"), "Nieuwsbrieven en automatische flows.", "Merk en e-mail"),
     ("wordpress-specialist-inhuren", "WordPress-specialist inhuren", ("brand", "wordpress"), "Pagina's bouwen, onderhouden en versnellen.", "Web en AI"),
@@ -256,6 +257,7 @@ def spec_grid(items=None):
         cards += (f'<a class="card spec-card" href="/{slug}/">{spec_icon(kind)}<h3>{label}</h3><p>{card}</p>'
                   f'<span class="link-arrow">Bekijk{icon("arrow-right")}</span></a>')
     rest = 4 - len(items or MAIN) % 4
+    rest = 4 if rest == 1 else rest
     cards += (f'<div class="spec-cta" style="--span:{rest}"><div><h3>Twijfel je welke student past?</h3><p>Beschrijf je vraag, dan denken we mee.</p></div>'
               f'{btn("Vraag een offerte aan", "/offerte-aanvragen/", "grad", "arrow-right")}</div>')
     return f'<div class="spec-grid">{cards}</div>'
@@ -648,7 +650,7 @@ def page_dienst(slug):
     Noun = noun[0].upper() + noun[1:]
     FAQ_ONDERWERP = {"Social media": "social media uitbesteden", "Content": "contentmarketing", "Branding": "een huisstijl",
                      "E-mailmarketing": "e-mailmarketing", "LinkedIn": "LinkedIn-marketing", "TikTok": "TikTok uitbesteden",
-                     "Instagram": "Instagram uitbesteden", "Foto en video": "foto en video laten maken"}
+                     "Instagram": "Instagram uitbesteden", "Foto en video": "foto en video laten maken", "Recruitment": "recruitment marketing"}
     lab = FAQ_ONDERWERP.get(d["short"], d["short"] if d["short"] in ("SEO", "Google Ads", "AI", "Claude") else d["short"])
     if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify"):
         lab = "een " + d["noun"]

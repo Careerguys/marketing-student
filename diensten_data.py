@@ -143,6 +143,28 @@ D = {
           ("Content","Eén opname, tien stukken content","Zo haal je meer uit elke draaidag.")],
     cta="Laat foto en video maken"),
 
+"recruitment-marketing-uitbesteden": dict(
+    short="Recruitment", noun="recruitment marketeer", h1=("Recruitment marketing", "uitbesteden"),
+    title="Recruitment marketing uitbesteden | Marketing Student",
+    meta="Recruitment marketing uitbesteden: vacatureteksten, vacaturecampagnes en employer branding door een getrainde student, begeleid door een senior.",
+    lead="Recruitment marketing uitbesteden aan een getrainde student: vacatureteksten, campagnes en een werkenbij-pagina die kandidaten trekt. Een senior marketeer bewaakt je werkgeversmerk.",
+    mentor="Marije C.", sc=None, platforms="recruitment",
+    tasks=[("pen","Vacatureteksten","Wervende teksten die vindbaar zijn in Google en op vacaturesites."),
+           ("target","Vacaturecampagnes","Advertenties op LinkedIn, Meta en Google, gericht op de juiste kandidaten."),
+           ("building","Werkenbij-pagina","Een pagina die laat zien hoe het is om bij jou te werken."),
+           ("camera","Employer branding","Foto's, video's en verhalen van je eigen medewerkers."),
+           ("users","Kandidaatreis","Van eerste klik tot sollicitatie, met zo min mogelijk afhakers."),
+           ("bar-chart","Meten en bijsturen","Welke kanalen sollicitanten opleveren, en waar je beter mee stopt.")],
+    faq=[("Wat is recruitment marketing?","Recruitment marketing is marketing voor je vacatures. Je gebruikt dezelfde middelen als bij het werven van klanten, zoals content, advertenties en social media, om de juiste kandidaten te bereiken en te laten solliciteren."),
+         ("Wat is het verschil met employer branding?","Employer branding is hoe je als werkgever bekendstaat. Recruitment marketing zet dat beeld in om voor concrete vacatures kandidaten te werven. De student helpt met allebei."),
+         ("Wat kost recruitment marketing uitbesteden?",""),
+         ("Werkt de student in mijn eigen advertentieaccounts?","Ja. De student werkt in je eigen LinkedIn-, Meta- en Google-accounts. Jij blijft eigenaar van de accounts en van alle data."),
+         ("Zit ik vast aan een contract?","")],
+    blog=[("Recruitment","Recruitment marketing: zo pak je het aan","Van vacaturetekst tot campagne."),
+          ("Recruitment","Zo schrijf je een vacature die gelezen wordt","Wat kandidaten willen weten."),
+          ("Recruitment","Employer branding voor het mkb","Laat zien hoe het is om bij jou te werken.")],
+    cta="Besteed je recruitment marketing uit"),
+
 "huisstijl-laten-maken": dict(
     short="Branding", noun="brandingstudent", h1=("Huisstijl", "laten maken"),
     title="Huisstijl laten maken door een student | Marketing Student",
@@ -350,5 +372,6 @@ PLAT = {
     "content": [("instagram","Instagram","Reels en posts"),("tiktok","TikTok","Korte video"),("youtube","YouTube","Video en Shorts"),("linkedin","LinkedIn","Zakelijke content"),("wordpress","WordPress","Blogs en pagina's")],
     "wordpress": [("wordpress","WordPress","Pagina's en onderhoud"),("woo","WooCommerce","Webshop"),("google","Google Search Console","Vindbaarheid")],
     "instagram": [("instagram","Instagram","Feed, stories en reels"),("facebook","Facebook","Gekoppelde pagina"),("meta","Meta Business Suite","Plannen en ads")],
+    "recruitment": [("linkedin","LinkedIn","Vacatures en campagnes"),("meta","Meta","Facebook- en Instagram-ads"),("google","Google","Google for Jobs en Ads"),("instagram","Instagram","Werkenbij-content"),("tiktok","TikTok","Jonge doelgroepen")],
     "shopify": [("shopify","Shopify","Webshop en apps"),("google","Google Merchant Center","Shopping"),("meta","Meta","Catalogus en ads")],
 }

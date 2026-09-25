@@ -279,6 +279,40 @@ def plans(noun=None, href="#offerte"):
     return f'<div class="plans">{out}</div>'
 
 
+FOTO = {
+    "team-computer": "Team dat samen naar een computerscherm kijkt op kantoor",
+    "samen-laptop": "Twee collega's werken samen aan een project achter een laptop",
+    "team-overleg": "Collega's overleggen rond een computerscherm",
+    "team-tafel": "Team in overleg aan een tafel op kantoor",
+    "studenten-laptop": "Twee jonge vrouwen werken samen op een laptop",
+    "student-bureau-1": "Jonge vrouw werkt op een laptop in een modern kantoor",
+    "student-bureau-2": "Jonge man werkt op een laptop aan zijn bureau",
+    "student-bureau-3": "Vrouw werkt aan een bureau met laptop en notitieboek",
+    "student-bureau-4": "Vrouw maakt aantekeningen naast haar laptop",
+    "student-bureau-5": "Man werkt geconcentreerd op een laptop",
+    "student-bureau-6": "Man met koptelefoon werkt op een laptop op kantoor",
+    "samen-overleg": "Twee vrouwen overleggen over iets op een laptop",
+    "samen-kantoor": "Twee vrouwen werken samen achter een laptop op kantoor",
+}
+DIENST_FOTO = ["student-bureau-1", "student-bureau-2", "samen-overleg", "student-bureau-3", "student-bureau-5", "samen-kantoor",
+               "student-bureau-6", "student-bureau-4", "team-overleg", "samen-laptop", "student-bureau-1", "student-bureau-2", "samen-overleg"]
+
+
+def foto(key, sizes, cls=""):
+    """Stockfoto (Unsplash-licentie) in 800 en 1600 px breed."""
+    base = f"/assets/img/foto/{key}"
+    return (f'<img class="{cls}" src="{base}-800.webp" srcset="{base}-800.webp 800w, {base}-1600.webp 1600w" sizes="{sizes}" '
+            f'width="800" height="450" alt="{FOTO[key]}" loading="lazy" decoding="async">')
+
+
+def photo_band(key, cls=""):
+    return section(f'<figure class="photo-band">{foto(key, "(min-width: 1240px) 1200px, 100vw")}</figure>', cls)
+
+
+def with_photo(key, inner):
+    return f'<div class="split">{foto(key, "(min-width: 1000px) 480px, 100vw", "split__photo")}<div class="split__body">{inner}</div></div>'
+
+
 def steps():
     out = "".join(f'<li class="card"><span class="step__num" aria-hidden="true">{i}</span><h3>{t}</h3><p>{d}</p></li>' for i, (t, d) in enumerate(STEPS, 1))
     return f'<ol class="steps">{out}</ol>'
@@ -577,7 +611,7 @@ def page_home():
     body += showcase(HOME_SC)
     body += section(section_head("Kies de student die past bij *jouw vraag*", "Elke specialisatie heeft een eigen pagina met taken en voorbeelden. Zo vind je sneller wat je zoekt.") + spec_grid(), "glow-left")
     body += section(section_head("Twee manieren om *samen te werken*", "Structureel meewerken of één afgebakende opdracht. Je kiest wat past, zonder contract.") + plans())
-    body += section(section_head("Zo staat jouw student *klaar*") + steps())
+    body += section(with_photo("team-computer", section_head("Zo staat jouw student *klaar*") + steps()))
     body += section(section_head("Student, freelance marketeer *of bureau?*", "Een eerlijke vergelijking op de punten die voor het mkb tellen.") + compare(COMPARE), "glow-right")
     body += section(section_head("Slimmer inhuren *begint hier*") + post_cards(["freelance-marketeer-of-marketing-student", "welke-social-media-kiezen", "wat-voor-type-marketeers-zijn-er"])
                     + f'<div class="btn-row" style="justify-content:center;margin-top:28px">{btn("Naar de kennisbank", "/kennisbank/", "outline", "arrow-right")}</div>')
@@ -612,6 +646,7 @@ def page_dienst(slug):
     tasks = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in d["tasks"])
     body += section(section_head(f"Wat een {noun} *voor je doet*", "Concreet werk, afgestemd op jouw doelen. Jij bepaalt de prioriteiten, de senior bewaakt de aanpak.")
                     + f'<div class="grid grid--3">{tasks}</div><div class="btn-row" style="justify-content:center;margin-top:32px">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>', "glow-left")
+    body += photo_band(DIENST_FOTO[[s[0] for s in SPECS].index(slug) % len(DIENST_FOTO)])
     if slug in CHILDREN:
         links = "".join(f'<a class="pill-link" href="/{s[0]}/">{s[1]}{icon("arrow-right")}</a>' for s in CHILDREN[slug])
         body += section(section_head("Liever *één kanaal?*", "Elk kanaal heeft een eigen pagina met taken en voorbeelden.") + f'<div class="pill-links">{links}</div>')
@@ -664,7 +699,7 @@ def page_specialisaties():
 
 
 def page_werkwijze():
-    secs = section(section_head("In drie stappen *aan de slag*") + steps(), "section--flush-top")
+    secs = section(with_photo("samen-laptop", section_head("In drie stappen *aan de slag*") + steps()), "section--flush-top")
     secs += section(section_head("Twee manieren om *samen te werken*") + plans(href="/offerte-aanvragen/"))
     secs += section(section_head("Student, freelance marketeer *of bureau?*") + compare(COMPARE), "glow-right")
     faq = faq_block("Vragen over *de werkwijze*", ["Hoe snel kan een student beginnen?", "Werken studenten remote of op locatie?", "Wat als de student niet bevalt?", "Zit ik vast aan een contract?"])
@@ -684,7 +719,8 @@ def page_over():
     cards = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in princ)
     offices = "".join(f'<div class="card office"><span class="card__icon">{icon("map-pin")}</span><h3>{p}</h3><address>{a}<br>{c}</address></div>'
                       for p, a, c in [("Den Haag", "Koninginnegracht 5", "2514 AA Den Haag"), ("Mijdrecht", "Industrieweg 6", "3641 RM Mijdrecht")])
-    secs = section(section_head("Vier afspraken waar je *op kunt rekenen*") + f'<div class="grid grid--4">{cards}</div>', "section--flush-top")
+    secs = photo_band("team-tafel", "section--flush-top")
+    secs += section(section_head("Vier afspraken waar je *op kunt rekenen*") + f'<div class="grid grid--4">{cards}</div>')
     secs += section(section_head("Hier *vind je ons*") + f'<div class="grid grid--2">{offices}</div>')
     secs += cta_block("Zin om *kennis te maken?*")
     return simple_page("/over-ons/", "Over ons", "Getrainde studenten,", "begeleid door seniors",
@@ -753,7 +789,7 @@ def page_contact():
 
 
 def page_offerte():
-    secs = section(section_head("Van aanvraag *tot start*") + steps())
+    secs = section(with_photo("team-overleg", section_head("Van aanvraag *tot start*") + steps()))
     return simple_page("/offerte-aanvragen/", "Offerte aanvragen", "Offerte", "aanvragen",
                        "Vertel wat je nodig hebt. Je krijgt een vrijblijvend voorstel met de student en de senior die jouw vraag oppakken.",
                        "Offerte aanvragen | Marketing Student",
@@ -833,7 +869,8 @@ def page_student():
              ("clock", "Flexibel naast je studie", "In overleg bepaal je hoeveel uur je per week werkt."),
              ("trending", "Groei in je vak", "Je leert de tools en methodes die marketeers dagelijks gebruiken.")]
     cards = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in krijg)
-    secs = section(section_head("Waarom studenten *bij ons werken*") + f'<div class="grid grid--4">{cards}</div>')
+    secs = photo_band("studenten-laptop", "section--flush-top")
+    secs += section(section_head("Waarom studenten *bij ons werken*") + f'<div class="grid grid--4">{cards}</div>')
     faq = faq_block("Vragen van *studenten*", ["Wat zijn de eisen?", "Werk ik remote of op locatie?", "Hoeveel uur per week werk ik?"])
     return simple_page("/werken-als-student/", "Werken als student", "Marketing bijbaan", "naast je studie",
                        "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk voor echte klanten, begeleid door ervaren marketeers.",

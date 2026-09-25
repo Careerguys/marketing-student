@@ -427,6 +427,13 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .plan .btn { margin-top: auto; width: 100%; }
 
 /* Stappen */
+.photo-band { margin: 0; }
+.photo-band img { display: block; width: 100%; height: clamp(220px, 34vw, 460px); object-fit: cover; border-radius: var(--radius-lg); }
+.split { display: grid; gap: 28px; }
+@media (min-width: 1000px) { .split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; } }
+.split__photo { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; max-height: 400px; object-fit: cover; border-radius: var(--radius-lg); }
+@media (min-width: 1000px) { .split__photo { aspect-ratio: 1 / 1; max-height: none; } }
+.split .steps { grid-template-columns: minmax(0, 1fr); }
 .steps { display: grid; gap: 12px; counter-reset: stap; list-style: none; }
 @media (min-width: 900px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
 .step__num { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--grad); color: var(--bg); font-weight: 800; font-size: 1.125rem; }

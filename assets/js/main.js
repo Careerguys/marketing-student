@@ -53,6 +53,25 @@
     });
   });
 
+  /* ---------- Secties zacht in beeld, eenmalig ---------- */
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var targets = document.querySelectorAll(".section:not(.showcase) > .container > *, .showcase");
+  if (reduce || !("IntersectionObserver" in window)) {
+    targets.forEach(function (el) { el.classList.add("is-visible"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0 });
+    targets.forEach(function (el) {
+      /* Wat bij het laden al in beeld staat, blijft gewoon staan: geen flits. */
+      if (el.getBoundingClientRect().top < window.innerHeight && !el.classList.contains("showcase")) return;
+      if (!el.classList.contains("showcase")) el.classList.add("reveal");
+      io.observe(el);
+    });
+  }
+
   /* ---------- Formulieren: validatie en Netlify-verzending ---------- */
   function fieldError(input, msg) {
     var field = input.closest(".field");

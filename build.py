@@ -105,7 +105,7 @@ HOME_PLATFORMS = [("google", "Google Search Console", "Posities en vindbaarheid"
                   ("tiktok", "TikTok", "Korte video en ads"), ("wordpress", "WordPress", "Pagina's en blogs"),
                   ("shopify", "Shopify", "Webshop en producten"), ("youtube", "YouTube", "Video en advertenties"),
                   ("openai", "ChatGPT", "Content en analyse"), ("claude", "Claude", "AI-workflows")]
-HOME_SC = dict(pill="Wat een student voor je doet", t1="Jouw bedrijf", t2="zichtbaar op elk kanaal", vraag="[jouw dienst] in de buurt",
+HOME_SC = dict(pill="Wat een student voor je doet", t1="Jouw bedrijf", t2="zichtbaar op elk kanaal", vraag="installateur in de buurt",
                lead="Een getrainde student werkt aan je vindbaarheid, advertenties en content. Een ervaren marketeer controleert elke stap.",
                sr="Voorbeeld: jouw bedrijf staat bovenaan in Google, in Google Ads, in Google Maps, op Instagram, op LinkedIn en in het antwoord van ChatGPT.",
                links=[("google", "Google"), ("googleads", "Google Ads"), ("meta", "Meta"), ("linkedin", "LinkedIn"), ("openai", "ChatGPT"), ("claude", "Claude")],
@@ -234,7 +234,7 @@ def sc_card(merk, naam, label, soort, vraag):
 def showcase(cfg):
     cards = "".join(sc_card(*k, cfg["vraag"]) for k in cfg["kaarten"])
     brands_html = "".join(f"<span>{brand(b)}{n}</span>" for b, n in cfg["links"])
-    return f'''<section class="section" aria-labelledby="showcase-titel"><div class="container">
+    return f'''<section class="section showcase" aria-labelledby="showcase-titel"><div class="container">
   <p class="sr-only">{cfg["sr"]}</p>
   <div class="showcase__stage">
     <div class="showcase__center">
@@ -284,8 +284,8 @@ def steps():
 
 
 def compare(rows):
-    heads = ["Marketing student", "Freelancer", "Bureau"]
-    th = '<th scope="col"><span class="sr-only">Kenmerk</span></th>' + "".join(f'<th scope="col">{h}</th>' for h in heads)
+    heads = [("Marketing student", "Student"), ("Freelancer", "Free&shy;lancer"), ("Bureau", "Bureau")]
+    th = '<th scope="col"><span class="sr-only">Kenmerk</span></th>' + "".join(f'<th scope="col"><span class="compare__full">{h}</span><span class="compare__short" aria-hidden="true">{s}</span></th>' for h, s in heads)
     trs = ""
     for r in rows:
         cells = f'<th scope="row">{r[0]}</th>'
@@ -518,6 +518,7 @@ def layout(path, title, desc, body, current, graph, noindex=False, og_type="webs
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add("js")</script>
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="robots" content="{robots}">
@@ -577,7 +578,6 @@ def page_home():
     body += section(section_head("Samenwerken", "Twee manieren om samen te werken", "Structureel meewerken of één afgebakende opdracht. Je kiest wat past, zonder contract.") + plans())
     body += section(section_head("Werkwijze", "Zo staat jouw student klaar") + steps())
     body += section(section_head("Vergelijking", "Student, freelance marketeer of bureau?", "Een eerlijke vergelijking op de punten die voor het mkb tellen.") + compare(COMPARE), "glow-right")
-    body += section(section_head("Tools", "Onze studenten werken in jouw tools", "Ze stappen in je bestaande accounts. Jij blijft eigenaar van alle data.") + platform_tiles(HOME_PLATFORMS))
     body += section(section_head("Kennisbank", "Slimmer inhuren begint hier") + post_cards(["freelance-marketeer-of-marketing-student", "welke-social-media-kiezen", "wat-voor-type-marketeers-zijn-er"])
                     + f'<div class="btn-row" style="justify-content:center;margin-top:28px">{btn("Naar de kennisbank", "/kennisbank/", "outline", "arrow-right")}</div>')
     body += faq_html
@@ -683,7 +683,8 @@ def page_over():
                        "Marketing Student is opgezet door een SEO-bureau en een brandingbureau: BlauweLink.nl en Careerguys.nl. Wij koppelen getrainde HBO/WO-studenten aan het mkb, met ervaren marketeers achter de schermen.",
                        "Over Marketing Student | BlauweLink en Careerguys",
                        "Marketing Student is opgezet door BlauweLink en Careerguys: getrainde marketingstudenten voor het mkb, begeleid door ervaren marketeers.",
-                       secs, "Over ons", "AboutPage")
+                       secs, "Over ons", "AboutPage",
+                       hero_extra=f'<div class="btn-row btn-row--stack">{btn("Neem contact op", "/contact/", "grad", "arrow-right", True)}{btn("Bel " + PHONE, PHONE_HREF, "outline", "phone", True)}</div>')
 
 
 def page_contact():

@@ -22,7 +22,7 @@ from faq_data import antwoord
 ROOT = Path(__file__).parent
 SITE = "https://marketing-student.nl"
 SITE_NAME = "Marketing Student"
-GTM_ID = ""  # Tag Manager-container. Leeg = geen tracking en geen cookiebanner.
+GTM_ID = "GTM-M3KWR76W"  # Tag Manager-container. Leeg = geen tracking en geen cookiebanner.
 PHONE = "085-060 8631"
 PHONE_HREF = "tel:+31850608631"
 EMAIL = "info@marketing-student.nl"

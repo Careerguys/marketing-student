@@ -111,11 +111,8 @@
       if (typeof window.gtag !== "function") return;
       window.gtag("consent", "update", { analytics_storage: value === "granted" ? "granted" : "denied" });
     }
-    if (stored) {
-      apply(stored);
-    } else {
-      cookie.hidden = false;
-    }
+    /* Een eerdere keuze zet het inline script in <head> al vóór GTM; hier alleen de banner tonen als er nog geen keuze is. */
+    if (!stored) cookie.hidden = false;
     cookie.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-consent]");
       if (!btn) return;

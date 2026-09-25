@@ -111,7 +111,7 @@ HOME_PLATFORMS = [("google", "Google Search Console", "Posities en vindbaarheid"
                   ("tiktok", "TikTok", "Korte video en ads"), ("wordpress", "WordPress", "Pagina's en blogs"),
                   ("shopify", "Shopify", "Webshop en producten"), ("youtube", "YouTube", "Video en advertenties"),
                   ("openai", "ChatGPT", "Content en analyse"), ("claude", "Claude", "AI-workflows")]
-HOME_SC = dict(pill="Wat een student voor je doet", t1="Jouw bedrijf", t2="zichtbaar op elk kanaal", vraag="installateur in de buurt",
+HOME_SC = dict(t1="Jouw bedrijf", t2="zichtbaar op elk kanaal", vraag="installateur in de buurt",
                lead="Een getrainde student werkt aan je vindbaarheid, advertenties en content. Een ervaren marketeer controleert elke stap.",
                sr="Voorbeeld: jouw bedrijf staat bovenaan in Google, in Google Ads, in Google Maps, op Instagram, op LinkedIn en in het antwoord van ChatGPT.",
                links=[("google", "Google"), ("googleads", "Google Ads"), ("meta", "Meta"), ("linkedin", "LinkedIn"), ("openai", "ChatGPT"), ("claude", "Claude")],
@@ -132,13 +132,12 @@ def accent(t, cls="grad"):
     return re.sub(r"\*([^*]+)\*", lambda m: f'<span class="{cls}">{m.group(1)}</span>', t)
 
 
-def section_head(pill, title, lead_txt=None, center=False, tag="h2", hid=None):
+def section_head(title, lead_txt=None, center=False, tag="h2", hid=None):
     title = accent(title)
     cls = "section-head section-head--center" if center else "section-head"
     idattr = f' id="{hid}"' if hid else ""
     lead_html = f'<p class="lead">{lead_txt}</p>' if lead_txt else ""
-    pill_html = f'<p class="pill">{pill}</p>' if pill else ""
-    return f'<div class="{cls}">{pill_html}<{tag}{idattr}>{title}</{tag}>{lead_html}</div>'
+    return f'<div class="{cls}"><{tag}{idattr}>{title}</{tag}>{lead_html}</div>'
 
 
 def section(inner, cls="", label=None):
@@ -211,12 +210,6 @@ def offerte_form(page_slug, title="Vraag vrijblijvend een offerte aan", hid="off
 </form></div>'''
 
 
-def trustbar():
-    items = [("users", "HBO/WO-studenten", "Getraind en gescreend"), ("shield", "Onderdeel van", "BlauweLink.nl en Careerguys.nl")]
-    cells = "".join(f'<div class="trustbar__item"><span class="trustbar__icon">{icon(i)}</span><div><strong>{a}</strong><span>{b}</span></div></div>' for i, a, b in items)
-    return section(f'<div class="trustbar">{cells}</div>', "section--flush-top")
-
-
 def sc_card(merk, naam, label, soort, vraag):
     lab = f'<span class="sc-card__label">{label}</span>' if label else ""
     ln = lambda w: f'<span class="sc-ln" style="width:{w}%"></span>'
@@ -247,7 +240,6 @@ def showcase(cfg):
   <p class="sr-only">{cfg["sr"]}</p>
   <div class="showcase__stage">
     <div class="showcase__center">
-      <p class="pill">{cfg["pill"]}</p>
       <h2 id="showcase-titel">{cfg["t1"]} <span class="grad">{cfg["t2"]}</span></h2>
       <div class="searchbar" aria-hidden="true">{icon("search")}<span>{cfg["vraag"]}</span></div>
     </div>
@@ -337,7 +329,7 @@ def faq_block(title, questions, answers_override=None):
         items.append((q, a))
     det = "".join(f'<details{" open" if i == 0 else ""}><summary>{q}{icon("plus")}</summary><div class="faq__body"><p>{a}</p></div></details>'
                   for i, (q, a) in enumerate(items))
-    inner = f'<div class="faq-wrap">{section_head("Veelgestelde vragen", title)}<div class="faq">{det}</div></div>'
+    inner = f'<div class="faq-wrap">{section_head(title)}<div class="faq">{det}</div></div>'
     return section(inner), items
 
 
@@ -408,7 +400,6 @@ def footer():
         <a class="strong" href="mailto:{EMAIL}">{icon("mail")}{EMAIL}</a>
         <span>Ma–do 08:30–17:30, vr 08:30–16:30</span>
         <span>KvK 90875206</span>
-        <span>Onderdeel van BlauweLink.nl en Careerguys.nl</span>
       </div></div>
     </div>
     <div class="footer__legal"><span>© {datetime.date.today().year} Marketing Student</span><nav aria-label="Juridisch"><a href="/privacy-policy/">Privacy- en cookiebeleid</a><a href="/sitemap.xml">Sitemap</a>{cookie_link}</nav></div>
@@ -474,8 +465,6 @@ BASE_GRAPH = [
      "address": {"@type": "PostalAddress", "streetAddress": "Koninginnegracht 5", "postalCode": "2514 AA", "addressLocality": "Den Haag", "addressCountry": "NL"},
      "identifier": {"@type": "PropertyValue", "propertyID": "KvK", "value": "90875206"},
      "areaServed": NL, "knowsLanguage": "nl",
-     "parentOrganization": [{"@type": "Organization", "name": "BlauweLink", "url": "https://www.blauwelink.nl/"},
-                            {"@type": "Organization", "name": "Careerguys", "url": "https://careerguys.nl/"}],
      "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "telephone": "+31850608631", "email": EMAIL,
                       "areaServed": "NL", "availableLanguage": "Dutch", "hoursAvailable": UREN},
      "location": [{"@id": f"{SITE}/#vestiging-den-haag"}, {"@id": f"{SITE}/#vestiging-mijdrecht"}]},
@@ -585,13 +574,12 @@ def page_home():
     body = hero(None, "Marketing uitbesteden", "aan een student",
                 "Marketing student inhuren in plaats van een bureau: getrainde HBO/WO-studenten die direct meebouwen aan je online marketing. Altijd begeleid door ervaren marketeers, zonder contract.",
                 hero_buttons(), offerte_form(""), home=True, movable=True)
-    body += trustbar()
     body += showcase(HOME_SC)
-    body += section(section_head("Specialisaties", "Kies de student die past bij *jouw vraag*", "Elke specialisatie heeft een eigen pagina met taken en voorbeelden. Zo vind je sneller wat je zoekt.") + spec_grid(), "glow-left")
-    body += section(section_head("Samenwerken", "Twee manieren om *samen te werken*", "Structureel meewerken of één afgebakende opdracht. Je kiest wat past, zonder contract.") + plans())
-    body += section(section_head("Werkwijze", "Zo staat jouw student *klaar*") + steps())
-    body += section(section_head("Vergelijking", "Student, freelance marketeer *of bureau?*", "Een eerlijke vergelijking op de punten die voor het mkb tellen.") + compare(COMPARE), "glow-right")
-    body += section(section_head("Kennisbank", "Slimmer inhuren *begint hier*") + post_cards(["freelance-marketeer-of-marketing-student", "welke-social-media-kiezen", "wat-voor-type-marketeers-zijn-er"])
+    body += section(section_head("Kies de student die past bij *jouw vraag*", "Elke specialisatie heeft een eigen pagina met taken en voorbeelden. Zo vind je sneller wat je zoekt.") + spec_grid(), "glow-left")
+    body += section(section_head("Twee manieren om *samen te werken*", "Structureel meewerken of één afgebakende opdracht. Je kiest wat past, zonder contract.") + plans())
+    body += section(section_head("Zo staat jouw student *klaar*") + steps())
+    body += section(section_head("Student, freelance marketeer *of bureau?*", "Een eerlijke vergelijking op de punten die voor het mkb tellen.") + compare(COMPARE), "glow-right")
+    body += section(section_head("Slimmer inhuren *begint hier*") + post_cards(["freelance-marketeer-of-marketing-student", "welke-social-media-kiezen", "wat-voor-type-marketeers-zijn-er"])
                     + f'<div class="btn-row" style="justify-content:center;margin-top:28px">{btn("Naar de kennisbank", "/kennisbank/", "outline", "arrow-right")}</div>')
     body += faq_html
     body += FORM_SLOT
@@ -619,22 +607,21 @@ def page_dienst(slug):
         crumb_items.append((SPEC[PARENT[slug]][1], f"/{PARENT[slug]}/"))
     crumb_items.append((label, path))
     body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons(), offerte_form(slug), movable=True)
-    body += trustbar()
     if d["sc"]:
         body += showcase(SHOWCASES[d["sc"]])
     tasks = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in d["tasks"])
-    body += section(section_head("Taken", f"Wat een {noun} *voor je doet*", "Concreet werk, afgestemd op jouw doelen. Jij bepaalt de prioriteiten, de senior bewaakt de aanpak.")
+    body += section(section_head(f"Wat een {noun} *voor je doet*", "Concreet werk, afgestemd op jouw doelen. Jij bepaalt de prioriteiten, de senior bewaakt de aanpak.")
                     + f'<div class="grid grid--3">{tasks}</div><div class="btn-row" style="justify-content:center;margin-top:32px">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>', "glow-left")
     if slug in CHILDREN:
         links = "".join(f'<a class="pill-link" href="/{s[0]}/">{s[1]}{icon("arrow-right")}</a>' for s in CHILDREN[slug])
-        body += section(section_head("Ook mogelijk", "Liever *één kanaal?*", "Elk kanaal heeft een eigen pagina met taken en voorbeelden.") + f'<div class="pill-links">{links}</div>')
+        body += section(section_head("Liever *één kanaal?*", "Elk kanaal heeft een eigen pagina met taken en voorbeelden.") + f'<div class="pill-links">{links}</div>')
     if d["platforms"]:
-        body += section(section_head("Platformen", "De tools *die we gebruiken*") + platform_tiles(PLATFORMS[d["platforms"]]))
-    body += section(section_head("Samenwerken", f"Zo werk je met *een {noun}*", "Twee werkvormen, allebei zonder contract. Je krijgt altijd eerst een offerte op maat.") + plans(Noun))
+        body += section(section_head("De tools *die we gebruiken*") + platform_tiles(PLATFORMS[d["platforms"]]))
+    body += section(section_head(f"Zo werk je met *een {noun}*", "Twee werkvormen, allebei zonder contract. Je krijgt altijd eerst een offerte op maat.") + plans(Noun))
     seo = slug == "seo-specialist-inhuren"
-    body += section(section_head("Vergelijking", "SEO-student, SEO-freelancer *of bureau?*" if seo else "Student, freelancer *of bureau?*") + compare(COMPARE_SEO if seo else COMPARE), "glow-right")
+    body += section(section_head("SEO-student, SEO-freelancer *of bureau?*" if seo else "Student, freelancer *of bureau?*") + compare(COMPARE_SEO if seo else COMPARE), "glow-right")
     body += faq_html
-    body += section(section_head("Kennisbank", "Meer *lezen*") + post_cards(REL.get(slug, REL_DEFAULT)))
+    body += section(section_head("Meer *lezen*") + post_cards(REL.get(slug, REL_DEFAULT)))
     body += FORM_SLOT
     body += cta_block(f"Klaar voor *een {noun}?*", "Vertel wat je nodig hebt. Je krijgt een voorstel met de student en de senior die jouw vraag oppakken.")
     graph = [ld_webpage(url, d["title"], d["meta"], main=url + "#service"),
@@ -663,8 +650,8 @@ def simple_page(path, crumb, h1a, h1b, lead_txt, title, desc, sections_html, cur
 
 def page_specialisaties():
     items = [{"@type": "ListItem", "position": i, "url": f"{SITE}/{s[0]}/", "name": s[1]} for i, s in enumerate(SPECS, 1)]
-    secs = section(section_head("Overzicht", "Kies de student die past bij *jouw vraag*") + spec_grid(SPECS), "section--flush-top")
-    secs += section(section_head("Samenwerken", "Twee manieren om *samen te werken*") + plans(href="/offerte-aanvragen/"))
+    secs = section(section_head("Kies de student die past bij *jouw vraag*") + spec_grid(SPECS), "section--flush-top")
+    secs += section(section_head("Twee manieren om *samen te werken*") + plans(href="/offerte-aanvragen/"))
     faq = faq_block("Vragen over *de specialisaties*", ["Welke specialisatie past bij mij?", "Kan één student meerdere taken doen?", "Wie begeleidt de student?", "Zit ik vast aan een contract?"])
     secs_after = cta_block()
     p = simple_page("/specialisaties/", "Specialisaties", "Alle specialisaties", "op een rij",
@@ -677,9 +664,9 @@ def page_specialisaties():
 
 
 def page_werkwijze():
-    secs = section(section_head("Stappen", "In drie stappen *aan de slag*") + steps(), "section--flush-top")
-    secs += section(section_head("Samenwerken", "Twee manieren om *samen te werken*") + plans(href="/offerte-aanvragen/"))
-    secs += section(section_head("Vergelijking", "Student, freelance marketeer *of bureau?*") + compare(COMPARE), "glow-right")
+    secs = section(section_head("In drie stappen *aan de slag*") + steps(), "section--flush-top")
+    secs += section(section_head("Twee manieren om *samen te werken*") + plans(href="/offerte-aanvragen/"))
+    secs += section(section_head("Student, freelance marketeer *of bureau?*") + compare(COMPARE), "glow-right")
     faq = faq_block("Vragen over *de werkwijze*", ["Hoe snel kan een student beginnen?", "Werken studenten remote of op locatie?", "Wat als de student niet bevalt?", "Zit ik vast aan een contract?"])
     p = simple_page("/werkwijze/", "Werkwijze", "Zo werkt marketing", "uitbesteden",
                     "Van eerste vraag tot vaste student in je team. Een senior marketeer kijkt altijd mee, en je zit nergens aan vast.",
@@ -697,13 +684,13 @@ def page_over():
     cards = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in princ)
     offices = "".join(f'<div class="card office"><span class="card__icon">{icon("map-pin")}</span><h3>{p}</h3><address>{a}<br>{c}</address></div>'
                       for p, a, c in [("Den Haag", "Koninginnegracht 5", "2514 AA Den Haag"), ("Mijdrecht", "Industrieweg 6", "3641 RM Mijdrecht")])
-    secs = section(section_head("Principes", "Vier afspraken waar je *op kunt rekenen*") + f'<div class="grid grid--4">{cards}</div>', "section--flush-top")
-    secs += section(section_head("Kantoren", "Hier *vind je ons*") + f'<div class="grid grid--2">{offices}</div>')
+    secs = section(section_head("Vier afspraken waar je *op kunt rekenen*") + f'<div class="grid grid--4">{cards}</div>', "section--flush-top")
+    secs += section(section_head("Hier *vind je ons*") + f'<div class="grid grid--2">{offices}</div>')
     secs += cta_block("Zin om *kennis te maken?*")
     return simple_page("/over-ons/", "Over ons", "Getrainde studenten,", "begeleid door seniors",
-                       "Marketing Student is opgezet door een SEO-bureau en een brandingbureau: BlauweLink.nl en Careerguys.nl. Wij koppelen getrainde HBO/WO-studenten aan het mkb, met ervaren marketeers achter de schermen.",
-                       "Over Marketing Student | BlauweLink en Careerguys",
-                       "Marketing Student is opgezet door BlauweLink en Careerguys: getrainde marketingstudenten voor het mkb, begeleid door ervaren marketeers.",
+                       "Marketing Student koppelt getrainde HBO/WO-studenten aan het mkb, met ervaren marketeers achter de schermen.",
+                       "Over ons | Getrainde marketingstudenten voor het mkb",
+                       "Marketing Student koppelt getrainde HBO/WO-marketingstudenten aan het mkb, begeleid door ervaren marketeers. Lees hoe wij werken.",
                        secs, "Over ons", "AboutPage",
                        hero_extra=f'<div class="btn-row btn-row--stack">{btn("Neem contact op", "/contact/", "grad", "arrow-right", True)}{btn("Bel " + PHONE, PHONE_HREF, "outline", "phone", True)}</div>')
 
@@ -736,7 +723,7 @@ def offices_section():
     <p class="office__note">De kaart komt van Google Maps.</p>
   </div>
 </article>'''
-    return section('<div id="vestigingen">' + section_head("Vestigingen", "Kom langs in *Den Haag of Mijdrecht*", "Op afspraak. Bel of mail even vooraf, dan staat de koffie klaar.") + f'<div class="offices">{cards}</div></div>')
+    return section('<div id="vestigingen">' + section_head("Kom langs in *Den Haag of Mijdrecht*", "Op afspraak. Bel of mail even vooraf, dan staat de koffie klaar.") + f'<div class="offices">{cards}</div></div>')
 
 
 def page_contact():
@@ -766,7 +753,7 @@ def page_contact():
 
 
 def page_offerte():
-    secs = section(section_head("Wat er daarna gebeurt", "Van aanvraag *tot start*") + steps())
+    secs = section(section_head("Van aanvraag *tot start*") + steps())
     return simple_page("/offerte-aanvragen/", "Offerte aanvragen", "Offerte", "aanvragen",
                        "Vertel wat je nodig hebt. Je krijgt een vrijblijvend voorstel met de student en de senior die jouw vraag oppakken.",
                        "Offerte aanvragen | Marketing Student",
@@ -815,7 +802,7 @@ def page_artikel(a):
     body = hero([("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)], a["titel"], "", a["meta"], meta_line, cls="hero--article")
     body += section(f'<div class="article-grid"><article class="prose">{"".join(prose)}</article>{aside}</div>', "section--flush-top")
     rel = [x["slug"] for x in ARTIKELEN if x["slug"] != a["slug"]][:3]
-    body += section(section_head("Verder lezen", "Meer uit *de kennisbank*") + post_cards(rel))
+    body += section(section_head("Meer uit *de kennisbank*") + post_cards(rel))
     body += cta_block()
     graph = [ld_webpage(url, a["title"], a["meta"], main=url + "#artikel"),
              ld_crumbs(url, [("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)]),
@@ -846,7 +833,7 @@ def page_student():
              ("clock", "Flexibel naast je studie", "In overleg bepaal je hoeveel uur je per week werkt."),
              ("trending", "Groei in je vak", "Je leert de tools en methodes die marketeers dagelijks gebruiken.")]
     cards = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in krijg)
-    secs = section(section_head("Wat je krijgt", "Waarom studenten *bij ons werken*") + f'<div class="grid grid--4">{cards}</div>')
+    secs = section(section_head("Waarom studenten *bij ons werken*") + f'<div class="grid grid--4">{cards}</div>')
     faq = faq_block("Vragen van *studenten*", ["Wat zijn de eisen?", "Werk ik remote of op locatie?", "Hoeveel uur per week werk ik?"])
     return simple_page("/werken-als-student/", "Werken als student", "Marketing bijbaan", "naast je studie",
                        "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk voor echte klanten, begeleid door ervaren marketeers.",
@@ -982,7 +969,7 @@ def main():
                                                        "background_color": "#0f2741", "theme_color": "#0f2741",
                                                        "icons": [{"src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png"},
                                                                  {"src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, indent=1), encoding="utf-8")
-    llms = [f"# {SITE_NAME}", "", "> Getrainde HBO/WO-marketingstudenten voor het mkb, begeleid door ervaren marketeers. Geen contract, kosteloze vervanging. Onderdeel van BlauweLink.nl en Careerguys.nl.", "",
+    llms = [f"# {SITE_NAME}", "", "> Getrainde HBO/WO-marketingstudenten voor het mkb, begeleid door ervaren marketeers. Geen contract, kosteloze vervanging.", "",
             f"Contact: {PHONE}, {EMAIL}. Vestigingen in Den Haag en Mijdrecht.", "", "## Specialisaties", ""]
     llms += [f"- [{s[1]}]({SITE}/{s[0]}/): {s[3]}" for s in SPECS]
     llms += ["", "## Kennisbank", ""] + [f"- [{a['titel']}]({SITE}/kennisbank/{a['slug']}/): {meta_short(a['meta'])}" for a in ARTIKELEN]

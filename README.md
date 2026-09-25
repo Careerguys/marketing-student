@@ -39,8 +39,8 @@ Gebeurtenissen in de dataLayer: `form_submit`, `phone_click`, `email_click`. For
 
 ## Formulieren
 
-Netlify Forms: `offerte`, `contact` en `student-aanmelding`. Stel in Netlify onder Forms een e-mailmelding in, anders krijgt niemand bericht.
+Netlify Forms: `offerte`, `contact` en `student-aanmelding`. Formulierdetectie staat aan; meldingen van nieuwe inzendingen gaan naar marketing@blauwelink.nl (Netlify, project `marketing-student`, Forms).
 
 ## Publiceren
 
-Netlify publiceert vanaf de `main`-branch van de GitHub-repository. Er is geen bouwstap op Netlify: de gebouwde HTML staat in de repository.
+Netlify-project `marketing-student` (https://marketing-student.netlify.app) publiceert vanaf de `main`-branch van github.com/Careerguys/marketing-student. De repository is openbaar: op het huidige Netlify-abonnement worden bij privé-repositories alleen commits van één GitHub-gebruiker gebouwd. Er is geen bouwstap op Netlify: de gebouwde HTML staat in de repository.

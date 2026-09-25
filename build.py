@@ -69,6 +69,11 @@ SPECS = [
 ]
 SPEC = {s[0]: s for s in SPECS}
 GROUPS = ["Vindbaarheid", "Social media en content", "Merk en e-mail", "Web en AI"]
+# Korte namen voor het menu; de volledige naam staat op de pagina zelf.
+MENU_LABEL = {"seo-specialist-inhuren": "SEO", "google-ads-specialist-inhuren": "Google Ads", "social-media-uitbesteden": "Social media",
+              "foto-en-video-laten-maken": "Foto en video", "recruitment-marketing-uitbesteden": "Recruitment",
+              "huisstijl-laten-maken": "Huisstijl", "email-marketing-uitbesteden": "E-mailmarketing",
+              "wordpress-specialist-inhuren": "WordPress", "shopify-specialist-inhuren": "Shopify", "ai-specialist-inhuren": "AI"}
 # Subspecialisaties staan niet in menu, footer en homepage; ze zijn bereikbaar via de hoofdpagina en /specialisaties/.
 PARENT = {"instagram-uitbesteden": "social-media-uitbesteden", "tiktok-uitbesteden": "social-media-uitbesteden",
           "linkedin-marketing-uitbesteden": "social-media-uitbesteden", "contentmarketing-uitbesteden": "social-media-uitbesteden",
@@ -397,15 +402,16 @@ NAV = [("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"), ("Kennisbank", 
 
 
 def header(current):
-    half = (len(MAIN) + 1) // 2
     groups = ""
-    for col in (MAIN[:half], MAIN[half:]):
-        lis = "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in col)
-        groups += f'<div class="dropdown__group"><ul>{lis}</ul></div>'
+    mob_groups = ""
+    for g in GROUPS:
+        items = [sp for sp in MAIN if sp[4] == g]
+        lis = "".join(f'<li><a href="/{sp[0]}/">{MENU_LABEL[sp[0]]}</a></li>' for sp in items)
+        groups += f'<div class="dropdown__group"><p class="dropdown__title">{g}</p><ul>{lis}</ul></div>'
+        mob_groups += f'<div class="mobile-nav__group"><p class="mobile-nav__title">{g}</p><ul>{lis}</ul></div>'
     spec_cur = ' aria-current="page"' if current == "specialisaties" else ""
     cur = ' aria-current="page"'
     links = "".join(f'<li><a href="{u}"{cur if current == n else ""}>{n}</a></li>' for n, u in NAV)
-    mob_groups = '<ul>' + "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in MAIN) + '</ul>'
     mob_links = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in NAV)
     return f'''<a class="skip-link" href="#main">Naar de inhoud</a>
 <header class="header">
@@ -429,7 +435,7 @@ def header(current):
 <div class="mobile-nav" id="mobile-nav">
   <nav aria-label="Mobiel menu"><ul class="mobile-nav__list">
     <li><details class="mobile-nav__spec"><summary>Specialisaties{icon("chevron-down")}</summary>
-      <div class="mobile-nav__groups">{mob_groups}<a class="mobile-nav__all" href="/specialisaties/">Alle specialisaties{icon("arrow-right")}</a></div></details></li>
+      <div class="mobile-nav__groups"><div class="mobile-nav__grid">{mob_groups}</div><a class="mobile-nav__all" href="/specialisaties/">Alle specialisaties{icon("arrow-right")}</a></div></details></li>
     {mob_links}
   </ul>
   <div class="mobile-nav__foot">{btn("Offerte aanvragen", "/offerte-aanvragen/", "grad", "arrow-right", True)}<a class="mobile-nav__phone" href="{PHONE_HREF}">{icon("phone")}Bel {PHONE}</a></div></nav>

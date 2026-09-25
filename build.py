@@ -322,19 +322,31 @@ def with_photo(key, inner):
     return f'<div class="split">{foto(key, "(min-width: 1000px) 480px, 100vw", "split__photo")}<div class="split__body">{inner}</div></div>'
 
 
-REELS = [("showroom-reel", "Showroom reel voor een autodealer", "0:19"),
-         ("studio-walkthrough", "Walkthrough voor een foto- en videostudio", "0:40"),
-         ("verhuis-commercial", "Commercial voor een verhuisbedrijf", "0:26")]
+REELS = [("showroom-reel", "Showroom reel voor een autodealer", "Reel", "0:19"),
+         ("broodjes-video", "Productvideo voor een broodjeszaak", "Reel", "0:20"),
+         ("speedboot-reel", "Reel met een speedboot in Amsterdam", "Reel", "0:57"),
+         ("verhuis-commercial", "Commercial voor een verhuisbedrijf", "Advertentie", "0:26"),
+         ("stad-video", "Promotievideo in Amsterdam", "Advertentie", "0:25"),
+         ("studio-walkthrough", "Walkthrough voor een foto- en videostudio", "Reel", "0:40")]
+# Pagina's met de videocarrousel. Op de andere pagina's staat een stockfoto.
+REEL_PAGES = {"foto-en-video-laten-maken", "social-media-uitbesteden", "contentmarketing-uitbesteden", "instagram-uitbesteden", "tiktok-uitbesteden"}
+REEL_INTRO = "Een paar video's die we voor klanten maakten. Tik op het luidsprekertje voor geluid."
 
 
 def reels():
     cards = ""
-    for key, label, duur in REELS:
+    for key, label, soort, duur in REELS:
         cards += (f'<figure class="reel"><video muted loop playsinline preload="none" poster="/assets/video/{key}.webp" data-reel>'
                   f'<source src="/assets/video/{key}.mp4" type="video/mp4"></video>'
                   f'<button class="reel__sound" type="button" aria-pressed="false" aria-label="Geluid aan: {label}">{icon("volume-x", "reel__off")}{icon("volume", "reel__on")}</button>'
-                  f'<figcaption><span class="reel__tag">Reel · {duur}</span>{label}</figcaption></figure>')
-    return f'<div class="reels">{cards}</div>'
+                  f'<figcaption><span class="reel__tag">{soort} · {duur}</span>{label}</figcaption></figure>')
+    nav = (f'<div class="reels__nav"><button class="icon-btn reels__btn" type="button" data-reels-prev aria-label="Vorige video">{icon("arrow-left")}</button>'
+           f'<button class="icon-btn reels__btn" type="button" data-reels-next aria-label="Volgende video">{icon("arrow-right")}</button></div>')
+    return f'<div class="reels-wrap"><div class="reels" data-reels>{cards}</div>{nav}</div>'
+
+
+def reel_section():
+    return section(section_head("Zo ziet ons werk *eruit*", REEL_INTRO, center=True) + reels())
 
 
 def steps():
@@ -669,11 +681,14 @@ def page_dienst(slug):
     if d["sc"]:
         body += showcase(SHOWCASES[d["sc"]])
     if slug == "foto-en-video-laten-maken":
-        body += section(section_head("Zo ziet ons werk *eruit*", "Een paar video's die we voor klanten maakten. Verticaal gefilmd voor Reels, TikTok en Shorts. Tik op het luidsprekertje voor geluid.", center=True) + reels())
+        body += reel_section()
     tasks = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in d["tasks"])
     body += section(section_head(f"Wat een {noun} *voor je doet*", "Concreet werk, afgestemd op jouw doelen. Jij bepaalt de prioriteiten, de senior bewaakt de aanpak.")
                     + f'<div class="grid grid--3">{tasks}</div><div class="btn-row" style="justify-content:center;margin-top:32px">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>', "glow-left")
-    body += photo_band(DIENST_FOTO[[s[0] for s in SPECS].index(slug) % len(DIENST_FOTO)])
+    if slug in REEL_PAGES - {"foto-en-video-laten-maken"}:
+        body += reel_section()
+    else:
+        body += photo_band(DIENST_FOTO[[s[0] for s in SPECS].index(slug) % len(DIENST_FOTO)])
     if slug in CHILDREN:
         links = "".join(f'<a class="pill-link" href="/{s[0]}/">{s[1]}{icon("arrow-right")}</a>' for s in CHILDREN[slug])
         body += section(section_head("Liever *één kanaal?*", "Elk kanaal heeft een eigen pagina met taken en voorbeelden.") + f'<div class="pill-links">{links}</div>')

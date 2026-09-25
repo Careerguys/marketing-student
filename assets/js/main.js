@@ -114,6 +114,29 @@
     }
   }
 
+  /* ---------- Reelcarrousel: pijlen alleen als er meer video's zijn dan in beeld passen ---------- */
+  document.querySelectorAll("[data-reels]").forEach(function (track) {
+    var wrap = track.parentNode;
+    var prev = wrap.querySelector("[data-reels-prev]");
+    var next = wrap.querySelector("[data-reels-next]");
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      wrap.classList.toggle("has-overflow", max > 4);
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft >= max - 4;
+    }
+    function step(dir) {
+      var card = track.querySelector(".reel");
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      track.scrollBy({ left: dir * (card.offsetWidth + gap), behavior: reduce ? "auto" : "smooth" });
+    }
+    prev.addEventListener("click", function () { step(-1); });
+    next.addEventListener("click", function () { step(1); });
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  });
+
   /* ---------- Formulieren: validatie en Netlify-verzending ---------- */
   function fieldError(input, msg) {
     var field = input.closest(".field");

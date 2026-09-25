@@ -194,11 +194,28 @@ h3 { font-size: 1.1875rem; line-height: 1.25; letter-spacing: -0.02em; }
   visibility: hidden; opacity: 0; transition: opacity 200ms var(--ease), visibility 0s linear 200ms;
 }
 .mobile-nav.is-open { visibility: visible; opacity: 1; transition: opacity 200ms var(--ease); }
-.mobile-nav__title { font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin: 24px 0 8px; }
-.mobile-nav ul { list-style: none; display: grid; gap: 2px; }
-.mobile-nav a { display: flex; align-items: center; min-height: 44px; padding: 8px 0; color: #fff; font-weight: 700; font-size: 1.0625rem; text-decoration: none; border-bottom: 1px solid var(--line); }
-.mobile-nav .btn { margin-top: 24px; width: 100%; border-bottom: 0; }
+.mobile-nav__list { list-style: none; display: grid; }
+.mobile-nav__list > li { border-bottom: 1px solid var(--line); }
+.mobile-nav__list > li > a, .mobile-nav__spec summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 56px; padding: 12px 0; color: #fff; font-weight: 800; font-size: 1.25rem; text-decoration: none; list-style: none; cursor: pointer;
+}
+.mobile-nav__spec summary::-webkit-details-marker { display: none; }
+.mobile-nav__spec summary svg { width: 22px; height: 22px; color: var(--green); flex: none; transition: transform 160ms var(--ease); }
+.mobile-nav__spec[open] summary svg { transform: rotate(180deg); }
+.mobile-nav__groups { padding: 0 0 16px; }
+.mobile-nav__title { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin: 14px 0 4px; }
+.mobile-nav__groups ul { list-style: none; display: grid; }
+.mobile-nav__groups ul a { display: flex; align-items: center; min-height: 44px; padding: 6px 0 6px 12px; color: var(--muted); font-weight: 600; font-size: 1rem; text-decoration: none; }
+.mobile-nav__groups ul a:hover { color: #fff; }
+.mobile-nav__all { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; margin-top: 8px; color: var(--green); font-weight: 800; font-size: 1rem; text-decoration: none; }
+.mobile-nav__all svg { width: 16px; height: 16px; }
+.mobile-nav__foot { display: grid; gap: 14px; margin-top: 28px; }
+.mobile-nav__foot .btn { width: 100%; }
+.mobile-nav__phone { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; color: #fff; font-weight: 700; text-decoration: none; }
+.mobile-nav__phone svg { width: 18px; height: 18px; color: var(--green); }
 body.menu-open { overflow: hidden; }
+body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 
 /* ---------- Kruimelpad ---------- */
 .crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; list-style: none; font-size: 0.875rem; color: var(--muted); }

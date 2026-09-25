@@ -354,7 +354,7 @@ def header(current):
     for g in GROUPS:
         lis = "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in SPECS if s[4] == g)
         mob_groups += f'<p class="mobile-nav__title">{g}</p><ul>{lis}</ul>'
-    mob_links = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in [("Alle specialisaties", "/specialisaties/")] + NAV)
+    mob_links = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in NAV)
     return f'''<a class="skip-link" href="#main">Naar de inhoud</a>
 <header class="header">
   <div class="header__bar">
@@ -375,8 +375,12 @@ def header(current):
   </div>
 </header>
 <div class="mobile-nav" id="mobile-nav">
-  <nav aria-label="Mobiel menu">{mob_groups}<p class="mobile-nav__title">Marketing Student</p><ul>{mob_links}</ul>
-  {btn("Offerte aanvragen", "/offerte-aanvragen/", "grad", "arrow-right", True)}</nav>
+  <nav aria-label="Mobiel menu"><ul class="mobile-nav__list">
+    <li><details class="mobile-nav__spec"><summary>Specialisaties{icon("chevron-down")}</summary>
+      <div class="mobile-nav__groups">{mob_groups}<a class="mobile-nav__all" href="/specialisaties/">Alle specialisaties{icon("arrow-right")}</a></div></details></li>
+    {mob_links}
+  </ul>
+  <div class="mobile-nav__foot">{btn("Offerte aanvragen", "/offerte-aanvragen/", "grad", "arrow-right", True)}<a class="mobile-nav__phone" href="{PHONE_HREF}">{icon("phone")}Bel {PHONE}</a></div></nav>
 </div>'''
 
 

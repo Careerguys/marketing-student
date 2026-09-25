@@ -26,13 +26,15 @@ class P(HTMLParser):
         if t == "label" and "for" in a: s.labels.add(a["for"])
         if t == "title": s.in_title = True
         if t == "script" and a.get("type") == "application/ld+json": s.in_ld = True; s.buf = ""
-        if t == "summary": s.in_sum = True; s.sbuf = ""
+        if t == "details" and "mobile-nav__spec" in a.get("class", ""): s.skip_sum = True
+        if t == "summary" and not getattr(s, "skip_sum", False): s.in_sum = True; s.sbuf = ""
         if t == "div" and a.get("class") == "faq__body": s.in_fb = 1; s.fbuf = ""
         elif s.in_fb and t == "div": s.in_fb += 1
     def handle_endtag(s, t):
         if t == "title": s.in_title = False
         if t == "script" and s.in_ld: s.in_ld = False; s.ld.append(s.buf)
-        if t == "summary": s.in_sum = False; s.summ.append(s.sbuf.strip())
+        if t == "details": s.skip_sum = False
+        if t == "summary" and s.in_sum: s.in_sum = False; s.summ.append(s.sbuf.strip())
         if t == "div" and s.in_fb:
             s.in_fb -= 1
             if s.in_fb == 0: s.faqbody.append(re.sub(r"\s+", " ", s.fbuf).strip())

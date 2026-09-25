@@ -423,6 +423,17 @@ def cookie_banner():
 </div>'''
 
 
+def minify_css(css):
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    css = re.sub(r"\s+", " ", css)
+    css = re.sub(r"\s*([{}:;,>])\s*", r"\1", css)
+    css = css.replace(";}", "}")
+    return css.strip()
+
+
+CSS_INLINE = minify_css((ROOT / "assets/css/style.css").read_text())
+
+
 def asset_v(rel):
     p = ROOT / rel
     return hashlib.md5(p.read_bytes()).hexdigest()[:8]
@@ -486,7 +497,7 @@ def ld_faq(url, items):
 # ---------------------------------------------------------------- layout
 def layout(path, title, desc, body, current, graph, noindex=False, og_type="website"):
     url = SITE + path
-    css_v, js_v = asset_v("assets/css/style.css"), asset_v("assets/js/main.js")
+    js_v = asset_v("assets/js/main.js")
     robots = "noindex, follow" if noindex else "index, follow, max-image-preview:large, max-snippet:-1"
     ld = json.dumps({"@context": "https://schema.org", "@graph": BASE_GRAPH + graph}, ensure_ascii=False, separators=(",", ":"))
     gtm_head = gtm_body = ""
@@ -494,7 +505,7 @@ def layout(path, title, desc, body, current, graph, noindex=False, og_type="webs
         gtm_head = (f"<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}"
                     f"gtag('consent','default',{{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500}});"
                     f"try{{if(localStorage.getItem('ms_consent')==='granted')gtag('consent','update',{{'analytics_storage':'granted'}})}}catch(e){{}}</script>\n"
-                    f"<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}})(window,document,'script','dataLayer','{GTM_ID}');</script>\n")
+                    f"<script>window.addEventListener('load',function(){{setTimeout(function(){{(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}})(window,document,'script','dataLayer','{GTM_ID}')}},1500)}});</script>\n")
         gtm_body = f'<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>\n'
     canonical = "" if noindex else f'<link rel="canonical" href="{url}">\n'
     return f'''<!DOCTYPE html>
@@ -521,7 +532,7 @@ def layout(path, title, desc, body, current, graph, noindex=False, og_type="webs
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/style.css?v={css_v}">
+<style>{CSS_INLINE}</style>
 <script type="application/ld+json">{ld}</script>
 {gtm_head}</head>
 <body>

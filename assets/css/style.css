@@ -319,7 +319,8 @@ body.menu-open { overflow: hidden; }
 .sc-card__label { margin-left: auto; font-size: 0.6875rem; color: var(--muted); white-space: nowrap; }
 .sc-card__q { align-self: flex-end; max-width: 100%; padding: 4px 10px; border-radius: 999px 999px 4px 999px; background: var(--surface-2); font-size: 0.6875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sc-hit { display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 10px; background: rgba(121, 199, 158, 0.14); border: 1px solid rgba(121, 199, 158, 0.6); }
-.sc-hit__kop { display: flex; align-items: center; gap: 7px; font-weight: 800; font-size: 0.8125rem; color: var(--green); }
+/* Lichter groen: op de getinte hit-achtergrond haalt --green maar 4,4:1. */
+.sc-hit__kop { display: flex; align-items: center; gap: 7px; font-weight: 800; font-size: 0.8125rem; color: #a6dfc0; }
 .sc-hit__kop::before { content: ""; width: 16px; height: 16px; border-radius: 4px; background: var(--grad); flex: none; }
 .sc-hit__sub, .sc-hit__tag { font-size: 0.6875rem; color: var(--muted); }
 .sc-hit__tag { font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.625rem; }

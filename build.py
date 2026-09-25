@@ -156,7 +156,8 @@ def crumbs(items):
 
 
 def field(fid, label, typ="text", ph="", required=True, ac="", full=False, textarea=False):
-    req = ' <span class="req" aria-hidden="true">*</span>' if required else ""
+    req = "" if required else ' <span class="optional">(optioneel)</span>'
+    ph = ""
     r = " required" if required else ""
     a = f' autocomplete="{ac}"' if ac else ""
     p = f' placeholder="{ph}"' if ph else ""
@@ -180,24 +181,20 @@ def form_open(name, page_slug):
             f'<p class="hp" aria-hidden="true"><label>Laat dit veld leeg <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>')
 
 
-PRIVACY_NOTE = '<p class="form-note">We gebruiken je gegevens alleen om je aanvraag te beantwoorden. Lees ons <a href="/privacy-policy/">privacybeleid</a>.</p>'
+PRIVACY_NOTE = '<p class="form-note">Vrijblijvend. Je gegevens gebruiken we alleen om te reageren (<a href="/privacy-policy/">privacy</a>).</p>'
 
 
 def offerte_form(page_slug, title="Vraag vrijblijvend een offerte aan", hid="offerte"):
     n = uid("f")
     return f'''<div id="{hid}">{form_open("offerte", page_slug)}
   <h2>{title}</h2>
-  <fieldset class="choice"><legend>Wat zoek je?</legend>
-    <label><input type="radio" name="werkvorm" value="Student inhuren" checked>Student inhuren</label>
-    <label><input type="radio" name="werkvorm" value="Opdracht uitbesteden">Opdracht uitbesteden</label>
-  </fieldset>
   <div class="form-grid form-grid--2">
     {field(f"naam-{n}", "Naam", ph="Voor- en achternaam", ac="name")}
     {field(f"bedrijf-{n}", "Bedrijfsnaam", ph="Naam van je bedrijf", ac="organization")}
+    {field(f"email-{n}", "E-mailadres", "email", "naam@bedrijf.nl", ac="email")}
     {field(f"telefoon-{n}", "Telefoon", "tel", "06 12345678", ac="tel")}
-    {field(f"email-{n}", "Zakelijk e-mailadres", "email", "naam@bedrijf.nl", ac="email")}
   </div>
-  <button class="btn btn--grad form-submit" type="submit">Ontvang mijn offerte{icon("arrow-right")}</button>
+  <button class="btn btn--grad form-submit" type="submit">Vraag offerte aan{icon("arrow-right")}</button>
   {PRIVACY_NOTE}
 </form></div>'''
 
@@ -794,7 +791,7 @@ def page_student():
     {field(f"profiel-{n}", "LinkedIn-profiel of portfolio", "url", "https://", required=False)}
   </div>
   <button class="btn btn--grad form-submit" type="submit">Aanmelden{icon("arrow-right")}</button>
-  <p class="form-note">We gebruiken je gegevens alleen voor je aanmelding. Lees ons <a href="/privacy-policy/">privacybeleid</a>.</p>
+  <p class="form-note">Je gegevens gebruiken we alleen voor je aanmelding (<a href="/privacy-policy/">privacy</a>).</p>
 </form></div>'''
     krijg = [("users", "Begeleiding door seniors", "Je werkt onder een ervaren marketeer die je feedback geeft."),
              ("building", "Echte klanten", "Je werkt voor mkb-bedrijven, niet aan oefenopdrachten."),

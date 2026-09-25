@@ -239,12 +239,12 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 
 /* ---------- Formulier ---------- */
 .form-card {
-  display: flex; flex-direction: column; gap: 16px;
+  display: flex; flex-direction: column; gap: 18px;
   padding: 22px; border-radius: var(--radius-lg);
   background: var(--surface); border: 1px solid var(--line-2); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
 }
 @media (min-width: 640px) { .form-card { padding: 32px; } }
-.form-card h2 { font-size: clamp(1.3125rem, 1.2rem + 0.4vw, 1.5rem); line-height: 1.2; letter-spacing: -0.02em; }
+.form-card h2 { font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.375rem); line-height: 1.2; letter-spacing: -0.02em; }
 .form-grid { display: grid; gap: 12px; }
 @media (min-width: 480px) { .form-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
@@ -260,7 +260,7 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .field.is-invalid input, .field.is-invalid textarea { border-color: #ff9a9a; }
 .field__error { display: none; margin: 0; font-size: 0.8125rem; font-weight: 600; color: #ffb4b4; }
 .field.is-invalid .field__error { display: block; }
-.req { color: var(--green); }
+.optional { font-weight: 500; color: var(--muted); }
 .choice { margin: 0; padding: 0; border: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .choice legend { margin-bottom: 8px; padding: 0; }
 .choice label {
@@ -306,7 +306,9 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .showcase__cards .sc-card:nth-child(n + 3) { display: none; }
 .showcase__foot { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-top: 28px; text-align: center; }
 .showcase__foot .lead { margin-inline: auto; }
-.showcase__brands { display: none; }
+.showcase__brands { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-weight: 700; font-size: 0.8125rem; color: var(--muted); }
+.showcase__brands span { display: inline-flex; align-items: center; gap: 7px; }
+.showcase__brands svg { width: 14px; height: 14px; }
 @media (min-width: 1000px) {
   .showcase__stage { position: relative; display: block; height: 800px; }
   .showcase__center { position: absolute; left: 50%; top: 250px; width: 440px; transform: translateX(-50%); }
@@ -561,26 +563,45 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 /* ---------- Animatie: eenmalig, rustig. Alleen met JS; bij prefers-reduced-motion staat alles stil. ---------- */
 .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
-.js .showcase:not(.is-visible) :is(.showcase__center h2, .searchbar, .sc-card, .showcase__foot) { opacity: 0; }
-.js .showcase.is-visible .showcase__center h2 { animation: fadeUp 500ms var(--ease) both; }
-.js .showcase.is-visible .searchbar { animation: fadeUp 500ms var(--ease) 250ms both; }
-.js .showcase.is-visible .searchbar span { display: inline-block; overflow: hidden; white-space: nowrap; max-width: 0; animation: typing 1100ms steps(22, end) 600ms both; }
-.js .showcase.is-visible .sc-card { animation: cardIn 650ms var(--ease) both; }
-.js .showcase.is-visible .sc-card:nth-child(1) { animation-delay: 1000ms; }
-.js .showcase.is-visible .sc-card:nth-child(2) { animation-delay: 1130ms; }
-.js .showcase.is-visible .sc-card:nth-child(3) { animation-delay: 1260ms; }
-.js .showcase.is-visible .sc-card:nth-child(4) { animation-delay: 1390ms; }
-.js .showcase.is-visible .sc-card:nth-child(5) { animation-delay: 1520ms; }
-.js .showcase.is-visible .sc-card:nth-child(6) { animation-delay: 1650ms; }
-.js .showcase.is-visible .sc-hit { animation: hitIn 450ms var(--ease) 2200ms both; }
-.js .showcase.is-visible .showcase__foot { animation: fadeUp 500ms var(--ease) 1800ms both; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-@keyframes typing { from { max-width: 0; } to { max-width: 24ch; } }
-@keyframes cardIn { from { opacity: 0; transform: rotate(var(--rot)) scale(0.92) translateY(14px); } to { opacity: 1; transform: rotate(var(--rot)); } }
-@keyframes hitIn { from { opacity: 0.4; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+/* Collage: tijdlijn van 11 s (1 s = 9,09 %) die start zodra het blok in beeld is en daarna herhaalt,
+   naar het voorbeeld van whitelabel-marketing.nl: kop, zoekbalk, typen, kaarten kantelen recht,
+   merkkop, vraag, inhoud, en als laatste het uitgelichte resultaat. */
+.js .showcase :is(.showcase__center h2, .searchbar, .sc-card, .showcase__brands) { opacity: 0; }
+.js .showcase :is(.sc-card__bar, .sc-card__q, .sc-list, .sc-hit) { opacity: 0; }
+.js .showcase.is-visible .showcase__center h2 { animation: scKop 11s ease-out infinite both; }
+.js .showcase.is-visible .searchbar { animation: scBalk 11s ease-out infinite both; }
+.js .showcase.is-visible .searchbar span { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; max-width: 0; animation: scTyp 11s steps(22, end) infinite both, scCaret 0.9s steps(1) infinite; }
+.js .showcase.is-visible .showcase__brands { animation: scMerk 11s ease-out infinite both; }
+.js .showcase.is-visible .sc-card { animation: scKaart 11s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both; animation-delay: var(--vertraging, 0s); }
+.js .showcase.is-visible .sc-card__bar { animation: scBar 11s ease-out infinite both; animation-delay: var(--vertraging, 0s); }
+.js .showcase.is-visible .sc-card__q { animation: scVraag 11s ease-out infinite both; animation-delay: var(--vertraging, 0s); }
+.js .showcase.is-visible .sc-list { animation: scInhoud 11s ease-out infinite both; animation-delay: var(--vertraging, 0s); }
+.js .showcase.is-visible .sc-hit { animation: scHit 11s cubic-bezier(0.2, 0.8, 0.2, 1) infinite both; animation-delay: var(--vertraging, 0s); }
+.sc-card:nth-child(1) { --vertraging: 0s; }
+.sc-card:nth-child(2) { --vertraging: 0.12s; }
+.sc-card:nth-child(3) { --vertraging: 0.24s; }
+.sc-card:nth-child(4) { --vertraging: 0.36s; }
+.sc-card:nth-child(5) { --vertraging: 0.48s; }
+.sc-card:nth-child(6) { --vertraging: 0.6s; }
+@keyframes scKop   { 0% { opacity: 0; transform: translateY(10px); } 4% { opacity: 1; transform: none; } 94% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes scBalk  { 0%, 5% { opacity: 0; transform: translateY(8px); } 9% { opacity: 1; transform: none; } 94% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes scTyp   { 0%, 10% { max-width: 0; } 24% { max-width: 22ch; } 100% { max-width: 22ch; } }
+@keyframes scCaret { 50% { border-color: transparent; } }
+@keyframes scMerk  { 0%, 27% { opacity: 0; } 34% { opacity: 1; } 94% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes scKaart {
+  0%, 27% { opacity: 0; transform: rotate(var(--rot)) scale(0.9); }
+  33%     { opacity: 1; transform: rotate(0deg) scale(1); }
+  94%     { opacity: 1; transform: rotate(0deg) scale(1); }
+  100%    { opacity: 0; transform: rotate(0deg) scale(1); }
+}
+@keyframes scBar    { 0%, 33% { opacity: 0; } 37% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes scVraag  { 0%, 36% { opacity: 0; transform: translateX(6px); } 40% { opacity: 1; transform: none; } 100% { opacity: 1; transform: none; } }
+@keyframes scInhoud { 0%, 39% { opacity: 0; } 45% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes scHit    { 0%, 47% { opacity: 0; transform: translateY(8px); } 53% { opacity: 1; transform: none; } 100% { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .js .reveal, .js .showcase :is(.showcase__center h2, .searchbar, .sc-card, .showcase__foot) { opacity: 1 !important; transform: rotate(var(--rot, 0deg)) !important; }
+  .js .reveal, .js .showcase :is(.showcase__center h2, .searchbar, .sc-card, .showcase__brands, .sc-card__bar, .sc-card__q, .sc-list, .sc-hit) { opacity: 1 !important; animation: none !important; transform: none !important; }
+  .js .showcase .sc-card { transform: rotate(var(--rot, 0deg)) !important; }
   .js .showcase .searchbar span { max-width: none !important; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }

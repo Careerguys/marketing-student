@@ -123,6 +123,26 @@ D = {
           ("Content","Eén opname, tien stukken content","Zo haal je meer uit elke draaidag.")],
     cta="Besteed je contentmarketing uit"),
 
+"foto-en-video-laten-maken": dict(
+    short="Foto en video", noun="foto- en videostudent", h1=("Foto en video", "laten maken"),
+    title="Foto en bedrijfsvideo laten maken | Marketing Student",
+    meta="Foto en video laten maken door een getrainde student: bedrijfsvideo's, reels en productfoto's, begeleid door een senior. Geen contract.",
+    lead="Foto's en video's laten maken door een getrainde student: van bedrijfsvideo en productfoto tot reels voor social media. Een senior content- en brandingspecialist bewaakt je merk.",
+    mentor="Marije C.", sc=None, platforms="content",
+    tasks=[("pen","Concept en script","Wat je wilt laten zien, aan wie en op welk kanaal."),
+           ("video","Bedrijfsvideo","Je bedrijf, team of werkwijze in een korte film."),
+           ("camera","Productfoto's","Scherpe foto's voor je webshop, website en advertenties."),
+           ("play","Reels en korte video","Verticaal gefilmd voor Instagram, TikTok en YouTube Shorts."),
+           ("users","Team- en sfeerfoto's","Je mensen en je werkplek in beeld, voor je website en LinkedIn."),
+           ("layers","Montage en ondertiteling","Gemonteerd, ondertiteld en klaar om te posten.")],
+    faq=[("Wat kost foto en video laten maken?",""),("Komt de student op locatie filmen?",""),
+         ("Moet ik zelf in beeld?",""),("Wie is eigenaar van de content?",""),
+         ("Wat is het verschil met een freelance videograaf?","Een freelance videograaf werkt meestal alleen. Onze student werkt onder een senior content- en brandingspecialist die je merk bewaakt, en als het niet klikt krijg je kosteloos een vervanger.")],
+    blog=[("Content","Bedrijfsvideo laten maken: zo pak je het aan","Van briefing tot draaidag."),
+          ("Content","Welke content werkt voor het mkb?","Formats die weinig tijd kosten en veel opleveren."),
+          ("Content","Eén opname, tien stukken content","Zo haal je meer uit elke draaidag.")],
+    cta="Laat foto en video maken"),
+
 "huisstijl-laten-maken": dict(
     short="Branding", noun="brandingstudent", h1=("Huisstijl", "laten maken"),
     title="Huisstijl laten maken door een student | Marketing Student",

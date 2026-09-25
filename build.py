@@ -58,6 +58,7 @@ SPECS = [
     ("tiktok-uitbesteden", "TikTok uitbesteden", ("brand", "tiktok"), "Korte video's die passen bij het platform.", "Social media en content"),
     ("linkedin-marketing-uitbesteden", "LinkedIn-marketing uitbesteden", ("brand", "linkedin"), "Zakelijke content en advertenties.", "Social media en content"),
     ("contentmarketing-uitbesteden", "Contentmarketing uitbesteden", ("icon", "camera"), "Een content creator voor foto, video en tekst.", "Social media en content"),
+    ("foto-en-video-laten-maken", "Foto en video laten maken", ("icon", "video"), "Bedrijfsvideo's, reels en productfoto's.", "Social media en content"),
     ("huisstijl-laten-maken", "Huisstijl laten maken", ("icon", "pen"), "Logo, huisstijl, tone of voice en merkverhaal.", "Merk en e-mail"),
     ("email-marketing-uitbesteden", "E-mailmarketing uitbesteden", ("icon", "mail"), "Nieuwsbrieven en automatische flows.", "Merk en e-mail"),
     ("wordpress-specialist-inhuren", "WordPress-specialist inhuren", ("brand", "wordpress"), "Pagina's bouwen, onderhouden en versnellen.", "Web en AI"),
@@ -254,7 +255,8 @@ def spec_grid(items=None):
     for slug, label, kind, card, _ in (items or MAIN):
         cards += (f'<a class="card spec-card" href="/{slug}/">{spec_icon(kind)}<h3>{label}</h3><p>{card}</p>'
                   f'<span class="link-arrow">Bekijk{icon("arrow-right")}</span></a>')
-    cards += (f'<div class="spec-cta"><div><h3>Twijfel je welke student past?</h3><p>Beschrijf je vraag, dan denken we mee.</p></div>'
+    rest = 4 - len(items or MAIN) % 4
+    cards += (f'<div class="spec-cta" style="--span:{rest}"><div><h3>Twijfel je welke student past?</h3><p>Beschrijf je vraag, dan denken we mee.</p></div>'
               f'{btn("Vraag een offerte aan", "/offerte-aanvragen/", "grad", "arrow-right")}</div>')
     return f'<div class="spec-grid">{cards}</div>'
 
@@ -311,6 +313,21 @@ def photo_band(key, cls=""):
 
 def with_photo(key, inner):
     return f'<div class="split">{foto(key, "(min-width: 1000px) 480px, 100vw", "split__photo")}<div class="split__body">{inner}</div></div>'
+
+
+REELS = [("showroom-reel", "Showroom reel voor een autodealer", "0:19"),
+         ("studio-walkthrough", "Walkthrough voor een foto- en videostudio", "0:40"),
+         ("verhuis-commercial", "Commercial voor een verhuisbedrijf", "0:26")]
+
+
+def reels():
+    cards = ""
+    for key, label, duur in REELS:
+        cards += (f'<figure class="reel"><video muted loop playsinline preload="none" poster="/assets/video/{key}.webp" data-reel>'
+                  f'<source src="/assets/video/{key}.mp4" type="video/mp4"></video>'
+                  f'<button class="reel__sound" type="button" aria-pressed="false" aria-label="Geluid aan: {label}">{icon("volume-x", "reel__off")}{icon("volume", "reel__on")}</button>'
+                  f'<figcaption><span class="reel__tag">Reel · {duur}</span>{label}</figcaption></figure>')
+    return f'<div class="reels">{cards}</div>'
 
 
 def steps():
@@ -631,7 +648,7 @@ def page_dienst(slug):
     Noun = noun[0].upper() + noun[1:]
     FAQ_ONDERWERP = {"Social media": "social media uitbesteden", "Content": "contentmarketing", "Branding": "een huisstijl",
                      "E-mailmarketing": "e-mailmarketing", "LinkedIn": "LinkedIn-marketing", "TikTok": "TikTok uitbesteden",
-                     "Instagram": "Instagram uitbesteden"}
+                     "Instagram": "Instagram uitbesteden", "Foto en video": "foto en video laten maken"}
     lab = FAQ_ONDERWERP.get(d["short"], d["short"] if d["short"] in ("SEO", "Google Ads", "AI", "Claude") else d["short"])
     if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify"):
         lab = "een " + d["noun"]
@@ -643,6 +660,8 @@ def page_dienst(slug):
     body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons(), offerte_form(slug), movable=True)
     if d["sc"]:
         body += showcase(SHOWCASES[d["sc"]])
+    if slug == "foto-en-video-laten-maken":
+        body += section(section_head("Zo ziet ons werk *eruit*", "Een paar video's die we voor klanten maakten. Verticaal gefilmd voor Reels, TikTok en Shorts. Tik op het luidsprekertje voor geluid.", center=True) + reels())
     tasks = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in d["tasks"])
     body += section(section_head(f"Wat een {noun} *voor je doet*", "Concreet werk, afgestemd op jouw doelen. Jij bepaalt de prioriteiten, de senior bewaakt de aanpak.")
                     + f'<div class="grid grid--3">{tasks}</div><div class="btn-row" style="justify-content:center;margin-top:32px">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>', "glow-left")

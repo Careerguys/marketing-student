@@ -86,6 +86,34 @@
     });
   }
 
+  /* ---------- Reels: spelen zonder geluid zolang ze in beeld zijn, geluid alleen na een tik ---------- */
+  var reels = document.querySelectorAll("[data-reel]");
+  if (reels.length) {
+    var soundOn = function (video, on) {
+      video.muted = !on;
+      var b = video.parentNode.querySelector(".reel__sound");
+      b.setAttribute("aria-pressed", String(on));
+      b.setAttribute("aria-label", b.getAttribute("aria-label").replace(/^Geluid (aan|uit)/, on ? "Geluid uit" : "Geluid aan"));
+    };
+    reels.forEach(function (video) {
+      video.parentNode.querySelector(".reel__sound").addEventListener("click", function () {
+        var on = video.muted;
+        reels.forEach(function (other) { if (other !== video) soundOn(other, false); });
+        soundOn(video, on);
+        if (on) video.play();
+      });
+    });
+    if (!reduce && "IntersectionObserver" in window) {
+      var rio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.play().catch(function () {}); }
+          else { e.target.pause(); soundOn(e.target, false); }
+        });
+      }, { threshold: 0.6 });
+      reels.forEach(function (video) { rio.observe(video); });
+    }
+  }
+
   /* ---------- Formulieren: validatie en Netlify-verzending ---------- */
   function fieldError(input, msg) {
     var field = input.closest(".field");

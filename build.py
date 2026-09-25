@@ -856,6 +856,11 @@ REDIRECTS = [
     ("/marketing-bureau-mijdrecht/", "/contact/"),
     ("/privacy/", "/privacy-policy/"),
     ("/author/blauwelink/", "/over-ons/"),
+    ("/sitemap_index.xml", "/sitemap.xml"),
+    ("/page-sitemap.xml", "/sitemap.xml"),
+    ("/post-sitemap.xml", "/sitemap.xml"),
+    ("/category-sitemap.xml", "/sitemap.xml"),
+    ("/wp-sitemap.xml", "/sitemap.xml"),
     ("/feed/", "/kennisbank/"),
     ("/comments/feed/", "/kennisbank/"),
 ]

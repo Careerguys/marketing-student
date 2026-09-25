@@ -275,6 +275,10 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .form-note a { color: var(--green); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
+/* Formulier: op desktop in de hero, op mobiel via JS naar het blok onderaan. Leeg blok blijft onzichtbaar. */
+.form-section:has(.form-slot:empty) { display: none; }
+.form-slot .form-card { max-width: 560px; margin-inline: auto; }
+
 /* ---------- Vertrouwensbalk ---------- */
 .trustbar {
   display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px;

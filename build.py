@@ -556,11 +556,16 @@ def layout(path, title, desc, body, current, graph, noindex=False, og_type="webs
 
 
 # ---------------------------------------------------------------- pagina's
-def hero(crumb_items, h1a, h1b, lead_txt, extra="", form=None, home=False, cls=""):
+FORM_SLOT = '<section class="section section--flush-top form-section"><div class="container"><div class="form-slot" data-form-slot></div></div></section>'
+
+
+def hero(crumb_items, h1a, h1b, lead_txt, extra="", form=None, home=False, cls="", movable=False):
     c = crumbs(crumb_items) if crumb_items else ""
     g = f' <span class="grad">{h1b}</span>' if h1b else ""
     text = f'<div class="hero__text">{c}<h1>{h1a}{g}</h1><p class="lead">{lead_txt}</p>{extra}</div>'
-    inner = f'<div class="hero__grid">{text}{form}</div>' if form else text
+    if form and movable:
+        form = f'<div data-form-hero>{form}</div>'
+    inner = f'<div class="hero__grid" data-form-origin>{text}{form}</div>' if form else text
     return f'<section class="hero glow-right{" hero--home" if home else ""}{" " + cls if cls else ""}"><div class="container">{inner}</div></section>'
 
 
@@ -571,7 +576,7 @@ def page_home():
     faq_html, faq_items = faq_block("Vragen over marketing uitbesteden", FAQ_HOME)
     body = hero(None, "Marketing uitbesteden", "aan een student",
                 "Marketing student inhuren in plaats van een bureau: getrainde HBO/WO-studenten die direct meebouwen aan je online marketing. Altijd begeleid door ervaren marketeers, zonder contract.",
-                hero_buttons(), offerte_form(""), home=True)
+                hero_buttons(), offerte_form(""), home=True, movable=True)
     body += trustbar()
     body += showcase(HOME_SC)
     body += section(section_head("Specialisaties", "Kies de student die past bij jouw vraag", "Elke specialisatie heeft een eigen pagina met taken en voorbeelden. Zo vind je sneller wat je zoekt.") + spec_grid(), "glow-left")
@@ -581,6 +586,7 @@ def page_home():
     body += section(section_head("Kennisbank", "Slimmer inhuren begint hier") + post_cards(["freelance-marketeer-of-marketing-student", "welke-social-media-kiezen", "wat-voor-type-marketeers-zijn-er"])
                     + f'<div class="btn-row" style="justify-content:center;margin-top:28px">{btn("Naar de kennisbank", "/kennisbank/", "outline", "arrow-right")}</div>')
     body += faq_html
+    body += FORM_SLOT
     body += cta_block()
     graph = [ld_webpage(SITE + "/", title, desc, crumb=False, main=ORG), ld_faq(SITE + "/", faq_items)]
     return path, title, desc, body, "home", graph
@@ -601,7 +607,7 @@ def page_dienst(slug):
         lab = "een " + d["noun"]
     faq_html, faq_items = faq_block(f"Vragen over {lab}", [q for q, _ in d["faq"]], {q: a for q, a in d["faq"] if a})
     body = hero([("Home", "/"), ("Specialisaties", "/specialisaties/"), (label, path)], d["h1"][0], d["h1"][1], d["lead"],
-                hero_buttons(), offerte_form(slug))
+                hero_buttons(), offerte_form(slug), movable=True)
     body += trustbar()
     if d["sc"]:
         body += showcase(SHOWCASES[d["sc"]])
@@ -615,6 +621,7 @@ def page_dienst(slug):
     body += section(section_head("Vergelijking", "SEO-student, SEO-freelancer of bureau?" if seo else "Student, freelancer of bureau?") + compare(COMPARE_SEO if seo else COMPARE), "glow-right")
     body += faq_html
     body += section(section_head("Kennisbank", "Meer lezen") + post_cards(REL.get(slug, REL_DEFAULT)))
+    body += FORM_SLOT
     body += cta_block(d["cta"], "Vertel wat je nodig hebt. Je krijgt een voorstel met de student en de senior die jouw vraag oppakken.")
     graph = [ld_webpage(url, d["title"], d["meta"], main=url + "#service"),
              ld_crumbs(url, [("Home", "/"), ("Specialisaties", "/specialisaties/"), (label, path)]),
@@ -625,9 +632,9 @@ def page_dienst(slug):
     return path, d["title"], d["meta"], body, "specialisaties", graph
 
 
-def simple_page(path, crumb, h1a, h1b, lead_txt, title, desc, sections_html, current, typ="WebPage", faq=None, extra_graph=(), hero_extra=None, form=None, noindex=False):
+def simple_page(path, crumb, h1a, h1b, lead_txt, title, desc, sections_html, current, typ="WebPage", faq=None, extra_graph=(), hero_extra=None, form=None, noindex=False, movable=False):
     url = SITE + path
-    body = hero([("Home", "/"), (crumb, path)] if crumb else None, h1a, h1b, lead_txt, hero_extra if hero_extra is not None else hero_buttons(href="/offerte-aanvragen/"), form)
+    body = hero([("Home", "/"), (crumb, path)] if crumb else None, h1a, h1b, lead_txt, hero_extra if hero_extra is not None else hero_buttons(href="/offerte-aanvragen/"), form, movable=movable)
     body += sections_html
     graph = [ld_webpage(url, title, desc, typ, crumb=bool(crumb))]
     if crumb:
@@ -800,7 +807,7 @@ def page_student():
                        "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk voor echte klanten, begeleid door ervaren marketeers.",
                        "Marketing bijbaan naast je studie | Marketing Student",
                        "Studeer je marketing of communicatie op HBO- of WO-niveau? Werk naast je studie voor echte klanten, begeleid door ervaren marketeers.",
-                       secs, None, faq=faq, hero_extra="", form=form)
+                       secs + FORM_SLOT, None, faq=faq, hero_extra=f'<div class="btn-row btn-row--stack">{btn("Meld je aan", "#aanmelden", "grad", "arrow-right", True)}</div>', form=form, movable=True)
 
 
 PRIVACY = (ROOT / "privacy.html").read_text() if (ROOT / "privacy.html").exists() else ""

@@ -1,5 +1,9 @@
 # Gegenereerd door build.py. Pas REDIRECTS in build.py aan, niet dit bestand.
 
+# Netlify-subdomein naar het hoofddomein (voorkomt dubbele content)
+https://marketing-student.netlify.app/*  https://marketing-student.nl/:splat  301!
+http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  301!
+
 # Broncode niet uitleveren
 /build.py                                                      /404.html  404!
 /artikelen.py                                                  /404.html  404!

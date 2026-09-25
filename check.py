@@ -129,6 +129,8 @@ built = {("/" + str(f.relative_to(ROOT)).replace("index.html", "")) for f in fil
 for line in (ROOT / "_redirects").read_text().splitlines():
     if not line.strip() or line.startswith("#"): continue
     src, dst, code = line.split()[:3]
+    if src.startswith("http"):  # domeinredirect (netlify.app naar hoofddomein)
+        continue
     if code.startswith("301"):
         if not url_to_file(dst).exists(): probs.append(f"redirect: doel {dst} bestaat niet")
         if src in built: probs.append(f"redirect: bron {src} is een bestaande pagina")

@@ -887,7 +887,11 @@ def main():
     urls = "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in sitemap)
     (ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n', encoding="utf-8")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /bedankt/\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
-    red = "# Gegenereerd door build.py. Pas REDIRECTS in build.py aan, niet dit bestand.\n\n# Broncode niet uitleveren\n"
+    red = "# Gegenereerd door build.py. Pas REDIRECTS in build.py aan, niet dit bestand.\n\n"
+    red += "# Netlify-subdomein naar het hoofddomein (voorkomt dubbele content)\n"
+    red += "https://marketing-student.netlify.app/*  https://marketing-student.nl/:splat  301!\n"
+    red += "http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  301!\n\n"
+    red += "# Broncode niet uitleveren\n"
     red += "".join(f"{b:<62} /404.html  404!\n" for b in BLOCK)
     red += "\n# Oude URL's van de WordPress-site (permanent)\n"
     red += "".join(f"{a:<62} {b:<46} 301!\n" for a, b in REDIRECTS)

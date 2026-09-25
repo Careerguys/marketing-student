@@ -460,6 +460,7 @@ BASE_GRAPH = [
      "image": {"@id": SITE + "/#logo"},
      "description": "Getrainde HBO/WO-marketingstudenten voor het mkb, begeleid door ervaren marketeers.",
      "telephone": "+31850608631", "email": EMAIL,
+     "address": {"@type": "PostalAddress", "streetAddress": "Koninginnegracht 5", "postalCode": "2514 AA", "addressLocality": "Den Haag", "addressCountry": "NL"},
      "identifier": {"@type": "PropertyValue", "propertyID": "KvK", "value": "90875206"},
      "areaServed": NL, "knowsLanguage": "nl",
      "parentOrganization": [{"@type": "Organization", "name": "BlauweLink", "url": "https://www.blauwelink.nl/"},

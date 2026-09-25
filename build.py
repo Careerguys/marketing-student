@@ -67,6 +67,12 @@ SPECS = [
 ]
 SPEC = {s[0]: s for s in SPECS}
 GROUPS = ["Vindbaarheid", "Social media en content", "Merk en e-mail", "Web en AI"]
+# Subspecialisaties staan niet in menu, footer en homepage; ze zijn bereikbaar via de hoofdpagina en /specialisaties/.
+PARENT = {"instagram-uitbesteden": "social-media-uitbesteden", "tiktok-uitbesteden": "social-media-uitbesteden",
+          "linkedin-marketing-uitbesteden": "social-media-uitbesteden", "contentmarketing-uitbesteden": "social-media-uitbesteden",
+          "claude-specialist-inhuren": "ai-specialist-inhuren"}
+MAIN = [s for s in SPECS if s[0] not in PARENT]
+CHILDREN = {p: [s for s in SPECS if PARENT.get(s[0]) == p] for p in set(PARENT.values())}
 ART = {a["slug"]: a for a in ARTIKELEN}
 
 # Artikelen die bij een dienst horen (alleen bestaande).
@@ -245,9 +251,9 @@ def showcase(cfg):
 </div></section>'''
 
 
-def spec_grid():
+def spec_grid(items=None):
     cards = ""
-    for slug, label, kind, card, _ in SPECS:
+    for slug, label, kind, card, _ in (items or MAIN):
         cards += (f'<a class="card spec-card" href="/{slug}/">{spec_icon(kind)}<h3>{label}</h3><p>{card}</p>'
                   f'<span class="link-arrow">Bekijk{icon("arrow-right")}</span></a>')
     cards += (f'<div class="spec-cta"><div><h3>Twijfel je welke student past?</h3><p>Beschrijf je vraag, dan denken we mee.</p></div>'
@@ -340,17 +346,15 @@ NAV = [("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"), ("Kennisbank", 
 
 
 def header(current):
+    half = (len(MAIN) + 1) // 2
     groups = ""
-    for g in GROUPS:
-        lis = "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in SPECS if s[4] == g)
-        groups += f'<div class="dropdown__group"><p class="dropdown__title">{g}</p><ul>{lis}</ul></div>'
+    for col in (MAIN[:half], MAIN[half:]):
+        lis = "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in col)
+        groups += f'<div class="dropdown__group"><ul>{lis}</ul></div>'
     spec_cur = ' aria-current="page"' if current == "specialisaties" else ""
     cur = ' aria-current="page"'
     links = "".join(f'<li><a href="{u}"{cur if current == n else ""}>{n}</a></li>' for n, u in NAV)
-    mob_groups = ""
-    for g in GROUPS:
-        lis = "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in SPECS if s[4] == g)
-        mob_groups += f'<p class="mobile-nav__title">{g}</p><ul>{lis}</ul>'
+    mob_groups = '<ul>' + "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in MAIN) + '</ul>'
     mob_links = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in NAV)
     return f'''<a class="skip-link" href="#main">Naar de inhoud</a>
 <header class="header">
@@ -382,7 +386,7 @@ def header(current):
 
 
 def footer():
-    specs = "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in SPECS)
+    specs = "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in MAIN)
     bedrijf = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in [("Alle specialisaties", "/specialisaties/"), ("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"),
                                                                      ("Kennisbank", "/kennisbank/"), ("Werken als student", "/werken-als-student/"),
                                                                      ("Offerte aanvragen", "/offerte-aanvragen/"), ("Contact", "/contact/")])
@@ -603,14 +607,20 @@ def page_dienst(slug):
     if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify"):
         lab = "een " + d["noun"]
     faq_html, faq_items = faq_block(f"Vragen over {lab}", [q for q, _ in d["faq"]], {q: a for q, a in d["faq"] if a})
-    body = hero([("Home", "/"), ("Specialisaties", "/specialisaties/"), (label, path)], d["h1"][0], d["h1"][1], d["lead"],
-                hero_buttons(), offerte_form(slug), movable=True)
+    crumb_items = [("Home", "/"), ("Specialisaties", "/specialisaties/")]
+    if slug in PARENT:
+        crumb_items.append((SPEC[PARENT[slug]][1], f"/{PARENT[slug]}/"))
+    crumb_items.append((label, path))
+    body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons(), offerte_form(slug), movable=True)
     body += trustbar()
     if d["sc"]:
         body += showcase(SHOWCASES[d["sc"]])
     tasks = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in d["tasks"])
     body += section(section_head("Taken", f"Wat een {noun} voor je doet", "Concreet werk, afgestemd op jouw doelen. Jij bepaalt de prioriteiten, de senior bewaakt de aanpak.")
                     + f'<div class="grid grid--3">{tasks}</div><div class="btn-row" style="justify-content:center;margin-top:32px">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>', "glow-left")
+    if slug in CHILDREN:
+        links = "".join(f'<a class="pill-link" href="/{s[0]}/">{s[1]}{icon("arrow-right")}</a>' for s in CHILDREN[slug])
+        body += section(section_head("Ook mogelijk", "Liever één kanaal?", "Elk kanaal heeft een eigen pagina met taken en voorbeelden.") + f'<div class="pill-links">{links}</div>')
     if d["platforms"]:
         body += section(section_head("Platformen", "De tools die we gebruiken") + platform_tiles(PLATFORMS[d["platforms"]]))
     body += section(section_head("Samenwerken", f"Zo werk je met een {noun}", "Twee werkvormen, allebei zonder contract. Je krijgt altijd eerst een offerte op maat.") + plans(Noun))
@@ -621,7 +631,7 @@ def page_dienst(slug):
     body += FORM_SLOT
     body += cta_block(d["cta"], "Vertel wat je nodig hebt. Je krijgt een voorstel met de student en de senior die jouw vraag oppakken.")
     graph = [ld_webpage(url, d["title"], d["meta"], main=url + "#service"),
-             ld_crumbs(url, [("Home", "/"), ("Specialisaties", "/specialisaties/"), (label, path)]),
+             ld_crumbs(url, crumb_items),
              {"@type": "Service", "@id": url + "#service", "name": label, "serviceType": label, "description": d["meta"], "url": url,
               "provider": {"@id": ORG}, "areaServed": NL, "category": d["short"],
               "audience": {"@type": "BusinessAudience", "audienceType": "mkb-ondernemers en marketingmanagers"}},
@@ -646,7 +656,7 @@ def simple_page(path, crumb, h1a, h1b, lead_txt, title, desc, sections_html, cur
 
 def page_specialisaties():
     items = [{"@type": "ListItem", "position": i, "url": f"{SITE}/{s[0]}/", "name": s[1]} for i, s in enumerate(SPECS, 1)]
-    secs = section(section_head("Overzicht", "Kies de student die past bij jouw vraag") + spec_grid(), "section--flush-top")
+    secs = section(section_head("Overzicht", "Kies de student die past bij jouw vraag") + spec_grid(SPECS), "section--flush-top")
     secs += section(section_head("Samenwerken", "Twee manieren om samen te werken") + plans(href="/offerte-aanvragen/"))
     faq = faq_block("Vragen over de specialisaties", ["Welke specialisatie past bij mij?", "Kan één student meerdere taken doen?", "Wie begeleidt de student?", "Zit ik vast aan een contract?"])
     secs_after = cta_block()
@@ -691,6 +701,37 @@ def page_over():
                        hero_extra=f'<div class="btn-row btn-row--stack">{btn("Neem contact op", "/contact/", "grad", "arrow-right", True)}{btn("Bel " + PHONE, PHONE_HREF, "outline", "phone", True)}</div>')
 
 
+OFFICES = [
+    ("den-haag", "Den Haag", "Hoofdkantoor", "Koninginnegracht 5", "2514 AA Den Haag", "Kantoorpand CLIQ Offices aan de Koninginnegracht in Den Haag", True),
+    ("mijdrecht", "Mijdrecht", "", "Industrieweg 6", "3641 RM Mijdrecht", "De Kompastoren aan de Industrieweg in Mijdrecht", False),
+]
+
+
+def offices_section():
+    cards = ""
+    for slug, plaats, tag, straat, pc, alt, retina in OFFICES:
+        q = f"{straat}, {pc}".replace(" ", "+")
+        srcset2 = f", /assets/img/vestiging-{slug}@2x.webp 2x" if retina else ""
+        srcset2j = f", /assets/img/vestiging-{slug}@2x.jpg 2x" if retina else ""
+        tag_html = f'<p class="office__tag">{tag}</p>' if tag else ""
+        cards += f'''<article class="office">
+  <div class="office__top">
+    <div class="office__info">
+      <h3>{plaats}</h3>{tag_html}
+      <a class="office__phone" href="{PHONE_HREF}">{PHONE}</a>
+      <address>{straat}<br>{pc}</address>
+      <a class="btn btn--outline" href="https://www.google.com/maps/dir/?api=1&amp;destination={q}" target="_blank" rel="noopener">Route plannen{icon("arrow-right")}</a>
+    </div>
+    <picture class="office__photo"><source srcset="/assets/img/vestiging-{slug}.webp 1x{srcset2}" type="image/webp"><img src="/assets/img/vestiging-{slug}.jpg" srcset="/assets/img/vestiging-{slug}.jpg 1x{srcset2j}" width="480" height="640" alt="{alt}" loading="lazy"></picture>
+  </div>
+  <div class="office__map" data-map="{straat} {pc}" data-map-title="Kaart {straat}, {pc}">
+    <button class="btn btn--outline" type="button" data-map-load>Kaart tonen</button>
+    <p class="office__note">De kaart komt van Google Maps.</p>
+  </div>
+</article>'''
+    return section('<div id="vestigingen">' + section_head("Vestigingen", "Kom langs in Den Haag of Mijdrecht", "Op afspraak. Bel of mail even vooraf, dan staat de koffie klaar.") + f'<div class="offices">{cards}</div></div>')
+
+
 def page_contact():
     n = uid("c")
     form = f'''{form_open("contact", "contact/")}
@@ -708,9 +749,9 @@ def page_contact():
     cards = f'''<div class="contact-cards">
   <div class="contact-card">{icon("phone")}<h2>Bellen</h2><a href="{PHONE_HREF}">{PHONE}</a><span>Ma–do 08:30–17:30, vr 08:30–16:30</span></div>
   <div class="contact-card">{icon("mail")}<h2>Mailen</h2><a href="mailto:{EMAIL}">{EMAIL}</a></div>
-  <div class="contact-card">{icon("map-pin")}<h2>Langskomen</h2><strong>Den Haag of Mijdrecht</strong><span>Op afspraak. <a href="/over-ons/">Bekijk de adressen</a></span></div>
+  <div class="contact-card">{icon("map-pin")}<h2>Langskomen</h2><strong>Den Haag of Mijdrecht</strong><span>Op afspraak. <a href="#vestigingen">Bekijk de vestigingen</a></span></div>
 </div>'''
-    secs = section(f'<div class="contact-grid">{form}{cards}</div>', "section--flush-top")
+    secs = section(f'<div class="contact-grid">{form}{cards}</div>', "section--flush-top") + offices_section()
     return simple_page("/contact/", "Contact", "Neem contact op", "", "Een vraag over een student, een specialisatie of een lopende samenwerking? Bel, mail of stuur een bericht.",
                        "Contact | Marketing Student",
                        "Bel 085-060 8631, mail info@marketing-student.nl of stuur een bericht. Vestigingen in Den Haag en Mijdrecht.",

@@ -126,6 +126,28 @@
     });
   });
 
+  /* ---------- Kaarten van de vestigingen: Google Maps pas na een klik (of na cookie-akkoord) ---------- */
+  var maps = document.querySelectorAll("[data-map]");
+  function loadMap(box) {
+    if (box.querySelector("iframe")) return;
+    var f = document.createElement("iframe");
+    f.src = "https://maps.google.com/maps?q=" + encodeURIComponent(box.getAttribute("data-map")) + "&z=15&output=embed";
+    f.title = box.getAttribute("data-map-title");
+    f.loading = "lazy";
+    f.referrerPolicy = "no-referrer-when-downgrade";
+    box.innerHTML = "";
+    box.appendChild(f);
+  }
+  if (maps.length) {
+    var consent = null;
+    try { consent = localStorage.getItem("ms_consent"); } catch (err) {}
+    maps.forEach(function (box) {
+      var btn = box.querySelector("[data-map-load]");
+      if (btn) btn.addEventListener("click", function () { loadMap(box); });
+      if (consent === "granted") loadMap(box);
+    });
+  }
+
   /* ---------- Klikken op bellen en mailen meten ---------- */
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');

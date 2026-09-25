@@ -10,6 +10,7 @@ Bewerk nooit de gegenereerde HTML: pas dit bestand of de databestanden aan.
 import datetime
 import hashlib
 import html
+import math
 import json
 import re
 import sys
@@ -334,15 +335,21 @@ REEL_INTRO = "Een paar video's die we voor klanten maakten. Tik op het luidsprek
 
 
 def reels():
+    """Draaiende ring: elke video staat er twee keer in voor een vollere bol; de kopie is verborgen voor schermlezers."""
+    ring = REELS + REELS
     cards = ""
-    for key, label, soort, duur in REELS:
-        cards += (f'<figure class="reel"><video muted loop playsinline preload="none" poster="/assets/video/{key}.webp" data-reel>'
+    for i, (key, label, soort, duur) in enumerate(ring):
+        dup = i >= len(REELS)
+        extra = ' data-dup aria-hidden="true"' if dup else ""
+        tab = ' tabindex="-1"' if dup else ""
+        cards += (f'<figure class="reel" style="--i:{i}"{extra}><video muted loop playsinline preload="none" poster="/assets/video/{key}.webp" data-reel>'
                   f'<source src="/assets/video/{key}.mp4" type="video/mp4"></video>'
-                  f'<button class="reel__sound" type="button" aria-pressed="false" aria-label="Geluid aan: {label}">{icon("volume-x", "reel__off")}{icon("volume", "reel__on")}</button>'
+                  f'<button class="reel__sound" type="button"{tab} aria-pressed="false" aria-label="Geluid aan: {label}">{icon("volume-x", "reel__off")}{icon("volume", "reel__on")}</button>'
                   f'<figcaption><span class="reel__tag">{soort} · {duur}</span>{label}</figcaption></figure>')
     nav = (f'<div class="reels__nav"><button class="icon-btn reels__btn" type="button" data-reels-prev aria-label="Vorige video">{icon("arrow-left")}</button>'
            f'<button class="icon-btn reels__btn" type="button" data-reels-next aria-label="Volgende video">{icon("arrow-right")}</button></div>')
-    return f'<div class="reels-wrap"><div class="reels" data-reels>{cards}</div>{nav}</div>'
+    k = 1 / (2 * math.tan(math.pi / len(ring)))
+    return f'<div class="reels-wrap" data-reels style="--n:{len(ring)};--k:{k:.3f}"><div class="reels"><div class="reels__ring">{cards}</div></div>{nav}</div>'
 
 
 def reel_section():
@@ -372,8 +379,22 @@ def compare(rows):
             f'<colgroup><col><col><col><col></colgroup><thead><tr>{th}</tr></thead><tbody>{trs}</tbody></table></div>')
 
 
-def platform_tiles(items):
-    out = "".join(f'<div class="platform"><span class="brand-tile">{brand(b)}</span><h3>{n}</h3><p>{d}</p></div>' for b, n, d in items)
+# Merk in de toolslijst dat een eigen pagina heeft; die tegel wordt een link.
+BRAND_PAGE = {"instagram": "instagram-uitbesteden", "tiktok": "tiktok-uitbesteden", "linkedin": "linkedin-marketing-uitbesteden",
+              "claude": "claude-specialist-inhuren", "openai": "ai-specialist-inhuren", "googleads": "google-ads-specialist-inhuren",
+              "wordpress": "wordpress-specialist-inhuren", "shopify": "shopify-specialist-inhuren",
+              "meta": "social-media-uitbesteden", "facebook": "social-media-uitbesteden"}
+
+
+def platform_tiles(items, current=None):
+    out = ""
+    for b, n, d in items:
+        inner = f'<span class="brand-tile">{brand(b)}</span><h3>{n}</h3><p>{d}</p>'
+        target = BRAND_PAGE.get(b)
+        if target and target != current:
+            out += f'<a class="platform platform--link" href="/{target}/">{inner}{icon("arrow-right", "platform__arrow")}</a>'
+        else:
+            out += f'<div class="platform">{inner}</div>'
     return f'<div class="platforms" style="--cols:{min(len(items), 5)}">{out}</div>'
 
 
@@ -689,11 +710,12 @@ def page_dienst(slug):
         body += reel_section()
     else:
         body += photo_band(DIENST_FOTO[[s[0] for s in SPECS].index(slug) % len(DIENST_FOTO)])
-    if slug in CHILDREN:
-        links = "".join(f'<a class="pill-link" href="/{s[0]}/">{s[1]}{icon("arrow-right")}</a>' for s in CHILDREN[slug])
-        body += section(section_head("Liever *één kanaal?*", "Elk kanaal heeft een eigen pagina met taken en voorbeelden.") + f'<div class="pill-links">{links}</div>')
     if d["platforms"]:
-        body += section(section_head("De tools *die we gebruiken*") + platform_tiles(PLATFORMS[d["platforms"]]))
+        tools = PLATFORMS[d["platforms"]]
+        tools_lead = "Klik op een kanaal voor de eigen pagina met taken en voorbeelden." if any(BRAND_PAGE.get(b, slug) != slug for b, _, _ in tools) else None
+        if slug == "social-media-uitbesteden":
+            tools_lead += ' Alleen content laten maken? Bekijk <a href="/contentmarketing-uitbesteden/">contentmarketing uitbesteden</a>.'
+        body += section(section_head("De tools *die we gebruiken*", tools_lead) + platform_tiles(tools, slug))
     body += section(section_head(f"Zo werk je met *een {noun}*", "Twee werkvormen, allebei zonder contract. Je krijgt altijd eerst een offerte op maat.") + plans(Noun))
     seo = slug == "seo-specialist-inhuren"
     body += section(section_head("SEO-student, SEO-freelancer *of bureau?*" if seo else "Student, freelancer *of bureau?*") + compare(COMPARE_SEO if seo else COMPARE), "glow-right")

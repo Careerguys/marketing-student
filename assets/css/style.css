@@ -386,10 +386,6 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 @media (min-width: 1000px) { .spec-cta { flex-direction: row; align-items: center; justify-content: space-between; padding: 28px; } }
 
 /* Subpagina's van een specialisatie */
-.pill-links { display: flex; flex-wrap: wrap; gap: 10px; }
-.pill-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line-2); color: #fff; font-weight: 700; font-size: 0.9375rem; text-decoration: none; }
-.pill-link svg { width: 16px; height: 16px; color: var(--green); }
-.pill-link:hover { border-color: var(--green); }
 
 /* Vestigingen */
 .offices { display: grid; gap: 20px; }
@@ -429,16 +425,21 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .plan .btn { margin-top: auto; width: 100%; }
 
 /* Stappen */
-.reels { display: grid; grid-auto-flow: column; grid-auto-columns: min(72vw, 300px); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; margin-inline: -16px; padding: 4px 16px 8px; scroll-padding-inline: 16px; }
-.reels::-webkit-scrollbar { display: none; }
-@media (min-width: 900px) { .reels { grid-auto-columns: calc((100% - 72px) / 4); gap: 24px; margin-inline: 0; padding: 0; scroll-padding-inline: 0; } }
-.reel { scroll-snap-align: start; }
-.reels__nav { display: none; justify-content: center; gap: 12px; margin-top: 24px; }
-.reels-wrap.has-overflow .reels__nav { display: flex; }
+/* Zonder JavaScript: gewone horizontale rij. Met JavaScript: een draaiende ring (.is-3d). */
+.reel[data-dup] { display: none; }
+.reels__ring { display: grid; grid-auto-flow: column; grid-auto-columns: min(72vw, 300px); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+.reels__nav { display: none; justify-content: center; gap: 12px; margin-top: 8px; }
 .reels__btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface); color: #fff; cursor: pointer; }
-.reels__btn:hover:not(:disabled) { border-color: var(--green); }
-.reels__btn:disabled { opacity: 0.4; cursor: default; }
+.reels__btn:hover { border-color: var(--green); }
 .reels__btn svg { width: 20px; height: 20px; }
+.reels-wrap.is-3d { --w: 150px; --gap: 12px; --r: calc((var(--w) + var(--gap)) * var(--k)); overflow-x: clip; }
+@media (min-width: 640px) { .reels-wrap.is-3d { --w: 200px; --gap: 20px; } }
+@media (min-width: 1000px) { .reels-wrap.is-3d { --w: 230px; --gap: 26px; } }
+.is-3d .reels { position: relative; height: calc(var(--w) * 16 / 9 + 32px); perspective: 1400px; touch-action: pan-y; user-select: none; }
+.is-3d .reels__ring { display: block; overflow: visible; padding: 0; position: absolute; inset: 16px 0; transform-style: preserve-3d; will-change: transform; }
+.is-3d .reel { position: absolute; top: 0; left: 50%; width: var(--w); margin-left: calc(var(--w) / -2); transform: rotateY(calc(var(--i) * 360deg / var(--n))) translateZ(var(--r)); backface-visibility: hidden; cursor: pointer; }
+.is-3d .reel[data-dup] { display: block; }
+.is-3d .reels__nav { display: flex; }
 .reel { position: relative; margin: 0; aspect-ratio: 9 / 16; border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid var(--line-2); }
 .reel video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .reel figcaption { position: absolute; inset: auto 0 0; display: flex; flex-direction: column; gap: 6px; padding: 48px 18px 18px; background: linear-gradient(to top, rgba(15, 39, 65, 0.92), rgba(15, 39, 65, 0)); font-weight: 800; font-size: 0.9375rem; line-height: 1.3; }
@@ -485,6 +486,9 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 @media (min-width: 900px) { .platforms { grid-template-columns: repeat(var(--cols, 5), minmax(0, 1fr)); gap: 18px; } }
 .platform { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding: 20px 10px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); min-width: 0; }
 @media (min-width: 900px) { .platform { padding: 28px 14px; } }
+.platform--link { position: relative; color: inherit; text-decoration: none; transition: border-color 160ms var(--ease), transform 160ms var(--ease); }
+.platform--link:hover { border-color: var(--green); transform: translateY(-2px); }
+.platform__arrow { position: absolute; top: 12px; right: 12px; width: 16px; height: 16px; color: var(--green); }
 .platform .brand-tile { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px; }
 .platform .brand-tile svg { width: 30px; height: 30px; }
 .platform h3 { font-size: 0.9375rem; overflow-wrap: anywhere; }

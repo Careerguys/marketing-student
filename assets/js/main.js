@@ -86,55 +86,93 @@
     });
   }
 
-  /* ---------- Reels: spelen zonder geluid zolang ze in beeld zijn, geluid alleen na een tik ---------- */
-  var reels = document.querySelectorAll("[data-reel]");
-  if (reels.length) {
-    var soundOn = function (video, on) {
-      video.muted = !on;
-      var b = video.parentNode.querySelector(".reel__sound");
+  /* ---------- Reels: draaiende ring, alleen de voorste video speelt, geluid alleen na een tik ---------- */
+  document.querySelectorAll("[data-reels]").forEach(function (wrap) {
+    var stage = wrap.querySelector(".reels");
+    var ring = wrap.querySelector(".reels__ring");
+    var cards = Array.prototype.slice.call(ring.querySelectorAll(".reel"));
+    var videos = cards.map(function (c) { return c.querySelector("video"); });
+    var n = cards.length, step = 360 / n;
+    var angle = 0, target = null, hover = false, inView = false, sound = -1, drag = null, last = 0, front = -1;
+    var speed = reduce ? 0 : step / 8; /* graden per seconde: elke 8 seconden een video verder */
+
+    function setSound(i, on) {
+      var b = cards[i].querySelector(".reel__sound");
+      videos[i].muted = !on;
       b.setAttribute("aria-pressed", String(on));
       b.setAttribute("aria-label", b.getAttribute("aria-label").replace(/^Geluid (aan|uit)/, on ? "Geluid uit" : "Geluid aan"));
-    };
-    reels.forEach(function (video) {
-      video.parentNode.querySelector(".reel__sound").addEventListener("click", function () {
-        var on = video.muted;
-        reels.forEach(function (other) { if (other !== video) soundOn(other, false); });
-        soundOn(video, on);
-        if (on) video.play();
+      sound = on ? i : (sound === i ? -1 : sound);
+    }
+    function frontIndex() { return ((Math.round(-angle / step) % n) + n) % n; }
+    function render() {
+      ring.style.transform = "translateZ(calc(var(--r) * -1)) rotateY(" + angle + "deg)";
+      cards.forEach(function (c, i) {
+        var rel = ((i * step + angle) % 360 + 540) % 360 - 180; /* -180..180, 0 = voor */
+        var a = Math.abs(rel);
+        c.style.opacity = a > 95 ? 0 : String(1 - a / 140);
+        c.style.pointerEvents = a > 75 ? "none" : "";
       });
-    });
-    if (!reduce && "IntersectionObserver" in window) {
-      var rio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.play().catch(function () {}); }
-          else { e.target.pause(); soundOn(e.target, false); }
+      var f = frontIndex();
+      if (f !== front) {
+        front = f;
+        videos.forEach(function (v, i) {
+          if (i === f && inView) { v.play().catch(function () {}); }
+          else { v.pause(); if (sound === i) setSound(i, false); }
         });
-      }, { threshold: 0.6 });
-      reels.forEach(function (video) { rio.observe(video); });
+      }
     }
-  }
+    function tick(t) {
+      var dt = last ? Math.min((t - last) / 1000, 0.1) : 0;
+      last = t;
+      if (target !== null) {
+        var d = target - angle;
+        angle += d * Math.min(1, dt * 6);
+        if (Math.abs(d) < 0.2) { angle = target; target = null; }
+      } else if (!hover && !drag && sound < 0 && inView) {
+        angle -= speed * dt;
+      }
+      render();
+      requestAnimationFrame(tick);
+    }
+    function go(dir) { target = Math.round(((target !== null ? target : angle) - dir * step) / step) * step; }
+    function bringToFront(i) { var base = Math.round(angle / step) * step; var rel = ((i * step + base) % 360 + 540) % 360 - 180; target = base - rel; }
 
-  /* ---------- Reelcarrousel: pijlen alleen als er meer video's zijn dan in beeld passen ---------- */
-  document.querySelectorAll("[data-reels]").forEach(function (track) {
-    var wrap = track.parentNode;
-    var prev = wrap.querySelector("[data-reels-prev]");
-    var next = wrap.querySelector("[data-reels-next]");
-    function update() {
-      var max = track.scrollWidth - track.clientWidth;
-      wrap.classList.toggle("has-overflow", max > 4);
-      prev.disabled = track.scrollLeft <= 4;
-      next.disabled = track.scrollLeft >= max - 4;
-    }
-    function step(dir) {
-      var card = track.querySelector(".reel");
-      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      track.scrollBy({ left: dir * (card.offsetWidth + gap), behavior: reduce ? "auto" : "smooth" });
-    }
-    prev.addEventListener("click", function () { step(-1); });
-    next.addEventListener("click", function () { step(1); });
-    track.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    update();
+    cards.forEach(function (c, i) {
+      c.querySelector(".reel__sound").addEventListener("click", function (e) {
+        e.stopPropagation();
+        var on = videos[i].muted;
+        videos.forEach(function (v, j) { if (j !== i && !v.muted) setSound(j, false); });
+        setSound(i, on);
+        if (on) { bringToFront(i); videos[i].play(); }
+      });
+      c.addEventListener("click", function () { if (frontIndex() !== i) bringToFront(i); });
+    });
+    wrap.querySelector("[data-reels-prev]").addEventListener("click", function () { go(-1); });
+    wrap.querySelector("[data-reels-next]").addEventListener("click", function () { go(1); });
+    stage.addEventListener("mouseenter", function () { hover = true; });
+    stage.addEventListener("mouseleave", function () { hover = false; });
+    stage.addEventListener("focusin", function () { hover = true; });
+    stage.addEventListener("focusout", function () { hover = false; });
+    stage.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse") drag = { x: e.clientX, a: angle, moved: false }; });
+    stage.addEventListener("pointermove", function (e) {
+      if (!drag) return;
+      var dx = e.clientX - drag.x;
+      if (Math.abs(dx) > 6) drag.moved = true;
+      angle = drag.a + dx * 0.35; target = null;
+    });
+    ["pointerup", "pointercancel"].forEach(function (ev) {
+      stage.addEventListener(ev, function () { if (drag && drag.moved) target = Math.round(angle / step) * step; drag = null; });
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        front = -1;
+        if (!inView) videos.forEach(function (v, i) { v.pause(); if (sound === i) setSound(i, false); });
+      }, { threshold: 0.35 }).observe(stage);
+    } else { inView = true; }
+    wrap.classList.add("is-3d");
+    render();
+    requestAnimationFrame(tick);
   });
 
   /* ---------- Formulieren: validatie en Netlify-verzending ---------- */

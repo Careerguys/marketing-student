@@ -5,6 +5,14 @@
    ========================================================= */
 
 @font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/instrument-serif-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
   font-family: "Plus Jakarta Sans";
   font-style: normal;
   font-weight: 400 800;
@@ -30,6 +38,7 @@
   --nav-text: #0f2741;
   --nav-accent: #1d557f;
   --font: "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-accent: "Instrument Serif", Georgia, "Times New Roman", serif;
   --radius-sm: 10px;
   --radius: 16px;
   --radius-lg: 24px;
@@ -79,6 +88,16 @@ h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -0.03em; text-wrap: ba
 h1 { font-size: clamp(1.9375rem, 1.1rem + 3.3vw, 3.625rem); line-height: 1.05; letter-spacing: -0.035em; }
 h2 { font-size: clamp(1.625rem, 1.2rem + 2vw, 2.75rem); line-height: 1.08; }
 h3 { font-size: 1.1875rem; line-height: 1.25; letter-spacing: -0.02em; }
+/* Accent in koppen: sierletter (Instrument Serif Italic). Schreefletters ogen kleiner,
+   daarom iets groter en zonder de krappe letterafstand van de koppen. */
+.grad, .accent {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.12em;
+  letter-spacing: -0.01em;
+  padding-right: 0.06em;
+}
 .grad {
   background: var(--grad);
   -webkit-background-clip: text; background-clip: text;
@@ -369,13 +388,13 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .spec-card { text-decoration: none; transition: border-color 160ms var(--ease), transform 160ms var(--ease); }
 .spec-card:hover { border-color: var(--green); transform: translateY(-2px); }
 .spec-card h3 { font-size: 1.0625rem; }
-@media (min-width: 900px) { .spec-card h3 { font-size: 1.125rem; } }
+@media (min-width: 1200px) { .spec-card h3 { font-size: 1.125rem; } }
 .spec-card .link-arrow { margin-top: auto; }
 .spec-card:hover .link-arrow svg { transform: translateX(3px); }
 .brand-tile { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: #fff; flex: none; }
 .brand-tile svg { width: 24px; height: 24px; }
 .spec-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-@media (max-width: 639px) { .spec-grid .spec-card p, .spec-grid .spec-card .link-arrow { display: none; } .spec-card { padding: 18px; gap: 10px; } }
+@media (max-width: 639px) { .spec-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; } .spec-grid .spec-card p, .spec-grid .spec-card .link-arrow { display: none; } .spec-grid .spec-card { flex-direction: row; align-items: center; padding: 14px 16px; gap: 14px; border-radius: 16px; } .spec-grid .spec-card .brand-tile { width: 40px; height: 40px; } }
 @media (min-width: 640px) { .spec-grid { gap: 20px; } }
 @media (min-width: 1000px) { .spec-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .spec-cta { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 14px; padding: 22px; border-radius: 20px; border: 1px dashed rgba(121, 199, 158, 0.6); }
@@ -416,7 +435,7 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .plan__tag { position: absolute; top: -13px; left: 24px; padding: 5px 12px; border-radius: 999px; background: var(--grad); color: var(--bg); font-size: 0.75rem; font-weight: 800; }
 .plan__head { display: flex; align-items: center; gap: 12px; }
 .plan__head svg { width: 26px; height: 26px; color: var(--green); flex: none; }
-.plan__head h3 { font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem); }
+.plan__head h3 { font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem); }
 .plan__kind { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; }
 .plan__kind strong { font-size: clamp(1.625rem, 1.4rem + 0.6vw, 1.875rem); letter-spacing: -0.02em; }
 .plan__kind span { color: var(--muted); font-size: 0.9375rem; }
@@ -451,13 +470,15 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .compare .no svg { color: rgba(255, 255, 255, 0.55); }
 
 /* Platformtegels */
-.platforms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.platforms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (min-width: 560px) { .platforms { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 900px) { .platforms { grid-template-columns: repeat(var(--cols, 5), minmax(0, 1fr)); gap: 18px; } }
 .platform { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding: 20px 10px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); min-width: 0; }
 @media (min-width: 900px) { .platform { padding: 28px 14px; } }
 .platform .brand-tile { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px; }
 .platform .brand-tile svg { width: 30px; height: 30px; }
 .platform h3 { font-size: 0.9375rem; overflow-wrap: anywhere; }
+@media (max-width: 359px) { .platform { padding: 18px 8px; } .platform h3 { font-size: 0.875rem; } }
 @media (min-width: 900px) { .platform h3 { font-size: 1rem; } }
 .platform p { display: none; margin: 0; font-size: 0.8125rem; line-height: 1.45; color: var(--muted); }
 @media (min-width: 900px) { .platform p { display: block; } }

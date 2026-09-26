@@ -650,10 +650,10 @@ def layout(path, title, desc, body, current, graph, noindex=False, og_type="webs
 FORM_SLOT = '<section class="section section--flush-top form-section"><div class="container"><div class="form-slot" data-form-slot></div></div></section>'
 
 
-def hero(crumb_items, h1a, h1b, lead_txt, extra="", form=None, home=False, cls="", movable=False):
+def hero(crumb_items, h1a, h1b, lead_txt, extra="", form=None, home=False, cls="", movable=False, before=""):
     c = crumbs(crumb_items) if crumb_items else ""
     g = f' <span class="grad">{h1b}</span>' if h1b else ""
-    text = f'<div class="hero__text">{c}<h1>{h1a}{g}</h1><p class="lead">{lead_txt}</p>{extra}</div>'
+    text = f'<div class="hero__text">{c}{before}<h1>{h1a}{g}</h1><p class="lead">{lead_txt}</p>{extra}</div>'
     if form and movable:
         form = f'<div data-form-hero>{form}</div>'
     inner = f'<div class="hero__grid" data-form-origin>{text}{form}</div>' if form else text
@@ -735,9 +735,9 @@ def page_dienst(slug):
     return path, d["title"], d["meta"], body, "specialisaties", graph
 
 
-def simple_page(path, crumb, h1a, h1b, lead_txt, title, desc, sections_html, current, typ="WebPage", faq=None, extra_graph=(), hero_extra=None, form=None, noindex=False, movable=False):
+def simple_page(path, crumb, h1a, h1b, lead_txt, title, desc, sections_html, current, typ="WebPage", faq=None, extra_graph=(), hero_extra=None, form=None, noindex=False, movable=False, hero_before=""):
     url = SITE + path
-    body = hero([("Home", "/"), (crumb, path)] if crumb else None, h1a, h1b, lead_txt, hero_extra if hero_extra is not None else hero_buttons(href="/offerte-aanvragen/"), form, movable=movable)
+    body = hero([("Home", "/"), (crumb, path)] if crumb else None, h1a, h1b, lead_txt, hero_extra if hero_extra is not None else hero_buttons(href="/offerte-aanvragen/"), form, movable=movable, before=hero_before)
     body += sections_html
     graph = [ld_webpage(url, title, desc, typ, crumb=bool(crumb))]
     if crumb:
@@ -957,11 +957,15 @@ def page_privacy():
                        secs, None, hero_extra="")
 
 
+# Vinkje dat zichzelf tekent (effect 11 uit de effectenbieb).
+DONE_CHECK = '<svg class="done-check" viewBox="0 0 80 80" aria-hidden="true" focusable="false"><circle cx="40" cy="40" r="36"/><path d="M25 41l10 10 21-22"/></svg>'
+
+
 def page_bedankt():
     extra = f'<div class="btn-row btn-row--stack">{btn("Naar de homepage", "/", "grad", "arrow-right", True)}{btn("Bel " + PHONE, PHONE_HREF, "outline", "phone", True)}</div>'
     return simple_page("/bedankt/", None, "Bedankt,", "we hebben je aanvraag ontvangen", "We nemen zo snel mogelijk contact met je op. Liever direct schakelen? Bel ons.",
                        "Bedankt | Marketing Student", "Bedankt voor je aanvraag bij Marketing Student. We nemen zo snel mogelijk contact met je op.",
-                       "", "bedankt", hero_extra=extra, noindex=True)
+                       "", "bedankt", hero_extra=extra, noindex=True, hero_before=DONE_CHECK)
 
 
 def page_404():

@@ -1027,6 +1027,19 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 @media (min-width: 1000px) and (max-width: 1199px) { .spec-card h3, .spec-card h4 { font-size: 0.9375rem; } }
 @media (min-width: 900px) { .spec-cta--solo { flex-direction: row; align-items: center; justify-content: space-between; } }
 .article__img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 28px; }
+
+/* Vacatures */
+.vac-card { text-decoration: none; color: inherit; transition: border-color 160ms var(--ease), transform 160ms var(--ease); }
+.vac-card:hover { border-color: var(--green); transform: translateY(-2px); }
+.vac-card h3 { font-size: 1.125rem; }
+.vac-card .link-arrow { margin-top: auto; }
+.vac-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8125rem; color: var(--muted); }
+.vac-chips li { display: inline-flex; align-items: center; gap: 6px; }
+.vac-chips svg { width: 14px; height: 14px; color: var(--green); }
+.hero .vac-chips { margin: 4px 0 18px; font-size: 0.9375rem; color: #fff; }
+.vac-list h2 { font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem); }
+.vac-list .story__list { margin-top: 6px; }
+.vac-list .story__list li { font-weight: 500; font-size: 0.9375rem; }
 @media (prefers-reduced-motion: reduce) {
   .chat__dots, .shop__toast { display: none !important; }
   .gauge__val { stroke-dasharray: 94 100 !important; }

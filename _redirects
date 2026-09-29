@@ -9,6 +9,8 @@ http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  30
 /artikelen.py                                                  /404.html  404!
 /diensten_data.py                                              /404.html  404!
 /faq_data.py                                                   /404.html  404!
+/story_data.py                                                 /404.html  404!
+/vacatures_data.py                                             /404.html  404!
 /brands.json                                                   /404.html  404!
 /privacy.html                                                  /404.html  404!
 /README.md                                                     /404.html  404!

@@ -19,6 +19,7 @@ from pathlib import Path
 from artikelen import ARTIKELEN
 from diensten_data import D as DIENST, SC as SHOWCASES, PLAT as PLATFORMS
 from story_data import STORY
+from vacatures_data import VACATURES, BIEDEN
 from faq_data import antwoord
 
 ROOT = Path(__file__).parent
@@ -695,7 +696,7 @@ def header(current):
 def footer():
     specs = "".join(f'<li><a href="/{s[0]}/">{MENU_LABEL[s[0]]}</a></li>' for s in MAIN)
     bedrijf = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in [("Alle specialisaties", "/specialisaties/"), ("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"),
-                                                                     ("Kennisbank", "/kennisbank/"), ("Werken als student", "/werken-als-student/"),
+                                                                     ("Kennisbank", "/kennisbank/"), ("Werken als student", "/werken-als-student/"), ("Vacatures", "/vacatures/"),
                                                                      ("Offerte aanvragen", "/offerte-aanvragen/"), ("Contact", "/contact/")])
     cookie_link = '<button type="button" class="footer__cookie" data-cookie-settings>Cookie-instellingen</button>' if GTM_ID else ""
     return f'''<footer class="footer">
@@ -1146,17 +1147,7 @@ def page_artikel(a):
 
 def page_student():
     n = uid("s")
-    form = f'''<div id="aanmelden">{form_open("student-aanmelding", "werken-als-student/")}
-  <h2>Meld je aan</h2>
-  <div class="form-grid">
-    {field(f"naam-{n}", "Naam", ph="Voor- en achternaam", ac="name")}
-    {field(f"email-{n}", "E-mailadres", "email", "naam@student.nl", ac="email")}
-    {field(f"opleiding-{n}", "Opleiding en onderwijsinstelling", ph="Bijvoorbeeld: Commerciële Economie, HvA")}
-    {field(f"profiel-{n}", "LinkedIn-profiel of portfolio", "url", "https://", required=False)}
-  </div>
-  <button class="btn btn--grad form-submit" type="submit">Aanmelden{icon("arrow-right")}</button>
-  <p class="form-note">Je gegevens gebruiken we alleen voor je aanmelding (<a href="/privacy-policy/">privacy</a>).</p>
-</form></div>'''
+    form = student_form(n, "aanmelden", "werken-als-student/")
     krijg = [("users", "Begeleiding door seniors", "Je werkt onder een ervaren marketeer die je feedback geeft."),
              ("building", "Echte klanten", "Je werkt voor mkb-bedrijven, niet aan oefenopdrachten."),
              ("clock", "Flexibel naast je studie", "In overleg bepaal je hoeveel uur je per week werkt."),
@@ -1169,6 +1160,8 @@ def page_student():
                      ("Inwerktraject", "Je leert onze werkwijze en de tools, samen met een senior."),
                      ("Eerste opdracht", "Je gaat aan de slag voor een mkb-klant, met een senior die meekijkt.")]
     secs += section(section_head("Zo word je *marketing student*") + steps(student_steps))
+    secs += section(section_head("Openstaande *vacatures*", "Liever direct op een specifieke rol reageren? Bekijk de vacatures.") + vac_cards(VACATURES[:3])
+                    + f'<div class="btn-row" style="justify-content:center;margin-top:28px">{btn("Alle vacatures", "/vacatures/", "outline", "arrow-right")}</div>')
     faq = faq_block("Vragen van *studenten*", ["Wat zijn de eisen?", "Werk ik remote of op locatie?", "Hoeveel uur per week werk ik?"])
     p = simple_page("/werken-als-student/", "Werken als student", "Marketing bijbaan", "naast je studie",
                        "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk voor echte klanten, begeleid door ervaren marketeers.",
@@ -1177,6 +1170,94 @@ def page_student():
                        secs + FORM_SLOT, None, faq=faq, hero_extra=f'<div class="btn-row btn-row--stack">{btn("Meld je aan", "#aanmelden", "grad", "arrow-right", True)}</div>', form=form, movable=True)
     slot = cta_block("Klaar om *te beginnen?*", "Meld je aan. We nemen contact met je op voor een kennismaking.", buttons=btn("Meld je aan", "#aanmelden", "navy", "arrow-right", True))
     return p[0], p[1], p[2], p[3] + slot, p[4], p[5], p[6]
+
+
+# ---------------------------------------------------------------- vacatures
+VAC_POSTED, VAC_VALID = "2026-09-30", "2026-12-31T23:59"
+VAC_STEPS = [("Solliciteren", "Vul het formulier in met je opleiding en je LinkedIn of portfolio."),
+             ("Kennismaking", "We maken kennis en bespreken wat je wilt leren."),
+             ("Inwerktraject", "Je leert onze werkwijze en de tools, samen met een senior."),
+             ("Eerste opdracht", "Je gaat aan de slag voor een mkb-klant, met een senior die meekijkt.")]
+VAC_CHIPS = ["Naast je studie", "Remote of hybride", "Den Haag of Mijdrecht"]
+
+
+def vac_chips():
+    return '<ul class="vac-chips">' + "".join(f"<li>{icon(i)}{t}</li>" for i, t in zip(["clock", "zap", "map-pin"], VAC_CHIPS)) + "</ul>"
+
+
+def vac_cards(items):
+    out = ""
+    for v in items:
+        out += (f'<a class="card vac-card" href="/vacatures/{v["slug"]}/">{spec_icon(SPEC[v["spec"]][2])}<h3>{nobreak(v["titel"])}</h3><p>{v["kort"]}</p>'
+                f'{vac_chips()}<span class="link-arrow">Bekijk vacature{icon("arrow-right")}</span></a>')
+    return f'<div class="grid grid--3 vac-grid">{out}</div>'
+
+
+def student_form(n, slug, page, title="Meld je aan", vacature=None):
+    hidden = f'<input type="hidden" name="vacature" value="{vacature}">' if vacature else ""
+    extra = field(f"motivatie-{n}", "Waarom deze vacature?", required=False, full=True, textarea=True) if vacature else ""
+    return f'''<div id="{slug}">{form_open("student-aanmelding", page)}{hidden}
+  <h2>{title}</h2>
+  <div class="form-grid">
+    {field(f"naam-{n}", "Naam", ph="Voor- en achternaam", ac="name")}
+    {field(f"email-{n}", "E-mailadres", "email", "naam@student.nl", ac="email")}
+    {field(f"opleiding-{n}", "Opleiding en onderwijsinstelling", ph="Bijvoorbeeld: Commerciële Economie, HvA")}
+    {field(f"profiel-{n}", "LinkedIn-profiel of portfolio", "url", "https://", required=False)}
+    {extra}
+  </div>
+  <button class="btn btn--grad form-submit" type="submit">{"Solliciteer" if vacature else "Aanmelden"}{icon("arrow-right")}</button>
+  <p class="form-note">Je gegevens gebruiken we alleen voor je {"sollicitatie" if vacature else "aanmelding"} (<a href="/privacy-policy/">privacy</a>).</p>
+</form></div>'''
+
+
+def page_vacatures():
+    path = "/vacatures/"
+    url = SITE + path
+    secs = section(section_head("Openstaande *vacatures*", "Allemaal naast je studie, begeleid door een ervaren marketeer.") + vac_cards(VACATURES), "section--flush-top")
+    secs += section(section_head("Zo verloopt *je sollicitatie*") + steps(VAC_STEPS))
+    items = [{"@type": "ListItem", "position": i, "url": f"{SITE}/vacatures/{v['slug']}/", "name": v["titel"]} for i, v in enumerate(VACATURES, 1)]
+    p = simple_page(path, "Vacatures", "Vacatures", "voor studenten",
+                    "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk naast je studie voor echte klanten, begeleid door ervaren marketeers.",
+                    "Vacatures voor marketingstudenten | Marketing Student",
+                    "Vacatures voor HBO- en WO-studenten: SEO, social media, video, Google Ads, WordPress en AI. Naast je studie, begeleid door een senior.",
+                    secs, None, "CollectionPage",
+                    extra_graph=[{"@type": "ItemList", "@id": url + "#lijst", "name": "Vacatures", "numberOfItems": len(items), "itemListElement": items}],
+                    hero_extra=f'<div class="btn-row btn-row--stack">{btn("Bekijk de vacatures", "#main-vacatures", "grad", "arrow-right", True)}</div>')
+    slot = cta_block("Staat jouw vak *er niet tussen?*", "Meld je dan open aan. We kijken samen welke specialisatie bij je past.",
+                     buttons=btn("Open aanmelden", "/werken-als-student/", "navy", "arrow-right", True))
+    return p[0], p[1], p[2], p[3].replace('<section class="section section--flush-top">', '<section class="section section--flush-top" id="main-vacatures">', 1) + slot, p[4], p[5], p[6]
+
+
+def page_vacature(v):
+    path = f"/vacatures/{v['slug']}/"
+    url = SITE + path
+    n = uid("v")
+    crumb_items = [("Home", "/"), ("Vacatures", "/vacatures/"), (v["titel"], path)]
+    form = student_form(n, "solliciteren", f"vacatures/{v['slug']}/", "Solliciteer direct", v["titel"])
+    body = hero(crumb_items, "Vacature", v["titel"], v["intro"], vac_chips() + f'<div class="btn-row btn-row--stack">{btn("Solliciteer direct", "#solliciteren", "grad", "arrow-right", True)}</div>',
+                form, movable=True)
+    lists = [("Wat ga je *doen?*", v["taken"]), ("Wat vragen *we?*", v["vragen"]), ("Wat bieden *we?*", BIEDEN)]
+    check = icon("check")
+    cols = "".join(f'<div class="card vac-list"><h2>{accent(t)}</h2><ul class="story__list">{"".join(f"<li>{check}{x}</li>" for x in items)}</ul></div>' for t, items in lists)
+    body += section(f'<div class="grid grid--3">{cols}</div>', "section--flush-top")
+    body += section(section_head("Zo verloopt *je sollicitatie*") + steps(VAC_STEPS))
+    body += section(section_head("Meer *vacatures*") + vac_cards([x for x in VACATURES if x["slug"] != v["slug"]][:3]))
+    body += FORM_SLOT
+    body += cta_block("Klaar om *te solliciteren?*", "Het kost je een paar minuten. We nemen contact met je op voor een kennismaking.",
+                      buttons=btn("Solliciteer direct", "#solliciteren", "navy", "arrow-right", True))
+    desc_html = (f"<p>{v['intro']}</p><h3>Wat ga je doen?</h3><ul>{''.join(f'<li>{x}</li>' for x in v['taken'])}</ul>"
+                 f"<h3>Wat vragen we?</h3><ul>{''.join(f'<li>{x}</li>' for x in v['vragen'])}</ul>"
+                 f"<h3>Wat bieden we?</h3><ul>{''.join(f'<li>{x}</li>' for x in BIEDEN)}</ul>")
+    title = f"Vacature {v['titel']} | Marketing Student"
+    meta = f"Vacature {v['titel']}: {v['kort'][0].lower() + v['kort'][1:]} Naast je studie, begeleid door een senior."
+    graph = [ld_webpage(url, title, meta, main=url + "#vacature"), ld_crumbs(url, crumb_items),
+             {"@type": "JobPosting", "@id": url + "#vacature", "title": v["titel"], "description": desc_html, "datePosted": VAC_POSTED,
+              "validThrough": VAC_VALID, "employmentType": "PART_TIME", "directApply": True, "industry": "Marketing",
+              "hiringOrganization": {"@type": "Organization", "@id": ORG, "name": SITE_NAME, "sameAs": SITE + "/", "logo": LOGO_URL},
+              "jobLocation": {"@type": "Place", "address": {"@type": "PostalAddress", "streetAddress": "Koninginnegracht 5", "postalCode": "2514 AA",
+                                                           "addressLocality": "Den Haag", "addressCountry": "NL"}},
+              "educationRequirements": {"@type": "EducationalOccupationalCredential", "credentialCategory": "bachelor degree"}}]
+    return path, title, meta, body, "werken", graph
 
 
 PRIVACY = (ROOT / "privacy.html").read_text() if (ROOT / "privacy.html").exists() else ""
@@ -1250,7 +1331,7 @@ REDIRECTS = [
     ("/comments/feed/", "/kennisbank/"),
 ]
 GONE = ["/test-bericht/", "/test-bericht-2/", "/category/uncategorized/", "/wp-json/*", "/xmlrpc.php", "/wp-admin/*", "/wp-login.php"]
-BLOCK = ["/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
+BLOCK = ["/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
 
 
 # ---------------------------------------------------------------- bouwen
@@ -1265,7 +1346,8 @@ def main():
     pages = [page_home()] + [page_dienst(s[0]) for s in SPECS]
     pages += [page_specialisaties(), page_werkwijze(), page_over(), page_contact(), page_offerte(), page_kennisbank()]
     pages += [page_artikel(a) for a in ARTIKELEN]
-    pages += [page_student(), page_privacy(), page_bedankt(), page_404()]
+    pages += [page_student(), page_vacatures()] + [page_vacature(v) for v in VACATURES]
+    pages += [page_privacy(), page_bedankt(), page_404()]
     sitemap = []
     for p in pages:
         path, title, desc, body, current, graph = p[:6]

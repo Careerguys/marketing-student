@@ -350,7 +350,7 @@ def reels():
         cards += (f'<figure class="reel" style="--i:{i}"{extra}><video muted loop playsinline preload="none" poster="/assets/video/{key}.webp" data-reel>'
                   f'<source src="/assets/video/{key}.mp4" type="video/mp4"></video>'
                   f'<button class="reel__sound" type="button"{tab} aria-pressed="false" aria-label="Geluid aan: {label}">{icon("volume-x", "reel__off")}{icon("volume", "reel__on")}</button>'
-                  f'<figcaption><span class="reel__tag">{soort} · {duur}</span>{label}</figcaption></figure>')
+                  f'</figure>')
     nav = (f'<div class="reels__nav"><button class="icon-btn reels__btn" type="button" data-reels-prev aria-label="Vorige video">{icon("arrow-left")}</button>'
            f'<button class="icon-btn reels__btn" type="button" data-reels-next aria-label="Volgende video">{icon("arrow-right")}</button></div>')
     k = 1 / (2 * math.tan(math.pi / len(ring)))

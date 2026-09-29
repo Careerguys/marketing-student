@@ -140,8 +140,13 @@ def accent(t, cls="grad"):
     return re.sub(r"\*([^*]+)\*", lambda m: f'<span class="{cls}">{m.group(1)}</span>', t)
 
 
+def nobreak(t):
+    """Woorden met een koppelteken (social media-student) nooit op het koppelteken afbreken."""
+    return re.sub(r"\b([A-Za-zÀ-ÿ]+-[A-Za-zÀ-ÿ]+)\b", lambda m: f'<span class="nw">{m.group(1)}</span>' if len(m.group(1)) <= 13 else m.group(1), t)
+
+
 def section_head(title, lead_txt=None, center=False, tag="h2", hid=None):
-    title = accent(title)
+    title = accent(nobreak(title))
     cls = "section-head section-head--center" if center else "section-head"
     idattr = f' id="{hid}"' if hid else ""
     lead_html = f'<p class="lead">{lead_txt}</p>' if lead_txt else ""
@@ -283,7 +288,7 @@ def plans(noun=None, href="#offerte"):
     for ic, t, kind, sub, pts, cta, feat in data:
         tag = '<span class="plan__tag">Meest gekozen</span>' if feat else ""
         li = "".join(f"<li>{icon('check')}<span>{p}</span></li>" for p in pts)
-        out += (f'<div class="plan{" plan--featured" if feat else ""}">{tag}<div class="plan__head">{icon(ic)}<h3>{t}</h3></div>'
+        out += (f'<div class="plan{" plan--featured" if feat else ""}">{tag}<div class="plan__head">{icon(ic)}<h3>{nobreak(t)}</h3></div>'
                 f'<p class="plan__kind"><strong>{kind}</strong><span>{sub}</span></p><ul class="checks">{li}</ul>'
                 f'{btn(cta, href, "grad" if feat else "outline")}</div>')
     return f'<div class="plans">{out}</div>'
@@ -349,7 +354,7 @@ def reels():
     nav = (f'<div class="reels__nav"><button class="icon-btn reels__btn" type="button" data-reels-prev aria-label="Vorige video">{icon("arrow-left")}</button>'
            f'<button class="icon-btn reels__btn" type="button" data-reels-next aria-label="Volgende video">{icon("arrow-right")}</button></div>')
     k = 1 / (2 * math.tan(math.pi / len(ring)))
-    return f'<div class="reels-wrap" data-reels style="--n:{len(ring)};--k:{k:.3f}"><div class="reels"><div class="reels__ring">{cards}</div></div>{nav}</div>'
+    return f'<div class="reels-wrap" id="ons-werk" data-reels style="--n:{len(ring)};--k:{k:.3f}"><div class="reels"><div class="reels__ring">{cards}</div></div>{nav}</div>'
 
 
 def reel_section(more=False):
@@ -388,8 +393,8 @@ def ad_post():
                                       (15, 2.4, 1.15), (85, 2.6, 0.95)])
     return (f'<div class="adpost" data-anim aria-hidden="true">'
             f'<div class="adpost__head"><span class="adpost__avatar">JB</span><span><b>Jouw bedrijf</b><small>Gesponsord</small></span></div>'
-            f'<img src="/assets/video/broodjes-video.webp" width="540" height="960" alt="" loading="lazy" decoding="async">'
-            f'<div class="adpost__cta"><span>Bestel vandaag nog</span><span class="adpost__btn">Meer informatie</span></div>'
+            f'<img src="/assets/video/speedboot-reel.webp" width="360" height="640" alt="" loading="lazy" decoding="async">'
+            f'<div class="adpost__cta"><span>Boek je vaartocht</span><span class="adpost__btn">Meer informatie</span></div>'
             f'<div class="adpost__bar"><span class="adpost__like">{HEART}<span class="hearts">{hearts}</span></span>'
             f'<b data-likes>128</b><span class="adpost__meta">reacties en shares</span></div></div>')
 
@@ -424,10 +429,35 @@ def dashboard():
             f'<div class="dash__bars"><small>Interacties per kanaal</small>{bars}</div></div></div>')
 
 
+def inbox():
+    """Reacties komen binnen, daarna verschijnen typpuntjes en het antwoord op dezelfde plek."""
+    items = [("in", "SK", "Zijn jullie zondag ook open?", 0), ("out", "", "Ja, zondag van 12.00 tot 17.00 uur. Tot dan!", 2.6),
+             ("in", "MV", "Wat een mooie video weer!", 4.4), ("out", "", "Dank je wel, leuk om te horen!", 7.0)]
+    rows = ""
+    for kind, who, text, t in items:
+        if kind == "in":
+            rows += f'<div class="inbox__msg inbox__msg--in" style="--t:{t}s"><span class="inbox__av">{who}</span><p>{text}</p></div>'
+        else:
+            rows += (f'<div class="inbox__msg inbox__msg--out" style="--t:{t - 1.4:.1f}s;--r:{t}s"><span class="inbox__dots"><i></i><i></i><i></i></span>'
+                     f'<p>{text}</p></div>')
+    return (f'<div class="inbox" data-anim aria-hidden="true"><div class="inbox__head"><b>Berichten en reacties</b>'
+            f'<span>{brand("instagram")}{brand("facebook")}{brand("linkedin")}</span></div><div class="inbox__list">{rows}</div></div>')
+
+
+SOCIAL_MONTH = [("calendar", "Contentplan", "Onderwerpen en planning voor de maand, vooraf door jou goedgekeurd."),
+                ("camera", "Posts, reels en stories", "Gemaakt en ingepland volgens de planning. Het aantal staat in je offerte."),
+                ("users", "Community beheer", "Reacties en berichten beantwoord in jouw toon."),
+                ("bar-chart", "Rapport en evaluatie", "Wat het opleverde, en wat we volgende maand anders doen.")]
+SOCIAL_START = [("Kennismaking", "We bespreken je doelen, je doelgroep en op welke kanalen je klanten zitten."),
+                ("Toegang regelen", "Je geeft de student een beheerdersrol via Meta Business Suite en LinkedIn. Je deelt geen wachtwoorden."),
+                ("Tone of voice vastleggen", "Je huisstijl en toon, met voorbeelden, zodat elke post klinkt als jij."),
+                ("Eerste contentplan", "Jij keurt het plan goed, daarna maakt de student de content en gaat alles live.")]
+
+
 def social_story(noun):
     def row(title, text, bullets, visual, flip=False):
         li = "".join(f"<li>{icon('check')}{b}</li>" for b in bullets)
-        return (f'<div class="story__row{" story__row--flip" if flip else ""}"><div class="story__text"><h3>{accent(title)}</h3><p>{text}</p>'
+        return (f'<div class="story__row{" story__row--flip" if flip else ""}"><div class="story__text"><h3>{accent(nobreak(title))}</h3><p>{text}</p>'
                 f'<ul class="story__list">{li}</ul></div><div class="story__visual">{visual}</div></div>')
     head = section_head(f"Wat een {noun} *voor je doet*", "Van idee tot rapport: de student maakt je content, plant alles in, zet advertenties op en laat zien wat het oplevert. Een senior bewaakt je merk.")
     content = (f'<div class="story__row story__row--full"><div class="story__text"><h3>{accent("Content die *opvalt*")}</h3>'
@@ -435,17 +465,26 @@ def social_story(noun):
                f'{reels()}</div>')
     cal = row("Een contentkalender die *vol blijft*", "Elke maand een planning met onderwerpen per kanaal. Je ziet vooraf wat er wanneer online gaat, en de student plant alles in.",
               ["Planning per week en per kanaal", "Posts vooraf ter goedkeuring", "Ingepland via Meta Business Suite"], content_calendar())
+    com = row("Reacties en berichten *beantwoord*", "Een post is pas af als je reageert. De student beantwoordt reacties en berichten in jouw toon. Vragen die bij jou horen, zoals een klacht of een offerteaanvraag, stuurt de student door.",
+              ["Reacties en DM's in jouw toon", "Vaste antwoorden op veelgestelde vragen", "Lastige vragen gaan naar jou"], inbox(), flip=True)
     ads = row("Social ads die de juiste mensen *bereiken*", "Optioneel: met een klein budget je beste posts laten zien aan precies je doelgroep. De student zet campagnes op in Meta en LinkedIn, test varianten en stuurt bij.",
-              ["Doelgroep op regio, interesse en functie", "Varianten testen, de beste opschalen", "Werkt in je eigen advertentieaccount"], ad_post(), flip=True)
+              ["Doelgroep op regio, interesse en functie", "Varianten testen, de beste opschalen", "Werkt in je eigen advertentieaccount"], ad_post())
     rap = row("Rapportage die je *snapt*", "Elke maand een overzicht van bereik, interacties en klikken, met wat we volgende maand anders doen. Geen dik rapport, wel duidelijke keuzes.",
-              ["Cijfers per kanaal en per post", "Wat werkte en wat niet", "Plan voor de volgende maand"], dashboard())
-    cta = f'<div class="btn-row" style="justify-content:center">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>'
-    return section(head + f'<div class="story">{content}{cal}{ads}{rap}{cta}</div>', "glow-left")
+              ["Cijfers per kanaal en per post", "Wat werkte en wat niet", "Plan voor de volgende maand"], dashboard(), flip=True)
+    story = section(head + f'<div class="story">{content}{cal}{com}{ads}{rap}</div>', "glow-left")
+    cards = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in SOCIAL_MONTH)
+    month = section(section_head("Wat zit er in *een maand?*", "Je koopt geen losse posts, maar een vast ritme. Hoeveel posts en video's precies, hangt af van je uren en kanalen. Dat staat per maand in je offerte.")
+                    + f'<div class="grid grid--4">{cards}</div>'
+                    + f'<div class="story-cta"><div><h3>{accent("Benieuwd wat er in jouw maand *past?*")}</h3><p>Vertel welke kanalen je hebt en wat je wilt bereiken. Je krijgt een voorstel met uren, content per maand en de student die het oppakt.</p></div>'
+                    + f'<div class="btn-row">{btn("Vraag een offerte aan", "#offerte", "grad", "arrow-right")}{btn("Bel " + PHONE, PHONE_HREF, "outline", "phone")}</div></div>', "story-month")
+    start = section(section_head("Zo start je *met social media*", "Binnen een paar stappen staat je eerste maand klaar.") + steps(SOCIAL_START))
+    return story + month + start
 
 
-def steps():
-    out = "".join(f'<li class="card"><span class="step__num" aria-hidden="true">{i}</span><h3>{t}</h3><p>{d}</p></li>' for i, (t, d) in enumerate(STEPS, 1))
-    return f'<ol class="steps">{out}</ol>'
+def steps(items=None):
+    items = items or STEPS
+    out = "".join(f'<li class="card"><span class="step__num" aria-hidden="true">{i}</span><h3>{t}</h3><p>{d}</p></li>' for i, (t, d) in enumerate(items, 1))
+    return f'<ol class="steps{" steps--4" if len(items) == 4 else ""}">{out}</ol>'
 
 
 def compare(rows):
@@ -479,26 +518,39 @@ EDIT_TOOLS = [("premiere", "Adobe Premiere Pro", "Montage"), ("aftereffects", "A
               ("davinci", "DaVinci Resolve", "Kleurcorrectie en montage")]
 
 
-def platform_tiles(items, current=None):
+def platform_tiles(items, current=None, cols=None):
     out = ""
     for b, n, d in items:
         inner = f'<span class="brand-tile">{brand(b)}</span><h3>{n}</h3><p>{d}</p>'
         target = BRAND_PAGE.get(b)
         if target and target != current:
-            out += f'<a class="platform platform--link" href="/{target}/">{inner}{icon("arrow-right", "platform__arrow")}</a>'
+            out += f'<a class="platform platform--link" href="/{target}/">{inner}</a>'
         else:
             out += f'<div class="platform">{inner}</div>'
-    return f'<div class="platforms" style="--cols:{min(len(items), 5)}">{out}</div>'
+    return f'<div class="platforms{" platforms--compact" if cols else ""}" style="--cols:{cols or min(len(items), 5)}">{out}</div>'
 
 
-def post_cards(slugs):
+def linked_names(items, current):
+    names = [n for b, n, _ in items if BRAND_PAGE.get(b) and BRAND_PAGE[b] != current]
+    if not names:
+        return None
+    lijst = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " en " + names[-1]
+    return f"{lijst} {'heeft' if len(names) == 1 else 'hebben'} een eigen pagina met taken en voorbeelden. Klik op het logo."
+
+
+def post_cards(slugs, scroll=True):
     out = ""
     for s in slugs:
         a = ART[s]
-        out += (f'<a class="post-card" href="/kennisbank/{s}/"><span class="post-card__img"><span class="post-card__cat">{a["categorie"]}</span></span>'
+        out += (f'<a class="post-card" href="/kennisbank/{s}/">{foto(ART_FOTO.get(s, "team-tafel"), "(min-width: 1000px) 380px, 80vw", "post-card__img")}'
                 f'<div class="post-card__body"><h3>{a["titel"]}</h3><p>{meta_short(a["meta"])}</p>'
                 f'<span class="link-arrow">Lees het artikel{icon("arrow-right")}</span></div></a>')
-    return f'<div class="grid grid--3">{out}</div>'
+    return f'<div class="grid grid--3{" post-grid" if scroll else ""}">{out}</div>'
+
+
+ART_FOTO = {"wat-doet-een-seo-specialist": "student-bureau-2", "freelance-marketeer-of-marketing-student": "samen-overleg",
+            "welke-social-media-kiezen": "student-bureau-1", "wat-voor-type-marketeers-zijn-er": "team-tafel",
+            "wat-doet-een-head-of-marketing": "team-overleg", "social-media-uitbesteden-waar-let-je-op": "samen-kantoor"}
 
 
 def meta_short(t):
@@ -518,7 +570,7 @@ def faq_block(title, questions, answers_override=None):
 
 
 def cta_block(title="Klaar om je marketing *te versterken?*", text="Vertel wat je nodig hebt. Je krijgt een voorstel met de student die past bij jouw vraag, en de senior die meekijkt."):
-    return (f'<section class="section section--flush-top"><div class="container"><div class="cta-block"><h2>{accent(title, "accent")}</h2><p>{text}</p>'
+    return (f'<section class="section section--flush-top"><div class="container"><div class="cta-block"><h2>{accent(nobreak(title), "accent")}</h2><p>{text}</p>'
             f'<div class="btn-row">{btn("Vraag een offerte aan", "/offerte-aanvragen/", "navy", "arrow-right", True)}'
             f'{btn("Bel " + PHONE, PHONE_HREF, "navy-outline", "phone", True)}</div></div></div></section>')
 
@@ -792,7 +844,11 @@ def page_dienst(slug):
     if slug in PARENT:
         crumb_items.append((SPEC[PARENT[slug]][1], f"/{PARENT[slug]}/"))
     crumb_items.append((label, path))
-    body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons(), offerte_form(slug), movable=True)
+    work = ""
+    if slug in REEL_PAGES:
+        imgs = "".join(f'<img src="/assets/video/{k}.webp" width="540" height="960" alt="" loading="lazy" decoding="async">' for k, *_ in REELS[:3])
+        work = f'<a class="hero-work" href="#ons-werk"><span class="hero-work__imgs">{imgs}</span><span>Bekijk ons werk{icon("arrow-right")}</span></a>'
+    body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons() + work, offerte_form(slug), movable=True)
     if slug == "social-media-uitbesteden":
         body += social_story(noun)
     else:
@@ -805,16 +861,21 @@ def page_dienst(slug):
                         + f'<div class="grid grid--3">{tasks}</div><div class="btn-row" style="justify-content:center;margin-top:32px">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>', "glow-left")
     if slug not in REEL_PAGES:
         body += photo_band(DIENST_FOTO[[s[0] for s in SPECS].index(slug) % len(DIENST_FOTO)])
-    if d["platforms"]:
-        tools = PLATFORMS[d["platforms"]]
-        tools_lead = "Klik op een kanaal voor de eigen pagina met taken en voorbeelden." if any(BRAND_PAGE.get(b, slug) != slug for b, _, _ in tools) else None
-        if slug == "social-media-uitbesteden":
-            tools_lead += ' Alleen content laten maken? Bekijk <a href="/contentmarketing-uitbesteden/">contentmarketing uitbesteden</a>.'
-        kop = "De kanalen *die we inzetten*" if d["platforms"] in CHANNEL_PLATS else "De tools *die we gebruiken*"
-        body += section(section_head(kop, tools_lead) + platform_tiles(tools, slug))
+    tools = PLATFORMS[d["platforms"]] if d["platforms"] else []
+    tools_lead = linked_names(tools, slug)
+    if slug == "social-media-uitbesteden":
+        tools_lead = (tools_lead + " " if tools_lead else "") + 'Alleen content laten maken? Bekijk <a href="/contentmarketing-uitbesteden/">contentmarketing uitbesteden</a>.'
     if slug in REEL_PAGES:
         edit = EDIT_TOOLS + ([("meta", "Meta Business Suite", "Posts inplannen")] if d["platforms"] in ("social", "instagram") else [])
-        body += section(section_head("De tools *die we gebruiken*") + platform_tiles(edit, slug))
+        cols = max(len(tools), len(edit), 4)
+        inner = section_head("Kanalen en tools *die we inzetten*", tools_lead)
+        if tools:
+            inner += f'<h3 class="platforms__label">Kanalen</h3>{platform_tiles(tools, slug, cols)}'
+        inner += f'<h3 class="platforms__label">Tools</h3>{platform_tiles(edit, slug, cols)}'
+        body += section(inner)
+    elif tools:
+        kop = "De kanalen *die we inzetten*" if d["platforms"] in CHANNEL_PLATS else "De tools *die we gebruiken*"
+        body += section(section_head(kop, tools_lead) + platform_tiles(tools, slug))
     body += section(section_head(f"Zo werk je met *een {noun}*", "Twee werkvormen, allebei zonder contract. Je krijgt altijd eerst een offerte op maat.") + plans(Noun))
     seo = slug == "seo-specialist-inhuren"
     body += section(section_head("SEO-student, SEO-freelancer *of bureau?*" if seo else "Student, freelancer *of bureau?*") + compare(COMPARE_SEO if seo else COMPARE), "glow-right")
@@ -962,7 +1023,7 @@ def page_offerte():
 
 def page_kennisbank():
     items = [{"@type": "ListItem", "position": i, "url": f"{SITE}/kennisbank/{a['slug']}/", "name": a["titel"]} for i, a in enumerate(ARTIKELEN, 1)]
-    secs = section('<h2 class="sr-only">Alle artikelen</h2>' + post_cards([a["slug"] for a in ARTIKELEN]), "section--flush-top")
+    secs = section('<h2 class="sr-only">Alle artikelen</h2>' + post_cards([a["slug"] for a in ARTIKELEN], scroll=False), "section--flush-top")
     secs += cta_block()
     return simple_page("/kennisbank/", "Kennisbank", "De", "kennisbank", "Praktische artikelen over marketing uitbesteden, SEO en social media.",
                        "Kennisbank marketing uitbesteden | Marketing Student",

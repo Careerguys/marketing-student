@@ -145,9 +145,9 @@ def accent(t, cls="grad"):
     return re.sub(r"\*([^*]+)\*", lambda m: f'<span class="{cls}">{m.group(1)}</span>', t)
 
 
-def nobreak(t):
+def nobreak(t, long=True):
     """Woorden met een koppelteken (social media-student) nooit op het koppelteken afbreken."""
-    return re.sub(r"\b([A-Za-zÀ-ÿ]+-[A-Za-zÀ-ÿ]+)\b", lambda m: f'<span class="{"nw" if len(m.group(1)) <= 13 else "nw-l"}">{m.group(1)}</span>', t)
+    return re.sub(r"\b([A-Za-zÀ-ÿ]+-[A-Za-zÀ-ÿ]+)\b", lambda m: f'<span class="nw">{m.group(1)}</span>' if len(m.group(1)) <= 13 else (f'<span class="nw-l">{m.group(1)}</span>' if long else m.group(1)), t)
 
 
 def section_head(title, lead_txt=None, center=False, tag="h2", hid=None):
@@ -267,15 +267,19 @@ def showcase(cfg):
 </div></section>'''
 
 
-def spec_grid(items=None):
+SPEC_CTA_TXT = ("Twijfel je welke student past?", "Beschrijf je vraag, dan denken we mee.")
+
+
+def spec_grid(items=None, cta=True, tag="h3"):
     cards = ""
     for slug, label, kind, card, _ in (items or MAIN):
-        cards += (f'<a class="card spec-card" href="/{slug}/">{spec_icon(kind)}<h3>{label}</h3><p>{card}</p>'
+        cards += (f'<a class="card spec-card" href="/{slug}/">{spec_icon(kind)}<{tag}>{nobreak(label, long=False)}</{tag}><p>{card}</p>'
                   f'<span class="link-arrow">Bekijk{icon("arrow-right")}</span></a>')
-    rest = 4 - len(items or MAIN) % 4
-    rest = 4 if rest == 1 else rest
-    cards += (f'<div class="spec-cta" style="--span:{rest}"><div><h3>Twijfel je welke student past?</h3><p>Beschrijf je vraag, dan denken we mee.</p></div>'
-              f'{btn("Vraag een offerte aan", "/offerte-aanvragen/", "grad", "arrow-right")}</div>')
+    if cta:
+        rest = 4 - len(items or MAIN) % 4
+        rest = 4 if rest == 1 else rest
+        cards += (f'<div class="spec-cta" style="--span:{rest}"><div><h3>{SPEC_CTA_TXT[0]}</h3><p>{SPEC_CTA_TXT[1]}</p></div>'
+                  f'{btn("Vraag een offerte aan", "/offerte-aanvragen/", "grad", "arrow-right")}</div>')
     return f'<div class="spec-grid">{cards}</div>'
 
 
@@ -637,10 +641,10 @@ def faq_block(title, questions, answers_override=None):
     return section(inner), items
 
 
-def cta_block(title="Klaar om je marketing *te versterken?*", text="Vertel wat je nodig hebt. Je krijgt een voorstel met de student die past bij jouw vraag, en de senior die meekijkt."):
+def cta_block(title="Klaar om je marketing *te versterken?*", text="Vertel wat je nodig hebt. Je krijgt een voorstel met de student die past bij jouw vraag, en de senior die meekijkt.", buttons=None):
+    buttons = buttons or (btn("Vraag een offerte aan", "/offerte-aanvragen/", "navy", "arrow-right", True) + btn("Bel " + PHONE, PHONE_HREF, "navy-outline", "phone", True))
     return (f'<section class="section section--flush-top"><div class="container"><div class="cta-block"><h2>{accent(nobreak(title), "accent")}</h2><p>{text}</p>'
-            f'<div class="btn-row">{btn("Vraag een offerte aan", "/offerte-aanvragen/", "navy", "arrow-right", True)}'
-            f'{btn("Bel " + PHONE, PHONE_HREF, "navy-outline", "phone", True)}</div></div></div></section>')
+            f'<div class="btn-row">{buttons}</div></div></div></section>')
 
 
 # ---------------------------------------------------------------- header en footer
@@ -689,7 +693,7 @@ def header(current):
 
 
 def footer():
-    specs = "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in MAIN)
+    specs = "".join(f'<li><a href="/{s[0]}/">{MENU_LABEL[s[0]]}</a></li>' for s in MAIN)
     bedrijf = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in [("Alle specialisaties", "/specialisaties/"), ("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"),
                                                                      ("Kennisbank", "/kennisbank/"), ("Werken als student", "/werken-als-student/"),
                                                                      ("Offerte aanvragen", "/offerte-aanvragen/"), ("Contact", "/contact/")])
@@ -703,11 +707,12 @@ def footer():
       <div><h2>Contact</h2><div class="footer__contact">
         <a class="strong" href="{PHONE_HREF}">{icon("phone")}{PHONE}</a>
         <a class="strong" href="mailto:{EMAIL}">{icon("mail")}{EMAIL}</a>
-        <span>Ma–do 08:30–17:30, vr 08:30–16:30</span>
+        <span>Koninginnegracht 5<br>2514 AA Den Haag</span>
+        <span>Ma–do 08:30–17:30<br>Vr 08:30–16:30</span>
         <span>KvK 90875206</span>
       </div></div>
     </div>
-    <div class="footer__legal"><span>© {datetime.date.today().year} Marketing Student</span><nav aria-label="Juridisch"><a href="/privacy-policy/">Privacy- en cookiebeleid</a><a href="/sitemap.xml">Sitemap</a>{cookie_link}</nav></div>
+    <div class="footer__legal"><span>© {datetime.date.today().year} Marketing Student</span><nav aria-label="Juridisch"><a href="/privacy-policy/">Privacy- en cookiebeleid</a>{cookie_link}</nav></div>
   </div>
 </footer>'''
 
@@ -966,14 +971,17 @@ def simple_page(path, crumb, h1a, h1b, lead_txt, title, desc, sections_html, cur
 
 def page_specialisaties():
     items = [{"@type": "ListItem", "position": i, "url": f"{SITE}/{s[0]}/", "name": s[1]} for i, s in enumerate(SPECS, 1)]
-    secs = section(section_head("Kies de student die past bij *jouw vraag*") + spec_grid(SPECS), "section--flush-top")
+    groups = "".join(f'<div class="spec-group"><h3 class="spec-group__title">{g}</h3>{spec_grid([s for s in SPECS if s[4] == g], cta=False, tag="h4")}</div>' for g in GROUPS)
+    cta = (f'<div class="spec-cta spec-cta--solo"><div><h3>{SPEC_CTA_TXT[0]}</h3><p>{SPEC_CTA_TXT[1]}</p></div>'
+           f'{btn("Vraag een offerte aan", "/offerte-aanvragen/", "grad", "arrow-right")}</div>')
+    secs = section(section_head("Kies de student die past bij *jouw vraag*", "Gegroepeerd per vakgebied. Elke specialisatie heeft een eigen pagina met taken en voorbeelden.") + groups + cta, "section--flush-top")
     secs += section(section_head("Twee manieren om *samen te werken*") + plans(href="/offerte-aanvragen/"))
     faq = faq_block("Vragen over *de specialisaties*", ["Welke specialisatie past bij mij?", "Kan één student meerdere taken doen?", "Wie begeleidt de student?", "Zit ik vast aan een contract?"])
     secs_after = cta_block()
     p = simple_page("/specialisaties/", "Specialisaties", "Alle specialisaties", "op een rij",
-                    "Dertien specialisaties, van SEO tot content. Elke student is getraind in zijn vak en werkt onder een ervaren marketeer. Kies wat je nodig hebt, of laat ons meedenken.",
+                    f"Van SEO tot video: {len(SPECS)} specialisaties. Elke student is getraind in het vak en werkt onder een ervaren marketeer. Kies wat je nodig hebt, of laat ons meedenken.",
                     "Alle specialisaties | Marketing Student",
-                    "Dertien specialisaties, van SEO tot content. Getrainde marketingstudenten, begeleid door ervaren marketeers. Bekijk welke student past.",
+                    f"{len(SPECS)} specialisaties, van SEO tot video. Getrainde marketingstudenten, begeleid door ervaren marketeers. Bekijk welke student past.",
                     secs, "specialisaties", "CollectionPage", faq,
                     [{"@type": "ItemList", "@id": SITE + "/specialisaties/#lijst", "name": "Specialisaties", "numberOfItems": len(items), "itemListElement": items}])
     return p[0], p[1], p[2], p[3] + secs_after, p[4], p[5], p[6]
@@ -998,11 +1006,14 @@ def page_over():
              ("target", "Resultaatgericht", "We sturen op wat jouw bedrijf verder helpt, niet op uren."),
              ("zap", "Frisse blik", "Studenten kennen de nieuwste tools en platforms, en kijken met nieuwe ogen naar je marketing.")]
     cards = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in princ)
-    offices = "".join(f'<div class="card office"><span class="card__icon">{icon("map-pin")}</span><h3>{p}</h3><address>{a}<br>{c}</address></div>'
-                      for p, a, c in [("Den Haag", "Koninginnegracht 5", "2514 AA Den Haag"), ("Mijdrecht", "Industrieweg 6", "3641 RM Mijdrecht")])
     secs = photo_band("team-tafel", "section--flush-top")
     secs += section(section_head("Vier afspraken waar je *op kunt rekenen*") + f'<div class="grid grid--4">{cards}</div>')
-    secs += section(section_head("Hier *vind je ons*") + f'<div class="grid grid--2">{offices}</div>')
+    over_steps = [("Selectie", "Studenten volgen een HBO- of WO-opleiding in marketing of een verwante richting."),
+                  ("Inwerktraject", "Voordat een student bij jou start, doorloopt de student ons inwerktraject."),
+                  ("Senior begeleiding", "Een ervaren marketeer houdt wekelijks contact en controleert het werk voor oplevering."),
+                  ("Kosteloos vervangen", "Klikt het niet, dan zoeken we direct een vervanger, zonder extra kosten.")]
+    secs += section(section_head("Zo werken *onze studenten*", "Achter elke student staat een vaste werkwijze.") + steps(over_steps))
+    secs += offices_section()
     secs += cta_block("Zin om *kennis te maken?*")
     return simple_page("/over-ons/", "Over ons", "Getrainde studenten,", "begeleid door seniors",
                        "Marketing Student koppelt getrainde HBO/WO-studenten aan het mkb, met ervaren marketeers achter de schermen.",
@@ -1050,8 +1061,8 @@ def page_contact():
   <div class="form-grid form-grid--2">
     {field(f"naam-{n}", "Naam", ph="Voor- en achternaam", ac="name")}
     {field(f"bedrijf-{n}", "Bedrijfsnaam", ph="Naam van je bedrijf", ac="organization", required=False)}
-    {field(f"telefoon-{n}", "Telefoon", "tel", "06 12345678", ac="tel", required=False)}
     {field(f"email-{n}", "E-mailadres", "email", "naam@bedrijf.nl", ac="email")}
+    {field(f"telefoon-{n}", "Telefoon", "tel", "06 12345678", ac="tel", required=False)}
     {field(f"bericht-{n}", "Bericht", ph="Waar kunnen we je mee helpen?", full=True, textarea=True)}
   </div>
   <button class="btn btn--grad form-submit" type="submit">Verstuur bericht{icon("arrow-right")}</button>
@@ -1117,13 +1128,14 @@ def page_artikel(a):
     aside = f'<aside class="aside-sticky"><nav class="toc" aria-label="Inhoud van dit artikel"><h2>In dit artikel</h2><ol>{"".join(toc)}</ol></nav></aside>'
     meta_line = f'<p class="meta-line">Redactie Marketing Student · <time datetime="{PUBLISHED}">25 september 2026</time></p>'
     body = hero([("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)], a["titel"], "", a["meta"], meta_line, cls="hero--article")
-    body += section(f'<div class="article-grid"><article class="prose">{"".join(prose)}</article>{aside}</div>', "section--flush-top")
+    img = foto(ART_FOTO.get(a["slug"], "team-tafel"), "(min-width: 1000px) 760px, 100vw", "article__img")
+    body += section(f'<div class="article-grid"><article class="prose">{img}{"".join(prose)}</article>{aside}</div>', "section--flush-top")
     rel = [x["slug"] for x in ARTIKELEN if x["slug"] != a["slug"]][:3]
     body += section(section_head("Meer uit *de kennisbank*") + post_cards(rel))
     body += cta_block()
     graph = [ld_webpage(url, a["title"], a["meta"], main=url + "#artikel"),
              ld_crumbs(url, [("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)]),
-             {"@type": "Article", "@id": url + "#artikel", "headline": a["titel"], "description": a["meta"], "image": SITE + "/assets/img/og-image.png",
+             {"@type": "Article", "@id": url + "#artikel", "headline": a["titel"], "description": a["meta"], "image": f'{SITE}/assets/img/foto/{ART_FOTO.get(a["slug"], "team-tafel")}-1600.webp',
               "datePublished": PUBLISHED, "dateModified": PUBLISHED, "inLanguage": "nl-NL",
               "author": {"@type": "Organization", "@id": ORG, "name": SITE_NAME}, "publisher": {"@id": ORG},
               "mainEntityOfPage": {"@id": url + "#webpage"}}]
@@ -1152,12 +1164,19 @@ def page_student():
     cards = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in krijg)
     secs = photo_band("studenten-laptop", "section--flush-top")
     secs += section(section_head("Waarom studenten *bij ons werken*") + f'<div class="grid grid--4">{cards}</div>')
+    student_steps = [("Aanmelden", "Vul het formulier in met je opleiding en je LinkedIn of portfolio."),
+                     ("Kennismaking", "We maken kennis en bespreken welke specialisatie bij je past."),
+                     ("Inwerktraject", "Je leert onze werkwijze en de tools, samen met een senior."),
+                     ("Eerste opdracht", "Je gaat aan de slag voor een mkb-klant, met een senior die meekijkt.")]
+    secs += section(section_head("Zo word je *marketing student*") + steps(student_steps))
     faq = faq_block("Vragen van *studenten*", ["Wat zijn de eisen?", "Werk ik remote of op locatie?", "Hoeveel uur per week werk ik?"])
-    return simple_page("/werken-als-student/", "Werken als student", "Marketing bijbaan", "naast je studie",
+    p = simple_page("/werken-als-student/", "Werken als student", "Marketing bijbaan", "naast je studie",
                        "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk voor echte klanten, begeleid door ervaren marketeers.",
                        "Marketing bijbaan naast je studie | Marketing Student",
                        "Studeer je marketing of communicatie op HBO- of WO-niveau? Werk naast je studie voor echte klanten, begeleid door ervaren marketeers.",
                        secs + FORM_SLOT, None, faq=faq, hero_extra=f'<div class="btn-row btn-row--stack">{btn("Meld je aan", "#aanmelden", "grad", "arrow-right", True)}</div>', form=form, movable=True)
+    slot = cta_block("Klaar om *te beginnen?*", "Meld je aan. We nemen contact met je op voor een kennismaking.", buttons=btn("Meld je aan", "#aanmelden", "navy", "arrow-right", True))
+    return p[0], p[1], p[2], p[3] + slot, p[4], p[5], p[6]
 
 
 PRIVACY = (ROOT / "privacy.html").read_text() if (ROOT / "privacy.html").exists() else ""

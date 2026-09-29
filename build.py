@@ -388,6 +388,12 @@ BRAND_PAGE = {"instagram": "instagram-uitbesteden", "tiktok": "tiktok-uitbestede
               "meta": "social-media-uitbesteden", "facebook": "social-media-uitbesteden"}
 
 
+# Lijsten met kanalen (waar we posten) in plaats van software.
+CHANNEL_PLATS = {"social", "content", "instagram", "recruitment"}
+EDIT_TOOLS = [("premiere", "Adobe Premiere Pro", "Montage"), ("aftereffects", "Adobe After Effects", "Motion graphics en animatie"),
+              ("davinci", "DaVinci Resolve", "Kleurcorrectie en montage")]
+
+
 def platform_tiles(items, current=None):
     out = ""
     for b, n, d in items:
@@ -716,7 +722,11 @@ def page_dienst(slug):
         tools_lead = "Klik op een kanaal voor de eigen pagina met taken en voorbeelden." if any(BRAND_PAGE.get(b, slug) != slug for b, _, _ in tools) else None
         if slug == "social-media-uitbesteden":
             tools_lead += ' Alleen content laten maken? Bekijk <a href="/contentmarketing-uitbesteden/">contentmarketing uitbesteden</a>.'
-        body += section(section_head("De tools *die we gebruiken*", tools_lead) + platform_tiles(tools, slug))
+        kop = "De kanalen *die we inzetten*" if d["platforms"] in CHANNEL_PLATS else "De tools *die we gebruiken*"
+        body += section(section_head(kop, tools_lead) + platform_tiles(tools, slug))
+    if slug in REEL_PAGES:
+        edit = EDIT_TOOLS + ([("meta", "Meta Business Suite", "Posts inplannen")] if d["platforms"] in ("social", "instagram") else [])
+        body += section(section_head("De tools *die we gebruiken*") + platform_tiles(edit, slug))
     body += section(section_head(f"Zo werk je met *een {noun}*", "Twee werkvormen, allebei zonder contract. Je krijgt altijd eerst een offerte op maat.") + plans(Noun))
     seo = slug == "seo-specialist-inhuren"
     body += section(section_head("SEO-student, SEO-freelancer *of bureau?*" if seo else "Student, freelancer *of bureau?*") + compare(COMPARE_SEO if seo else COMPARE), "glow-right")

@@ -367,11 +367,11 @@ SC = {
 PLAT = {
     "seo": [("google","Google","Zoeken, Maps en Search Console"),("microsoft","Bing","Bing Webmaster Tools"),("openai","ChatGPT","Vindbaar in AI-antwoorden"),("perplexity","Perplexity","Genoemd als bron"),("wordpress","WordPress","On-page SEO en content")],
     "ads": [("googleads","Google Ads","Zoeken, Display en Performance Max"),("google","Google Merchant Center","Shopping en productfeed"),("microsoft","Microsoft Ads","Bing en partners"),("youtube","YouTube","Videoadvertenties"),("meta","Meta","Facebook- en Instagram-ads")],
-    "social": [("instagram","Instagram","Feed, stories en reels"),("facebook","Facebook","Pagina en groepen"),("linkedin","LinkedIn","Zakelijke content"),("tiktok","TikTok","Korte video"),("youtube","YouTube","Video en Shorts"),("meta","Meta Business Suite","Plannen en ads")],
+    "social": [("instagram","Instagram","Feed, stories en reels"),("facebook","Facebook","Pagina en groepen"),("linkedin","LinkedIn","Zakelijke content"),("tiktok","TikTok","Korte video"),("youtube","YouTube","Video en Shorts")],
     "ai": [("openai","ChatGPT","Tekst en analyse"),("claude","Claude","Content en processen"),("googlegemini","Gemini","Google Workspace"),("perplexity","Perplexity","Onderzoek met bronnen"),("microsoft","Copilot","Microsoft 365")],
     "content": [("instagram","Instagram","Reels en posts"),("tiktok","TikTok","Korte video"),("youtube","YouTube","Video en Shorts"),("linkedin","LinkedIn","Zakelijke content"),("wordpress","WordPress","Blogs en pagina's")],
     "wordpress": [("wordpress","WordPress","Pagina's en onderhoud"),("woo","WooCommerce","Webshop"),("google","Google Search Console","Vindbaarheid")],
-    "instagram": [("instagram","Instagram","Feed, stories en reels"),("facebook","Facebook","Gekoppelde pagina"),("meta","Meta Business Suite","Plannen en ads")],
+    "instagram": [("instagram","Instagram","Feed, stories en reels"),("facebook","Facebook","Gekoppelde pagina")],
     "recruitment": [("linkedin","LinkedIn","Vacatures en campagnes"),("meta","Meta","Facebook- en Instagram-ads"),("google","Google","Google for Jobs en Ads"),("instagram","Instagram","Werkenbij-content"),("tiktok","TikTok","Jonge doelgroepen")],
     "shopify": [("shopify","Shopify","Webshop en apps"),("google","Google Merchant Center","Shopping"),("meta","Meta","Catalogus en ads")],
 }

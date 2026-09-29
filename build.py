@@ -358,6 +358,91 @@ def reel_section(more=False):
     return section(section_head("Zo ziet ons werk *eruit*", REEL_INTRO, center=True) + reels() + link)
 
 
+# ---------------------------------------------------------------- social media: verhaal met animaties
+CAL_POSTS = [  # (dag-index 0..13, kanaal, label)
+    (0, "instagram", "Reel"), (1, "linkedin", "Case"), (3, "instagram", "Tips"), (4, "tiktok", "Team"),
+    (7, "facebook", "Actie"), (8, "instagram", "Poll"), (9, "linkedin", "Vacature"), (11, "tiktok", "Video"), (12, "instagram", "Reel")]
+CHART = [40, 42, 41, 45, 47, 46, 50, 53, 52, 55, 58, 57, 61, 60, 64, 67, 66, 70, 72, 71, 75, 78, 77, 80, 83, 82, 86, 88, 87, 92]
+
+
+def content_calendar():
+    days = "".join(f'<span class="cal__dow">{d}</span>' for d in ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"])
+    posts = {i: (k, l) for i, k, l in CAL_POSTS}
+    cells, n = "", 0
+    for i in range(14):
+        post = ""
+        if i in posts:
+            k, l = posts[i]
+            post = f'<span class="cal__post cal__post--{k}" style="--d:{n}"><span class="cal__ico">{brand(k)}</span><span class="cal__lbl">{l}</span></span>'
+            n += 1
+        cells += f'<div class="cal__day"><span class="cal__date">{6 + i}</span>{post}</div>'
+    return (f'<div class="cal" data-anim aria-hidden="true"><div class="cal__head"><strong>Oktober</strong>'
+            f'<span class="cal__status">{icon("check")}{len(CAL_POSTS)} posts ingepland</span></div>'
+            f'<div class="cal__grid">{days}{cells}</div></div>')
+
+
+def ad_post():
+    hearts = "".join(f'<span class="heart" style="--x:{x}px;--d:{d}s;--s:{sc}">{HEART}</span>'
+                     for x, d, sc in [(20, 0, 1), (70, 0.2, 0.8), (40, 0.4, 1.2), (110, 0.6, 0.9), (5, 0.8, 0.75), (140, 1.0, 1.1),
+                                      (60, 1.2, 0.85), (95, 1.4, 1), (30, 1.6, 1.25), (125, 1.8, 0.9), (50, 2.0, 1.05), (160, 2.2, 0.8),
+                                      (15, 2.4, 1.15), (85, 2.6, 0.95)])
+    return (f'<div class="adpost" data-anim aria-hidden="true">'
+            f'<div class="adpost__head"><span class="adpost__avatar">JB</span><span><b>Jouw bedrijf</b><small>Gesponsord</small></span></div>'
+            f'<img src="/assets/video/broodjes-video.webp" width="540" height="960" alt="" loading="lazy" decoding="async">'
+            f'<div class="adpost__cta"><span>Bestel vandaag nog</span><span class="adpost__btn">Meer informatie</span></div>'
+            f'<div class="adpost__bar"><span class="adpost__like">{HEART}<span class="hearts">{hearts}</span></span>'
+            f'<b data-likes>128</b><span class="adpost__meta">reacties en shares</span></div></div>')
+
+
+HEART = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.2 5.3 3.2 1.7-2 3.2-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>'
+
+
+def dashboard():
+    w, h, pad = 600, 190, 8
+    lo, hi = 30, 100
+    pts = [(pad + i * (w - 2 * pad) / (len(CHART) - 1), h - pad - (v - lo) / (hi - lo) * (h - 2 * pad)) for i, v in enumerate(CHART)]
+    line = "M" + " L".join(f"{x:.1f} {y:.1f}" for x, y in pts)
+    area = line + f" L{pts[-1][0]:.1f} {h} L{pts[0][0]:.1f} {h} Z"
+    grid = "".join(f'<line x1="0" x2="{w}" y1="{y}" y2="{y}"/>' for y in (40, 90, 140))
+    kpis = [("Bereik", "48.2", 1, "K", "48,2K", "+18%"), ("Interacties", "3140", 0, "", "3.140", "+24%"),
+            ("Linkklikken", "862", 0, "", "862", "+11%"), ("Nieuwe volgers", "214", 0, "", "214", "+9%")]
+    tiles = "".join(f'<div class="dash__kpi"><span>{l}</span><b data-count="{v}" data-dec="{dec}" data-suffix="{suf}">{shown}</b><em>{dl}</em></div>'
+                    for l, v, dec, suf, shown, dl in kpis)
+    bars = "".join(f'<div class="dash__bar"><span>{brand(k)}{n}</span><b>{v}%</b><i style="--v:{v}%"></i></div>'
+                   for k, n, v in [("instagram", "Instagram", 46), ("linkedin", "LinkedIn", 28), ("facebook", "Facebook", 16), ("tiktok", "TikTok", 10)])
+    ex, ey = pts[-1]
+    return (f'<div class="dash" data-anim aria-hidden="true">'
+            f'<div class="dash__head"><span><b>Social rapportage</b><small>September · alle kanalen</small></span><span class="dash__tag">Voorbeeld</span></div>'
+            f'<div class="dash__kpis">{tiles}</div>'
+            f'<div class="dash__body"><div class="dash__chart"><small>Bereik per dag</small>'
+            f'<svg viewBox="0 0 {w} {h}" preserveAspectRatio="none"><g class="dash__grid">{grid}</g>'
+            f'<defs><linearGradient id="dashFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#79c79e" stop-opacity=".35"/><stop offset="1" stop-color="#79c79e" stop-opacity="0"/></linearGradient>'
+            f'<linearGradient id="dashLine" x1="0" x2="1"><stop offset="0" stop-color="#60a6d9"/><stop offset="1" stop-color="#79c79e"/></linearGradient></defs>'
+            f'<path class="dash__area" d="{area}" fill="url(#dashFill)"/><path class="dash__line" d="{line}" pathLength="1" fill="none" stroke="url(#dashLine)"/>'
+            f'<circle class="dash__dot" cx="{ex:.1f}" cy="{ey:.1f}" r="5"/></svg>'
+            f'<div class="dash__x"><span>1 sep</span><span>15 sep</span><span>30 sep</span></div></div>'
+            f'<div class="dash__bars"><small>Interacties per kanaal</small>{bars}</div></div></div>')
+
+
+def social_story(noun):
+    def row(title, text, bullets, visual, flip=False):
+        li = "".join(f"<li>{icon('check')}{b}</li>" for b in bullets)
+        return (f'<div class="story__row{" story__row--flip" if flip else ""}"><div class="story__text"><h3>{accent(title)}</h3><p>{text}</p>'
+                f'<ul class="story__list">{li}</ul></div><div class="story__visual">{visual}</div></div>')
+    head = section_head(f"Wat een {noun} *voor je doet*", "Van idee tot rapport: de student maakt je content, plant alles in, zet advertenties op en laat zien wat het oplevert. Een senior bewaakt je merk.")
+    content = (f'<div class="story__row story__row--full"><div class="story__text"><h3>{accent("Content die *opvalt*")}</h3>'
+               f'<p>Reels, carrousels en foto\'s in jouw huisstijl. De student bedenkt, filmt en monteert. Jij keurt alles goed voordat het online gaat. Tik op het luidsprekertje voor geluid.</p></div>'
+               f'{reels()}</div>')
+    cal = row("Een contentkalender die *vol blijft*", "Elke maand een planning met onderwerpen per kanaal. Je ziet vooraf wat er wanneer online gaat, en de student plant alles in.",
+              ["Planning per week en per kanaal", "Posts vooraf ter goedkeuring", "Ingepland via Meta Business Suite"], content_calendar())
+    ads = row("Social ads die de juiste mensen *bereiken*", "Optioneel: met een klein budget je beste posts laten zien aan precies je doelgroep. De student zet campagnes op in Meta en LinkedIn, test varianten en stuurt bij.",
+              ["Doelgroep op regio, interesse en functie", "Varianten testen, de beste opschalen", "Werkt in je eigen advertentieaccount"], ad_post(), flip=True)
+    rap = row("Rapportage die je *snapt*", "Elke maand een overzicht van bereik, interacties en klikken, met wat we volgende maand anders doen. Geen dik rapport, wel duidelijke keuzes.",
+              ["Cijfers per kanaal en per post", "Wat werkte en wat niet", "Plan voor de volgende maand"], dashboard())
+    cta = f'<div class="btn-row" style="justify-content:center">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>'
+    return section(head + f'<div class="story">{content}{cal}{ads}{rap}{cta}</div>', "glow-left")
+
+
 def steps():
     out = "".join(f'<li class="card"><span class="step__num" aria-hidden="true">{i}</span><h3>{t}</h3><p>{d}</p></li>' for i, (t, d) in enumerate(STEPS, 1))
     return f'<ol class="steps">{out}</ol>'
@@ -708,13 +793,16 @@ def page_dienst(slug):
         crumb_items.append((SPEC[PARENT[slug]][1], f"/{PARENT[slug]}/"))
     crumb_items.append((label, path))
     body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons(), offerte_form(slug), movable=True)
-    if slug in REEL_PAGES:
-        body += reel_section()
-    elif d["sc"]:
-        body += showcase(SHOWCASES[d["sc"]])
-    tasks = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in d["tasks"])
-    body += section(section_head(f"Wat een {noun} *voor je doet*", "Concreet werk, afgestemd op jouw doelen. Jij bepaalt de prioriteiten, de senior bewaakt de aanpak.")
-                    + f'<div class="grid grid--3">{tasks}</div><div class="btn-row" style="justify-content:center;margin-top:32px">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>', "glow-left")
+    if slug == "social-media-uitbesteden":
+        body += social_story(noun)
+    else:
+        if slug in REEL_PAGES:
+            body += reel_section()
+        elif d["sc"]:
+            body += showcase(SHOWCASES[d["sc"]])
+        tasks = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in d["tasks"])
+        body += section(section_head(f"Wat een {noun} *voor je doet*", "Concreet werk, afgestemd op jouw doelen. Jij bepaalt de prioriteiten, de senior bewaakt de aanpak.")
+                        + f'<div class="grid grid--3">{tasks}</div><div class="btn-row" style="justify-content:center;margin-top:32px">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>', "glow-left")
     if slug not in REEL_PAGES:
         body += photo_band(DIENST_FOTO[[s[0] for s in SPECS].index(slug) % len(DIENST_FOTO)])
     if d["platforms"]:

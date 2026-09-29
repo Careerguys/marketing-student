@@ -175,6 +175,47 @@
     requestAnimationFrame(tick);
   });
 
+  /* ---------- Animaties op de social media-pagina: alleen draaien in beeld ---------- */
+  var anims = document.querySelectorAll("[data-anim]");
+  function countUp(box) {
+    box.querySelectorAll("[data-count]").forEach(function (el) {
+      var to = parseFloat(el.getAttribute("data-count")), dec = +el.getAttribute("data-dec") || 0, suf = el.getAttribute("data-suffix") || "";
+      var fmt = function (v) { return v.toLocaleString("nl-NL", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf; };
+      if (reduce) { el.textContent = fmt(to); return; }
+      var t0 = null;
+      (function step(t) {
+        if (!t0) t0 = t;
+        var p = Math.min((t - t0) / 1600, 1);
+        el.textContent = fmt(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  }
+  var likeTimers = new Map();
+  if (anims.length && "IntersectionObserver" in window) {
+    var aio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var box = e.target;
+        box.classList.toggle("is-on", e.isIntersecting);
+        if (e.isIntersecting) {
+          countUp(box);
+          var likes = box.querySelector("[data-likes]");
+          if (likes && !reduce && !likeTimers.has(box)) {
+            var n = 128;
+            likes.textContent = n;
+            likeTimers.set(box, setInterval(function () { n += 1 + Math.floor(Math.random() * 4); if (n > 480) n = 128; likes.textContent = n; }, 260));
+          }
+        } else if (likeTimers.has(box)) {
+          clearInterval(likeTimers.get(box));
+          likeTimers.delete(box);
+        }
+      });
+    }, { threshold: 0.3 });
+    anims.forEach(function (el) { aio.observe(el); });
+  } else {
+    anims.forEach(function (el) { el.classList.add("is-on"); countUp(el); });
+  }
+
   /* ---------- Formulieren: validatie en Netlify-verzending ---------- */
   function fieldError(input, msg) {
     var field = input.closest(".field");

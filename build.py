@@ -702,16 +702,14 @@ def page_dienst(slug):
         crumb_items.append((SPEC[PARENT[slug]][1], f"/{PARENT[slug]}/"))
     crumb_items.append((label, path))
     body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons(), offerte_form(slug), movable=True)
-    if d["sc"]:
-        body += showcase(SHOWCASES[d["sc"]])
-    if slug == "foto-en-video-laten-maken":
+    if slug in REEL_PAGES:
         body += reel_section()
+    elif d["sc"]:
+        body += showcase(SHOWCASES[d["sc"]])
     tasks = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in d["tasks"])
     body += section(section_head(f"Wat een {noun} *voor je doet*", "Concreet werk, afgestemd op jouw doelen. Jij bepaalt de prioriteiten, de senior bewaakt de aanpak.")
                     + f'<div class="grid grid--3">{tasks}</div><div class="btn-row" style="justify-content:center;margin-top:32px">{btn("Bespreek je vraag", "#offerte", "grad", "arrow-right")}</div>', "glow-left")
-    if slug in REEL_PAGES - {"foto-en-video-laten-maken"}:
-        body += reel_section()
-    else:
+    if slug not in REEL_PAGES:
         body += photo_band(DIENST_FOTO[[s[0] for s in SPECS].index(slug) % len(DIENST_FOTO)])
     if d["platforms"]:
         tools = PLATFORMS[d["platforms"]]

@@ -78,6 +78,10 @@ dict(
         ("De grote kanalen in het kort", [
             "- Instagram: visueel, sterk voor producten, horeca, retail en alles wat je goed kunt laten zien.\n- Facebook: breed publiek, sterk voor lokale bedrijven en community's.\n- LinkedIn: zakelijk, sterk voor B2B, werving en het profileren van jezelf als expert.\n- TikTok: korte video, sterk om een groot en vaak jonger publiek te bereiken.\n- YouTube: langere video en uitleg; mensen zoeken er actief naar how-to's en reviews.\n- Pinterest: inspiratie, sterk voor interieur, mode, eten en evenementen.",
         ]),
+        ("Welke social media is het populairst in Nederland?", [
+            "Gemeten naar het aantal gebruikers horen WhatsApp, YouTube, Facebook en Instagram bij de grootste platforms in Nederland. LinkedIn is het grootste zakelijke netwerk, en TikTok groeit vooral onder jongere doelgroepen.",
+            "Het populairste kanaal is niet vanzelf het beste kanaal voor jouw bedrijf. Een kleiner kanaal waar precies jouw klanten actief zijn, levert vaak meer op dan een groot kanaal waar je tussen alles verdwijnt.",
+        ]),
         ("Kies er twee, en doe die goed", [
             "Voor de meeste mkb-bedrijven werkt het beter om twee kanalen goed te doen dan vijf kanalen half. Kies één kanaal waar je doelgroep het meest actief is, en één kanaal dat past bij het soort content dat je makkelijk kunt maken.",
             "Houd een vast ritme aan dat je volhoudt. Regelmaat werkt beter dan af en toe een piek.",
@@ -176,6 +180,44 @@ dict(
         ]),
         ("Social media uitbesteden aan een student", [
             "Bij Marketing Student plant en maakt een getrainde student je content, en bewaakt een senior content- en brandingspecialist je toon en merk. Je houdt zelf de regie en de toegang tot je accounts.",
+        ]),
+    ],
+),
+dict(
+    slug="verschil-seo-en-sea",
+    datum="2026-10-01",
+    categorie="SEO en SEA",
+    titel="SEO of SEA: wat is het verschil?",
+    title="Verschil SEO en SEA uitgelegd | Marketing Student",
+    meta="Wat is het verschil tussen SEO en SEA? Kosten, snelheid en resultaat naast elkaar, en wanneer je kiest voor SEO, SEA of allebei.",
+    intro="SEO en SEA zorgen er allebei voor dat je gevonden wordt in Google. Het verschil zit in hoe: bij SEO verdien je een plek in de gewone zoekresultaten, bij SEA betaal je voor een advertentie bovenaan. In dit artikel zetten we de verschillen op een rij, en lees je wanneer je voor welke kiest.",
+    dienst="seo-specialist-inhuren",
+    secties=[
+        ("Wat is SEO?", [
+            "SEO staat voor zoekmachineoptimalisatie. Je verbetert je website zo dat Google hem hoger toont in de organische zoekresultaten: de resultaten onder de advertenties, waar je niet per klik voor betaalt.",
+            "Dat doe je met zoekwoordonderzoek, een technisch gezonde website, goede teksten en vermeldingen op andere websites. Het kost vooral tijd en kennis.",
+        ]),
+        ("Wat is SEA?", [
+            "SEA staat voor zoekmachineadverteren. In Nederland is dat in de praktijk bijna altijd Google Ads. Je kiest zoekwoorden, schrijft advertenties en betaalt per klik. Je advertentie verschijnt met het label Gesponsord boven of onder de gewone resultaten.",
+            "Het grote voordeel: je bent direct zichtbaar. Het nadeel: zodra je stopt met betalen, verdwijnt je advertentie ook.",
+        ]),
+        ("Het verschil tussen SEO en SEA", [
+            "- Kosten: bij SEO investeer je in tijd en werk aan je website, bij SEA betaal je per klik.\n- Snelheid: SEA werkt vanaf de eerste dag, SEO bouwt zich op over maanden.\n- Blijvend: een goede positie met SEO blijft vaak staan, een advertentie stopt als je budget stopt.\n- Plek in Google: SEA staat met een label Gesponsord, SEO in de gewone resultaten die veel mensen meer vertrouwen.\n- Controle: bij SEA bepaal je zelf wanneer en voor wie je zichtbaar bent, bij SEO beslist Google over je positie.",
+        ]),
+        ("Wanneer kies je voor SEO?", [
+            "SEO past bij je als je op lange termijn wilt bouwen aan vindbaarheid, en je website een belangrijke bron van klanten is of kan worden. Het werkt goed voor diensten waar mensen veel over zoeken en lezen voordat ze kiezen.",
+            "Je moet wel geduld hebben. De eerste maanden investeer je vooral, pas daarna zie je de posities stijgen.",
+        ]),
+        ("Wanneer kies je voor SEA?", [
+            "SEA past bij je als je snel klanten wilt, bijvoorbeeld bij een nieuwe dienst, een actie of een seizoen. Ook als je nog weinig bezoekers hebt, helpt SEA om direct te testen welke zoekwoorden aanvragen opleveren.",
+            "Zorg wel dat je meet wat een klik oplevert. Zonder conversiemeting weet je niet of je budget goed besteed is.",
+        ]),
+        ("SEO en SEA samen", [
+            "Veel bedrijven gebruiken allebei. Met SEA ben je direct zichtbaar, terwijl je met SEO bouwt aan posities die blijven. De zoekwoorden die in je advertenties goed werken, zijn vaak ook de onderwerpen waar je met SEO op in kunt zetten.",
+            "Na verloop van tijd kun je je advertentiebudget verlagen op zoekwoorden waar je organisch al hoog staat.",
+        ]),
+        ("Hulp bij SEO of SEA?", [
+            "Bij Marketing Student werkt een getrainde student aan je SEO of je Google Ads-campagnes, begeleid door een senior specialist. Je zit niet vast aan een contract en krijgt eerst een offerte op maat.",
         ]),
     ],
 ),

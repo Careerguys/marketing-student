@@ -1,5 +1,6 @@
 # Antwoorden op alle FAQ-vragen. Alleen feiten van de huidige site, zonder prijzen.
 ALG = {
+ "Kan ik een student inhuren voor mijn marketing?": "Ja. Bij Marketing Student huur je een getrainde HBO- of WO-student in voor je SEO, social media, advertenties, content of website. Studenten inhuren gaat zonder contract, en een ervaren marketeer begeleidt de student en controleert het werk.",
  "Wie begeleidt de student?": "Elke student wordt begeleid door een ervaren marketeer. Die houdt wekelijks contact met de student, controleert het werk voor oplevering en stuurt bij waar nodig.",
  "Hoe snel kan de student starten?": "Na je aanvraag krijg je een voorstel met een passende student. Na je akkoord plannen we een kennismaking en kan de student starten.",
  "Hoe snel kan een student beginnen?": "Na je aanvraag krijg je een voorstel met een passende student. Na je akkoord plannen we een kennismaking en kan de student starten.",

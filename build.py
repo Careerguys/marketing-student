@@ -91,7 +91,8 @@ ART = {a["slug"]: a for a in ARTIKELEN}
 
 # Artikelen die bij een dienst horen (alleen bestaande).
 REL = {
-    "seo-specialist-inhuren": ["wat-doet-een-seo-specialist", "freelance-marketeer-of-marketing-student", "wat-voor-type-marketeers-zijn-er"],
+    "seo-specialist-inhuren": ["verschil-seo-en-sea", "wat-doet-een-seo-specialist", "freelance-marketeer-of-marketing-student"],
+    "google-ads-specialist-inhuren": ["verschil-seo-en-sea", "wat-doet-een-seo-specialist", "freelance-marketeer-of-marketing-student"],
     "social-media-uitbesteden": ["social-media-uitbesteden-waar-let-je-op", "welke-social-media-kiezen", "freelance-marketeer-of-marketing-student"],
     "instagram-uitbesteden": ["social-media-uitbesteden-waar-let-je-op", "welke-social-media-kiezen", "wat-voor-type-marketeers-zijn-er"],
     "tiktok-uitbesteden": ["welke-social-media-kiezen", "social-media-uitbesteden-waar-let-je-op", "wat-voor-type-marketeers-zijn-er"],
@@ -118,7 +119,7 @@ COMPARE_SEO = [
     ("Vervanging als het niet klikt", "+Kosteloos", "-Zelf zoeken", "+Ja"),
     ("Werkt in jouw Search Console", "+Ja", "+Ja", "Wisselt"),
 ]
-FAQ_HOME = ["Wat kost een marketing student?", "Wie begeleidt de student?", "Hoe snel kan een student beginnen?", "Zijn de studenten goed genoeg?",
+FAQ_HOME = ["Kan ik een student inhuren voor mijn marketing?", "Wat kost een marketing student?", "Wie begeleidt de student?", "Hoe snel kan een student beginnen?", "Zijn de studenten goed genoeg?",
             "Zit ik vast aan een contract?", "Wat als de student niet bevalt?", "Werken studenten remote of op locatie?"]
 HOME_PLATFORMS = [("google", "Google Search Console", "Posities en vindbaarheid"), ("googleads", "Google Ads", "Zoek- en displaycampagnes"),
                   ("meta", "Meta", "Facebook- en Instagram-ads"), ("linkedin", "LinkedIn", "Content en advertenties"),
@@ -623,7 +624,8 @@ def post_cards(slugs, scroll=True):
 
 ART_FOTO = {"wat-doet-een-seo-specialist": "student-bureau-2", "freelance-marketeer-of-marketing-student": "samen-overleg",
             "welke-social-media-kiezen": "student-bureau-1", "wat-voor-type-marketeers-zijn-er": "team-tafel",
-            "wat-doet-een-head-of-marketing": "team-overleg", "social-media-uitbesteden-waar-let-je-op": "samen-kantoor"}
+            "wat-doet-een-head-of-marketing": "team-overleg", "social-media-uitbesteden-waar-let-je-op": "samen-kantoor",
+            "verschil-seo-en-sea": "student-bureau-5"}
 
 
 def meta_short(t):
@@ -1127,7 +1129,10 @@ def page_artikel(a):
         prose.append(f'<div class="article-cta"><strong>Hulp nodig bij je marketing?</strong><span>Een getrainde student, begeleid door een senior. Geen contract.</span>'
                      f'{btn("Bekijk alle specialisaties", "/specialisaties/", "grad", "arrow-right")}</div>')
     aside = f'<aside class="aside-sticky"><nav class="toc" aria-label="Inhoud van dit artikel"><h2>In dit artikel</h2><ol>{"".join(toc)}</ol></nav></aside>'
-    meta_line = f'<p class="meta-line">Redactie Marketing Student · <time datetime="{PUBLISHED}">25 september 2026</time></p>'
+    datum = a.get("datum", PUBLISHED)
+    j, m, d = (int(x) for x in datum.split("-"))
+    maanden = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"]
+    meta_line = f'<p class="meta-line">Redactie Marketing Student · <time datetime="{datum}">{d} {maanden[m - 1]} {j}</time></p>'
     body = hero([("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)], a["titel"], "", a["meta"], meta_line, cls="hero--article")
     img = foto(ART_FOTO.get(a["slug"], "team-tafel"), "(min-width: 1000px) 760px, 100vw", "article__img")
     body += section(f'<div class="article-grid"><article class="prose">{img}{"".join(prose)}</article>{aside}</div>', "section--flush-top")
@@ -1137,7 +1142,7 @@ def page_artikel(a):
     graph = [ld_webpage(url, a["title"], a["meta"], main=url + "#artikel"),
              ld_crumbs(url, [("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)]),
              {"@type": "Article", "@id": url + "#artikel", "headline": a["titel"], "description": a["meta"], "image": f'{SITE}/assets/img/foto/{ART_FOTO.get(a["slug"], "team-tafel")}-1600.webp',
-              "datePublished": PUBLISHED, "dateModified": PUBLISHED, "inLanguage": "nl-NL",
+              "datePublished": datum, "dateModified": datum, "inLanguage": "nl-NL",
               "author": {"@type": "Organization", "@id": ORG, "name": SITE_NAME}, "publisher": {"@id": ORG},
               "mainEntityOfPage": {"@id": url + "#webpage"}}]
     if a["dienst"]:
@@ -1163,10 +1168,10 @@ def page_student():
     secs += section(section_head("Openstaande *vacatures*", "Liever direct op een specifieke rol reageren? Bekijk de vacatures.") + vac_cards(VACATURES[:3])
                     + f'<div class="btn-row" style="justify-content:center;margin-top:28px">{btn("Alle vacatures", "/vacatures/", "outline", "arrow-right")}</div>')
     faq = faq_block("Vragen van *studenten*", ["Wat zijn de eisen?", "Werk ik remote of op locatie?", "Hoeveel uur per week werk ik?"])
-    p = simple_page("/werken-als-student/", "Werken als student", "Marketing bijbaan", "naast je studie",
-                       "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk voor echte klanten, begeleid door ervaren marketeers.",
-                       "Marketing bijbaan naast je studie | Marketing Student",
-                       "Studeer je marketing of communicatie op HBO- of WO-niveau? Werk naast je studie voor echte klanten, begeleid door ervaren marketeers.",
+    p = simple_page("/werken-als-student/", "Werken als student", "Werkstudent marketing", "naast je studie",
+                       "Werkstudent marketing worden? Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau, dan is dit je marketing bijbaan: werk voor echte klanten, begeleid door ervaren marketeers.",
+                       "Werkstudent marketing: bijbaan naast je studie",
+                       "Werkstudent marketing worden? Een marketing bijbaan naast je HBO- of WO-studie, voor echte klanten en begeleid door ervaren marketeers.",
                        secs + FORM_SLOT, None, faq=faq, hero_extra=f'<div class="btn-row btn-row--stack">{btn("Meld je aan", "#aanmelden", "grad", "arrow-right", True)}</div>', form=form, movable=True)
     slot = cta_block("Klaar om *te beginnen?*", "Meld je aan. We nemen contact met je op voor een kennismaking.", buttons=btn("Meld je aan", "#aanmelden", "navy", "arrow-right", True))
     return p[0], p[1], p[2], p[3] + slot, p[4], p[5], p[6]

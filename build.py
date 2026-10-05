@@ -55,6 +55,7 @@ def esc(t):
 SPECS = [
     # slug, label, korte naam, merk of icoon, korte omschrijving, menugroep
     ("seo-specialist-inhuren", "SEO-specialist inhuren", ("icon", "search"), "Zoekwoordonderzoek, on-page SEO en content die rankt.", "Vindbaarheid"),
+    ("linkbuilding-specialist-inhuren", "Linkbuilding-specialist inhuren", ("icon", "link"), "Relevante links die je autoriteit versterken.", "Vindbaarheid"),
     ("google-ads-specialist-inhuren", "Google Ads-specialist inhuren", ("brand", "googleads"), "Campagnes opzetten, bijsturen en rapporteren.", "Vindbaarheid"),
     ("social-media-uitbesteden", "Social media uitbesteden", ("brand", "meta"), "Posts plannen, maken en je community beheren.", "Social media en content"),
     ("instagram-uitbesteden", "Instagram uitbesteden", ("brand", "instagram"), "Feed, stories en reels, gepland en gemaakt.", "Social media en content"),
@@ -62,12 +63,14 @@ SPECS = [
     ("linkedin-marketing-uitbesteden", "LinkedIn-marketing uitbesteden", ("brand", "linkedin"), "Zakelijke content en advertenties.", "Social media en content"),
     ("contentmarketing-uitbesteden", "Contentmarketing uitbesteden", ("icon", "camera"), "Een content creator voor foto, video en tekst.", "Social media en content"),
     ("foto-en-video-laten-maken", "Foto en video laten maken", ("icon", "video"), "Bedrijfsvideo's, reels en productfoto's.", "Social media en content"),
+    ("social-media-adverteren", "Social media adverteren", ("icon", "megaphone"), "Campagnes op Meta, LinkedIn en TikTok.", "Social media en content"),
     ("premiere-pro-editor-inhuren", "Premiere Pro-editor inhuren", ("brand", "premiere"), "Montage met ondertiteling en huisstijl.", "Social media en content"),
     ("after-effects-specialist-inhuren", "After Effects-specialist inhuren", ("brand", "aftereffects"), "Motion graphics en animatie.", "Social media en content"),
     ("davinci-resolve-editor-inhuren", "DaVinci Resolve-editor inhuren", ("brand", "davinci"), "Montage en kleurcorrectie.", "Social media en content"),
     ("recruitment-marketing-uitbesteden", "Recruitment marketing", ("icon", "users"), "Vacatures, campagnes en employer branding.", "Social media en content"),
     ("huisstijl-laten-maken", "Huisstijl laten maken", ("icon", "pen"), "Logo, huisstijl, tone of voice en merkverhaal.", "Merk en e-mail"),
     ("email-marketing-uitbesteden", "E-mailmarketing uitbesteden", ("icon", "mail"), "Nieuwsbrieven en automatische flows.", "Merk en e-mail"),
+    ("website-laten-maken", "Website laten maken", ("icon", "globe"), "In WordPress of Shopify, snel en vindbaar.", "Web en AI"),
     ("wordpress-specialist-inhuren", "WordPress-specialist inhuren", ("brand", "wordpress"), "Pagina's bouwen, onderhouden en versnellen.", "Web en AI"),
     ("shopify-specialist-inhuren", "Shopify-specialist inhuren", ("brand", "shopify"), "Productpagina's en webshopbeheer.", "Web en AI"),
     ("ai-specialist-inhuren", "AI-specialist inhuren", ("brand", "openai"), "AI-tools en workflows in je marketing.", "Web en AI"),
@@ -75,17 +78,20 @@ SPECS = [
 ]
 SPEC = {s[0]: s for s in SPECS}
 GROUPS = ["Vindbaarheid", "Social media en content", "Merk en e-mail", "Web en AI"]
-# Korte namen voor het menu; de volledige naam staat op de pagina zelf.
-MENU_LABEL = {"seo-specialist-inhuren": "SEO", "google-ads-specialist-inhuren": "Google Ads", "social-media-uitbesteden": "Social media",
-              "foto-en-video-laten-maken": "Foto en video", "recruitment-marketing-uitbesteden": "Recruitment",
-              "huisstijl-laten-maken": "Huisstijl", "email-marketing-uitbesteden": "E-mailmarketing",
-              "wordpress-specialist-inhuren": "WordPress", "shopify-specialist-inhuren": "Shopify", "ai-specialist-inhuren": "AI"}
 # Subspecialisaties staan niet in menu, footer en homepage; ze zijn bereikbaar via de hoofdpagina en /specialisaties/.
 PARENT = {"instagram-uitbesteden": "social-media-uitbesteden", "tiktok-uitbesteden": "social-media-uitbesteden",
           "linkedin-marketing-uitbesteden": "social-media-uitbesteden", "contentmarketing-uitbesteden": "social-media-uitbesteden",
           "claude-specialist-inhuren": "ai-specialist-inhuren", "premiere-pro-editor-inhuren": "foto-en-video-laten-maken",
-          "after-effects-specialist-inhuren": "foto-en-video-laten-maken", "davinci-resolve-editor-inhuren": "foto-en-video-laten-maken"}
-MAIN = [s for s in SPECS if s[0] not in PARENT]
+          "after-effects-specialist-inhuren": "foto-en-video-laten-maken", "davinci-resolve-editor-inhuren": "foto-en-video-laten-maken",
+          "wordpress-specialist-inhuren": "website-laten-maken", "shopify-specialist-inhuren": "website-laten-maken"}
+# Hoofdcategorieën in menu, homepage en footer, in deze volgorde (rij voor rij in twee kolommen).
+# Huisstijl, e-mailmarketing en AI staan bewust niet in het menu; ze zijn bereikbaar via /specialisaties/.
+NAV_SPECS = [("foto-en-video-laten-maken", "Content creatie (foto &amp; video)", "video"), ("social-media-adverteren", "Social media campagnes", "megaphone"),
+             ("seo-specialist-inhuren", "SEO", "search"), ("linkbuilding-specialist-inhuren", "Linkbuilding", "link"),
+             ("google-ads-specialist-inhuren", "SEA", "target"), ("recruitment-marketing-uitbesteden", "Recruitment marketing", "user-search"),
+             ("social-media-uitbesteden", "Social media beheer", "hash"), ("website-laten-maken", "Website ontwikkeling", "globe")]
+NAV_LABEL = {slug: label for slug, label, _ in NAV_SPECS}
+MAIN = [SPEC[slug] for slug, _, _ in NAV_SPECS]
 CHILDREN = {p: [s for s in SPECS if PARENT.get(s[0]) == p] for p in set(PARENT.values())}
 ART = {a["slug"]: a for a in ARTIKELEN}
 
@@ -93,6 +99,8 @@ ART = {a["slug"]: a for a in ARTIKELEN}
 REL = {
     "seo-specialist-inhuren": ["verschil-seo-en-sea", "wat-doet-een-seo-specialist", "freelance-marketeer-of-marketing-student"],
     "google-ads-specialist-inhuren": ["verschil-seo-en-sea", "wat-doet-een-seo-specialist", "freelance-marketeer-of-marketing-student"],
+    "linkbuilding-specialist-inhuren": ["wat-doet-een-seo-specialist", "verschil-seo-en-sea", "freelance-marketeer-of-marketing-student"],
+    "social-media-adverteren": ["verschil-seo-en-sea", "welke-social-media-kiezen", "social-media-uitbesteden-waar-let-je-op"],
     "social-media-uitbesteden": ["social-media-uitbesteden-waar-let-je-op", "welke-social-media-kiezen", "freelance-marketeer-of-marketing-student"],
     "instagram-uitbesteden": ["social-media-uitbesteden-waar-let-je-op", "welke-social-media-kiezen", "wat-voor-type-marketeers-zijn-er"],
     "tiktok-uitbesteden": ["welke-social-media-kiezen", "social-media-uitbesteden-waar-let-je-op", "wat-voor-type-marketeers-zijn-er"],
@@ -275,6 +283,7 @@ SPEC_CTA_TXT = ("Twijfel je welke student past?", "Beschrijf je vraag, dan denke
 def spec_grid(items=None, cta=True, tag="h3"):
     cards = ""
     for slug, label, kind, card, _ in (items or MAIN):
+        label = label if items else NAV_LABEL[slug]
         cards += (f'<a class="card spec-card" href="/{slug}/">{spec_icon(kind)}<{tag}>{nobreak(label, long=False)}</{tag}><p>{card}</p>'
                   f'<span class="link-arrow">Bekijk{icon("arrow-right")}</span></a>')
     if cta:
@@ -655,13 +664,9 @@ NAV = [("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"), ("Kennisbank", 
 
 
 def header(current):
-    groups = ""
-    mob_groups = ""
-    for g in GROUPS:
-        items = [sp for sp in MAIN if sp[4] == g]
-        lis = "".join(f'<li><a href="/{sp[0]}/">{MENU_LABEL[sp[0]]}</a></li>' for sp in items)
-        groups += f'<div class="dropdown__group"><p class="dropdown__title">{g}</p><ul>{lis}</ul></div>'
-        mob_groups += f'<div class="mobile-nav__group"><p class="mobile-nav__title">{g}</p><ul>{lis}</ul></div>'
+    lis = "".join(f'<li><a class="navitem" href="/{slug}/"><span class="navitem__ico">{icon(ic)}</span>{label}</a></li>' for slug, label, ic in NAV_SPECS)
+    groups = f'<ul class="dropdown__list">{lis}</ul>'
+    mob_groups = f'<ul class="mobile-nav__list2">{lis}</ul>'
     spec_cur = ' aria-current="page"' if current == "specialisaties" else ""
     cur = ' aria-current="page"'
     links = "".join(f'<li><a href="{u}"{cur if current == n else ""}>{n}</a></li>' for n, u in NAV)
@@ -688,7 +693,7 @@ def header(current):
 <div class="mobile-nav" id="mobile-nav">
   <nav aria-label="Mobiel menu"><ul class="mobile-nav__list">
     <li><details class="mobile-nav__spec"><summary>Specialisaties{icon("chevron-down")}</summary>
-      <div class="mobile-nav__groups"><div class="mobile-nav__grid">{mob_groups}</div><a class="mobile-nav__all" href="/specialisaties/">Alle specialisaties{icon("arrow-right")}</a></div></details></li>
+      <div class="mobile-nav__groups">{mob_groups}<a class="mobile-nav__all" href="/specialisaties/">Alle specialisaties{icon("arrow-right")}</a></div></details></li>
     {mob_links}
   </ul>
   <div class="mobile-nav__foot">{btn("Offerte aanvragen", "/offerte-aanvragen/", "grad", "arrow-right", True)}<a class="mobile-nav__phone" href="{PHONE_HREF}">{icon("phone")}Bel {PHONE}</a></div></nav>
@@ -696,7 +701,7 @@ def header(current):
 
 
 def footer():
-    specs = "".join(f'<li><a href="/{s[0]}/">{MENU_LABEL[s[0]]}</a></li>' for s in MAIN)
+    specs = "".join(f'<li><a href="/{slug}/">{label}</a></li>' for slug, label, _ in NAV_SPECS)
     bedrijf = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in [("Alle specialisaties", "/specialisaties/"), ("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"),
                                                                      ("Kennisbank", "/kennisbank/"), ("Werken als student", "/werken-als-student/"), ("Vacatures", "/vacatures/"),
                                                                      ("Offerte aanvragen", "/offerte-aanvragen/"), ("Contact", "/contact/")])
@@ -911,9 +916,10 @@ def page_dienst(slug):
     Noun = noun[0].upper() + noun[1:]
     FAQ_ONDERWERP = {"Social media": "social media uitbesteden", "Content": "contentmarketing", "Branding": "een huisstijl",
                      "E-mailmarketing": "e-mailmarketing", "LinkedIn": "LinkedIn-marketing", "TikTok": "TikTok uitbesteden",
-                     "Instagram": "Instagram uitbesteden", "Foto en video": "foto en video laten maken", "Recruitment": "recruitment marketing"}
+                     "Instagram": "Instagram uitbesteden", "Foto en video": "foto en video laten maken", "Recruitment": "recruitment marketing",
+                     "Social ads": "social media adverteren", "Website": "een website laten maken"}
     lab = FAQ_ONDERWERP.get(d["short"], d["short"] if d["short"] in ("SEO", "Google Ads", "AI", "Claude") else d["short"])
-    if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify", "Premiere Pro", "After Effects", "DaVinci Resolve"):
+    if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify", "Premiere Pro", "After Effects", "DaVinci Resolve", "Linkbuilding"):
         lab = "een " + d["noun"]
     faq_html, faq_items = faq_block(f"Vragen over *{lab}*", [q for q, _ in d["faq"]], {q: a for q, a in d["faq"] if a})
     crumb_items = [("Home", "/"), ("Specialisaties", "/specialisaties/")]
@@ -1300,7 +1306,7 @@ REDIRECTS = [
     ("/google-ads-student-inhuren/", "/google-ads-specialist-inhuren/"),
     ("/sea-student-inhuren/", "/google-ads-specialist-inhuren/"),
     ("/social-media-student-inhuren/", "/social-media-uitbesteden/"),
-    ("/linkbuilding-student-inhuren/", "/seo-specialist-inhuren/"),
+    ("/linkbuilding-student-inhuren/", "/linkbuilding-specialist-inhuren/"),
     ("/ai-specialist-student-inhuren/", "/ai-specialist-inhuren/"),
     ("/claude-specialist-student-inhuren/", "/claude-specialist-inhuren/"),
     ("/content-creator-student-inhuren/", "/contentmarketing-uitbesteden/"),

@@ -5,6 +5,7 @@ https://marketing-student.netlify.app/*  https://marketing-student.nl/:splat  30
 http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  301!
 
 # Broncode niet uitleveren
+/tools/*                                                       /404.html  404!
 /lastmod.json                                                  /404.html  404!
 /gids_data.py                                                  /404.html  404!
 /build.py                                                      /404.html  404!

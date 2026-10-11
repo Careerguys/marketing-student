@@ -370,7 +370,7 @@ def reels():
         extra = ' data-dup aria-hidden="true"' if dup else ""
         tab = ' tabindex="-1"' if dup else ""
         cards += (f'<figure class="reel" style="--i:{i}"{extra}><video muted loop playsinline preload="none" poster="/assets/video/{key}-360.webp" data-reel>'
-                  f'<source src="/assets/video/{key}.mp4" type="video/mp4"></video>'
+                  f'<source src="/assets/video/{key}-m.mp4" type="video/mp4" media="(max-width: 1099px)"><source src="/assets/video/{key}.mp4" type="video/mp4"></video>'
                   f'<button class="reel__sound" type="button"{tab} aria-pressed="false" aria-label="Geluid aan: {label}">{icon("volume-x", "reel__off")}{icon("volume", "reel__on")}</button>'
                   f'</figure>')
     nav = (f'<div class="reels__nav"><button class="icon-btn reels__btn" type="button" data-reels-prev aria-label="Vorige video">{icon("arrow-left")}</button>'
@@ -1390,7 +1390,7 @@ REDIRECTS = [
     ("/linkedin-marketing-student-inhuren-blog/", "/linkedin-marketing-uitbesteden/"),
 ]
 GONE = ["/feed/", "/comments/feed/", "/search/*", "/test-bericht/", "/test-bericht-2/", "/category/uncategorized/", "/wp-json/*", "/xmlrpc.php", "/wp-admin/*", "/wp-login.php"]
-BLOCK = ["/lastmod.json", "/gids_data.py", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
+BLOCK = ["/tools/*", "/lastmod.json", "/gids_data.py", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
 
 
 # ---------------------------------------------------------------- bouwen

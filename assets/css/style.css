@@ -1065,3 +1065,11 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
   .js .showcase .searchbar span { max-width: none !important; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* Gids op categoriepagina's */
+.gids { display: grid; gap: 28px; }
+@media (min-width: 900px) { .gids { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 56px; } }
+.gids__item h3 { margin: 0 0 10px; font-size: clamp(1.125rem, 1rem + 0.4vw, 1.3125rem); line-height: 1.3; color: #fff; }
+.gids__item p { margin: 0; font-size: 1.0625rem; line-height: 1.7; color: rgba(255, 255, 255, 0.88); }
+.gids__item a { color: var(--green); }
+.section-head .lead a { color: var(--green); }

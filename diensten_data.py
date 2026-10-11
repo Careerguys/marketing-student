@@ -143,7 +143,9 @@ D = {
            ("layers","Montage en ondertiteling","Gemonteerd, ondertiteld en klaar om te posten.")],
     faq=[("Wat kost foto en video laten maken?",""),("Komt de student op locatie filmen?",""),
          ("Wat heb je van mij nodig?","Een kennismaking over wat je wilt laten zien, je logo en huisstijl, en een locatie of materiaal om mee te werken. Daarna vooral je feedback op de montage."),("Moet ik zelf in beeld?",""),("Wie is eigenaar van de content?",""),
-         ("Wat is het verschil met een freelance videograaf?","Een freelance videograaf werkt meestal alleen. Onze student werkt onder een senior content- en brandingspecialist die je merk bewaakt, en als het niet klikt krijg je kosteloos een vervanger.")],
+         ("Hoe lang duurt het voordat ik de video's heb?",
+             "Dat hangt af van het aantal video's en de montage. Na de opnamedag krijg je eerst een eerste versie om op te reageren. Daarna verwerken we je feedback en lever je de definitieve bestanden in alle formaten. De planning staat vooraf in je offerte, zodat je weet wanneer je wat krijgt."),
+            ("Wat is het verschil met een freelance videograaf?","Een freelance videograaf werkt meestal alleen. Onze student werkt onder een senior content- en brandingspecialist die je merk bewaakt, en als het niet klikt krijg je kosteloos een vervanger.")],
     blog=[("Content","Bedrijfsvideo laten maken: zo pak je het aan","Van briefing tot draaidag."),
           ("Content","Welke content werkt voor het mkb?","Formats die weinig tijd kosten en veel opleveren."),
           ("Content","Eén opname, tien stukken content","Zo haal je meer uit elke draaidag.")],
@@ -165,7 +167,9 @@ D = {
          ("Wat is het verschil met employer branding?","Employer branding is hoe je als werkgever bekendstaat. Recruitment marketing zet dat beeld in om voor concrete vacatures kandidaten te werven. De student helpt met allebei."),
          ("Wat heb je van mij nodig?","De vacatures die open staan, een kennismaking over je team en werkplek, en toegang tot je advertentieaccounts en werkenbij-pagina."),("Wat kost recruitment marketing uitbesteden?",""),
          ("Werkt de student in mijn eigen advertentieaccounts?","Ja. De student werkt in je eigen LinkedIn-, Meta- en Google-accounts. Jij blijft eigenaar van de accounts en van alle data."),
-         ("Zit ik vast aan een contract?","")],
+         ("Welke kanalen zijn het best voor mijn vacature?",
+             "Dat hangt af van de functie. Voor functies met een opleiding of specifieke ervaring werkt LinkedIn vaak goed. Voor functies in bijvoorbeeld de bouw, logistiek of horeca bereik je meer mensen via Facebook, Instagram of TikTok. De student kiest per vacature de kanalen en stuurt bij op het aantal sollicitaties per kanaal."),
+            ("Zit ik vast aan een contract?","")],
     blog=[("Recruitment","Recruitment marketing: zo pak je het aan","Van vacaturetekst tot campagne."),
           ("Recruitment","Zo schrijf je een vacature die gelezen wordt","Wat kandidaten willen weten."),
           ("Recruitment","Employer branding voor het mkb","Laat zien hoe het is om bij jou te werken.")],
@@ -227,7 +231,9 @@ D = {
          ("Hoeveel advertentiebudget heb ik nodig?","Dat hangt af van je doel, je doelgroep en het kanaal. We bespreken vooraf wat realistisch is. Het advertentiebudget betaal je rechtstreeks aan het platform, los van de uren van de student."),
          ("Werkt de student in mijn eigen advertentieaccount?","Ja. De student werkt in je eigen Meta Business Manager, LinkedIn Campaign Manager of TikTok Ads Manager. Jij blijft eigenaar van de accounts en de data."),
          ("Wat heb je van mij nodig?","Toegang tot je advertentieaccounts, je huisstijl en beeldmateriaal, en een kennismaking over je doel en je doelgroep."),
-         ("Zit ik vast aan een contract?","")],
+         ("Op welk platform kan ik het beste adverteren?",
+             "Dat hangt af van je doelgroep en je doel. Facebook en Instagram hebben een breed bereik en werken goed voor webshops en lokale bedrijven. LinkedIn past bij B2B en werving, TikTok bij een jonger publiek. De student adviseert in het eerste gesprek welke platforms bij jou passen, en test zo nodig eerst kleinschalig."),
+            ("Zit ik vast aan een contract?","")],
     blog=[], cta="Laat je campagnes opzetten"),
 
 "linkbuilding-specialist-inhuren": dict(
@@ -242,7 +248,9 @@ D = {
          ("Koopt de student links?","Nee. De student bouwt links via relevante content, contact met andere websites en vermeldingen die passen bij je bedrijf. Links kopen op willekeurige sites kan je posities juist schaden."),
          ("Hoe snel zie ik resultaat van linkbuilding?","Linkbuilding werkt geleidelijk. Nieuwe links hebben meestal enkele weken tot maanden nodig voordat je het effect in je posities terugziet. Wat haalbaar is, bespreken we vooraf."),
          ("Wat heb je van mij nodig?","Toegang tot Google Search Console, een kennismaking over je bedrijf en je netwerk, en je akkoord op de content die de student schrijft."),
-         ("Zit ik vast aan een contract?","")],
+         ("Is linkbuilding veilig voor mijn website?",
+             "Ja, zolang het om echte vermeldingen op relevante websites gaat. Risico's ontstaan bij gekochte linkpakketten en netwerken van sites die alleen links verkopen. Die gebruiken we niet. Je krijgt een overzicht van elke website die is benaderd en elke link die is geplaatst, zodat je altijd weet waar je bedrijf genoemd wordt."),
+            ("Zit ik vast aan een contract?","")],
     blog=[], cta="Laat links bouwen"),
 
 "website-laten-maken": dict(
@@ -257,7 +265,9 @@ D = {
          ("WordPress of Shopify?","WordPress past goed bij websites met veel pagina's en content. Shopify is gemaakt voor webshops. De student adviseert wat bij je bedrijf past."),
          ("Kan ik de website zelf beheren?","Ja. Je krijgt een website die je zelf kunt aanpassen, en de student legt uit hoe dat werkt."),
          ("Kan de student ook mijn bestaande website verbeteren?","Ja. De student kan je bestaande website sneller en vindbaarder maken, of pagina's toevoegen in je huidige thema."),
-         ("Zit ik vast aan een contract?","")],
+         ("Behoud ik mijn posities in Google met een nieuwe website?",
+             "Die blijven behouden als de overstap goed gaat. De student maakt een lijst van alle bestaande pagina's en zorgt dat elke oude URL doorverwijst naar de juiste nieuwe pagina. Ook titels, teksten en interne links nemen we mee. Na de livegang controleren we in Search Console of Google alles goed oppikt."),
+            ("Zit ik vast aan een contract?","")],
     blog=[], cta="Laat je website maken"),
 
 "huisstijl-laten-maken": dict(

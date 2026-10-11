@@ -22,6 +22,7 @@ from diensten_data import D as DIENST, SC as SHOWCASES, PLAT as PLATFORMS
 from story_data import STORY
 from vacatures_data import VACATURES, BIEDEN
 from faq_data import antwoord
+from gids_data import GIDS
 
 ROOT = Path(__file__).parent
 SITE = "https://marketing-student.nl"
@@ -560,7 +561,7 @@ def dienst_story(slug, noun):
     month = section(section_head(st["month_t"], st["month_x"]) + f'<div class="grid grid--4">{cards}</div>'
                     + f'<div class="story-cta"><div><h3>{accent(st["cta_t"])}</h3><p>{st["cta_x"]}</p></div>'
                     + f'<div class="btn-row">{btn("Vraag een offerte aan", "#offerte", "grad", "arrow-right")}{btn("Bel " + PHONE, PHONE_HREF, "outline", "phone")}</div></div>', "story-month")
-    start = section(section_head(st["start_t"], "Binnen een paar stappen ben je van start.") + steps(st["start"]))
+    start = section(section_head(st["start_t"], 'Binnen een paar stappen ben je van start. Hoe de begeleiding werkt, lees je bij <a href="/werkwijze/">onze werkwijze</a>.') + steps(st["start"]))
     return story + month + start
 
 
@@ -908,6 +909,39 @@ def page_home():
     return path, title, desc, body, "home", graph
 
 
+RELATED = {
+    "seo-specialist-inhuren": ["linkbuilding-specialist-inhuren", "google-ads-specialist-inhuren", "contentmarketing-uitbesteden", "website-laten-maken"],
+    "linkbuilding-specialist-inhuren": ["seo-specialist-inhuren", "contentmarketing-uitbesteden", "website-laten-maken", "google-ads-specialist-inhuren"],
+    "google-ads-specialist-inhuren": ["seo-specialist-inhuren", "social-media-adverteren", "website-laten-maken", "shopify-specialist-inhuren"],
+    "social-media-uitbesteden": ["contentmarketing-uitbesteden", "social-media-adverteren", "huisstijl-laten-maken", "foto-en-video-laten-maken"],
+    "instagram-uitbesteden": ["contentmarketing-uitbesteden", "social-media-adverteren", "foto-en-video-laten-maken", "huisstijl-laten-maken"],
+    "tiktok-uitbesteden": ["foto-en-video-laten-maken", "social-media-adverteren", "contentmarketing-uitbesteden", "instagram-uitbesteden"],
+    "linkedin-marketing-uitbesteden": ["recruitment-marketing-uitbesteden", "social-media-adverteren", "contentmarketing-uitbesteden", "email-marketing-uitbesteden"],
+    "contentmarketing-uitbesteden": ["email-marketing-uitbesteden", "huisstijl-laten-maken", "ai-specialist-inhuren", "claude-specialist-inhuren"],
+    "foto-en-video-laten-maken": ["contentmarketing-uitbesteden", "social-media-adverteren", "recruitment-marketing-uitbesteden", "huisstijl-laten-maken"],
+    "social-media-adverteren": ["google-ads-specialist-inhuren", "recruitment-marketing-uitbesteden", "foto-en-video-laten-maken", "social-media-uitbesteden"],
+    "premiere-pro-editor-inhuren": ["after-effects-specialist-inhuren", "davinci-resolve-editor-inhuren", "foto-en-video-laten-maken", "social-media-adverteren"],
+    "after-effects-specialist-inhuren": ["premiere-pro-editor-inhuren", "davinci-resolve-editor-inhuren", "huisstijl-laten-maken", "foto-en-video-laten-maken"],
+    "davinci-resolve-editor-inhuren": ["premiere-pro-editor-inhuren", "after-effects-specialist-inhuren", "foto-en-video-laten-maken", "contentmarketing-uitbesteden"],
+    "recruitment-marketing-uitbesteden": ["linkedin-marketing-uitbesteden", "social-media-adverteren", "foto-en-video-laten-maken", "email-marketing-uitbesteden"],
+    "huisstijl-laten-maken": ["website-laten-maken", "contentmarketing-uitbesteden", "email-marketing-uitbesteden", "social-media-uitbesteden"],
+    "email-marketing-uitbesteden": ["contentmarketing-uitbesteden", "huisstijl-laten-maken", "shopify-specialist-inhuren", "ai-specialist-inhuren"],
+    "website-laten-maken": ["huisstijl-laten-maken", "seo-specialist-inhuren", "linkbuilding-specialist-inhuren", "email-marketing-uitbesteden"],
+    "wordpress-specialist-inhuren": ["shopify-specialist-inhuren", "seo-specialist-inhuren", "huisstijl-laten-maken", "website-laten-maken"],
+    "shopify-specialist-inhuren": ["wordpress-specialist-inhuren", "email-marketing-uitbesteden", "google-ads-specialist-inhuren", "social-media-adverteren"],
+    "ai-specialist-inhuren": ["claude-specialist-inhuren", "email-marketing-uitbesteden", "contentmarketing-uitbesteden", "wordpress-specialist-inhuren"],
+    "claude-specialist-inhuren": ["ai-specialist-inhuren", "contentmarketing-uitbesteden", "email-marketing-uitbesteden", "wordpress-specialist-inhuren"],
+}
+
+
+def gids_section(slug):
+    if slug not in GIDS:
+        return ""
+    kop, lead_txt, blokken = GIDS[slug]
+    items = "".join(f'<div class="gids__item"><h3>{h}</h3>{x}</div>' for h, x in blokken)
+    return section(section_head(kop, lead_txt) + f'<div class="gids">{items}</div>')
+
+
 def page_dienst(slug):
     d = DIENST[slug]
     _, label, kind, card, _ = SPEC[slug]
@@ -949,11 +983,14 @@ def page_dienst(slug):
     elif tools:
         kop = "De kanalen *die we inzetten*" if d["platforms"] in CHANNEL_PLATS else "De tools *die we gebruiken*"
         body += section(section_head(kop, tools_lead) + platform_tiles(tools, slug))
+    body += gids_section(slug)
     body += section(section_head(f"Zo werk je met *een {noun}*", "Twee werkvormen, allebei zonder contract. Je krijgt altijd eerst een offerte op maat.") + plans(Noun))
     seo = slug == "seo-specialist-inhuren"
-    body += section(section_head("SEO-student, SEO-freelancer *of bureau?*" if seo else "Student, freelancer *of bureau?*") + compare(COMPARE_SEO if seo else COMPARE), "glow-right")
+    wie = 'Wie er achter de studenten zitten, lees je bij <a href="/over-ons/">over ons</a>.'
+    body += section(section_head("SEO-student, SEO-freelancer *of bureau?*" if seo else "Student, freelancer *of bureau?*", wie) + compare(COMPARE_SEO if seo else COMPARE), "glow-right")
     body += faq_html
     body += section(section_head("Meer *lezen*") + post_cards(REL.get(slug, REL_DEFAULT)))
+    body += section(section_head("Ook *interessant*") + spec_grid([SPEC[r] for r in RELATED[slug]], cta=False))
     body += FORM_SLOT
     body += cta_block(f"Klaar voor *een {noun}?*", "Vertel wat je nodig hebt. Je krijgt een voorstel met de student en de senior die jouw vraag oppakken.")
     graph = [ld_webpage(url, d["title"], d["meta"], main=url + "#service"),
@@ -1227,7 +1264,7 @@ def page_vacatures():
     path = "/vacatures/"
     url = SITE + path
     secs = section(section_head("Openstaande *vacatures*", "Allemaal naast je studie, begeleid door een ervaren marketeer.") + vac_cards(VACATURES), "section--flush-top")
-    secs += section(section_head("Zo verloopt *je sollicitatie*") + steps(VAC_STEPS))
+    secs += section(section_head("Zo verloopt *je sollicitatie*", 'Geen vacature die past? <a href="/werken-als-student/">Meld je algemeen aan</a>.') + steps(VAC_STEPS))
     items = [{"@type": "ListItem", "position": i, "url": f"{SITE}/vacatures/{v['slug']}/", "name": v["titel"]} for i, v in enumerate(VACATURES, 1)]
     p = simple_page(path, "Vacatures", "Vacatures", "voor studenten",
                     "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk naast je studie voor echte klanten, begeleid door ervaren marketeers.",
@@ -1253,8 +1290,8 @@ def page_vacature(v):
     check = icon("check")
     cols = "".join(f'<div class="card vac-list"><h2>{accent(t)}</h2><ul class="story__list">{"".join(f"<li>{check}{x}</li>" for x in items)}</ul></div>' for t, items in lists)
     body += section(f'<div class="grid grid--3">{cols}</div>', "section--flush-top")
-    body += section(section_head("Zo verloopt *je sollicitatie*") + steps(VAC_STEPS))
-    body += section(section_head("Meer *vacatures*") + vac_cards([x for x in VACATURES if x["slug"] != v["slug"]][:3]))
+    body += section(section_head("Zo verloopt *je sollicitatie*", 'Geen vacature die past? <a href="/werken-als-student/">Meld je algemeen aan</a>.') + steps(VAC_STEPS))
+    body += section(section_head("Meer *vacatures*") + vac_cards([VACATURES[(VACATURES.index(v) + i) % len(VACATURES)] for i in (1, 2, 3)]))
     body += FORM_SLOT
     body += cta_block("Klaar om *te solliciteren?*", "Het kost je een paar minuten. We nemen contact met je op voor een kennismaking.",
                       buttons=btn("Solliciteer direct", "#solliciteren", "navy", "arrow-right", True))
@@ -1353,7 +1390,7 @@ REDIRECTS = [
     ("/linkedin-marketing-student-inhuren-blog/", "/linkedin-marketing-uitbesteden/"),
 ]
 GONE = ["/feed/", "/comments/feed/", "/search/*", "/test-bericht/", "/test-bericht-2/", "/category/uncategorized/", "/wp-json/*", "/xmlrpc.php", "/wp-admin/*", "/wp-login.php"]
-BLOCK = ["/lastmod.json", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
+BLOCK = ["/lastmod.json", "/gids_data.py", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
 
 
 # ---------------------------------------------------------------- bouwen

@@ -680,7 +680,7 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .cal { padding: 18px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line-2); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35); }
 .cal__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
 .cal__head strong { font-size: 1.125rem; }
-.cal__status { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: rgba(121, 199, 158, 0.14); color: var(--green); font-size: 0.8125rem; font-weight: 700; }
+.cal__status { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: rgba(121, 199, 158, 0.14); color: #93d6b2; font-size: 0.8125rem; font-weight: 700; }
 .cal__status svg { width: 16px; height: 16px; }
 .cal__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
 .cal__dow { font-size: 0.75rem; font-weight: 700; color: var(--muted); text-align: center; padding-bottom: 2px; }

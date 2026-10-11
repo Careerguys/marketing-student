@@ -17,7 +17,9 @@ import subprocess
 import sys
 from pathlib import Path
 
-from artikelen import ARTIKELEN
+from artikelen import ARTIKELEN as _OUD
+from artikelen_oktober import NIEUW as _NIEUW
+ARTIKELEN = _NIEUW + _OUD  # nieuwste eerst
 from diensten_data import D as DIENST, SC as SHOWCASES, PLAT as PLATFORMS
 from story_data import STORY
 from vacatures_data import VACATURES, BIEDEN
@@ -99,17 +101,29 @@ ART = {a["slug"]: a for a in ARTIKELEN}
 
 # Artikelen die bij een dienst horen (alleen bestaande).
 REL = {
-    "seo-specialist-inhuren": ["verschil-seo-en-sea", "wat-doet-een-seo-specialist", "freelance-marketeer-of-marketing-student"],
-    "google-ads-specialist-inhuren": ["verschil-seo-en-sea", "wat-doet-een-seo-specialist", "freelance-marketeer-of-marketing-student"],
-    "linkbuilding-specialist-inhuren": ["wat-doet-een-seo-specialist", "verschil-seo-en-sea", "freelance-marketeer-of-marketing-student"],
-    "social-media-adverteren": ["verschil-seo-en-sea", "welke-social-media-kiezen", "social-media-uitbesteden-waar-let-je-op"],
-    "social-media-uitbesteden": ["social-media-uitbesteden-waar-let-je-op", "welke-social-media-kiezen", "freelance-marketeer-of-marketing-student"],
-    "instagram-uitbesteden": ["social-media-uitbesteden-waar-let-je-op", "welke-social-media-kiezen", "wat-voor-type-marketeers-zijn-er"],
-    "tiktok-uitbesteden": ["welke-social-media-kiezen", "social-media-uitbesteden-waar-let-je-op", "wat-voor-type-marketeers-zijn-er"],
-    "linkedin-marketing-uitbesteden": ["welke-social-media-kiezen", "social-media-uitbesteden-waar-let-je-op", "wat-doet-een-head-of-marketing"],
-    "contentmarketing-uitbesteden": ["social-media-uitbesteden-waar-let-je-op", "welke-social-media-kiezen", "wat-voor-type-marketeers-zijn-er"],
+    "seo-specialist-inhuren": ["verschil-seo-en-sea", "wat-doet-een-seo-specialist", "wat-is-contentmarketing"],
+    "google-ads-specialist-inhuren": ["wat-is-sea", "verschil-seo-en-sea", "online-marketing-mkb"],
+    "linkbuilding-specialist-inhuren": ["wat-doet-een-seo-specialist", "wat-is-contentmarketing", "verschil-seo-en-sea"],
+    "social-media-adverteren": ["reels-maken", "welke-social-media-kiezen", "wat-is-sea"],
+    "social-media-uitbesteden": ["contentkalender-maken", "social-media-uitbesteden-waar-let-je-op", "welke-social-media-kiezen"],
+    "instagram-uitbesteden": ["reels-maken", "contentkalender-maken", "social-media-uitbesteden-waar-let-je-op"],
+    "tiktok-uitbesteden": ["reels-maken", "welke-social-media-kiezen", "contentkalender-maken"],
+    "linkedin-marketing-uitbesteden": ["wat-is-employer-branding", "welke-social-media-kiezen", "contentkalender-maken"],
+    "contentmarketing-uitbesteden": ["wat-is-contentmarketing", "contentkalender-maken", "nieuwsbrief-maken"],
+    "foto-en-video-laten-maken": ["reels-maken", "wat-is-employer-branding", "wat-is-contentmarketing"],
+    "premiere-pro-editor-inhuren": ["reels-maken", "contentkalender-maken", "wat-is-contentmarketing"],
+    "after-effects-specialist-inhuren": ["reels-maken", "wat-is-een-huisstijl", "wat-is-contentmarketing"],
+    "davinci-resolve-editor-inhuren": ["reels-maken", "wat-is-contentmarketing", "contentkalender-maken"],
+    "recruitment-marketing-uitbesteden": ["wat-is-employer-branding", "wat-doet-een-marketeer", "welke-social-media-kiezen"],
+    "huisstijl-laten-maken": ["wat-is-een-huisstijl", "online-marketing-mkb", "wat-is-contentmarketing"],
+    "email-marketing-uitbesteden": ["nieuwsbrief-maken", "wat-is-contentmarketing", "online-marketing-mkb"],
+    "website-laten-maken": ["online-marketing-mkb", "wat-is-een-huisstijl", "verschil-seo-en-sea"],
+    "wordpress-specialist-inhuren": ["online-marketing-mkb", "wat-doet-een-seo-specialist", "wat-is-een-huisstijl"],
+    "shopify-specialist-inhuren": ["nieuwsbrief-maken", "wat-is-sea", "online-marketing-mkb"],
+    "ai-specialist-inhuren": ["claude-vs-chatgpt", "wat-is-contentmarketing", "online-marketing-mkb"],
+    "claude-specialist-inhuren": ["claude-vs-chatgpt", "nieuwsbrief-maken", "wat-is-contentmarketing"],
 }
-REL_DEFAULT = ["freelance-marketeer-of-marketing-student", "wat-voor-type-marketeers-zijn-er", "wat-doet-een-head-of-marketing"]
+REL_DEFAULT = ["online-marketing-mkb", "freelance-marketeer-of-marketing-student", "wat-voor-type-marketeers-zijn-er"]
 
 STEPS = [
     ("Beschrijf je vraag", "Vul het korte formulier in of bel ons. Dat kost je een paar minuten."),
@@ -636,7 +650,11 @@ def post_cards(slugs, scroll=True):
 ART_FOTO = {"wat-doet-een-seo-specialist": "student-bureau-2", "freelance-marketeer-of-marketing-student": "samen-overleg",
             "welke-social-media-kiezen": "student-bureau-1", "wat-voor-type-marketeers-zijn-er": "team-tafel",
             "wat-doet-een-head-of-marketing": "team-overleg", "social-media-uitbesteden-waar-let-je-op": "samen-kantoor",
-            "verschil-seo-en-sea": "student-bureau-5"}
+            "verschil-seo-en-sea": "student-bureau-5",
+            "wat-doet-een-marketeer": "studenten-laptop", "wat-is-sea": "student-bureau-3", "nieuwsbrief-maken": "samen-laptop",
+            "claude-vs-chatgpt": "team-computer", "reels-maken": "student-bureau-4", "contentkalender-maken": "student-bureau-6",
+            "wat-is-employer-branding": "team-tafel", "wat-is-een-huisstijl": "samen-overleg", "wat-is-contentmarketing": "team-overleg",
+            "online-marketing-mkb": "samen-kantoor"}
 
 
 def meta_short(t):
@@ -1166,11 +1184,14 @@ def page_artikel(a):
                 prose.append("<ul>" + "".join(f"<li>{x[2:]}</li>" for x in al.split("\n")) + "</ul>")
             else:
                 prose.append(f"<p>{al}</p>")
-        if i == 1 and a["dienst"]:
+        if i == 1 and a.get("cta"):
+            ct, ctx, clab, chref = a["cta"]
+            prose.append(f'<div class="article-cta"><strong>{ct}</strong><span>{ctx}</span>{btn(clab, chref, "grad", "arrow-right")}</div>')
+        elif i == 1 and a["dienst"]:
             _, label, *_ = SPEC[a["dienst"]]
             prose.append(f'<div class="article-cta"><strong>{label}?</strong><span>Een getrainde student, begeleid door een senior. Geen contract.</span>'
                          f'{btn("Meer over " + label[0].lower() + label[1:] if not label.startswith(("SEO", "Google", "AI", "Claude", "WordPress", "TikTok", "Instagram", "LinkedIn", "Shopify")) else "Meer over " + label, "/" + a["dienst"] + "/", "grad", "arrow-right")}</div>')
-    if not a["dienst"]:
+    if not a["dienst"] and not a.get("cta"):
         prose.append(f'<div class="article-cta"><strong>Hulp nodig bij je marketing?</strong><span>Een getrainde student, begeleid door een senior. Geen contract.</span>'
                      f'{btn("Bekijk alle specialisaties", "/specialisaties/", "grad", "arrow-right")}</div>')
     aside = f'<aside class="aside-sticky"><nav class="toc" aria-label="Inhoud van dit artikel"><h2>In dit artikel</h2><ol>{"".join(toc)}</ol></nav></aside>'
@@ -1181,7 +1202,13 @@ def page_artikel(a):
     body = hero([("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)], a["titel"], "", a["meta"], meta_line, cls="hero--article")
     img = foto(ART_FOTO.get(a["slug"], "team-tafel"), "(min-width: 1000px) 760px, 100vw", "article__img")
     body += section(f'<div class="article-grid"><article class="prose">{img}{"".join(prose)}</article>{aside}</div>', "section--flush-top")
-    rel = [x["slug"] for x in ARTIKELEN if x["slug"] != a["slug"]][:3]
+    if a.get("faq"):
+        faq_html, faq_items = faq_block("Veelgestelde *vragen*", [q for q, _ in a["faq"]], dict(a["faq"]))
+        body += faq_html
+    # Verwante artikelen: zelfde dienst of categorie eerst, daarna de nieuwste.
+    others = [x for x in ARTIKELEN if x["slug"] != a["slug"]]
+    score = lambda x: (2 if a["dienst"] and x["dienst"] == a["dienst"] else 0) + (1 if x["categorie"] == a["categorie"] else 0)
+    rel = [x["slug"] for x in sorted(others, key=lambda x: -score(x))][:3]
     body += section(section_head("Meer uit *de kennisbank*") + post_cards(rel))
     body += cta_block()
     graph = [ld_webpage(url, a["title"], a["meta"], main=url + "#artikel"),
@@ -1192,6 +1219,8 @@ def page_artikel(a):
               "mainEntityOfPage": {"@id": url + "#webpage"}}]
     if a["dienst"]:
         graph[-1]["about"] = {"@id": f"{SITE}/{a['dienst']}/#service"}
+    if a.get("faq"):
+        graph.append(ld_faq(url, faq_items))
     return path, a["title"], a["meta"], body, "Kennisbank", graph, False, "article"
 
 
@@ -1390,7 +1419,7 @@ REDIRECTS = [
     ("/linkedin-marketing-student-inhuren-blog/", "/linkedin-marketing-uitbesteden/"),
 ]
 GONE = ["/feed/", "/comments/feed/", "/search/*", "/test-bericht/", "/test-bericht-2/", "/category/uncategorized/", "/wp-json/*", "/xmlrpc.php", "/wp-admin/*", "/wp-login.php"]
-BLOCK = ["/tools/*", "/lastmod.json", "/gids_data.py", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
+BLOCK = ["/tools/*", "/artikelen_oktober.py", "/lastmod.json", "/gids_data.py", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
 
 
 # ---------------------------------------------------------------- bouwen

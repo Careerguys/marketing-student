@@ -13,6 +13,7 @@ import html
 import math
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -879,8 +880,8 @@ def hero(crumb_items, h1a, h1b, lead_txt, extra="", form=None, home=False, cls="
     g = f' <span class="grad">{h1b}</span>' if h1b else ""
     text = f'<div class="hero__text">{c}{before}<h1>{h1a}{g}</h1><p class="lead">{lead_txt}</p>{extra}</div>'
     if form and movable:
-        form = f'<div data-form-hero>{form}</div>'
-    inner = f'<div class="hero__grid" data-form-origin>{text}{form}</div>' if form else text
+        form = f'<div class="form-desk" data-form-hero>{form}</div><!--/form-hero-->'
+    inner = f'<div class="hero__grid">{text}{form}</div>' if form else text
     return f'<section class="hero glow-right{" hero--home" if home else ""}{" " + cls if cls else ""}"><div class="container">{inner}</div></section>'
 
 
@@ -928,7 +929,8 @@ def page_dienst(slug):
     crumb_items.append((label, path))
     work = ""
     if slug in REEL_PAGES:
-        imgs = "".join(f'<img src="/assets/video/{k}.webp" width="540" height="960" alt="" loading="lazy" decoding="async">' for k, *_ in REELS[:3])
+        pri = ' fetchpriority="high"'
+        imgs = "".join(f'<img src="/assets/video/{k}-thumb.webp" width="92" height="160" alt=""{pri if i == 0 else ""}>' for i, (k, *_) in enumerate(REELS[:3]))
         work = f'<a class="hero-work" href="#ons-werk"><span class="hero-work__imgs">{imgs}</span><span>Bekijk ons werk{icon("arrow-right")}</span></a>'
     body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons() + work, offerte_form(slug), movable=True)
     body += dienst_story(slug, noun)
@@ -1338,15 +1340,62 @@ REDIRECTS = [
     ("/post-sitemap.xml", "/sitemap.xml"),
     ("/category-sitemap.xml", "/sitemap.xml"),
     ("/wp-sitemap.xml", "/sitemap.xml"),
-    ("/feed/", "/kennisbank/"),
-    ("/comments/feed/", "/kennisbank/"),
+    ("/privacy-cookiebeleid/", "/privacy-policy/"),
+    ("/tarieven/", "/offerte-aanvragen/"),
+    ("/home/", "/"),
+    ("/content-marketing-student-inhuren/", "/contentmarketing-uitbesteden/"),
+    ("/content-marketing-student-inhuren-blog/", "/contentmarketing-uitbesteden/"),
+    ("/content-creator-inhuren/", "/contentmarketing-uitbesteden/"),
+    ("/instagram-marketing-student-inhuren/", "/instagram-uitbesteden/"),
+    ("/tiktok-marketing-student-inhuren/", "/tiktok-uitbesteden/"),
+    ("/tiktok-marketing-student-inhuren-blog/", "/tiktok-uitbesteden/"),
+    ("/linkedin-marketing-student-inhuren/", "/linkedin-marketing-uitbesteden/"),
+    ("/linkedin-marketing-student-inhuren-blog/", "/linkedin-marketing-uitbesteden/"),
 ]
-GONE = ["/test-bericht/", "/test-bericht-2/", "/category/uncategorized/", "/wp-json/*", "/xmlrpc.php", "/wp-admin/*", "/wp-login.php"]
-BLOCK = ["/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
+GONE = ["/feed/", "/comments/feed/", "/search/*", "/test-bericht/", "/test-bericht-2/", "/category/uncategorized/", "/wp-json/*", "/xmlrpc.php", "/wp-admin/*", "/wp-login.php"]
+BLOCK = ["/lastmod.json", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
 
 
 # ---------------------------------------------------------------- bouwen
+HERO_FORM_RE = re.compile(r'<div class="form-desk" data-form-hero>(.*?)</div><!--/form-hero-->', re.S)
+SLOT_EMPTY = '<div class="form-slot" data-form-slot></div>'
+
+
+def fill_form_slot(htmltext):
+    # Het hero-formulier staat op desktop in de hero; op mobiel toont CSS een kopie onderaan.
+    # Geen JavaScript dat formulieren verplaatst, dus geen layoutverschuiving (CLS).
+    m = HERO_FORM_RE.search(htmltext)
+    if not m or SLOT_EMPTY not in htmltext:
+        return htmltext
+    copy = re.sub(r'\b(id|for|aria-describedby)="([^"]+)"', r'\1="\2-m"', m.group(1))
+    return htmltext.replace(SLOT_EMPTY, f'<div class="form-slot" data-form-slot>{copy}</div>')
+
+
+def strip_marker(htmltext):
+    return htmltext.replace("<!--/form-hero-->", "")
+
+
+def page_lastmod(path, content, old):
+    # lastmod verandert alleen als de inhoud van de pagina verandert (niet bij elke build).
+    # Alleen zichtbare tekst telt: markup, formulier-id's, menu en footer niet.
+    text = re.sub(r"<(script|style)\b.*?</\1>", " ", content, flags=re.S)
+    text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text)).strip()
+    h = hashlib.sha1(text.encode("utf-8")).hexdigest()[:16]
+    if old and old.get("h") == h:
+        return old
+    if old is None:
+        out = ROOT / (path.strip("/") + "/index.html" if path != "/" else "index.html")
+        try:
+            d = subprocess.run(["git", "log", "-1", "--format=%cs", "--", str(out)], cwd=ROOT,
+                               capture_output=True, text=True).stdout.strip()
+        except OSError:
+            d = ""
+        return {"h": h, "d": d or TODAY}
+    return {"h": h, "d": TODAY}
+
+
 def write(path, htmltext):
+    htmltext = strip_marker(fill_form_slot(htmltext))
     out = ROOT / ("404.html" if path == "/404.html" else path.strip("/") + "/index.html" if path != "/" else "index.html")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(htmltext, encoding="utf-8")
@@ -1360,6 +1409,11 @@ def main():
     pages += [page_student(), page_vacatures()] + [page_vacature(v) for v in VACATURES]
     pages += [page_privacy(), page_bedankt(), page_404()]
     sitemap = []
+    lastmod_file = ROOT / "lastmod.json"
+    try:
+        lastmod = json.loads(lastmod_file.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        lastmod = {}
     for p in pages:
         path, title, desc, body, current, graph = p[:6]
         noindex = p[6] if len(p) > 6 else False
@@ -1367,7 +1421,10 @@ def main():
         write(path, layout(path, title, desc, body, current, graph, noindex, og))
         if not noindex:
             sitemap.append(path)
-    urls = "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in sitemap)
+            lastmod[path] = page_lastmod(path, title + desc + body, lastmod.get(path))
+    lastmod = {k: v for k, v in lastmod.items() if k in sitemap}
+    lastmod_file.write_text(json.dumps(lastmod, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    urls = "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{lastmod[u]['d']}</lastmod></url>\n" for u in sitemap)
     (ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n', encoding="utf-8")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /bedankt/\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
     red = "# Gegenereerd door build.py. Pas REDIRECTS in build.py aan, niet dit bestand.\n\n"

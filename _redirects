@@ -5,6 +5,7 @@ https://marketing-student.netlify.app/*  https://marketing-student.nl/:splat  30
 http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  301!
 
 # Broncode niet uitleveren
+/lastmod.json                                                  /404.html  404!
 /build.py                                                      /404.html  404!
 /artikelen.py                                                  /404.html  404!
 /diensten_data.py                                              /404.html  404!
@@ -53,10 +54,22 @@ http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  30
 /post-sitemap.xml                                              /sitemap.xml                                   301!
 /category-sitemap.xml                                          /sitemap.xml                                   301!
 /wp-sitemap.xml                                                /sitemap.xml                                   301!
-/feed/                                                         /kennisbank/                                   301!
-/comments/feed/                                                /kennisbank/                                   301!
+/privacy-cookiebeleid/                                         /privacy-policy/                               301!
+/tarieven/                                                     /offerte-aanvragen/                            301!
+/home/                                                         /                                              301!
+/content-marketing-student-inhuren/                            /contentmarketing-uitbesteden/                 301!
+/content-marketing-student-inhuren-blog/                       /contentmarketing-uitbesteden/                 301!
+/content-creator-inhuren/                                      /contentmarketing-uitbesteden/                 301!
+/instagram-marketing-student-inhuren/                          /instagram-uitbesteden/                        301!
+/tiktok-marketing-student-inhuren/                             /tiktok-uitbesteden/                           301!
+/tiktok-marketing-student-inhuren-blog/                        /tiktok-uitbesteden/                           301!
+/linkedin-marketing-student-inhuren/                           /linkedin-marketing-uitbesteden/               301!
+/linkedin-marketing-student-inhuren-blog/                      /linkedin-marketing-uitbesteden/               301!
 
 # Definitief verwijderd
+/feed/                                                         /404.html  410!
+/comments/feed/                                                /404.html  410!
+/search/*                                                      /404.html  410!
 /test-bericht/                                                 /404.html  410!
 /test-bericht-2/                                               /404.html  410!
 /category/uncategorized/                                       /404.html  410!

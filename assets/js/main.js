@@ -53,19 +53,18 @@
     });
   });
 
-  /* ---------- Formulier op mobiel onderaan, op desktop in de hero ---------- */
-  var heroForm = document.querySelector("[data-form-hero]");
-  var formSlot = document.querySelector("[data-form-slot]");
-  var formOrigin = document.querySelector("[data-form-origin]");
-  if (heroForm && formSlot && formOrigin) {
-    var narrow = window.matchMedia("(max-width: 1099px)");
-    var placeForm = function () {
-      if (narrow.matches && heroForm.parentNode !== formSlot) formSlot.appendChild(heroForm);
-      else if (!narrow.matches && heroForm.parentNode !== formOrigin) formOrigin.appendChild(heroForm);
-    };
-    placeForm();
-    narrow.addEventListener("change", placeForm);
-  }
+  /* ---------- Formulier: op mobiel wijzen #-links naar de kopie onderaan (geen verplaatsing, geen CLS) ---------- */
+  var narrow = window.matchMedia("(max-width: 1099px)");
+  var pointForms = function () {
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      var base = a.getAttribute("data-href") || a.getAttribute("href");
+      if (base.length < 2 || !document.getElementById(base.slice(1) + "-m")) return;
+      a.setAttribute("data-href", base);
+      a.setAttribute("href", narrow.matches ? base + "-m" : base);
+    });
+  };
+  pointForms();
+  narrow.addEventListener("change", pointForms);
 
   /* ---------- Secties zacht in beeld, eenmalig ---------- */
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

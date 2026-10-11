@@ -288,6 +288,8 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 
 /* Formulier: op desktop in de hero, op mobiel via JS naar het blok onderaan. Leeg blok blijft onzichtbaar. */
 .form-section:has(.form-slot:empty) { display: none; }
+@media (max-width: 1099px) { .form-desk { display: none; } }
+@media (min-width: 1100px) { .form-section { display: none; } }
 .form-slot .form-card { max-width: 560px; margin-inline: auto; }
 
 /* ---------- Showcase ---------- */

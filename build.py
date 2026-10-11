@@ -369,7 +369,7 @@ def reels():
         dup = i >= len(REELS)
         extra = ' data-dup aria-hidden="true"' if dup else ""
         tab = ' tabindex="-1"' if dup else ""
-        cards += (f'<figure class="reel" style="--i:{i}"{extra}><video muted loop playsinline preload="none" poster="/assets/video/{key}.webp" data-reel>'
+        cards += (f'<figure class="reel" style="--i:{i}"{extra}><video muted loop playsinline preload="none" poster="/assets/video/{key}-360.webp" data-reel>'
                   f'<source src="/assets/video/{key}.mp4" type="video/mp4"></video>'
                   f'<button class="reel__sound" type="button"{tab} aria-pressed="false" aria-label="Geluid aan: {label}">{icon("volume-x", "reel__off")}{icon("volume", "reel__on")}</button>'
                   f'</figure>')
@@ -416,7 +416,7 @@ def v_calendar(posts=None, status="posts ingepland", month="Oktober"):
             f'<div class="cal__grid">{days}{cells}</div></div>')
 
 
-def v_adpost(img="/assets/video/speedboot-reel.webp", cta="Boek je vaartocht", btn="Meer informatie", meta="Gesponsord", counter="reacties en shares"):
+def v_adpost(img="/assets/video/speedboot-reel-360.webp", cta="Boek je vaartocht", btn="Meer informatie", meta="Gesponsord", counter="reacties en shares"):
     hearts = "".join(f'<span class="heart" style="--x:{x}px;--d:{d}s;--s:{sc}">{HEART}</span>'
                      for x, d, sc in [(20, 0, 1), (70, 0.2, 0.8), (40, 0.4, 1.2), (110, 0.6, 0.9), (5, 0.8, 0.75), (140, 1.0, 1.1),
                                       (60, 1.2, 0.85), (95, 1.4, 1), (30, 1.6, 1.25), (125, 1.8, 0.9), (50, 2.0, 1.05), (160, 2.2, 0.8),
@@ -529,7 +529,7 @@ def v_gauge():
             '<b data-count="94" data-dec="0" data-suffix="">94</b></div><ul class="gauge__list">' + rows + '</ul></div>')
 
 
-def v_editor(img="/assets/video/studio-walkthrough.webp"):
+def v_editor(img="/assets/video/studio-walkthrough-360.webp"):
     wave = "".join(f'<i style="height:{h}%"></i>' for h in [30, 60, 45, 80, 55, 70, 35, 90, 50, 65, 40, 75, 60, 85, 45, 30, 70, 55, 80, 40, 60, 35, 75, 50])
     return (f'<div class="editor" data-anim aria-hidden="true"><div class="editor__top"><img src="{img}" width="540" height="960" alt="" loading="lazy" decoding="async">'
             f'<div class="editor__info"><b>Montage</b><small>Reel · 9:16</small><span class="editor__tc">00:00:12</span></div></div>'
@@ -1028,7 +1028,7 @@ def page_specialisaties():
     secs_after = cta_block()
     p = simple_page("/specialisaties/", "Specialisaties", "Alle specialisaties", "op een rij",
                     f"Van SEO tot video: {len(SPECS)} specialisaties. Elke student is getraind in het vak en werkt onder een ervaren marketeer. Kies wat je nodig hebt, of laat ons meedenken.",
-                    "Alle specialisaties | Marketing Student",
+                    "Specialisaties: van SEO tot video | Marketing Student",
                     f"{len(SPECS)} specialisaties, van SEO tot video. Getrainde marketingstudenten, begeleid door ervaren marketeers. Bekijk welke student past.",
                     secs, "specialisaties", "CollectionPage", faq,
                     [{"@type": "ItemList", "@id": SITE + "/specialisaties/#lijst", "name": "Specialisaties", "numberOfItems": len(items), "itemListElement": items}])
@@ -1123,7 +1123,7 @@ def page_contact():
 </div>'''
     secs = section(f'<div class="contact-grid">{form}{cards}</div>', "section--flush-top") + offices_section()
     return simple_page("/contact/", "Contact", "Neem", "contact op", "Een vraag over een student, een specialisatie of een lopende samenwerking? Bel, mail of stuur een bericht.",
-                       "Contact | Marketing Student",
+                       "Contact: bel, mail of kom langs | Marketing Student",
                        "Bel 085-060 8631, mail info@marketing-student.nl of stuur een bericht. Vestigingen in Den Haag en Mijdrecht.",
                        secs, "Contact", "ContactPage", hero_extra="")
 
@@ -1463,7 +1463,7 @@ def main():
     lastmod_file.write_text(json.dumps(lastmod, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     urls = "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{lastmod[u]['d']}</lastmod></url>\n" for u in sitemap)
     (ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n', encoding="utf-8")
-    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /bedankt/\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
+    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
     red = "# Gegenereerd door build.py. Pas REDIRECTS in build.py aan, niet dit bestand.\n\n"
     red += "# Netlify-subdomein naar het hoofddomein (voorkomt dubbele content)\n"
     red += "https://marketing-student.netlify.app/*  https://marketing-student.nl/:splat  301!\n"

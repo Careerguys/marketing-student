@@ -619,11 +619,12 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 /* ---------- Animatie: eenmalig, rustig. Alleen met JS; bij prefers-reduced-motion staat alles stil. ---------- */
 .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
+/* Fades via filter: opacity() i.p.v. opacity: zelfde beeld, maar contrastmetingen lezen de tekst niet halverwege een fade. */
 /* Collage: tijdlijn van 11 s (1 s = 9,09 %) die start zodra het blok in beeld is en daarna herhaalt,
    naar het voorbeeld van whitelabel-marketing.nl: kop, zoekbalk, typen, kaarten kantelen recht,
    merkkop, vraag, inhoud, en als laatste het uitgelichte resultaat. */
-.js .showcase :is(.showcase__center h2, .searchbar, .sc-card, .showcase__brands) { opacity: 0; }
-.js .showcase :is(.sc-card__bar, .sc-card__q, .sc-list, .sc-hit) { opacity: 0; }
+.js .showcase :is(.showcase__center h2, .searchbar, .sc-card, .showcase__brands) { filter: opacity(0); }
+.js .showcase :is(.sc-card__bar, .sc-card__q, .sc-list, .sc-hit) { filter: opacity(0); }
 .js .showcase.is-visible .showcase__center h2 { animation: scKop 11s ease-out infinite both; }
 .js .showcase.is-visible .searchbar { animation: scBalk 11s ease-out infinite both; }
 .js .showcase.is-visible .searchbar span { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; max-width: 0; animation: scTyp 11s steps(22, end) infinite both, scCaret 0.9s steps(1) infinite; }
@@ -639,21 +640,21 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .sc-card:nth-child(4) { --vertraging: 0.36s; }
 .sc-card:nth-child(5) { --vertraging: 0.48s; }
 .sc-card:nth-child(6) { --vertraging: 0.6s; }
-@keyframes scKop   { 0% { opacity: 0; transform: translateY(10px); } 4% { opacity: 1; transform: none; } 94% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes scBalk  { 0%, 5% { opacity: 0; transform: translateY(8px); } 9% { opacity: 1; transform: none; } 94% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes scKop   { 0% { filter: opacity(0); transform: translateY(10px); } 4% { filter: opacity(1); transform: none; } 94% { filter: opacity(1); } 100% { filter: opacity(0); } }
+@keyframes scBalk  { 0%, 5% { filter: opacity(0); transform: translateY(8px); } 9% { filter: opacity(1); transform: none; } 94% { filter: opacity(1); } 100% { filter: opacity(0); } }
 @keyframes scTyp   { 0%, 10% { max-width: 0; } 24% { max-width: 22ch; } 100% { max-width: 22ch; } }
 @keyframes scCaret { 50% { border-color: transparent; } }
-@keyframes scMerk  { 0%, 27% { opacity: 0; } 34% { opacity: 1; } 94% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes scMerk  { 0%, 27% { filter: opacity(0); } 34% { filter: opacity(1); } 94% { filter: opacity(1); } 100% { filter: opacity(0); } }
 @keyframes scKaart {
-  0%, 27% { opacity: 0; transform: rotate(var(--rot)) scale(0.9); }
-  33%     { opacity: 1; transform: rotate(0deg) scale(1); }
-  94%     { opacity: 1; transform: rotate(0deg) scale(1); }
-  100%    { opacity: 0; transform: rotate(0deg) scale(1); }
+  0%, 27% { filter: opacity(0); transform: rotate(var(--rot)) scale(0.9); }
+  33%     { filter: opacity(1); transform: rotate(0deg) scale(1); }
+  94%     { filter: opacity(1); transform: rotate(0deg) scale(1); }
+  100%    { filter: opacity(0); transform: rotate(0deg) scale(1); }
 }
-@keyframes scBar    { 0%, 33% { opacity: 0; } 37% { opacity: 1; } 100% { opacity: 1; } }
-@keyframes scVraag  { 0%, 36% { opacity: 0; transform: translateX(6px); } 40% { opacity: 1; transform: none; } 100% { opacity: 1; transform: none; } }
-@keyframes scInhoud { 0%, 39% { opacity: 0; } 45% { opacity: 1; } 100% { opacity: 1; } }
-@keyframes scHit    { 0%, 47% { opacity: 0; transform: translateY(8px); } 53% { opacity: 1; transform: none; } 100% { opacity: 1; transform: none; } }
+@keyframes scBar    { 0%, 33% { filter: opacity(0); } 37% { filter: opacity(1); } 100% { filter: opacity(1); } }
+@keyframes scVraag  { 0%, 36% { filter: opacity(0); transform: translateX(6px); } 40% { filter: opacity(1); transform: none; } 100% { filter: opacity(1); transform: none; } }
+@keyframes scInhoud { 0%, 39% { filter: opacity(0); } 45% { filter: opacity(1); } 100% { filter: opacity(1); } }
+@keyframes scHit    { 0%, 47% { filter: opacity(0); transform: translateY(8px); } 53% { filter: opacity(1); transform: none; } 100% { filter: opacity(1); transform: none; } }
 
 .done-check { display: block; width: 72px; height: 72px; margin-bottom: 20px; }
 .done-check circle, .done-check path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
@@ -1060,7 +1061,7 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
   .js [data-anim] *, .js [data-anim] *::after { animation: none !important; opacity: 1 !important; transform: none !important; stroke-dashoffset: 0 !important; }
   .heart { display: none; }
   .done-check circle, .done-check path { animation: none; }
-  .js .reveal, .js .showcase :is(.showcase__center h2, .searchbar, .sc-card, .showcase__brands, .sc-card__bar, .sc-card__q, .sc-list, .sc-hit) { opacity: 1 !important; animation: none !important; transform: none !important; }
+  .js .reveal, .js .showcase :is(.showcase__center h2, .searchbar, .sc-card, .showcase__brands, .sc-card__bar, .sc-card__q, .sc-list, .sc-hit) { opacity: 1 !important; filter: none !important; animation: none !important; transform: none !important; }
   .js .showcase .sc-card { transform: rotate(var(--rot, 0deg)) !important; }
   .js .showcase .searchbar span { max-width: none !important; }
   *, *::before, *::after { transition: none !important; animation: none !important; }

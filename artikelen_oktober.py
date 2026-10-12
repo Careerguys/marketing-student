@@ -283,7 +283,7 @@ NIEUW += [
             ]),
             ("Laat je medewerkers aan het woord", [
                 "Kandidaten geloven collega's meer dan een bedrijf. Laat daarom je medewerkers vertellen over hun werk, in korte video's, foto's met een quote of een dag-uit-het-leven. Een eigen werkenbij-pagina op je website bundelt die verhalen, met per vacature een eigen pagina en een kort sollicitatieformulier.",
-                "Video's van de werkvloer maak je bijvoorbeeld op één opnamedag, met <a href=\"/foto-en-video-laten-maken/\">foto en video laten maken</a>. Deel ze op <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn</a> en Instagram, en zet ze in bij vacatures.",
+                "Video's van de werkvloer maak je bijvoorbeeld op één opnamedag, als <a href=\"/recruitmentvideo-laten-maken/\">recruitmentvideo</a>. Deel ze op <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn</a> en Instagram, en zet ze in bij vacatures.",
             ]),
             ("Meten of het werkt", [
                 "Employer branding meet je niet in een week. Kijk over langere tijd naar het aantal en de kwaliteit van sollicitaties, hoe kandidaten je gevonden hebben, hoe lang vacatures openstaan en hoe lang medewerkers blijven. Lees ook wat er over je gezegd wordt in reviews op vacaturesites. Reageer daar netjes op, ook op kritiek: kandidaten lezen het mee.",

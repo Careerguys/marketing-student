@@ -71,6 +71,11 @@ SPECS = [
     ("premiere-pro-editor-inhuren", "Premiere Pro-editor inhuren", ("brand", "premiere"), "Montage met ondertiteling en huisstijl.", "Social media en content"),
     ("after-effects-specialist-inhuren", "After Effects-specialist inhuren", ("brand", "aftereffects"), "Motion graphics en animatie.", "Social media en content"),
     ("davinci-resolve-editor-inhuren", "DaVinci Resolve-editor inhuren", ("brand", "davinci"), "Montage en kleurcorrectie.", "Social media en content"),
+    ("bedrijfsfilm-laten-maken", "Bedrijfsfilm laten maken", ("icon", "clapperboard"), "Je bedrijf, team en werkwijze in een film.", "Social media en content"),
+    ("animatie-laten-maken", "Animatie laten maken", ("icon", "sparkles"), "Uitlegvideo's, explainers en logo-animaties.", "Social media en content"),
+    ("drone-video-laten-maken", "Drone video laten maken", ("icon", "drone"), "Luchtbeelden van je pand, project of evenement.", "Social media en content"),
+    ("recruitmentvideo-laten-maken", "Recruitmentvideo laten maken", ("icon", "user-search"), "Collega's aan het woord voor je vacatures.", "Social media en content"),
+    ("facebook-adverteren-uitbesteden", "Facebook adverteren uitbesteden", ("brand", "facebook"), "Meta ads op Facebook en Instagram.", "Social media en content"),
     ("recruitment-marketing-uitbesteden", "Recruitment marketing", ("icon", "users"), "Vacatures, campagnes en employer branding.", "Social media en content"),
     ("huisstijl-laten-maken", "Huisstijl laten maken", ("icon", "pen"), "Logo, huisstijl, tone of voice en merkverhaal.", "Merk en e-mail"),
     ("email-marketing-uitbesteden", "E-mailmarketing uitbesteden", ("icon", "mail"), "Nieuwsbrieven en automatische flows.", "Merk en e-mail"),
@@ -87,7 +92,10 @@ PARENT = {"instagram-uitbesteden": "social-media-uitbesteden", "tiktok-uitbested
           "linkedin-marketing-uitbesteden": "social-media-uitbesteden", "contentmarketing-uitbesteden": "social-media-uitbesteden",
           "claude-specialist-inhuren": "ai-specialist-inhuren", "premiere-pro-editor-inhuren": "foto-en-video-laten-maken",
           "after-effects-specialist-inhuren": "foto-en-video-laten-maken", "davinci-resolve-editor-inhuren": "foto-en-video-laten-maken",
-          "wordpress-specialist-inhuren": "website-laten-maken", "shopify-specialist-inhuren": "website-laten-maken"}
+          "wordpress-specialist-inhuren": "website-laten-maken", "shopify-specialist-inhuren": "website-laten-maken",
+          "bedrijfsfilm-laten-maken": "foto-en-video-laten-maken", "animatie-laten-maken": "foto-en-video-laten-maken",
+          "drone-video-laten-maken": "foto-en-video-laten-maken", "recruitmentvideo-laten-maken": "foto-en-video-laten-maken",
+          "facebook-adverteren-uitbesteden": "social-media-adverteren"}
 # Hoofdcategorieën in menu, homepage en footer, in deze volgorde (rij voor rij in twee kolommen).
 # Huisstijl, e-mailmarketing en AI staan bewust niet in het menu; ze zijn bereikbaar via /specialisaties/.
 NAV_SPECS = [("foto-en-video-laten-maken", "Content creatie (foto &amp; video)", "video"), ("social-media-adverteren", "Social media campagnes", "megaphone"),
@@ -122,6 +130,11 @@ REL = {
     "shopify-specialist-inhuren": ["nieuwsbrief-maken", "wat-is-sea", "online-marketing-mkb"],
     "ai-specialist-inhuren": ["claude-vs-chatgpt", "wat-is-contentmarketing", "online-marketing-mkb"],
     "claude-specialist-inhuren": ["claude-vs-chatgpt", "nieuwsbrief-maken", "wat-is-contentmarketing"],
+    "bedrijfsfilm-laten-maken": ["reels-maken", "wat-is-contentmarketing", "wat-is-employer-branding"],
+    "animatie-laten-maken": ["wat-is-een-huisstijl", "wat-is-contentmarketing", "reels-maken"],
+    "drone-video-laten-maken": ["reels-maken", "contentkalender-maken", "wat-is-contentmarketing"],
+    "recruitmentvideo-laten-maken": ["wat-is-employer-branding", "reels-maken", "welke-social-media-kiezen"],
+    "facebook-adverteren-uitbesteden": ["reels-maken", "wat-is-sea", "welke-social-media-kiezen"],
 }
 REL_DEFAULT = ["online-marketing-mkb", "freelance-marketeer-of-marketing-student", "wat-voor-type-marketeers-zijn-er"]
 
@@ -932,16 +945,16 @@ RELATED = {
     "linkbuilding-specialist-inhuren": ["seo-specialist-inhuren", "contentmarketing-uitbesteden", "website-laten-maken", "google-ads-specialist-inhuren"],
     "google-ads-specialist-inhuren": ["seo-specialist-inhuren", "social-media-adverteren", "website-laten-maken", "shopify-specialist-inhuren"],
     "social-media-uitbesteden": ["contentmarketing-uitbesteden", "social-media-adverteren", "huisstijl-laten-maken", "foto-en-video-laten-maken"],
-    "instagram-uitbesteden": ["contentmarketing-uitbesteden", "social-media-adverteren", "foto-en-video-laten-maken", "huisstijl-laten-maken"],
-    "tiktok-uitbesteden": ["foto-en-video-laten-maken", "social-media-adverteren", "contentmarketing-uitbesteden", "instagram-uitbesteden"],
+    "instagram-uitbesteden": ["contentmarketing-uitbesteden", "facebook-adverteren-uitbesteden", "foto-en-video-laten-maken", "huisstijl-laten-maken"],
+    "tiktok-uitbesteden": ["foto-en-video-laten-maken", "social-media-adverteren", "contentmarketing-uitbesteden", "drone-video-laten-maken"],
     "linkedin-marketing-uitbesteden": ["recruitment-marketing-uitbesteden", "social-media-adverteren", "contentmarketing-uitbesteden", "email-marketing-uitbesteden"],
     "contentmarketing-uitbesteden": ["email-marketing-uitbesteden", "huisstijl-laten-maken", "ai-specialist-inhuren", "claude-specialist-inhuren"],
     "foto-en-video-laten-maken": ["contentmarketing-uitbesteden", "social-media-adverteren", "recruitment-marketing-uitbesteden", "huisstijl-laten-maken"],
-    "social-media-adverteren": ["google-ads-specialist-inhuren", "recruitment-marketing-uitbesteden", "foto-en-video-laten-maken", "social-media-uitbesteden"],
+    "social-media-adverteren": ["google-ads-specialist-inhuren", "recruitment-marketing-uitbesteden", "foto-en-video-laten-maken", "animatie-laten-maken"],
     "premiere-pro-editor-inhuren": ["after-effects-specialist-inhuren", "davinci-resolve-editor-inhuren", "foto-en-video-laten-maken", "social-media-adverteren"],
     "after-effects-specialist-inhuren": ["premiere-pro-editor-inhuren", "davinci-resolve-editor-inhuren", "huisstijl-laten-maken", "foto-en-video-laten-maken"],
     "davinci-resolve-editor-inhuren": ["premiere-pro-editor-inhuren", "after-effects-specialist-inhuren", "foto-en-video-laten-maken", "contentmarketing-uitbesteden"],
-    "recruitment-marketing-uitbesteden": ["linkedin-marketing-uitbesteden", "social-media-adverteren", "foto-en-video-laten-maken", "email-marketing-uitbesteden"],
+    "recruitment-marketing-uitbesteden": ["recruitmentvideo-laten-maken", "linkedin-marketing-uitbesteden", "social-media-adverteren", "email-marketing-uitbesteden"],
     "huisstijl-laten-maken": ["website-laten-maken", "contentmarketing-uitbesteden", "email-marketing-uitbesteden", "social-media-uitbesteden"],
     "email-marketing-uitbesteden": ["contentmarketing-uitbesteden", "huisstijl-laten-maken", "shopify-specialist-inhuren", "ai-specialist-inhuren"],
     "website-laten-maken": ["huisstijl-laten-maken", "seo-specialist-inhuren", "linkbuilding-specialist-inhuren", "email-marketing-uitbesteden"],
@@ -949,6 +962,11 @@ RELATED = {
     "shopify-specialist-inhuren": ["wordpress-specialist-inhuren", "email-marketing-uitbesteden", "google-ads-specialist-inhuren", "social-media-adverteren"],
     "ai-specialist-inhuren": ["claude-specialist-inhuren", "email-marketing-uitbesteden", "contentmarketing-uitbesteden", "wordpress-specialist-inhuren"],
     "claude-specialist-inhuren": ["ai-specialist-inhuren", "contentmarketing-uitbesteden", "email-marketing-uitbesteden", "wordpress-specialist-inhuren"],
+    "bedrijfsfilm-laten-maken": ["drone-video-laten-maken", "animatie-laten-maken", "recruitmentvideo-laten-maken", "social-media-adverteren"],
+    "animatie-laten-maken": ["after-effects-specialist-inhuren", "bedrijfsfilm-laten-maken", "huisstijl-laten-maken", "facebook-adverteren-uitbesteden"],
+    "drone-video-laten-maken": ["bedrijfsfilm-laten-maken", "premiere-pro-editor-inhuren", "social-media-uitbesteden", "facebook-adverteren-uitbesteden"],
+    "recruitmentvideo-laten-maken": ["recruitment-marketing-uitbesteden", "linkedin-marketing-uitbesteden", "bedrijfsfilm-laten-maken", "facebook-adverteren-uitbesteden"],
+    "facebook-adverteren-uitbesteden": ["instagram-uitbesteden", "bedrijfsfilm-laten-maken", "animatie-laten-maken", "google-ads-specialist-inhuren"],
 }
 
 
@@ -958,6 +976,11 @@ def gids_section(slug):
     kop, lead_txt, blokken = GIDS[slug]
     items = "".join(f'<div class="gids__item"><h3>{h}</h3>{x}</div>' for h, x in blokken)
     return section(section_head(kop, lead_txt) + f'<div class="gids">{items}</div>')
+
+
+CHILD_HEAD = {"foto-en-video-laten-maken": "Specialisaties in *foto en video*", "social-media-adverteren": "Specialisaties in *social ads*",
+              "social-media-uitbesteden": "Specialisaties in *social media*", "website-laten-maken": "Specialisaties in *websites*",
+              "ai-specialist-inhuren": "Specialisaties in *AI*"}
 
 
 def page_dienst(slug):
@@ -970,7 +993,9 @@ def page_dienst(slug):
     FAQ_ONDERWERP = {"Social media": "social media uitbesteden", "Content": "contentmarketing", "Branding": "een huisstijl",
                      "E-mailmarketing": "e-mailmarketing", "LinkedIn": "LinkedIn-marketing", "TikTok": "TikTok uitbesteden",
                      "Instagram": "Instagram uitbesteden", "Foto en video": "foto en video laten maken", "Recruitment": "recruitment marketing",
-                     "Social ads": "social media adverteren", "Website": "een website laten maken"}
+                     "Social ads": "social media adverteren", "Website": "een website laten maken",
+                     "Bedrijfsfilm": "een bedrijfsfilm", "Animatie": "animatie laten maken", "Drone video": "drone video's",
+                     "Recruitmentvideo": "een recruitmentvideo", "Facebook": "Facebook adverteren"}
     lab = FAQ_ONDERWERP.get(d["short"], d["short"] if d["short"] in ("SEO", "Google Ads", "AI", "Claude") else d["short"])
     if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify", "Premiere Pro", "After Effects", "DaVinci Resolve", "Linkbuilding"):
         lab = "een " + d["noun"]
@@ -1001,6 +1026,8 @@ def page_dienst(slug):
     elif tools:
         kop = "De kanalen *die we inzetten*" if d["platforms"] in CHANNEL_PLATS else "De tools *die we gebruiken*"
         body += section(section_head(kop, tools_lead) + platform_tiles(tools, slug))
+    if slug in CHILDREN:
+        body += section(section_head(CHILD_HEAD.get(slug, "Meer *specialisaties*")) + spec_grid(CHILDREN[slug], cta=False))
     body += gids_section(slug)
     body += section(section_head(f"Zo werk je met *een {noun}*", "Twee werkvormen, allebei zonder contract. Je krijgt altijd eerst een offerte op maat.") + plans(Noun))
     seo = slug == "seo-specialist-inhuren"

@@ -205,7 +205,7 @@ NIEUW = [
                 "Plaats regelmatig: een vast ritme werkt beter dan af en toe een uitschieter. Een <a href=\"/kennisbank/contentkalender-maken/\">contentkalender</a> helpt je vooruit te plannen.",
             ]),
             ("Zelf doen of uitbesteden?", [
-                "Zelf reels maken kan prima, maar het kost tijd: bedenken, filmen, monteren en plaatsen. Veel bedrijven kiezen daarom voor één opnamedag waarin materiaal voor weken wordt gefilmd. Bij <a href=\"/foto-en-video-laten-maken/\">foto en video laten maken</a> filmt en monteert een student je reels, en met <a href=\"/instagram-uitbesteden/\">Instagram uitbesteden</a> worden ze ook ingepland en beheerd.",
+                "Zelf reels maken kan prima, maar het kost tijd: bedenken, filmen, monteren en plaatsen. Veel bedrijven kiezen daarom voor één opnamedag waarin materiaal voor weken wordt gefilmd. Bij <a href=\"/social-media-video-laten-maken/\">social media video's laten maken</a> filmt en monteert een student je reels, en met <a href=\"/instagram-uitbesteden/\">Instagram uitbesteden</a> worden ze ook ingepland en beheerd.",
             ]),
         ],
         faq=[

@@ -7,6 +7,10 @@
   "d": "2026-10-11",
   "h": "1c6f65414b7bb989"
  },
+ "/aftermovie-laten-maken/": {
+  "d": "2026-10-13",
+  "h": "6daa855dee4f0a1b"
+ },
  "/ai-specialist-inhuren/": {
   "d": "2026-10-12",
   "h": "0cccfa3dc41e02f8"
@@ -18,6 +22,10 @@
  "/bedrijfsfilm-laten-maken/": {
   "d": "2026-10-12",
   "h": "f6df0e8754c7cc7a"
+ },
+ "/bedrijfsfotograaf-inhuren/": {
+  "d": "2026-10-13",
+  "h": "c085a919b86f7667"
  },
  "/claude-specialist-inhuren/": {
   "d": "2026-10-11",
@@ -44,12 +52,12 @@
   "h": "71cd46f49388bfd4"
  },
  "/facebook-adverteren-uitbesteden/": {
-  "d": "2026-10-12",
-  "h": "8d1262dc4a236056"
+  "d": "2026-10-13",
+  "h": "6d57d93b595801f2"
  },
  "/foto-en-video-laten-maken/": {
-  "d": "2026-10-12",
-  "h": "0c4841ad18a06eb5"
+  "d": "2026-10-13",
+  "h": "3516be7a0bf007c0"
  },
  "/google-ads-specialist-inhuren/": {
   "d": "2026-10-11",
@@ -60,8 +68,8 @@
   "h": "d1e14d92a5780c80"
  },
  "/instagram-uitbesteden/": {
-  "d": "2026-10-12",
-  "h": "3dd286c140fbfd99"
+  "d": "2026-10-13",
+  "h": "294770cace9f1106"
  },
  "/kennisbank/": {
   "d": "2026-10-11",
@@ -88,8 +96,8 @@
   "h": "4c9ea79f0c1ae706"
  },
  "/kennisbank/reels-maken/": {
-  "d": "2026-10-11",
-  "h": "1fea750ac5413d2e"
+  "d": "2026-10-13",
+  "h": "ab4fafcf32164e0d"
  },
  "/kennisbank/social-media-uitbesteden-waar-let-je-op/": {
   "d": "2026-10-11",
@@ -159,6 +167,14 @@
   "d": "2026-09-25",
   "h": "9e925756619b173b"
  },
+ "/productfotos-laten-maken/": {
+  "d": "2026-10-13",
+  "h": "0e5a84a774812e65"
+ },
+ "/productvideo-laten-maken/": {
+  "d": "2026-10-13",
+  "h": "bc6b6319fbb2ecb6"
+ },
  "/recruitment-marketing-uitbesteden/": {
   "d": "2026-10-12",
   "h": "8e3b36da8b26e34d"
@@ -172,36 +188,48 @@
   "h": "904bd061fd901d5a"
  },
  "/shopify-specialist-inhuren/": {
-  "d": "2026-10-11",
-  "h": "e8e04ea1c68710df"
+  "d": "2026-10-13",
+  "h": "14490a5a0589f19f"
  },
  "/social-media-adverteren/": {
-  "d": "2026-10-12",
-  "h": "3bf6dc1ec8be85fd"
+  "d": "2026-10-13",
+  "h": "3fdcb2b2eb9bd586"
  },
  "/social-media-uitbesteden/": {
   "d": "2026-10-12",
   "h": "045759775130a664"
  },
+ "/social-media-video-laten-maken/": {
+  "d": "2026-10-13",
+  "h": "58f692c7817107b7"
+ },
  "/specialisaties/": {
-  "d": "2026-10-12",
-  "h": "771323e4407026e6"
+  "d": "2026-10-13",
+  "h": "13ff231ee141cb32"
  },
  "/tiktok-uitbesteden/": {
-  "d": "2026-10-12",
-  "h": "ac8ce7bcf475213b"
+  "d": "2026-10-13",
+  "h": "d21c6356f539b98f"
  },
  "/vacatures/": {
-  "d": "2026-10-11",
-  "h": "5b436c31bc1f656b"
+  "d": "2026-10-13",
+  "h": "2c0e10d97cb6d45f"
  },
  "/vacatures/ai-student/": {
-  "d": "2026-10-11",
-  "h": "72a1413182f22d3b"
+  "d": "2026-10-13",
+  "h": "633e2e9b22b3cd4b"
+ },
+ "/vacatures/fotograaf-student/": {
+  "d": "2026-10-13",
+  "h": "d2bfd84de18cd518"
  },
  "/vacatures/google-ads-student/": {
-  "d": "2026-10-11",
-  "h": "746ed40a6b69c402"
+  "d": "2026-10-13",
+  "h": "a2e0e6eda38d2e0c"
+ },
+ "/vacatures/motion-designer-student/": {
+  "d": "2026-10-13",
+  "h": "ee00ad60458d642e"
  },
  "/vacatures/seo-student/": {
   "d": "2026-10-11",
@@ -215,9 +243,17 @@
   "d": "2026-10-11",
   "h": "dd63bbdbb56549c1"
  },
+ "/vacatures/videograaf-student/": {
+  "d": "2026-10-13",
+  "h": "3cbabe079223d212"
+ },
  "/vacatures/wordpress-student/": {
-  "d": "2026-10-11",
-  "h": "01365eaf3da59e60"
+  "d": "2026-10-13",
+  "h": "b9569bd51c5371c7"
+ },
+ "/videograaf-inhuren/": {
+  "d": "2026-10-13",
+  "h": "e0edad89fb044f1d"
  },
  "/website-laten-maken/": {
   "d": "2026-10-12",
@@ -234,5 +270,9 @@
  "/wordpress-specialist-inhuren/": {
   "d": "2026-10-11",
   "h": "ebdc622d999cdda4"
+ },
+ "/youtube-adverteren-uitbesteden/": {
+  "d": "2026-10-13",
+  "h": "8152d8be8b2bae3a"
  }
 }

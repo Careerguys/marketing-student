@@ -1165,10 +1165,7 @@ def offices_section():
     </div>
     <picture class="office__photo"><source srcset="/assets/img/vestiging-{slug}.webp 1x{srcset2}" type="image/webp"><img src="/assets/img/vestiging-{slug}.jpg" srcset="/assets/img/vestiging-{slug}.jpg 1x{srcset2j}" width="480" height="640" alt="{alt}" loading="lazy"></picture>
   </div>
-  <div class="office__map" data-map="{straat} {pc}" data-map-title="Kaart {straat}, {pc}">
-    <button class="btn btn--outline" type="button" data-map-load>Kaart tonen</button>
-    <p class="office__note">De kaart komt van Google Maps.</p>
-  </div>
+  <div class="office__map"><iframe src="https://maps.google.com/maps?q={q}&amp;z=15&amp;output=embed" title="Kaart {straat}, {pc}" width="600" height="260" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </article>'''
     return section('<div id="vestigingen">' + section_head("Kom langs in *Den Haag of Mijdrecht*", "Op afspraak. Bel of mail even vooraf, dan staat de koffie klaar.") + f'<div class="offices">{cards}</div></div>')
 

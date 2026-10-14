@@ -192,7 +192,8 @@ HOME_SC = dict(t1="Jouw bedrijf", t2="zichtbaar op elk kanaal", vraag="installat
 def spec_icon(kind):
     t, n = kind
     if t == "brand":
-        return f'<span class="brand-tile">{brand(n)}</span>'
+        # Merklogo in dezelfde kleurcombinatie als de lijniconen: groen op een groene tint.
+        return f'<span class="card__icon card__icon--brand"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">{B["paths"][n]}</svg></span>'
     return f'<span class="card__icon">{icon(n)}</span>'
 
 

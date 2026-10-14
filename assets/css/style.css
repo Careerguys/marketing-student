@@ -368,6 +368,7 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .card p { margin: 0; font-size: 0.9375rem; line-height: 1.55; color: var(--muted); }
 .card__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 14px; background: rgba(121, 199, 158, 0.14); color: var(--green); flex: none; }
 .card__icon svg { width: 24px; height: 24px; }
+.card__icon--brand svg { width: 22px; height: 22px; }
 
 .spec-card { text-decoration: none; transition: border-color 160ms var(--ease), transform 160ms var(--ease); }
 .spec-card:hover { border-color: var(--green); transform: translateY(-2px); }

@@ -326,3 +326,21 @@ GIDS["youtube-uitbesteden"] = ("Alles over *marketing op YouTube*", "Waarom YouT
     ("Organisch en betaald",
      "<p>Een eigen kanaal bouw je organisch op, met video's die gevonden worden. Wil je sneller bereik, of een specifieke doelgroep bereiken, dan zet je je beste video's in als advertentie. Hoe dat werkt, lees je bij <a href=\"/youtube-adverteren-uitbesteden/\">YouTube adverteren uitbesteden</a>. Heb je nog geen video's, dan maken we ze als <a href=\"/social-media-video-laten-maken/\">social media video</a>, <a href=\"/bedrijfsfilm-laten-maken/\">bedrijfsfilm</a> of <a href=\"/animatie-laten-maken/\">animatie</a>.</p>"),
 ])
+
+# ---- Google for Jobs (werving via Google), 2026-10-14 ----
+GIDS["google-for-jobs"] = ("Alles over *Google for Jobs*", "Hoe vacatures in Google komen, wat je daarvoor nodig hebt en hoe je meer sollicitaties haalt uit Google.", [
+    ("Hoe werkt Google for Jobs?",
+     "<p>Zoekt iemand in Google naar een functie, zoals marketingmedewerker Den Haag, dan toont Google vaak een vacatureblok boven of tussen de gewone resultaten. Daarin staan vacatures van werkgevers en vacaturesites, met filters op locatie, datum en soort dienstverband. Google maakt die vacatures niet zelf, maar haalt ze op van websites die hun vacatures op de juiste manier opmaken.</p>"),
+    ("Wat heb je nodig?",
+     "<p>De basis is een eigen vacaturepagina per functie, op je eigen website. Op die pagina voeg je gestructureerde gegevens toe volgens de richtlijnen van Google: functietitel, omschrijving, werkgever, locatie, datum van plaatsing en tot wanneer de vacature geldig is. Een salarisindicatie en het soort dienstverband zijn aanbevolen. Een <a href=\"/website-laten-maken/\">goede website</a> met een werkenbij-pagina en een sitemap helpt Google om nieuwe vacatures snel te vinden.</p>"),
+    ("Veelgemaakte fouten",
+     "<p>Vacatures die al lang vervuld zijn maar nog online staan, worden door Google als slechte ervaring gezien. Haal ze daarom op tijd offline of zet een juiste geldigheidsdatum. Ook een functietitel vol hoofdletters of extra woorden, ontbrekende locatiegegevens of één pagina met alle vacatures onder elkaar werken niet. Google wil per vacature een eigen pagina, met dezelfde informatie zichtbaar als in de opmaak.</p>"),
+    ("Een vacature die overtuigt",
+     "<p>In Google for Jobs staat je vacature naast die van anderen. Een duidelijke functietitel zonder interne termen, een eerlijke omschrijving van het werk en een salarisindicatie maken het verschil. Op de vacaturepagina zelf helpen foto's of een <a href=\"/recruitmentvideo-laten-maken/\">recruitmentvideo</a> van je team, en een kort sollicitatieformulier. Lees meer in ons artikel over <a href=\"/kennisbank/wat-is-employer-branding/\">employer branding</a>.</p>"),
+    ("Google Ads voor vacatures",
+     "<p>Is een vacature moeilijk te vullen, of zit je in een drukke markt, dan kun je naast Google for Jobs ook adverteren in Google. Met een zoekcampagne sta je bovenaan bij zoekopdrachten naar de functie in je regio. Met <a href=\"/youtube-adverteren-uitbesteden/\">YouTube-advertenties</a> bereik je ook mensen die niet actief zoeken. Hoe zoekcampagnes werken, lees je bij <a href=\"/google-ads-specialist-inhuren/\">Google Ads</a>.</p>"),
+    ("Meten in Search Console",
+     "<p>Google Search Console heeft een apart rapport voor vacatures. Daar zie je welke vacaturepagina's goed worden gelezen, welke gegevens ontbreken en welke fouten er zijn. In de prestaties zie je hoe vaak je vacatures worden getoond en aangeklikt. Combineer dat met Google Analytics, zodat je per vacature ziet hoeveel bezoekers solliciteren.</p>"),
+    ("Onderdeel van je werving",
+     "<p>Google for Jobs is één kanaal in je werving. Combineer het met <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn</a>, <a href=\"/facebook-adverteren-uitbesteden/\">advertenties op Facebook en Instagram</a> en video's op <a href=\"/youtube-uitbesteden/\">YouTube</a>. Hoe we die kanalen samen inzetten, lees je bij <a href=\"/recruitment-marketing-uitbesteden/\">recruitment marketing uitbesteden</a>.</p>"),
+])

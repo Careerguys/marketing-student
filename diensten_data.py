@@ -691,3 +691,20 @@ D["youtube-uitbesteden"] = dict(
          ("Zit ik vast aan een contract?", "")],
     blog=[], cta="Besteed je YouTube uit")
 PLAT["recruitment"].append(("youtube", "YouTube", "Werkenbij-video's"))
+
+# ---- Google for Jobs (werving via Google), 2026-10-14 ----
+D["google-for-jobs"] = dict(
+    short="Google for Jobs", noun="student",
+    h1=("Google for Jobs", "voor je vacatures"),
+    title="Google for Jobs: vacatures in Google | Marketing Student",
+    meta="Je vacatures zichtbaar in Google for Jobs: vacaturepagina's met de juiste opmaak, Google Ads voor vacatures en meten in Search Console.",
+    lead="Je vacatures zichtbaar in Google for Jobs en de zoekresultaten van Google: een getrainde student zorgt voor vacaturepagina's met de juiste opmaak, zet waar nodig Google Ads in en meet wat het oplevert.",
+    mentor="Marije C.", sc=None, platforms="recruitment",
+    tasks=[("file", "Vacaturepagina's", "Met de juiste opmaak."), ("search", "Google for Jobs", "Vindbaar waar kandidaten zoeken."), ("bar-chart", "Meten", "In Search Console en Analytics.")],
+    faq=[("Wat is Google for Jobs?", "Google for Jobs is het vacatureblok in de zoekresultaten van Google. Zoekt iemand naar een functie, dan toont Google vacatures van werkgevers en vacaturesites in een overzichtelijk blok, met filters op locatie, datum en soort dienstverband. Kandidaten klikken door naar de vacature om te solliciteren."),
+         ("Kost plaatsen in Google for Jobs geld?", "Nee. Google for Jobs is geen betaalde vacaturebank: Google haalt vacatures zelf op van websites die de juiste opmaak gebruiken. Je betaalt alleen voor het werk aan je vacaturepagina's, of voor advertenties als je daarnaast Google Ads inzet."),
+         ("Hoe komt mijn vacature in Google for Jobs?", "Door op je eigen vacaturepagina gestructureerde gegevens toe te voegen volgens de richtlijnen van Google, zoals functietitel, omschrijving, locatie, datum en geldigheid. Google leest die gegevens en kan de vacature dan opnemen. Een sitemap en een goede werkenbij-pagina helpen Google om nieuwe vacatures snel te vinden."),
+         ("Wat kost Google for Jobs uitbesteden?", ""),
+         ("Hoe zie ik of mijn vacatures in Google staan?", "In Google Search Console staat een rapport voor vacatures. Daar zie je welke vacaturepagina's goed worden gelezen en waar iets ontbreekt. Met Google Analytics zie je hoeveel bezoekers via Google bij je vacatures komen en hoeveel er solliciteren."),
+         ("Zit ik vast aan een contract?", "")],
+    blog=[], cta="Zet je vacatures in Google")

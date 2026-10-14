@@ -758,3 +758,24 @@ STORY["youtube-uitbesteden"] = dict(
            ("Toegang regelen", "Een eigen rol in YouTube Studio. Je deelt geen wachtwoorden."),
            ("Kanaal en plan", "Kanaal op orde en een lijst met eerste onderwerpen."),
            ("Eerste video's live", "Jij keurt goed, daarna gaat de student publiceren.")])
+
+# ---- Google for Jobs (werving via Google), 2026-10-14 ----
+STORY["google-for-jobs"] = dict(
+    intro="Van vacaturepagina tot sollicitatie: de student zorgt dat je vacatures in Google te vinden zijn, technisch kloppen en kandidaten opleveren.",
+    rows=[dict(t="Zichtbaar waar kandidaten *zoeken*", x="Veel kandidaten beginnen hun zoektocht in Google. Met de juiste opmaak verschijnen je vacatures in het vacatureblok, met je logo, locatie en de datum.",
+               b=["Vacatureblok in Google", "Met logo, locatie en datum", "Rechtstreeks naar je eigen vacature"], v=("serp", dict(query="marketing vacature den haag"))),
+          dict(t="Vacaturepagina's die *kloppen*", x="Google leest gestructureerde gegevens op je vacaturepagina. De student zorgt dat alles klopt, en dat verlopen vacatures op tijd verdwijnen.",
+               b=["Gestructureerde gegevens volgens Google", "Geldigheidsdatum en locatie", "Verlopen vacatures netjes offline"],
+               v=("checklist", dict(title="Vacature-check", items=["Functietitel", "Omschrijving", "Datum geplaatst", "Geldig tot", "Werkgever en logo", "Locatie of remote", "Soort dienstverband", "Salarisindicatie"]))),
+          dict(t="Van zoekopdracht tot *sollicitatie*", x="Een goede vacature in Google is pas het begin. De student zorgt voor een vacaturepagina die overtuigt en een kort sollicitatieformulier, en zet waar nodig Google Ads in voor extra bereik.",
+               b=["Overtuigende vacaturepagina", "Kort sollicitatieformulier", "Google Ads voor moeilijke vacatures"],
+               v=("flow", dict(title="Van Google tot sollicitatie", nodes=[("search", "Zoekopdracht", "Kandidaat zoekt een functie"), ("file", "Google for Jobs", "Jouw vacature in het blok"), ("globe", "Vacaturepagina", "Op je eigen website"), ("users", "Sollicitatie", "Kort formulier")])))],
+    month_t=MAAND, month_x="Nieuwe vacatures plaatsen, oude offline halen en meten wat het oplevert. Hoeveel uur daarvoor nodig is, staat in je offerte.",
+    month=[("file", "Vacatures plaatsen", "Met de juiste opmaak."),
+           ("check-circle", "Controle in Search Console", "Fouten opgelost."),
+           ("search", "Google Ads (optioneel)", "Extra bereik voor lastige vacatures."),
+           ("bar-chart", "Rapport", "Bezoekers en sollicitaties.")],
+    cta_t="Je vacatures *in Google?*", cta_x="Vertel voor welke functies je zoekt en waar je vacatures nu staan. Je krijgt een voorstel met aanpak en de student die het oppakt.",
+    start_t="Zo start je *met Google for Jobs*",
+    start=STANDAARD_START(("Vacaturepagina's op orde", "Opmaak, werkenbij-pagina en sitemap gecontroleerd en verbeterd."),
+                          ("Live en meten", "Vacatures in Google, gemeten in Search Console en Analytics.")))

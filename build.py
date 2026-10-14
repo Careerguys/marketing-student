@@ -75,6 +75,7 @@ SPECS = [
     ("bedrijfsfilm-laten-maken", "Bedrijfsfilm laten maken", ("icon", "clapperboard"), "Je bedrijf, team en werkwijze in een film.", "Social media en content"),
     ("animatie-laten-maken", "Animatie laten maken", ("icon", "sparkles"), "Uitlegvideo's, explainers en logo-animaties.", "Social media en content"),
     ("drone-video-laten-maken", "Drone video laten maken", ("icon", "drone"), "Luchtbeelden van je pand, project of evenement.", "Social media en content"),
+    ("google-for-jobs", "Google for Jobs", ("brand", "google"), "Je vacatures zichtbaar in Google.", "Social media en content"),
     ("recruitmentvideo-laten-maken", "Recruitmentvideo laten maken", ("icon", "user-search"), "Collega's aan het woord voor je vacatures.", "Social media en content"),
     ("facebook-adverteren-uitbesteden", "Facebook adverteren uitbesteden", ("brand", "facebook"), "Meta ads op Facebook en Instagram.", "Social media en content"),
     ("youtube-adverteren-uitbesteden", "YouTube adverteren uitbesteden", ("brand", "youtube"), "Videocampagnes in Google Ads.", "Social media en content"),
@@ -104,7 +105,7 @@ PARENT = {"instagram-uitbesteden": "social-media-uitbesteden", "tiktok-uitbested
           "bedrijfsfilm-laten-maken": "foto-en-video-laten-maken", "animatie-laten-maken": "foto-en-video-laten-maken",
           "drone-video-laten-maken": "foto-en-video-laten-maken", "recruitmentvideo-laten-maken": "foto-en-video-laten-maken",
           "facebook-adverteren-uitbesteden": "social-media-adverteren", "youtube-adverteren-uitbesteden": "social-media-adverteren",
-          "youtube-uitbesteden": "social-media-uitbesteden",
+          "youtube-uitbesteden": "social-media-uitbesteden", "google-for-jobs": "recruitment-marketing-uitbesteden",
           "aftermovie-laten-maken": "foto-en-video-laten-maken", "social-media-video-laten-maken": "foto-en-video-laten-maken",
           "productvideo-laten-maken": "foto-en-video-laten-maken", "videograaf-inhuren": "foto-en-video-laten-maken",
           "bedrijfsfotograaf-inhuren": "foto-en-video-laten-maken", "productfotos-laten-maken": "foto-en-video-laten-maken"}
@@ -155,6 +156,7 @@ REL = {
     "bedrijfsfotograaf-inhuren": ["wat-is-een-huisstijl", "wat-is-employer-branding", "online-marketing-mkb"],
     "productfotos-laten-maken": ["online-marketing-mkb", "wat-is-contentmarketing", "nieuwsbrief-maken"],
     "youtube-uitbesteden": ["reels-maken", "contentkalender-maken", "welke-social-media-kiezen"],
+    "google-for-jobs": ["wat-is-employer-branding", "wat-is-sea", "online-marketing-mkb"],
 }
 REL_DEFAULT = ["online-marketing-mkb", "freelance-marketeer-of-marketing-student", "wat-voor-type-marketeers-zijn-er"]
 
@@ -644,12 +646,14 @@ BRAND_PAGE = {"instagram": "instagram-uitbesteden", "tiktok": "tiktok-uitbestede
               "meta": "social-media-uitbesteden", "facebook": "social-media-uitbesteden", "premiere": "premiere-pro-editor-inhuren",
               "aftereffects": "after-effects-specialist-inhuren", "davinci": "davinci-resolve-editor-inhuren",
               "youtube": "youtube-uitbesteden"}
-# Op advertentiepagina's (platforms "socialads") verwijzen Meta en YouTube naar hun advertentiepagina.
+# Per kanaalset kan een logo naar een andere pagina verwijzen (advertenties, werving).
 ADS_BRAND_PAGE = {"meta": "facebook-adverteren-uitbesteden", "facebook": "facebook-adverteren-uitbesteden", "youtube": "youtube-adverteren-uitbesteden"}
+CONTEXT_BRAND_PAGE = {"socialads": ADS_BRAND_PAGE, "ads": ADS_BRAND_PAGE,
+                      "recruitment": {"google": "google-for-jobs", "meta": "facebook-adverteren-uitbesteden"}}
 
 
-def brand_page(b, ads=False):
-    return (ADS_BRAND_PAGE.get(b) if ads else None) or BRAND_PAGE.get(b)
+def brand_page(b, ctx=None):
+    return CONTEXT_BRAND_PAGE.get(ctx, {}).get(b) or BRAND_PAGE.get(b)
 
 
 # Lijsten met kanalen (waar we posten) in plaats van software.
@@ -658,11 +662,11 @@ EDIT_TOOLS = [("premiere", "Adobe Premiere Pro", "Montage"), ("aftereffects", "A
               ("davinci", "DaVinci Resolve", "Kleurcorrectie en montage")]
 
 
-def platform_tiles(items, current=None, cols=None, ads=False):
+def platform_tiles(items, current=None, cols=None, ctx=None):
     out = ""
     for b, n, d in items:
         inner = f'<span class="brand-tile">{brand(b)}</span><h3>{n}</h3><p>{d}</p>'
-        target = brand_page(b, ads)
+        target = brand_page(b, ctx)
         if target and target != current:
             out += f'<a class="platform platform--link" href="/{target}/">{inner}</a>'
         else:
@@ -670,8 +674,8 @@ def platform_tiles(items, current=None, cols=None, ads=False):
     return f'<div class="platforms{" platforms--compact" if cols else ""}" style="--cols:{cols or min(len(items), 6)}">{out}</div>'
 
 
-def linked_names(items, current, ads=False):
-    names = [n for b, n, _ in items if brand_page(b, ads) and brand_page(b, ads) != current]
+def linked_names(items, current, ctx=None):
+    names = [n for b, n, _ in items if brand_page(b, ctx) and brand_page(b, ctx) != current]
     if not names:
         return None
     lijst = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " en " + names[-1]
@@ -982,7 +986,7 @@ RELATED = {
     "premiere-pro-editor-inhuren": ["after-effects-specialist-inhuren", "davinci-resolve-editor-inhuren", "foto-en-video-laten-maken", "social-media-adverteren"],
     "after-effects-specialist-inhuren": ["premiere-pro-editor-inhuren", "davinci-resolve-editor-inhuren", "huisstijl-laten-maken", "foto-en-video-laten-maken"],
     "davinci-resolve-editor-inhuren": ["premiere-pro-editor-inhuren", "after-effects-specialist-inhuren", "foto-en-video-laten-maken", "contentmarketing-uitbesteden"],
-    "recruitment-marketing-uitbesteden": ["recruitmentvideo-laten-maken", "linkedin-marketing-uitbesteden", "social-media-adverteren", "email-marketing-uitbesteden"],
+    "recruitment-marketing-uitbesteden": ["recruitmentvideo-laten-maken", "google-for-jobs", "linkedin-marketing-uitbesteden", "social-media-adverteren"],
     "huisstijl-laten-maken": ["website-laten-maken", "contentmarketing-uitbesteden", "email-marketing-uitbesteden", "social-media-uitbesteden"],
     "email-marketing-uitbesteden": ["contentmarketing-uitbesteden", "huisstijl-laten-maken", "shopify-specialist-inhuren", "ai-specialist-inhuren"],
     "website-laten-maken": ["huisstijl-laten-maken", "seo-specialist-inhuren", "linkbuilding-specialist-inhuren", "email-marketing-uitbesteden"],
@@ -1003,6 +1007,7 @@ RELATED = {
     "bedrijfsfotograaf-inhuren": ["productfotos-laten-maken", "videograaf-inhuren", "huisstijl-laten-maken", "linkedin-marketing-uitbesteden"],
     "productfotos-laten-maken": ["productvideo-laten-maken", "shopify-specialist-inhuren", "bedrijfsfotograaf-inhuren", "website-laten-maken"],
     "youtube-uitbesteden": ["youtube-adverteren-uitbesteden", "social-media-video-laten-maken", "tiktok-uitbesteden", "recruitmentvideo-laten-maken"],
+    "google-for-jobs": ["recruitment-marketing-uitbesteden", "recruitmentvideo-laten-maken", "google-ads-specialist-inhuren", "linkedin-marketing-uitbesteden"],
 }
 
 
@@ -1016,7 +1021,7 @@ def gids_section(slug):
 
 CHILD_HEAD = {"foto-en-video-laten-maken": "Specialisaties in *foto en video*", "social-media-adverteren": "Specialisaties in *social ads*",
               "social-media-uitbesteden": "Specialisaties in *social media*", "website-laten-maken": "Specialisaties in *websites*",
-              "ai-specialist-inhuren": "Specialisaties in *AI*"}
+              "ai-specialist-inhuren": "Specialisaties in *AI*", "recruitment-marketing-uitbesteden": "Specialisaties in *werving*"}
 
 
 def page_dienst(slug):
@@ -1033,7 +1038,7 @@ def page_dienst(slug):
                      "Bedrijfsfilm": "een bedrijfsfilm", "Animatie": "animatie laten maken", "Drone video": "drone video's",
                      "Recruitmentvideo": "een recruitmentvideo", "Facebook": "Facebook adverteren",
                      "Aftermovie": "een aftermovie", "Bedrijfsfotografie": "bedrijfsfotografie", "Social media video": "social media video's",
-                     "Videograaf": "een videograaf", "Productvideo": "een productvideo", "YouTube ads": "YouTube adverteren", "YouTube": "YouTube uitbesteden", "Productfoto's": "productfoto's"}
+                     "Videograaf": "een videograaf", "Productvideo": "een productvideo", "YouTube ads": "YouTube adverteren", "YouTube": "YouTube uitbesteden", "Google for Jobs": "Google for Jobs", "Productfoto's": "productfoto's"}
     lab = FAQ_ONDERWERP.get(d["short"], d["short"] if d["short"] in ("SEO", "Google Ads", "AI", "Claude") else d["short"])
     if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify", "Premiere Pro", "After Effects", "DaVinci Resolve", "Linkbuilding"):
         lab = "een " + d["noun"]
@@ -1050,8 +1055,8 @@ def page_dienst(slug):
     body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons() + work, offerte_form(slug), movable=True)
     body += dienst_story(slug, noun)
     tools = PLATFORMS[d["platforms"]] if d["platforms"] else []
-    ads = d["platforms"] in ("socialads", "ads")
-    tools_lead = linked_names(tools, slug, ads)
+    ctx = d["platforms"]
+    tools_lead = linked_names(tools, slug, ctx)
     if slug == "social-media-uitbesteden":
         tools_lead = (tools_lead + " " if tools_lead else "") + 'Alleen content laten maken? Bekijk <a href="/contentmarketing-uitbesteden/">contentmarketing uitbesteden</a>.'
     if slug in REEL_PAGES:
@@ -1059,12 +1064,12 @@ def page_dienst(slug):
         cols = max(len(tools), len(edit), 4)
         inner = section_head("Kanalen en tools *die we inzetten*", tools_lead)
         if tools:
-            inner += f'<h3 class="platforms__label">Kanalen</h3>{platform_tiles(tools, slug, cols, ads)}'
+            inner += f'<h3 class="platforms__label">Kanalen</h3>{platform_tiles(tools, slug, cols, ctx)}'
         inner += f'<h3 class="platforms__label">Tools</h3>{platform_tiles(edit, slug, cols)}'
         body += section(inner)
     elif tools:
         kop = "De kanalen *die we inzetten*" if d["platforms"] in CHANNEL_PLATS else "De tools *die we gebruiken*"
-        body += section(section_head(kop, tools_lead) + platform_tiles(tools, slug, ads=ads))
+        body += section(section_head(kop, tools_lead) + platform_tiles(tools, slug, ctx=ctx))
     if slug in CHILDREN:
         body += section(section_head(CHILD_HEAD.get(slug, "Meer *specialisaties*")) + spec_grid(CHILDREN[slug], cta=False))
     body += gids_section(slug)

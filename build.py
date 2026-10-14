@@ -640,6 +640,12 @@ BRAND_PAGE = {"instagram": "instagram-uitbesteden", "tiktok": "tiktok-uitbestede
               "wordpress": "wordpress-specialist-inhuren", "shopify": "shopify-specialist-inhuren",
               "meta": "social-media-uitbesteden", "facebook": "social-media-uitbesteden", "premiere": "premiere-pro-editor-inhuren",
               "aftereffects": "after-effects-specialist-inhuren", "davinci": "davinci-resolve-editor-inhuren"}
+# Op advertentiepagina's (platforms "socialads") verwijzen Meta en YouTube naar hun advertentiepagina.
+ADS_BRAND_PAGE = {"meta": "facebook-adverteren-uitbesteden", "facebook": "facebook-adverteren-uitbesteden", "youtube": "youtube-adverteren-uitbesteden"}
+
+
+def brand_page(b, ads=False):
+    return (ADS_BRAND_PAGE.get(b) if ads else None) or BRAND_PAGE.get(b)
 
 
 # Lijsten met kanalen (waar we posten) in plaats van software.
@@ -648,11 +654,11 @@ EDIT_TOOLS = [("premiere", "Adobe Premiere Pro", "Montage"), ("aftereffects", "A
               ("davinci", "DaVinci Resolve", "Kleurcorrectie en montage")]
 
 
-def platform_tiles(items, current=None, cols=None):
+def platform_tiles(items, current=None, cols=None, ads=False):
     out = ""
     for b, n, d in items:
         inner = f'<span class="brand-tile">{brand(b)}</span><h3>{n}</h3><p>{d}</p>'
-        target = BRAND_PAGE.get(b)
+        target = brand_page(b, ads)
         if target and target != current:
             out += f'<a class="platform platform--link" href="/{target}/">{inner}</a>'
         else:
@@ -660,8 +666,8 @@ def platform_tiles(items, current=None, cols=None):
     return f'<div class="platforms{" platforms--compact" if cols else ""}" style="--cols:{cols or min(len(items), 5)}">{out}</div>'
 
 
-def linked_names(items, current):
-    names = [n for b, n, _ in items if BRAND_PAGE.get(b) and BRAND_PAGE[b] != current]
+def linked_names(items, current, ads=False):
+    names = [n for b, n, _ in items if brand_page(b, ads) and brand_page(b, ads) != current]
     if not names:
         return None
     lijst = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " en " + names[-1]
@@ -1039,7 +1045,8 @@ def page_dienst(slug):
     body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons() + work, offerte_form(slug), movable=True)
     body += dienst_story(slug, noun)
     tools = PLATFORMS[d["platforms"]] if d["platforms"] else []
-    tools_lead = linked_names(tools, slug)
+    ads = d["platforms"] in ("socialads", "ads")
+    tools_lead = linked_names(tools, slug, ads)
     if slug == "social-media-uitbesteden":
         tools_lead = (tools_lead + " " if tools_lead else "") + 'Alleen content laten maken? Bekijk <a href="/contentmarketing-uitbesteden/">contentmarketing uitbesteden</a>.'
     if slug in REEL_PAGES:
@@ -1047,12 +1054,12 @@ def page_dienst(slug):
         cols = max(len(tools), len(edit), 4)
         inner = section_head("Kanalen en tools *die we inzetten*", tools_lead)
         if tools:
-            inner += f'<h3 class="platforms__label">Kanalen</h3>{platform_tiles(tools, slug, cols)}'
+            inner += f'<h3 class="platforms__label">Kanalen</h3>{platform_tiles(tools, slug, cols, ads)}'
         inner += f'<h3 class="platforms__label">Tools</h3>{platform_tiles(edit, slug, cols)}'
         body += section(inner)
     elif tools:
         kop = "De kanalen *die we inzetten*" if d["platforms"] in CHANNEL_PLATS else "De tools *die we gebruiken*"
-        body += section(section_head(kop, tools_lead) + platform_tiles(tools, slug))
+        body += section(section_head(kop, tools_lead) + platform_tiles(tools, slug, ads=ads))
     if slug in CHILDREN:
         body += section(section_head(CHILD_HEAD.get(slug, "Meer *specialisaties*")) + spec_grid(CHILDREN[slug], cta=False))
     body += gids_section(slug)

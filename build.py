@@ -726,6 +726,8 @@ def cta_block(title="Klaar om je marketing *te versterken?*", text="Vertel wat j
 
 # ---------------------------------------------------------------- header en footer
 NAV = [("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"), ("Kennisbank", "/kennisbank/"), ("Contact", "/contact/")]
+# Voor studenten: eigen kopje in het menu (desktop: uitklapmenu "Werken bij", mobiel: losse links).
+WERK = [("Vacatures", "/vacatures/", "briefcase", "Openstaande functies naast je studie"), ("Werken als student", "/werken-als-student/", "user-search", "Zo werk je bij ons, en algemeen aanmelden")]
 
 
 def header(current):
@@ -734,8 +736,13 @@ def header(current):
     mob_groups = f'<ul class="mobile-nav__list2">{lis}</ul>'
     spec_cur = ' aria-current="page"' if current == "specialisaties" else ""
     cur = ' aria-current="page"'
-    links = "".join(f'<li><a href="{u}"{cur if current == n else ""}>{n}</a></li>' for n, u in NAV)
-    mob_links = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in NAV)
+    links = "".join(f'<li><a href="{u}"{cur if current == n else ""}>{n}</a></li>' for n, u in NAV[:-1])
+    werk_cur = cur if current == "werken" else ""
+    werk_items = "".join(f'<li><a class="navitem" href="{u}"><span class="navitem__ico">{icon(ic)}</span><span><b>{n}</b><small>{x}</small></span></a></li>' for n, u, ic, x in WERK)
+    links += (f'<li class="has-dropdown has-dropdown--small"><button type="button" aria-expanded="false" aria-controls="dropdown-werken"{werk_cur}>Werken bij{icon("chevron-down")}</button>'
+              f'<div class="dropdown dropdown--small" id="dropdown-werken"><ul class="dropdown__list">{werk_items}</ul></div></li>')
+    links += "".join(f'<li><a href="{u}"{cur if current == n else ""}>{n}</a></li>' for n, u in NAV[-1:])
+    mob_links = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in NAV[:-1] + [(n, u) for n, u, _, _ in WERK] + NAV[-1:])
     return f'''<a class="skip-link" href="#main">Naar de inhoud</a>
 <header class="header">
   <div class="header__bar">
@@ -1314,7 +1321,7 @@ def page_student():
                        "Werkstudent marketing worden? Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau, dan is dit je marketing bijbaan: werk voor echte klanten, begeleid door ervaren marketeers.",
                        "Werkstudent marketing: bijbaan naast je studie",
                        "Werkstudent marketing worden? Een marketing bijbaan naast je HBO- of WO-studie, voor echte klanten en begeleid door ervaren marketeers.",
-                       secs + FORM_SLOT, None, faq=faq, hero_extra=f'<div class="btn-row btn-row--stack">{btn("Meld je aan", "#aanmelden", "grad", "arrow-right", True)}</div>', form=form, movable=True)
+                       secs + FORM_SLOT, "werken", faq=faq, hero_extra=f'<div class="btn-row btn-row--stack">{btn("Meld je aan", "#aanmelden", "grad", "arrow-right", True)}</div>', form=form, movable=True)
     slot = cta_block("Klaar om *te beginnen?*", "Meld je aan. We nemen contact met je op voor een kennismaking.", buttons=btn("Meld je aan", "#aanmelden", "navy", "arrow-right", True))
     return p[0], p[1], p[2], p[3] + slot, p[4], p[5], p[6]
 
@@ -1367,7 +1374,7 @@ def page_vacatures():
                     "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk naast je studie voor echte klanten, begeleid door ervaren marketeers.",
                     "Vacatures voor marketingstudenten | Marketing Student",
                     "Vacatures voor HBO- en WO-studenten: SEO, social media, video, Google Ads, WordPress en AI. Naast je studie, begeleid door een senior.",
-                    secs, None, "CollectionPage",
+                    secs, "werken", "CollectionPage",
                     extra_graph=[{"@type": "ItemList", "@id": url + "#lijst", "name": "Vacatures", "numberOfItems": len(items), "itemListElement": items}],
                     hero_extra=f'<div class="btn-row btn-row--stack">{btn("Bekijk de vacatures", "#main-vacatures", "grad", "arrow-right", True)}</div>')
     slot = cta_block("Staat jouw vak *er niet tussen?*", "Meld je dan open aan. We kijken samen welke specialisatie bij je past.",

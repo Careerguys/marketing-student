@@ -169,6 +169,11 @@ h3 { font-size: 1.1875rem; line-height: 1.25; letter-spacing: -0.02em; }
 .nav button svg { width: 14px; height: 14px; transition: transform 160ms var(--ease); }
 .nav button[aria-expanded="true"] svg { transform: rotate(180deg); }
 .has-dropdown { position: static; }
+.has-dropdown--small { position: relative; }
+.dropdown--small { left: 0; transform: none; width: 320px; padding: 14px; }
+.dropdown--small .dropdown__list { grid-template-columns: minmax(0, 1fr); }
+.dropdown--small .navitem b { display: block; color: var(--nav-text); font-weight: 800; }
+.dropdown--small .navitem small { display: block; color: #4a6075; font-size: 0.8125rem; font-weight: 500; line-height: 1.35; }
 .dropdown {
   position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%);
   display: none; grid-template-columns: minmax(0, 1fr); gap: 8px;
@@ -185,6 +190,7 @@ h3 { font-size: 1.1875rem; line-height: 1.25; letter-spacing: -0.02em; }
 .header__phone { display: none; align-items: center; gap: 8px; padding: 8px; color: var(--nav-text); font-weight: 800; font-size: 0.9375rem; text-decoration: none; white-space: nowrap; }
 .header__phone svg { width: 17px; height: 17px; color: var(--nav-accent); }
 @media (min-width: 1100px) { .header__phone { display: inline-flex; } }
+@media (min-width: 1100px) and (max-width: 1359px) { .header__phone { font-size: 0; gap: 0; padding: 12px; } .header__phone svg { width: 19px; height: 19px; } }
 .header__cta { display: none; }
 @media (min-width: 640px) { .header__cta { display: inline-flex; } }
 .icon-btn {

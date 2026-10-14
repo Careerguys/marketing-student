@@ -756,9 +756,6 @@ def footer():
                                                                      ("Kennisbank", "/kennisbank/"), ("Werken als student", "/werken-als-student/"), ("Vacatures", "/vacatures/"),
                                                                      ("Offerte aanvragen", "/offerte-aanvragen/"), ("Contact", "/contact/")])
     cookie_link = '<button type="button" class="footer__cookie" data-cookie-settings>Cookie-instellingen</button>' if GTM_ID else ""
-    # Diensten die niet in het menu staan, krijgen hier toch een link vanaf elke pagina (interne linkwaarde).
-    in_menu = {slug for slug, _, _ in NAV_SPECS}
-    more = "".join(f'<li><a href="/{s[0]}/">{s[1]}</a></li>' for s in SPECS if s[0] not in in_menu)
     return f'''<footer class="footer">
   <div class="container">
     <div class="footer__grid">
@@ -773,7 +770,6 @@ def footer():
         <span>KvK 90875206</span>
       </div></div>
     </div>
-    <div class="footer__more"><h2>Meer diensten</h2><ul>{more}</ul></div>
     <div class="footer__legal"><span>© {datetime.date.today().year} Marketing Student</span><nav aria-label="Juridisch"><a href="/privacy-policy/">Privacy- en cookiebeleid</a>{cookie_link}</nav></div>
   </div>
 </footer>'''

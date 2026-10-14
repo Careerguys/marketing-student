@@ -730,3 +730,31 @@ STORY.update({
     cta_t="Je producten *in beeld?*", cta_x="Vertel welke producten het zijn en waar je ze verkoopt. Je krijgt een voorstel met aanpak, planning en de student die het oppakt.",
     start_t="Zo start je *met productfoto's*", start=FOTO_START("Fotoshoot")),
 })
+
+# ---- YouTube-marketing (organisch), 2026-10-14 ----
+STORY["youtube-uitbesteden"] = dict(
+    intro="Van idee tot publicatie: de student maakt video's en Shorts voor je kanaal, zorgt dat ze gevonden worden en laat zien wat ze opleveren.",
+    rows=[REELS_ROW,
+          dict(t="Gevonden *in YouTube*", x="YouTube is ook een zoekmachine. De student kiest onderwerpen waar je klanten naar zoeken en schrijft titels, beschrijvingen en hoofdstukken die gevonden worden.",
+               b=["Onderwerpen op basis van zoekvragen", "Titels, beschrijvingen en hoofdstukken", "Thumbnails die opvallen"], v=("serp", dict(query="hoe werkt een warmtepomp"))),
+          dict(t="Lange video's *en Shorts*", x="Een uitlegvideo voor wie zoekt, Shorts om nieuwe kijkers te bereiken. De student plant beide in een vast ritme.",
+               b=["Uitleg- en how-to-video's", "Shorts uit hetzelfde materiaal", "Vaste dagen en tijden"],
+               v=("calendar", dict(status="video's gepland", posts=[(0, "youtube", "Uitleg"), (2, "youtube", "Short"), (4, "youtube", "Short"), (7, "youtube", "Review"), (9, "youtube", "Short"), (11, "youtube", "Uitleg")]))),
+          dict(t="Rapportage die je *snapt*", x="Je ziet hoeveel mensen je video's vinden, hoe lang ze kijken en wat de student volgende maand maakt.",
+               b=["Weergaven en kijktijd", "Klikratio van thumbnails", "Plan voor de volgende maand"],
+               v=("dashboard", dict(title="YouTube-rapportage", sub="September · kanaal",
+                                    kpis=[("Weergaven", "24.8", 1, "K", "24,8K", "+29%"), ("Kijktijd (uur)", "1460", 0, "", "1.460", "+18%"),
+                                          ("Klikratio", "5.6", 1, "%", "5,6%", "+0,8"), ("Abonnees", "312", 0, "", "312", "+14%")],
+                                    chart="Weergaven per dag", bars_label="Weergaven per bron",
+                                    bars=[("i:search", "Zoeken", 41), ("i:play", "Aanbevolen", 33), ("youtube", "Shorts", 18), ("i:globe", "Extern", 8)])))],
+    month_t=MAAND, month_x="Een vast ritme van video's en Shorts. Hoeveel per maand, staat in je offerte.",
+    month=[("search", "Onderwerpen", "Op basis van wat je klanten zoeken."),
+           ("camera", "Filmen en monteren", "Video's en Shorts in je huisstijl."),
+           ("pen", "Titels en thumbnails", "Gevonden en aangeklikt."),
+           ("bar-chart", "Rapport en evaluatie", "Wat werkte, en het plan.")],
+    cta_t="Benieuwd wat YouTube jou *oplevert?*", cta_x="Vertel wat je met YouTube wilt bereiken. Je krijgt een voorstel met uren, video's per maand en de student die het oppakt.",
+    start_t="Zo start je *met YouTube*",
+    start=[("Kennismaking", "Wat wil je laten zien, en wie wil je bereiken."),
+           ("Toegang regelen", "Een eigen rol in YouTube Studio. Je deelt geen wachtwoorden."),
+           ("Kanaal en plan", "Kanaal op orde en een lijst met eerste onderwerpen."),
+           ("Eerste video's live", "Jij keurt goed, daarna gaat de student publiceren.")])

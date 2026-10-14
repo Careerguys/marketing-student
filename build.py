@@ -65,6 +65,7 @@ SPECS = [
     ("instagram-uitbesteden", "Instagram uitbesteden", ("brand", "instagram"), "Feed, stories en reels, gepland en gemaakt.", "Social media en content"),
     ("tiktok-uitbesteden", "TikTok uitbesteden", ("brand", "tiktok"), "Korte video's die passen bij het platform.", "Social media en content"),
     ("linkedin-marketing-uitbesteden", "LinkedIn-marketing uitbesteden", ("brand", "linkedin"), "Zakelijke content en advertenties.", "Social media en content"),
+    ("youtube-uitbesteden", "YouTube uitbesteden", ("brand", "youtube"), "Je kanaal, video's en Shorts.", "Social media en content"),
     ("contentmarketing-uitbesteden", "Contentmarketing uitbesteden", ("icon", "camera"), "Een content creator voor foto, video en tekst.", "Social media en content"),
     ("foto-en-video-laten-maken", "Foto en video laten maken", ("icon", "video"), "Bedrijfsvideo's, reels en productfoto's.", "Social media en content"),
     ("social-media-adverteren", "Social media adverteren", ("icon", "megaphone"), "Campagnes op Meta, LinkedIn en TikTok.", "Social media en content"),
@@ -103,6 +104,7 @@ PARENT = {"instagram-uitbesteden": "social-media-uitbesteden", "tiktok-uitbested
           "bedrijfsfilm-laten-maken": "foto-en-video-laten-maken", "animatie-laten-maken": "foto-en-video-laten-maken",
           "drone-video-laten-maken": "foto-en-video-laten-maken", "recruitmentvideo-laten-maken": "foto-en-video-laten-maken",
           "facebook-adverteren-uitbesteden": "social-media-adverteren", "youtube-adverteren-uitbesteden": "social-media-adverteren",
+          "youtube-uitbesteden": "social-media-uitbesteden",
           "aftermovie-laten-maken": "foto-en-video-laten-maken", "social-media-video-laten-maken": "foto-en-video-laten-maken",
           "productvideo-laten-maken": "foto-en-video-laten-maken", "videograaf-inhuren": "foto-en-video-laten-maken",
           "bedrijfsfotograaf-inhuren": "foto-en-video-laten-maken", "productfotos-laten-maken": "foto-en-video-laten-maken"}
@@ -152,6 +154,7 @@ REL = {
     "videograaf-inhuren": ["reels-maken", "wat-is-employer-branding", "wat-is-contentmarketing"],
     "bedrijfsfotograaf-inhuren": ["wat-is-een-huisstijl", "wat-is-employer-branding", "online-marketing-mkb"],
     "productfotos-laten-maken": ["online-marketing-mkb", "wat-is-contentmarketing", "nieuwsbrief-maken"],
+    "youtube-uitbesteden": ["reels-maken", "contentkalender-maken", "welke-social-media-kiezen"],
 }
 REL_DEFAULT = ["online-marketing-mkb", "freelance-marketeer-of-marketing-student", "wat-voor-type-marketeers-zijn-er"]
 
@@ -639,7 +642,8 @@ BRAND_PAGE = {"instagram": "instagram-uitbesteden", "tiktok": "tiktok-uitbestede
               "claude": "claude-specialist-inhuren", "openai": "ai-specialist-inhuren", "googleads": "google-ads-specialist-inhuren",
               "wordpress": "wordpress-specialist-inhuren", "shopify": "shopify-specialist-inhuren",
               "meta": "social-media-uitbesteden", "facebook": "social-media-uitbesteden", "premiere": "premiere-pro-editor-inhuren",
-              "aftereffects": "after-effects-specialist-inhuren", "davinci": "davinci-resolve-editor-inhuren"}
+              "aftereffects": "after-effects-specialist-inhuren", "davinci": "davinci-resolve-editor-inhuren",
+              "youtube": "youtube-uitbesteden"}
 # Op advertentiepagina's (platforms "socialads") verwijzen Meta en YouTube naar hun advertentiepagina.
 ADS_BRAND_PAGE = {"meta": "facebook-adverteren-uitbesteden", "facebook": "facebook-adverteren-uitbesteden", "youtube": "youtube-adverteren-uitbesteden"}
 
@@ -663,7 +667,7 @@ def platform_tiles(items, current=None, cols=None, ads=False):
             out += f'<a class="platform platform--link" href="/{target}/">{inner}</a>'
         else:
             out += f'<div class="platform">{inner}</div>'
-    return f'<div class="platforms{" platforms--compact" if cols else ""}" style="--cols:{cols or min(len(items), 5)}">{out}</div>'
+    return f'<div class="platforms{" platforms--compact" if cols else ""}" style="--cols:{cols or min(len(items), 6)}">{out}</div>'
 
 
 def linked_names(items, current, ads=False):
@@ -998,6 +1002,7 @@ RELATED = {
     "videograaf-inhuren": ["bedrijfsfilm-laten-maken", "premiere-pro-editor-inhuren", "bedrijfsfotograaf-inhuren", "aftermovie-laten-maken"],
     "bedrijfsfotograaf-inhuren": ["productfotos-laten-maken", "videograaf-inhuren", "huisstijl-laten-maken", "linkedin-marketing-uitbesteden"],
     "productfotos-laten-maken": ["productvideo-laten-maken", "shopify-specialist-inhuren", "bedrijfsfotograaf-inhuren", "website-laten-maken"],
+    "youtube-uitbesteden": ["youtube-adverteren-uitbesteden", "social-media-video-laten-maken", "tiktok-uitbesteden", "recruitmentvideo-laten-maken"],
 }
 
 
@@ -1028,7 +1033,7 @@ def page_dienst(slug):
                      "Bedrijfsfilm": "een bedrijfsfilm", "Animatie": "animatie laten maken", "Drone video": "drone video's",
                      "Recruitmentvideo": "een recruitmentvideo", "Facebook": "Facebook adverteren",
                      "Aftermovie": "een aftermovie", "Bedrijfsfotografie": "bedrijfsfotografie", "Social media video": "social media video's",
-                     "Videograaf": "een videograaf", "Productvideo": "een productvideo", "YouTube": "YouTube adverteren", "Productfoto's": "productfoto's"}
+                     "Videograaf": "een videograaf", "Productvideo": "een productvideo", "YouTube ads": "YouTube adverteren", "YouTube": "YouTube uitbesteden", "Productfoto's": "productfoto's"}
     lab = FAQ_ONDERWERP.get(d["short"], d["short"] if d["short"] in ("SEO", "Google Ads", "AI", "Claude") else d["short"])
     if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify", "Premiere Pro", "After Effects", "DaVinci Resolve", "Linkbuilding"):
         lab = "een " + d["noun"]

@@ -642,7 +642,7 @@ D.update({
          ("Zit ik vast aan een contract?", "")],
     blog=[], cta="Laat je productvideo maken"),
 "youtube-adverteren-uitbesteden": dict(
-    short="YouTube", noun="YouTube ads-specialist",
+    short="YouTube ads", noun="YouTube ads-specialist",
     h1=("YouTube adverteren", "uitbesteden"),
     title="YouTube adverteren uitbesteden | Marketing Student",
     meta="YouTube adverteren uitbesteden: videocampagnes in Google Ads opgezet, getest en bijgestuurd door een getrainde student, begeleid door een senior.",
@@ -672,3 +672,22 @@ D.update({
          ("Zit ik vast aan een contract?", "")],
     blog=[], cta="Laat je productfoto's maken"),
 })
+
+# ---- YouTube-marketing (organisch), 2026-10-14 ----
+D["youtube-uitbesteden"] = dict(
+    short="YouTube", noun="YouTube-student",
+    h1=("YouTube", "uitbesteden"),
+    title="YouTube uitbesteden: kanaal en video's | Marketing Student",
+    meta="YouTube uitbesteden aan een getrainde student: je kanaal, video's en Shorts gemaakt, geoptimaliseerd en gepubliceerd. Begeleid door een senior.",
+    lead="YouTube uitbesteden aan een getrainde student: van kanaal en video's tot Shorts, titels en thumbnails die gevonden en bekeken worden. Een senior content- en brandingspecialist bewaakt je merk.",
+    mentor="Marije C.", sc=None, platforms=None,
+    tasks=[("play", "Video's en Shorts", "Gemaakt en gemonteerd."), ("search", "Vindbaar in YouTube", "Titels, beschrijvingen en hoofdstukken."), ("bar-chart", "Rapportage", "Kijktijd en resultaat.")],
+    faq=[("Wat doet een YouTube-student?", "Een YouTube-student bedenkt video's en Shorts voor je kanaal, filmt en monteert ze, schrijft titels en beschrijvingen die gevonden worden, maakt thumbnails en publiceert op vaste momenten. Een senior controleert of alles bij je merk past."),
+         ("Wat kost YouTube uitbesteden?", ""),
+         ("Is YouTube interessant voor een mkb-bedrijf?", "Ja, zeker als je iets kunt uitleggen of laten zien. Mensen zoeken op YouTube naar uitleg, reviews en hoe iets werkt. Een video die zo'n vraag beantwoordt, blijft jarenlang bekeken worden en kan ook in Google verschijnen."),
+         ("Wat is het verschil met YouTube adverteren?", "Hier gaat het om je eigen kanaal: video's die organisch gevonden worden. Bij YouTube adverteren betaal je om je video aan een gekozen doelgroep te tonen. Ze werken goed samen: een sterke video kun je ook als advertentie inzetten."),
+         ("Moet ik zelf in beeld?", ""),
+         ("Wie is eigenaar van het kanaal?", "Jij. Het kanaal staat op jouw account. De student krijgt een eigen rol in YouTube Studio, zodat je geen wachtwoorden hoeft te delen."),
+         ("Zit ik vast aan een contract?", "")],
+    blog=[], cta="Besteed je YouTube uit")
+PLAT["recruitment"].append(("youtube", "YouTube", "Werkenbij-video's"))

@@ -308,3 +308,21 @@ GIDS.update({
          "<p>Zijn de producten toch klaargezet, film ze dan ook. Een korte <a href=\"/productvideo-laten-maken/\">productvideo</a> laat zien hoe je product werkt en is sterk in advertenties. Beheer je je webshop in <a href=\"/shopify-specialist-inhuren/\">Shopify</a>, dan kan een student de foto's en video's ook direct op je productpagina's zetten.</p>"),
     ]),
 })
+
+# ---- YouTube-marketing (organisch), 2026-10-14 ----
+GIDS["youtube-uitbesteden"] = ("Alles over *marketing op YouTube*", "Waarom YouTube werkt voor bedrijven, hoe je gevonden wordt en hoe je een kanaal laat groeien.", [
+    ("Waarom YouTube voor je bedrijf?",
+     "<p>Op YouTube zoeken mensen naar uitleg, reviews, handleidingen en inspiratie. Een video die zo'n vraag goed beantwoordt, blijft maanden of jaren bekeken worden, en verschijnt vaak ook in de zoekresultaten van Google. Daarmee is YouTube minder vluchtig dan andere social media: je bouwt een bibliotheek op die steeds nieuwe kijkers trekt.</p>"),
+    ("Gevonden worden in YouTube",
+     "<p>YouTube werkt als een zoekmachine. Begin daarom bij de vragen van je klanten: waar zoeken ze naar, en welke video zouden ze willen zien? Zet het onderwerp vooraan in de titel, schrijf een beschrijving die uitlegt wat de kijker leert, en voeg hoofdstukken toe. Dat helpt YouTube en Google om je video te begrijpen, net als bij <a href=\"/seo-specialist-inhuren/\">SEO</a> voor je website.</p>"),
+    ("Thumbnails en de eerste seconden",
+     "<p>Of iemand op je video klikt, hangt sterk af van de thumbnail en de titel. Een duidelijk beeld met weinig tekst werkt meestal het best. Daarna bepalen de eerste seconden of iemand blijft kijken: maak direct duidelijk wat de kijker krijgt. YouTube Studio laat zien hoeveel mensen klikken en hoe lang ze kijken, zodat je per video kunt leren wat werkt.</p>"),
+    ("Lange video's en Shorts",
+     "<p>Lange video's zijn sterk voor uitleg en mensen die actief zoeken. Shorts zijn korte, verticale video's die je laten ontdekken door mensen die je nog niet kennen. Ze vullen elkaar aan: een Short kan nieuwsgierig maken naar je uitlegvideo. Vaak haal je meerdere Shorts uit dezelfde opname. Die kun je ook gebruiken als <a href=\"/kennisbank/reels-maken/\">reels</a> en voor <a href=\"/tiktok-uitbesteden/\">TikTok</a>.</p>"),
+    ("Regelmaat en een herkenbaar kanaal",
+     "<p>Een kanaal groeit door een vast ritme en een herkenbare stijl. Zorg voor een duidelijke kanaalnaam, banner en beschrijving, en orden je video's in afspeellijsten per onderwerp. Gebruik vaste intro's en thumbnails in je <a href=\"/huisstijl-laten-maken/\">huisstijl</a>. Plan je video's vooruit in een <a href=\"/kennisbank/contentkalender-maken/\">contentkalender</a>, zodat je niet stilvalt in drukke weken.</p>"),
+    ("YouTube voor werving",
+     "<p>Ook voor werving is YouTube sterk. Een <a href=\"/recruitmentvideo-laten-maken/\">recruitmentvideo</a> met collega's die vertellen over hun werk, plaats je op je kanaal en op je werkenbij-pagina. Mensen die je bedrijf opzoeken, vinden zo meteen een eerlijk beeld. Wil je meer bereik, dan kun je de video ook inzetten via <a href=\"/recruitment-marketing-uitbesteden/\">recruitment marketing</a>.</p>"),
+    ("Organisch en betaald",
+     "<p>Een eigen kanaal bouw je organisch op, met video's die gevonden worden. Wil je sneller bereik, of een specifieke doelgroep bereiken, dan zet je je beste video's in als advertentie. Hoe dat werkt, lees je bij <a href=\"/youtube-adverteren-uitbesteden/\">YouTube adverteren uitbesteden</a>. Heb je nog geen video's, dan maken we ze als <a href=\"/social-media-video-laten-maken/\">social media video</a>, <a href=\"/bedrijfsfilm-laten-maken/\">bedrijfsfilm</a> of <a href=\"/animatie-laten-maken/\">animatie</a>.</p>"),
+])

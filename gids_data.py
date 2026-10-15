@@ -344,3 +344,35 @@ GIDS["google-for-jobs"] = ("Alles over *Google for Jobs*", "Hoe vacatures in Goo
     ("Onderdeel van je werving",
      "<p>Google for Jobs is één kanaal in je werving. Combineer het met <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn</a>, <a href=\"/facebook-adverteren-uitbesteden/\">advertenties op Facebook en Instagram</a> en video's op <a href=\"/youtube-uitbesteden/\">YouTube</a>. Hoe we die kanalen samen inzetten, lees je bij <a href=\"/recruitment-marketing-uitbesteden/\">recruitment marketing uitbesteden</a>.</p>"),
 ])
+
+# ---- Prioriteit 3: podcast en instructievideo (2026-10-15) ----
+GIDS.update({
+    "podcast-laten-maken": ("Alles over *een podcast voor je bedrijf*", "Waarom een bedrijfspodcast werkt, hoe je hem opzet en hoe je er meer uit haalt.", [
+        ("Waarom een podcast?",
+         "<p>Met een podcast laat je horen hoe je denkt en werkt. Luisteraars brengen soms een halfuur of langer met je door, onderweg, tijdens het sporten of op het werk. Dat bouwt vertrouwen op dat een korte post niet geeft. Een podcast werkt goed voor dienstverleners, adviseurs en bedrijven met veel kennis, en ook voor <a href=\"/kennisbank/wat-is-employer-branding/\">employer branding</a>: collega's die vertellen over hun werk.</p>"),
+        ("Het juiste format",
+         "<p>Kies een format dat je lang kunt volhouden. Een vast gesprek met een gast, een vaste host die een onderwerp uitdiept, of korte afleveringen met één tip. Bepaal een herkenbare opbouw, zoals een korte intro, het gesprek en een vaste afsluitende vraag. Houd de lengte passend bij het onderwerp: liever een strakke aflevering van twintig minuten dan een lange zonder richting.</p>"),
+        ("Audio of video?",
+         "<p>Een videopodcast neem je op met camera's naast de microfoons. Dat kost iets meer voorbereiding, maar je kunt de aflevering dan ook op YouTube zetten, op je <a href=\"/youtube-uitbesteden/\">YouTube-kanaal</a>. Bovendien haal je er korte clips uit voor reels, TikTok en Shorts. Zo bereik je met één opname ook mensen die geen podcasts luisteren.</p>"),
+        ("Goed geluid is alles",
+         "<p>Luisteraars haken sneller af door slecht geluid dan door een minder interessant onderwerp. Neem daarom op met een losse microfoon per spreker, in een rustige ruimte met weinig galm. Een zachte vloer, gordijnen of een volle boekenkast helpen al. In de montage halen we ruis, lange stiltes en verspreking weg, en zorgen we dat alle stemmen even hard klinken.</p>"),
+        ("Publiceren en vindbaar worden",
+         "<p>Je podcast publiceer je via een podcasthost, die een RSS-feed maakt. Die feed meld je aan bij Spotify, Apple Podcasts en andere apps. Geef elke aflevering een duidelijke titel en beschrijving, en zet de afleveringen ook op je website met een korte samenvatting. Dat helpt in Google en geeft je <a href=\"/seo-specialist-inhuren/\">SEO</a> extra content.</p>"),
+        ("Meer halen uit elke aflevering",
+         "<p>Een aflevering levert meer op dan alleen de podcast. Haal er quotes uit voor LinkedIn, clips voor <a href=\"/social-media-video-laten-maken/\">social media video's</a>, een samenvatting voor je <a href=\"/kennisbank/nieuwsbrief-maken/\">nieuwsbrief</a> en een artikel voor je website. Plan dat vooruit in een <a href=\"/kennisbank/contentkalender-maken/\">contentkalender</a>, zodat elke opname weken aan content oplevert.</p>"),
+    ]),
+    "instructievideo-laten-maken": ("Alles over *een instructievideo*", "Wanneer een instructievideo helpt, welke vorm past en hoe je hem duidelijk maakt.", [
+        ("Wanneer een instructievideo?",
+         "<p>Als klanten of medewerkers steeds dezelfde vragen stellen, is een instructievideo vaak de oplossing. Denk aan het installeren of gebruiken van een product, het instellen van software, het bedienen van een machine of het volgen van een werkwijze. Een video laat precies zien wat er moet gebeuren, en kan zo vaak bekeken worden als nodig. Dat scheelt je klantenservice en je trainers tijd.</p>"),
+        ("Filmen, scherm of animatie",
+         "<p>Een fysiek product of handeling film je, het liefst van dichtbij en vanuit de kijkhoek van de gebruiker. Software leg je uit met schermopnames, met ingezoomde details en pijlen in beeld. Voor processen die je niet kunt filmen, zoals wat er binnen in een apparaat gebeurt, werkt <a href=\"/animatie-laten-maken/\">animatie</a> het best. In veel instructievideo's combineren we deze vormen.</p>"),
+        ("Eén onderwerp per video",
+         "<p>Houd elke video kort en richt hem op één taak. Een reeks korte video's per stap werkt beter dan één lange video: kijkers vinden sneller wat ze zoeken, en je kunt één video bijwerken als er iets verandert. Begin met wat de kijker straks kan, en houd de stappen in de volgorde waarin hij ze uitvoert.</p>"),
+        ("Duidelijk voor iedereen",
+         "<p>Een rustige voice-over, ondertiteling en korte tekst in beeld maken een instructievideo voor iedereen te volgen, ook zonder geluid of voor wie de taal minder goed beheerst. Hoofdstukken helpen kijkers om naar de stap te springen die ze nodig hebben. Gebruik de woorden van je klant of medewerker, niet je interne vaktaal.</p>"),
+        ("Waar zet je de video's neer?",
+         "<p>Op je website bij het product of in je helpcentrum, in je leeromgeving voor medewerkers, of op je <a href=\"/youtube-uitbesteden/\">YouTube-kanaal</a>, waar mensen vaak zoeken naar hoe iets werkt. Voor een webshop werkt een korte instructievideo ook goed op de productpagina, naast een <a href=\"/productvideo-laten-maken/\">productvideo</a>.</p>"),
+        ("Instructievideo's voor onboarding",
+         "<p>Ook binnen je bedrijf besparen instructievideo's tijd. Nieuwe collega's leren met een reeks video's hoe systemen en werkwijzen werken, in hun eigen tempo. Trainers hoeven niet steeds hetzelfde uit te leggen, en iedereen krijgt dezelfde uitleg. Combineer dat met een video over je bedrijf zelf, zoals een <a href=\"/bedrijfsfilm-laten-maken/\">bedrijfsfilm</a> of <a href=\"/recruitmentvideo-laten-maken/\">recruitmentvideo</a>.</p>"),
+    ]),
+})

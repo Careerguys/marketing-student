@@ -85,6 +85,8 @@ SPECS = [
     ("videograaf-inhuren", "Videograaf inhuren", ("icon", "video"), "Opnames op locatie, met beeld en geluid op orde.", "Social media en content"),
     ("bedrijfsfotograaf-inhuren", "Bedrijfsfotograaf inhuren", ("icon", "camera"), "Zakelijke portretten, teamfoto's en reportages.", "Social media en content"),
     ("productfotos-laten-maken", "Productfoto's laten maken", ("icon", "aperture"), "Packshots en sfeerfoto's voor je webshop.", "Social media en content"),
+    ("instructievideo-laten-maken", "Instructievideo laten maken", ("icon", "presentation"), "Uitleg over je product, software of werkwijze.", "Social media en content"),
+    ("podcast-laten-maken", "Podcast laten maken", ("icon", "mic"), "Podcast of videopodcast, opgenomen en gepubliceerd.", "Social media en content"),
     ("recruitment-marketing-uitbesteden", "Recruitment marketing", ("icon", "users"), "Vacatures, campagnes en employer branding.", "Social media en content"),
     ("huisstijl-laten-maken", "Huisstijl laten maken", ("icon", "pen"), "Logo, huisstijl, tone of voice en merkverhaal.", "Merk en e-mail"),
     ("email-marketing-uitbesteden", "E-mailmarketing uitbesteden", ("icon", "mail"), "Nieuwsbrieven en automatische flows.", "Merk en e-mail"),
@@ -106,6 +108,7 @@ PARENT = {"instagram-uitbesteden": "social-media-uitbesteden", "tiktok-uitbested
           "drone-video-laten-maken": "foto-en-video-laten-maken", "recruitmentvideo-laten-maken": "foto-en-video-laten-maken",
           "facebook-adverteren-uitbesteden": "social-media-adverteren", "youtube-adverteren-uitbesteden": "social-media-adverteren",
           "youtube-uitbesteden": "social-media-uitbesteden", "google-for-jobs": "recruitment-marketing-uitbesteden",
+          "instructievideo-laten-maken": "foto-en-video-laten-maken", "podcast-laten-maken": "foto-en-video-laten-maken",
           "aftermovie-laten-maken": "foto-en-video-laten-maken", "social-media-video-laten-maken": "foto-en-video-laten-maken",
           "productvideo-laten-maken": "foto-en-video-laten-maken", "videograaf-inhuren": "foto-en-video-laten-maken",
           "bedrijfsfotograaf-inhuren": "foto-en-video-laten-maken", "productfotos-laten-maken": "foto-en-video-laten-maken"}
@@ -157,6 +160,8 @@ REL = {
     "productfotos-laten-maken": ["online-marketing-mkb", "wat-is-contentmarketing", "nieuwsbrief-maken"],
     "youtube-uitbesteden": ["reels-maken", "contentkalender-maken", "welke-social-media-kiezen"],
     "google-for-jobs": ["wat-is-employer-branding", "wat-is-sea", "online-marketing-mkb"],
+    "podcast-laten-maken": ["contentkalender-maken", "wat-is-contentmarketing", "nieuwsbrief-maken"],
+    "instructievideo-laten-maken": ["wat-is-contentmarketing", "reels-maken", "online-marketing-mkb"],
 }
 REL_DEFAULT = ["online-marketing-mkb", "freelance-marketeer-of-marketing-student", "wat-voor-type-marketeers-zijn-er"]
 
@@ -1002,19 +1007,21 @@ RELATED = {
     "ai-specialist-inhuren": ["claude-specialist-inhuren", "email-marketing-uitbesteden", "contentmarketing-uitbesteden", "wordpress-specialist-inhuren"],
     "claude-specialist-inhuren": ["ai-specialist-inhuren", "contentmarketing-uitbesteden", "email-marketing-uitbesteden", "wordpress-specialist-inhuren"],
     "bedrijfsfilm-laten-maken": ["drone-video-laten-maken", "animatie-laten-maken", "recruitmentvideo-laten-maken", "social-media-adverteren"],
-    "animatie-laten-maken": ["after-effects-specialist-inhuren", "bedrijfsfilm-laten-maken", "huisstijl-laten-maken", "facebook-adverteren-uitbesteden"],
+    "animatie-laten-maken": ["after-effects-specialist-inhuren", "instructievideo-laten-maken", "bedrijfsfilm-laten-maken", "huisstijl-laten-maken"],
     "drone-video-laten-maken": ["bedrijfsfilm-laten-maken", "premiere-pro-editor-inhuren", "social-media-uitbesteden", "facebook-adverteren-uitbesteden"],
     "recruitmentvideo-laten-maken": ["recruitment-marketing-uitbesteden", "linkedin-marketing-uitbesteden", "bedrijfsfilm-laten-maken", "facebook-adverteren-uitbesteden"],
     "facebook-adverteren-uitbesteden": ["instagram-uitbesteden", "social-media-video-laten-maken", "youtube-adverteren-uitbesteden", "google-ads-specialist-inhuren"],
     "youtube-adverteren-uitbesteden": ["google-ads-specialist-inhuren", "facebook-adverteren-uitbesteden", "social-media-video-laten-maken", "productvideo-laten-maken"],
     "aftermovie-laten-maken": ["bedrijfsfotograaf-inhuren", "drone-video-laten-maken", "social-media-video-laten-maken", "bedrijfsfilm-laten-maken"],
-    "social-media-video-laten-maken": ["instagram-uitbesteden", "tiktok-uitbesteden", "facebook-adverteren-uitbesteden", "videograaf-inhuren"],
-    "productvideo-laten-maken": ["productfotos-laten-maken", "shopify-specialist-inhuren", "facebook-adverteren-uitbesteden", "youtube-adverteren-uitbesteden"],
+    "social-media-video-laten-maken": ["instagram-uitbesteden", "tiktok-uitbesteden", "podcast-laten-maken", "facebook-adverteren-uitbesteden"],
+    "productvideo-laten-maken": ["productfotos-laten-maken", "instructievideo-laten-maken", "shopify-specialist-inhuren", "facebook-adverteren-uitbesteden"],
     "videograaf-inhuren": ["bedrijfsfilm-laten-maken", "premiere-pro-editor-inhuren", "bedrijfsfotograaf-inhuren", "aftermovie-laten-maken"],
     "bedrijfsfotograaf-inhuren": ["productfotos-laten-maken", "videograaf-inhuren", "huisstijl-laten-maken", "linkedin-marketing-uitbesteden"],
     "productfotos-laten-maken": ["productvideo-laten-maken", "shopify-specialist-inhuren", "bedrijfsfotograaf-inhuren", "website-laten-maken"],
-    "youtube-uitbesteden": ["youtube-adverteren-uitbesteden", "social-media-video-laten-maken", "tiktok-uitbesteden", "recruitmentvideo-laten-maken"],
+    "youtube-uitbesteden": ["youtube-adverteren-uitbesteden", "social-media-video-laten-maken", "podcast-laten-maken", "instructievideo-laten-maken"],
     "google-for-jobs": ["recruitment-marketing-uitbesteden", "recruitmentvideo-laten-maken", "google-ads-specialist-inhuren", "linkedin-marketing-uitbesteden"],
+    "podcast-laten-maken": ["social-media-video-laten-maken", "youtube-uitbesteden", "videograaf-inhuren", "contentmarketing-uitbesteden"],
+    "instructievideo-laten-maken": ["animatie-laten-maken", "productvideo-laten-maken", "youtube-uitbesteden", "bedrijfsfilm-laten-maken"],
 }
 
 
@@ -1045,7 +1052,7 @@ def page_dienst(slug):
                      "Bedrijfsfilm": "een bedrijfsfilm", "Animatie": "animatie laten maken", "Drone video": "drone video's",
                      "Recruitmentvideo": "een recruitmentvideo", "Facebook": "Facebook adverteren",
                      "Aftermovie": "een aftermovie", "Bedrijfsfotografie": "bedrijfsfotografie", "Social media video": "social media video's",
-                     "Videograaf": "een videograaf", "Productvideo": "een productvideo", "YouTube ads": "YouTube adverteren", "YouTube": "YouTube uitbesteden", "Google for Jobs": "Google for Jobs", "Productfoto's": "productfoto's"}
+                     "Videograaf": "een videograaf", "Productvideo": "een productvideo", "YouTube ads": "YouTube adverteren", "YouTube": "YouTube uitbesteden", "Google for Jobs": "Google for Jobs", "Podcast": "een podcast", "Instructievideo": "een instructievideo", "Productfoto's": "productfoto's"}
     lab = FAQ_ONDERWERP.get(d["short"], d["short"] if d["short"] in ("SEO", "Google Ads", "AI", "Claude") else d["short"])
     if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify", "Premiere Pro", "After Effects", "DaVinci Resolve", "Linkbuilding"):
         lab = "een " + d["noun"]

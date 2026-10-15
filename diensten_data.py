@@ -708,3 +708,37 @@ D["google-for-jobs"] = dict(
          ("Hoe zie ik of mijn vacatures in Google staan?", "In Google Search Console staat een rapport voor vacatures. Daar zie je welke vacaturepagina's goed worden gelezen en waar iets ontbreekt. Met Google Analytics zie je hoeveel bezoekers via Google bij je vacatures komen en hoeveel er solliciteren."),
          ("Zit ik vast aan een contract?", "")],
     blog=[], cta="Zet je vacatures in Google")
+
+# ---- Prioriteit 3: podcast en instructievideo (2026-10-15) ----
+D.update({
+"podcast-laten-maken": dict(
+    short="Podcast", noun="podcaststudent",
+    h1=("Podcast", "laten maken"),
+    title="Podcast laten maken voor je bedrijf | Marketing Student",
+    meta="Podcast of videopodcast laten maken: opnemen, monteren en publiceren op Spotify, Apple Podcasts en YouTube, met clips voor social media.",
+    lead="Een podcast of videopodcast laten maken voor je bedrijf: een getrainde student helpt met het format, neemt op, monteert en publiceert je afleveringen, met korte clips voor social media. Een senior bewaakt de kwaliteit.",
+    mentor="Marije C.", sc=None, platforms="content",
+    tasks=[("pen", "Format en voorbereiding", "Onderwerpen, gasten en vragen."), ("mic", "Opnemen", "Audio of video, op locatie."), ("share", "Publiceren", "Spotify, Apple en YouTube.")],
+    faq=[("Wat is het verschil tussen een podcast en een videopodcast?", "Een podcast is audio, die mensen beluisteren via apps als Spotify en Apple Podcasts. Bij een videopodcast neem je het gesprek ook op video op, zodat je het op YouTube kunt zetten en er korte clips voor social media uit kunt halen. Veel bedrijven kiezen voor video, omdat je met één opname meer kanalen bedient."),
+         ("Wat kost een podcast laten maken?", ""),
+         ("Waar nemen jullie de podcast op?", "Op locatie, bijvoorbeeld bij jou op kantoor, met mobiele microfoons en camera's, of in een studio naar keuze. Belangrijk is een rustige ruimte met weinig galm. Dat bekijken we vooraf."),
+         ("Hoe komt mijn podcast op Spotify en Apple Podcasts?", "Via een podcasthost die een RSS-feed maakt. Die feed meld je één keer aan bij Spotify, Apple Podcasts en andere apps, en daarna verschijnen nieuwe afleveringen automatisch. De student regelt de aanmelding en publiceert elke aflevering met titel, beschrijving en artwork."),
+         ("Wie is eigenaar van de podcast?", "Jij. De podcast, de opnames en de accounts staan op jouw naam. De student krijgt toegang om te publiceren, zonder dat je wachtwoorden hoeft te delen waar dat kan."),
+         ("Zit ik vast aan een contract?", "")],
+    blog=[], cta="Laat je podcast maken"),
+"instructievideo-laten-maken": dict(
+    short="Instructievideo", noun="videostudent",
+    h1=("Instructievideo", "laten maken"),
+    title="Instructievideo laten maken | Marketing Student",
+    meta="Instructievideo laten maken: heldere uitleg over je product, software of werkwijze, met beelden, schermopnames of animatie, door een getrainde student.",
+    lead="Een instructievideo laten maken die in een paar minuten uitlegt hoe iets werkt: een getrainde student filmt, neemt je scherm op of animeert, met een duidelijke voice-over en ondertiteling. Een senior bewaakt de kwaliteit.",
+    mentor="Marije C.", sc=None, platforms="content",
+    tasks=[("pen", "Script", "Stap voor stap uitgelegd."), ("presentation", "Opname of animatie", "Beeld, scherm of animatie."), ("layers", "Montage", "Met voice-over en ondertiteling.")],
+    faq=[("Wat is een instructievideo?", "Een instructievideo legt stap voor stap uit hoe iets werkt: een product gebruiken, software instellen, een machine bedienen of een werkwijze volgen. Klanten en medewerkers kunnen hem bekijken wanneer het ze uitkomt, zo vaak als nodig."),
+         ("Wat kost een instructievideo laten maken?", ""),
+         ("Filmen, schermopname of animatie?", "Dat hangt af van wat je uitlegt. Een fysiek product of een handeling film je. Software leg je uit met schermopnames. Een abstract proces of iets wat je niet kunt filmen, maak je duidelijk met animatie. Vaak combineren we ze."),
+         ("Kunnen jullie meerdere instructievideo's in één reeks maken?", "Ja. Voor een handleiding, onboarding of e-learning maken we een reeks korte video's met dezelfde stijl, opbouw en intro. Korte video's per stap werken beter dan één lange video, en je kunt ze los bijwerken als er iets verandert."),
+         ("Wie is eigenaar van de content?", ""),
+         ("Zit ik vast aan een contract?", "")],
+    blog=[], cta="Laat je instructievideo maken"),
+})

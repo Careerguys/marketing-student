@@ -410,7 +410,9 @@ REELS = [("showroom-reel", "Showroom reel voor een autodealer", "Reel", "0:19"),
          ("speedboot-reel", "Reel met een speedboot in Amsterdam", "Reel", "0:57"),
          ("verhuis-commercial", "Commercial voor een verhuisbedrijf", "Advertentie", "0:26"),
          ("stad-video", "Promotievideo in Amsterdam", "Advertentie", "0:25"),
-         ("studio-walkthrough", "Walkthrough voor een foto- en videostudio", "Reel", "0:40")]
+         ("studio-walkthrough", "Walkthrough voor een foto- en videostudio", "Reel", "0:40"),
+         ("vakman-reel", "Reel met een vakman op locatie", "Reel", "0:28"),
+         ("amsterdam-reel", "Reel op locatie in Amsterdam", "Reel", "0:32")]
 # Pagina's met de videocarrousel. Op de andere pagina's staat een stockfoto.
 REEL_PAGES = {slug for slug, st in STORY.items() if any(r.get("reels") for r in st["rows"])}
 REEL_INTRO = "Een paar video's die we voor klanten maakten. Tik op het luidsprekertje voor geluid."

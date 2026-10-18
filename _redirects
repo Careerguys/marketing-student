@@ -6,6 +6,7 @@ http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  30
 
 # Broncode niet uitleveren
 /tools/*                                                       /404.html  404!
+/artikelen_website.py                                          /404.html  404!
 /artikelen_oktober.py                                          /404.html  404!
 /lastmod.json                                                  /404.html  404!
 /gids_data.py                                                  /404.html  404!

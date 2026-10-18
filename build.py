@@ -841,6 +841,8 @@ def asset_v(rel):
 # ---------------------------------------------------------------- schema
 ORG = SITE + "/#organization"
 LOGO_URL = SITE + "/assets/img/logo-440.png"
+# Vierkant, zodat Google het logo in de zoekresultaten niet afsnijdt
+BEELD_URL = SITE + "/assets/img/logo-vierkant.png"
 UREN = [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "08:30", "closes": "17:30"},
         {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "08:30", "closes": "16:30"}]
 NL = {"@type": "Country", "name": "Nederland"}
@@ -848,7 +850,7 @@ NL = {"@type": "Country", "name": "Nederland"}
 
 def vestiging(slug, plaats, straat, pc):
     return {"@type": "ProfessionalService", "@id": f"{SITE}/#vestiging-{slug}", "name": f"Marketing Student {plaats}",
-            "url": SITE + "/contact/", "image": LOGO_URL, "telephone": "+31850608631", "email": EMAIL,
+            "url": SITE + "/contact/", "image": BEELD_URL, "telephone": "+31850608631", "email": EMAIL,
             "address": {"@type": "PostalAddress", "streetAddress": straat, "postalCode": pc, "addressLocality": plaats, "addressCountry": "NL"},
             "openingHoursSpecification": UREN, "parentOrganization": {"@id": ORG}}
 
@@ -856,7 +858,7 @@ def vestiging(slug, plaats, straat, pc):
 BASE_GRAPH = [
     {"@type": "Organization", "@id": ORG, "name": SITE_NAME, "url": SITE + "/",
      "logo": {"@type": "ImageObject", "@id": SITE + "/#logo", "url": LOGO_URL, "width": 440, "height": 138, "caption": SITE_NAME},
-     "image": {"@id": SITE + "/#logo"},
+     "image": {"@type": "ImageObject", "@id": SITE + "/#beeld", "url": BEELD_URL, "width": 1200, "height": 1200, "caption": SITE_NAME},
      "description": "Getrainde HBO/WO-marketingstudenten voor het mkb, begeleid door ervaren marketeers.",
      "telephone": "+31850608631", "email": EMAIL,
      "address": {"@type": "PostalAddress", "streetAddress": "Koninginnegracht 5", "postalCode": "2514 AA", "addressLocality": "Den Haag", "addressCountry": "NL"},
@@ -873,7 +875,7 @@ BASE_GRAPH = [
 
 def ld_webpage(url, title, desc, typ="WebPage", crumb=True, main=None):
     n = {"@type": typ, "@id": url + "#webpage", "url": url, "name": title, "description": desc, "inLanguage": "nl-NL",
-         "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": ORG}, "primaryImageOfPage": {"@id": SITE + "/#logo"}}
+         "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": ORG}, "primaryImageOfPage": {"@id": SITE + "/#beeld"}}
     if crumb:
         n["breadcrumb"] = {"@id": url + "#breadcrumb"}
     if main:
@@ -896,6 +898,7 @@ def ld_faq(url, items):
 def layout(path, title, desc, body, current, graph, noindex=False, og_type="website"):
     url = SITE + path
     js_v = asset_v("assets/js/main.js")
+    ico_v = {n: asset_v(f"assets/img/{n}.png") for n in ("favicon-32", "favicon-48", "apple-touch-icon")}
     robots = "noindex, follow" if noindex else "index, follow, max-image-preview:large, max-snippet:-1"
     ld = json.dumps({"@context": "https://schema.org", "@graph": BASE_GRAPH + graph}, ensure_ascii=False, separators=(",", ":"))
     gtm_head = gtm_body = ""
@@ -927,8 +930,9 @@ def layout(path, title, desc, body, current, graph, noindex=False, og_type="webs
 <meta property="og:image:alt" content="Marketing Student: marketing uitbesteden aan een student">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0f2741">
-<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" href="/assets/img/favicon-48.png?v={ico_v["favicon-48"]}" sizes="48x48" type="image/png">
+<link rel="icon" href="/assets/img/favicon-32.png?v={ico_v["favicon-32"]}" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v={ico_v["apple-touch-icon"]}">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/instrument-serif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -1608,8 +1612,8 @@ def main():
 ''', encoding="utf-8")
     (ROOT / "site.webmanifest").write_text(json.dumps({"name": SITE_NAME, "short_name": SITE_NAME, "start_url": "/", "display": "browser",
                                                        "background_color": "#0f2741", "theme_color": "#0f2741",
-                                                       "icons": [{"src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png"},
-                                                                 {"src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, indent=1), encoding="utf-8")
+                                                       "icons": [{"src": "/assets/img/icon-192.png?v=" + asset_v("assets/img/icon-192.png"), "sizes": "192x192", "type": "image/png"},
+                                                                 {"src": "/assets/img/icon-512.png?v=" + asset_v("assets/img/icon-512.png"), "sizes": "512x512", "type": "image/png"}]}, indent=1), encoding="utf-8")
     llms = [f"# {SITE_NAME}", "", "> Getrainde HBO/WO-marketingstudenten voor het mkb, begeleid door ervaren marketeers. Geen contract, kosteloze vervanging.", "",
             f"Contact: {PHONE}, {EMAIL}. Vestigingen in Den Haag en Mijdrecht.", "", "## Specialisaties", ""]
     llms += [f"- [{s[1]}]({SITE}/{s[0]}/): {s[3]}" for s in SPECS]

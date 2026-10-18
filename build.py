@@ -19,7 +19,8 @@ from pathlib import Path
 
 from artikelen import ARTIKELEN as _OUD
 from artikelen_oktober import NIEUW as _NIEUW
-ARTIKELEN = _NIEUW + _OUD  # nieuwste eerst
+from artikelen_website import NIEUW_WEB as _WEB
+ARTIKELEN = _WEB + _NIEUW + _OUD  # nieuwste eerst
 from diensten_data import D as DIENST, SC as SHOWCASES, PLAT as PLATFORMS
 from story_data import STORY
 from vacatures_data import VACATURES, BIEDEN
@@ -91,6 +92,10 @@ SPECS = [
     ("huisstijl-laten-maken", "Huisstijl laten maken", ("icon", "pen"), "Logo, huisstijl, tone of voice en merkverhaal.", "Merk en e-mail"),
     ("email-marketing-uitbesteden", "E-mailmarketing uitbesteden", ("icon", "mail"), "Nieuwsbrieven en automatische flows.", "Merk en e-mail"),
     ("website-laten-maken", "Website laten maken", ("icon", "globe"), "In WordPress of Shopify, snel en vindbaar.", "Web en AI"),
+    ("website-laten-maken-den-haag", "Website laten maken Den Haag", ("icon", "map-pin"), "Kom langs aan de Koninginnegracht.", "Web en AI"),
+    ("website-laten-maken-utrecht", "Website laten maken Utrecht", ("icon", "map-pin"), "Vanuit onze vestiging in Mijdrecht.", "Web en AI"),
+    ("website-laten-onderhouden", "Website laten onderhouden", ("icon", "shield"), "Updates, back-ups en kleine aanpassingen.", "Web en AI"),
+    ("landingspagina-laten-maken", "Landingspagina laten maken", ("icon", "target"), "Eén doel, meer aanvragen uit je campagnes.", "Web en AI"),
     ("wordpress-specialist-inhuren", "WordPress-specialist inhuren", ("brand", "wordpress"), "Pagina's bouwen, onderhouden en versnellen.", "Web en AI"),
     ("shopify-specialist-inhuren", "Shopify-specialist inhuren", ("brand", "shopify"), "Productpagina's en webshopbeheer.", "Web en AI"),
     ("ai-specialist-inhuren", "AI-specialist inhuren", ("brand", "openai"), "AI-tools en workflows in je marketing.", "Web en AI"),
@@ -109,6 +114,8 @@ PARENT = {"instagram-uitbesteden": "social-media-uitbesteden", "tiktok-uitbested
           "facebook-adverteren-uitbesteden": "social-media-adverteren", "youtube-adverteren-uitbesteden": "social-media-adverteren",
           "youtube-uitbesteden": "social-media-uitbesteden", "google-for-jobs": "recruitment-marketing-uitbesteden",
           "instructievideo-laten-maken": "foto-en-video-laten-maken", "podcast-laten-maken": "foto-en-video-laten-maken",
+          "website-laten-maken-den-haag": "website-laten-maken", "website-laten-maken-utrecht": "website-laten-maken",
+          "website-laten-onderhouden": "website-laten-maken", "landingspagina-laten-maken": "website-laten-maken",
           "aftermovie-laten-maken": "foto-en-video-laten-maken", "social-media-video-laten-maken": "foto-en-video-laten-maken",
           "productvideo-laten-maken": "foto-en-video-laten-maken", "videograaf-inhuren": "foto-en-video-laten-maken",
           "bedrijfsfotograaf-inhuren": "foto-en-video-laten-maken", "productfotos-laten-maken": "foto-en-video-laten-maken"}
@@ -141,8 +148,8 @@ REL = {
     "recruitment-marketing-uitbesteden": ["wat-is-employer-branding", "wat-doet-een-marketeer", "welke-social-media-kiezen"],
     "huisstijl-laten-maken": ["wat-is-een-huisstijl", "online-marketing-mkb", "wat-is-contentmarketing"],
     "email-marketing-uitbesteden": ["nieuwsbrief-maken", "wat-is-contentmarketing", "online-marketing-mkb"],
-    "website-laten-maken": ["online-marketing-mkb", "wat-is-een-huisstijl", "verschil-seo-en-sea"],
-    "wordpress-specialist-inhuren": ["online-marketing-mkb", "wat-doet-een-seo-specialist", "wat-is-een-huisstijl"],
+    "website-laten-maken": ["wat-kost-een-website-laten-maken", "goedkope-website-laten-maken", "website-laten-maken-checklist"],
+    "wordpress-specialist-inhuren": ["wat-kost-een-website-laten-maken", "website-laten-maken-checklist", "wat-doet-een-seo-specialist"],
     "shopify-specialist-inhuren": ["nieuwsbrief-maken", "wat-is-sea", "online-marketing-mkb"],
     "ai-specialist-inhuren": ["claude-vs-chatgpt", "wat-is-contentmarketing", "online-marketing-mkb"],
     "claude-specialist-inhuren": ["claude-vs-chatgpt", "nieuwsbrief-maken", "wat-is-contentmarketing"],
@@ -162,6 +169,10 @@ REL = {
     "google-for-jobs": ["wat-is-employer-branding", "wat-is-sea", "online-marketing-mkb"],
     "podcast-laten-maken": ["contentkalender-maken", "wat-is-contentmarketing", "nieuwsbrief-maken"],
     "instructievideo-laten-maken": ["wat-is-contentmarketing", "reels-maken", "online-marketing-mkb"],
+    "website-laten-maken-den-haag": ["wat-kost-een-website-laten-maken", "website-laten-maken-checklist", "goedkope-website-laten-maken"],
+    "website-laten-maken-utrecht": ["wat-kost-een-website-laten-maken", "website-laten-maken-zzp", "website-laten-maken-checklist"],
+    "website-laten-onderhouden": ["website-laten-maken-checklist", "wat-kost-een-website-laten-maken", "online-marketing-mkb"],
+    "landingspagina-laten-maken": ["wat-is-sea", "website-laten-maken-checklist", "online-marketing-mkb"],
 }
 REL_DEFAULT = ["online-marketing-mkb", "freelance-marketeer-of-marketing-student", "wat-voor-type-marketeers-zijn-er"]
 
@@ -706,7 +717,9 @@ ART_FOTO = {"wat-doet-een-seo-specialist": "student-bureau-2", "freelance-market
             "wat-doet-een-marketeer": "studenten-laptop", "wat-is-sea": "student-bureau-3", "nieuwsbrief-maken": "samen-laptop",
             "claude-vs-chatgpt": "team-computer", "reels-maken": "student-bureau-4", "contentkalender-maken": "student-bureau-6",
             "wat-is-employer-branding": "team-tafel", "wat-is-een-huisstijl": "samen-overleg", "wat-is-contentmarketing": "team-overleg",
-            "online-marketing-mkb": "samen-kantoor"}
+            "online-marketing-mkb": "samen-kantoor",
+            "wat-kost-een-website-laten-maken": "samen-laptop", "goedkope-website-laten-maken": "student-bureau-3",
+            "website-laten-maken-zzp": "student-bureau-1", "website-laten-maken-checklist": "team-computer"}
 
 
 def meta_short(t):
@@ -1027,6 +1040,10 @@ RELATED = {
     "google-for-jobs": ["recruitment-marketing-uitbesteden", "recruitmentvideo-laten-maken", "google-ads-specialist-inhuren", "linkedin-marketing-uitbesteden"],
     "podcast-laten-maken": ["social-media-video-laten-maken", "youtube-uitbesteden", "videograaf-inhuren", "contentmarketing-uitbesteden"],
     "instructievideo-laten-maken": ["animatie-laten-maken", "productvideo-laten-maken", "youtube-uitbesteden", "bedrijfsfilm-laten-maken"],
+    "website-laten-maken-den-haag": ["website-laten-maken", "website-laten-onderhouden", "seo-specialist-inhuren", "huisstijl-laten-maken"],
+    "website-laten-maken-utrecht": ["website-laten-maken", "website-laten-onderhouden", "seo-specialist-inhuren", "huisstijl-laten-maken"],
+    "website-laten-onderhouden": ["website-laten-maken", "wordpress-specialist-inhuren", "seo-specialist-inhuren", "landingspagina-laten-maken"],
+    "landingspagina-laten-maken": ["website-laten-maken", "google-ads-specialist-inhuren", "facebook-adverteren-uitbesteden", "social-media-video-laten-maken"],
 }
 
 
@@ -1038,6 +1055,8 @@ def gids_section(slug):
     return section(section_head(kop, lead_txt) + f'<div class="gids">{items}</div>')
 
 
+AREA = {"website-laten-maken-den-haag": {"@type": "City", "name": "Den Haag"},
+        "website-laten-maken-utrecht": {"@type": "AdministrativeArea", "name": "Provincie Utrecht"}}
 CHILD_HEAD = {"foto-en-video-laten-maken": "Specialisaties in *foto en video*", "social-media-adverteren": "Specialisaties in *social ads*",
               "social-media-uitbesteden": "Specialisaties in *social media*", "website-laten-maken": "Specialisaties in *websites*",
               "ai-specialist-inhuren": "Specialisaties in *AI*", "recruitment-marketing-uitbesteden": "Specialisaties in *werving*"}
@@ -1057,7 +1076,8 @@ def page_dienst(slug):
                      "Bedrijfsfilm": "een bedrijfsfilm", "Animatie": "animatie laten maken", "Drone video": "drone video's",
                      "Recruitmentvideo": "een recruitmentvideo", "Facebook": "Facebook adverteren",
                      "Aftermovie": "een aftermovie", "Bedrijfsfotografie": "bedrijfsfotografie", "Social media video": "social media video's",
-                     "Videograaf": "een videograaf", "Productvideo": "een productvideo", "YouTube ads": "YouTube adverteren", "YouTube": "YouTube uitbesteden", "Google for Jobs": "Google for Jobs", "Podcast": "een podcast", "Instructievideo": "een instructievideo", "Productfoto's": "productfoto's"}
+                     "Videograaf": "een videograaf", "Productvideo": "een productvideo", "YouTube ads": "YouTube adverteren", "YouTube": "YouTube uitbesteden", "Google for Jobs": "Google for Jobs", "Podcast": "een podcast", "Instructievideo": "een instructievideo",
+                     "Website Den Haag": "een website in Den Haag", "Website Utrecht": "een website in Utrecht", "Website onderhoud": "website onderhoud", "Landingspagina": "een landingspagina", "Productfoto's": "productfoto's"}
     lab = FAQ_ONDERWERP.get(d["short"], d["short"] if d["short"] in ("SEO", "Google Ads", "AI", "Claude") else d["short"])
     if d["short"] in ("SEO", "Google Ads", "AI", "Claude", "WordPress", "Shopify", "Premiere Pro", "After Effects", "DaVinci Resolve", "Linkbuilding"):
         lab = "een " + d["noun"]
@@ -1104,7 +1124,7 @@ def page_dienst(slug):
     graph = [ld_webpage(url, d["title"], d["meta"], main=url + "#service"),
              ld_crumbs(url, crumb_items),
              {"@type": "Service", "@id": url + "#service", "name": label, "serviceType": label, "description": d["meta"], "url": url,
-              "provider": {"@id": ORG}, "areaServed": NL, "category": d["short"],
+              "provider": {"@id": ORG}, "areaServed": AREA.get(slug, NL), "category": d["short"],
               "audience": {"@type": "BusinessAudience", "audienceType": "mkb-ondernemers en marketingmanagers"}},
              ld_faq(url, faq_items)]
     return path, d["title"], d["meta"], body, "specialisaties", graph
@@ -1506,7 +1526,7 @@ REDIRECTS = [
     ("/linkedin-marketing-student-inhuren-blog/", "/linkedin-marketing-uitbesteden/"),
 ]
 GONE = ["/feed/", "/comments/feed/", "/search/*", "/test-bericht/", "/test-bericht-2/", "/category/uncategorized/", "/wp-json/*", "/xmlrpc.php", "/wp-admin/*", "/wp-login.php"]
-BLOCK = ["/tools/*", "/artikelen_oktober.py", "/lastmod.json", "/gids_data.py", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
+BLOCK = ["/tools/*", "/artikelen_website.py", "/artikelen_oktober.py", "/lastmod.json", "/gids_data.py", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
 
 
 # ---------------------------------------------------------------- bouwen

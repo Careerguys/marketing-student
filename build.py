@@ -795,7 +795,7 @@ def footer():
         <a class="strong" href="{PHONE_HREF}">{icon("phone")}{PHONE}</a>
         <a class="strong" href="mailto:{EMAIL}">{icon("mail")}{EMAIL}</a>
         <span>Koninginnegracht 5<br>2514 AA Den Haag</span>
-        <span>Ma–do 08:30–17:30<br>Vr 08:30–16:30</span>
+        <span>Ma–vr 09:00–17:00</span>
         <span>KvK 90875206</span>
       </div></div>
     </div>
@@ -843,8 +843,7 @@ ORG = SITE + "/#organization"
 LOGO_URL = SITE + "/assets/img/logo-440.png"
 # Vierkant, zodat Google het logo in de zoekresultaten niet afsnijdt
 BEELD_URL = SITE + "/assets/img/logo-vierkant.png"
-UREN = [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "08:30", "closes": "17:30"},
-        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "08:30", "closes": "16:30"}]
+UREN = [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}]
 NL = {"@type": "Country", "name": "Nederland"}
 
 
@@ -1223,7 +1222,7 @@ def page_contact():
   {PRIVACY_NOTE}
 </form>'''
     cards = f'''<div class="contact-cards">
-  <div class="contact-card">{icon("phone")}<h2>Bellen</h2><a href="{PHONE_HREF}">{PHONE}</a><span>Ma–do 08:30–17:30, vr 08:30–16:30</span></div>
+  <div class="contact-card">{icon("phone")}<h2>Bellen</h2><a href="{PHONE_HREF}">{PHONE}</a><span>Ma–vr 09:00–17:00</span></div>
   <div class="contact-card">{icon("mail")}<h2>Mailen</h2><a href="mailto:{EMAIL}">{EMAIL}</a></div>
   <div class="contact-card">{icon("map-pin")}<h2>Langskomen</h2><strong>Den Haag of Mijdrecht</strong><span>Op afspraak. <a href="#vestigingen">Bekijk de vestigingen</a></span></div>
 </div>'''

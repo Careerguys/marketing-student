@@ -945,6 +945,7 @@ def layout(path, title, desc, body, current, graph, noindex=False, og_type="webs
 <meta property="og:image:alt" content="Marketing Student: marketing uitbesteden aan een student">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0f2741">
+<meta name="msvalidate.01" content="0B7903E879FB45353D1D8152F19376BA">
 <link rel="icon" href="/assets/img/favicon-48.png?v={ico_v["favicon-48"]}" sizes="48x48" type="image/png">
 <link rel="icon" href="/assets/img/favicon-32.png?v={ico_v["favicon-32"]}" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v={ico_v["apple-touch-icon"]}">

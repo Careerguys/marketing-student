@@ -5,9 +5,9 @@
 D = {
 "seo-specialist-inhuren": dict(
     short="SEO", noun="SEO-specialist", h1=("SEO-specialist", "inhuren"),
-    title="SEO-specialist inhuren: SEO-student | Marketing Student",
-    meta="SEO-specialist inhuren zonder bureautarief. Een getrainde SEO-student, begeleid door een senior. Geen contract. Vraag een offerte aan.",
-    lead="Een SEO-specialist inhuren voor je website: een getrainde SEO-student doet zoekwoordonderzoek, verbetert je pagina's en schrijft content die rankt. Een senior SEO-specialist controleert het werk.",
+    title='SEO uitbesteden aan een SEO-specialist | Marketing Student',
+    meta='SEO uitbesteden aan een getrainde SEO-specialist: zoekwoordonderzoek, techniek en content voor het mkb, begeleid door een senior. Geen contract.',
+    lead="SEO uitbesteden of een SEO-specialist inhuren voor je website: een getrainde SEO-student doet zoekwoordonderzoek, verbetert je pagina's en schrijft content die rankt. Een senior SEO-specialist controleert het werk.",
     mentor="Jeroen B.", sc="seo", platforms="seo",
     tasks=[("search","Zoekwoordonderzoek","Welke zoekwoorden leveren klanten op? De student brengt ze in kaart per pagina."),
            ("code","Technische SEO-check","Snelheid, indexering en fouten. Met Screaming Frog, SE Ranking en Ahrefs."),
@@ -25,9 +25,9 @@ D = {
 
 "google-ads-specialist-inhuren": dict(
     short="Google Ads", noun="Google Ads-specialist", h1=("Google Ads-specialist", "inhuren"),
-    title="Google Ads-specialist inhuren | Marketing Student",
-    meta="Google Ads-specialist inhuren: een getrainde SEA-student zet je campagnes op en stuurt bij, begeleid door een senior. Geen contract.",
-    lead="Een Google Ads-specialist inhuren die elke week je campagnes bijstuurt: een getrainde SEA-student, begeleid door een senior SEA-specialist. Jij houdt je eigen account en al je data.",
+    title='Google Ads uitbesteden (SEA) | Marketing Student',
+    meta='Google Ads uitbesteden aan een getrainde SEA-specialist: campagnes opzetten, beheren en bijsturen, begeleid door een senior. Geen contract.',
+    lead='Google Ads uitbesteden of een Google Ads-specialist inhuren die elke week je campagnes bijstuurt: een getrainde SEA-student, begeleid door een senior SEA-specialist. Jij houdt je eigen account en al je data.',
     mentor="Jeroen B.", sc="ads", platforms="ads",
     tasks=[("search","Zoekwoorden en structuur","Campagnes en advertentiegroepen die aansluiten op wat je klant zoekt."),
            ("pen","Advertentieteksten","Responsieve advertenties, getest en verbeterd op basis van resultaat."),
@@ -45,9 +45,9 @@ D = {
 
 "social-media-uitbesteden": dict(
     short="Social media", noun="social media-student", h1=("Social media", "uitbesteden"),
-    title="Social media uitbesteden aan een student | Marketing Student",
-    meta="Social media uitbesteden aan een getrainde student: posts plannen, maken en beheren, begeleid door een senior. Geen contract.",
-    lead="Social media uitbesteden aan een getrainde student: posts bedenken, maken, plannen en je community beheren. Een senior content- en brandingspecialist bewaakt je toon en merk.",
+    title='Social media uitbesteden en beheer | Marketing Student',
+    meta='Social media uitbesteden aan een getrainde student: social media beheer, posts maken en plannen en je community, begeleid door een senior. Geen contract.',
+    lead='Social media uitbesteden aan een getrainde student: posts bedenken, maken en plannen, en het beheer van je kanalen en community. Zo huur je een social media manager in zonder vaste kracht. Een senior content- en brandingspecialist bewaakt je toon en merk.',
     mentor="Marije C.", sc="social", platforms="social",
     tasks=[("calendar","Contentkalender","Een planning per maand, afgestemd op je doelen en je doelgroep."),
            ("camera","Posts en reels maken","Foto, video en tekst in de stijl van jouw merk."),
@@ -131,9 +131,9 @@ D = {
 
 "foto-en-video-laten-maken": dict(
     short="Foto en video", noun="foto- en videostudent", h1=("Foto en video", "laten maken"),
-    title="Videoproductie en foto's laten maken | Marketing Student",
-    meta="Videoproductie voor je bedrijf: video en foto laten maken door een getrainde student, van reels en bedrijfsfilm tot drone en animatie. Geen contract.",
-    lead="Video en foto laten maken door een getrainde student: van reels en productfoto's tot bedrijfsfilm, drone-opnames en animatie. Een senior content- en brandingspecialist bewaakt je merk.",
+    title='Foto en video laten maken voor bedrijven | Marketing Student',
+    meta="Foto en video laten maken voor je bedrijf: videoproductie en content creatie door een getrainde student, van bedrijfsvideo en reels tot productfoto's.",
+    lead="Foto en video laten maken door een getrainde content creator: van bedrijfsvideo's en reels tot productfoto's, drone-opnames en animatie. Content creatie uitbesteden zonder bureau, met een senior content- en brandingspecialist die je merk bewaakt.",
     mentor="Marije C.", sc=None, platforms="content",
     tasks=[("pen","Concept en script","Wat je wilt laten zien, aan wie en op welk kanaal."),
            ("video","Bedrijfsvideo","Je bedrijf, team of werkwijze in een korte film."),
@@ -154,8 +154,8 @@ D = {
 "recruitment-marketing-uitbesteden": dict(
     short="Recruitment", noun="recruitment marketeer", h1=("Recruitment marketing", "uitbesteden"),
     title="Recruitment marketing uitbesteden | Marketing Student",
-    meta="Recruitment marketing uitbesteden: vacatureteksten, vacaturecampagnes en employer branding door een getrainde student, begeleid door een senior.",
-    lead="Recruitment marketing uitbesteden aan een getrainde student: vacatureteksten, campagnes en een werkenbij-pagina die kandidaten trekt. Een senior marketeer bewaakt je werkgeversmerk.",
+    meta='Recruitment marketing uitbesteden: vacaturecampagnes, werving via social media en employer branding door een getrainde student, begeleid door een senior.',
+    lead='Recruitment marketing uitbesteden aan een getrainde student: vacatureteksten, vacaturecampagnes, werving via social media en een werkenbij-pagina die kandidaten trekt. Een senior marketeer bewaakt je werkgeversmerk.',
     mentor="Marije C.", sc=None, platforms="recruitment",
     tasks=[("pen","Vacatureteksten","Wervende teksten die vindbaar zijn in Google en op vacaturesites."),
            ("target","Vacaturecampagnes","Advertenties op LinkedIn, Meta en Google, gericht op de juiste kandidaten."),
@@ -221,9 +221,9 @@ D = {
 
 "social-media-adverteren": dict(
     short="Social ads", noun="social ads-specialist", h1=("Social media", "adverteren"),
-    title="Social media campagnes en adverteren | Marketing Student",
-    meta="Social media adverteren uitbesteden: campagnes op Meta, LinkedIn en TikTok door een getrainde student, begeleid door een senior. Geen contract.",
-    lead="Social media adverteren uitbesteden aan een getrainde student: campagnes op Facebook, Instagram, LinkedIn en TikTok die de juiste mensen bereiken. Een senior specialist kijkt mee.",
+    title='Social media adverteren en campagnes | Marketing Student',
+    meta='Social media adverteren uitbesteden: campagnes op Facebook, Instagram, LinkedIn en TikTok door een getrainde student, begeleid door een senior.',
+    lead='Social media adverteren uitbesteden aan een getrainde student: social media campagnes op Facebook, Instagram, LinkedIn en TikTok die de juiste mensen bereiken. Een senior specialist kijkt mee.',
     mentor="Marije C.", sc=None, platforms="socialads",
     tasks=[("target","Doelgroepen","Op regio, interesse en functie."),("pen","Advertenties","Tekst en beeld die opvallen."),("bar-chart","Rapportage","Wat het oplevert.")],
     faq=[("Wat doet een social ads-specialist?","Een social ads-specialist zet advertentiecampagnes op Facebook, Instagram, LinkedIn en TikTok op, kiest de doelgroep, test advertenties en stuurt bij op resultaat. Een senior controleert de aanpak."),
@@ -238,9 +238,9 @@ D = {
 
 "linkbuilding-specialist-inhuren": dict(
     short="Linkbuilding", noun="linkbuilding-specialist", h1=("Linkbuilding-specialist", "inhuren"),
-    title="Linkbuilding-specialist inhuren | Marketing Student",
-    meta="Linkbuilding-specialist inhuren: een getrainde student bouwt relevante links naar je website, begeleid door een senior SEO-specialist. Geen contract.",
-    lead="Een linkbuilding-specialist inhuren: een getrainde student zoekt relevante websites en vermeldingen die je autoriteit in Google versterken. Een senior SEO-specialist bewaakt de kwaliteit.",
+    title='Linkbuilding uitbesteden | Marketing Student',
+    meta='Linkbuilding uitbesteden aan een getrainde specialist: relevante backlinks en vermeldingen voor het mkb, begeleid door een senior SEO-specialist.',
+    lead='Linkbuilding uitbesteden of een linkbuilding-specialist inhuren: een getrainde student zoekt relevante websites en vermeldingen die je autoriteit in Google versterken. Een senior SEO-specialist bewaakt de kwaliteit.',
     mentor="Jeroen B.", sc=None, platforms=None,
     tasks=[("search","Kansen zoeken","Relevante websites in je branche."),("link","Links bouwen","Via content en contact."),("bar-chart","Rapportage","Nieuwe links en effect.")],
     faq=[("Wat doet een linkbuilding-specialist?","Een linkbuilding-specialist zorgt dat andere relevante websites naar jouw website linken, bijvoorbeeld via gastartikelen, vermeldingen en samenwerkingen. Dat versterkt je autoriteit in Google. Een senior SEO-specialist controleert de kwaliteit."),
@@ -816,3 +816,40 @@ D.update({
          ("Zit ik vast aan een contract?", "")],
     blog=[], cta="Laat je landingspagina maken"),
 })
+
+# Zoekwoordvarianten per dienst (18 oktober 2026), ingevoegd voor de laatste vraag.
+VARIANT_FAQ = {
+    'foto-en-video-laten-maken': [
+        ('Kan ik een content creator inhuren voor mijn bedrijf?', "Ja. Je huurt een getrainde student in die foto's, video's en korte content voor social media maakt, op locatie of met materiaal dat je aanlevert. Een senior content- en brandingspecialist controleert alles voordat het wordt opgeleverd."),
+        ('Wat is het verschil tussen videoproductie en content creatie?', "Videoproductie gaat meestal over één grotere productie, zoals een bedrijfsfilm. Content creatie is het doorlopend maken van foto's en korte video's voor social media en je website. Bij Marketing Student kan allebei, los of gecombineerd."),
+    ],
+    'seo-specialist-inhuren': [
+        ('Is SEO uitbesteden geschikt voor het mkb?', 'Ja. Juist voor mkb-bedrijven zonder eigen marketeer is SEO uitbesteden een manier om structureel aan vindbaarheid te werken. Je bepaalt zelf hoeveel uur per maand de student werkt, en een senior bewaakt de aanpak.'),
+        ('Wat is het verschil met een SEO-bureau?', 'Een SEO-bureau werkt vaak met vaste pakketten en een accountmanager. Bij Marketing Student werkt een vaste SEO-student aan je website, met een senior SEO-specialist die het werk controleert. Je zit niet vast aan een contract.'),
+    ],
+    'google-ads-specialist-inhuren': [
+        ('Wat is SEA uitbesteden?', 'SEA staat voor zoekmachineadverteren, in de praktijk meestal Google Ads. Bij SEA uitbesteden zet een specialist je campagnes op, kiest zoekwoorden, schrijft advertenties en stuurt het budget bij. Jij houdt de regie en je eigen account.'),
+        ('Wat houdt Google Ads beheer in?', 'Google Ads beheer is het doorlopend bijhouden van je campagnes: zoektermen controleren, uitsluitingen toevoegen, biedingen en budget bijsturen, advertenties testen en rapporteren. De student doet dit wekelijks, de senior kijkt mee.'),
+    ],
+    'social-media-uitbesteden': [
+        ('Kan ik een social media manager inhuren?', 'Ja. De student werkt als social media manager voor je bedrijf: plannen, maken, plaatsen en reageren. Je bepaalt zelf het aantal uren per maand, zonder een vaste kracht in dienst te nemen.'),
+        ('Wat valt onder social media beheer?', 'Social media beheer is alles wat nodig is om je kanalen actief te houden: een contentplanning, het plaatsen van posts, reageren op berichten en reacties, en maandelijks rapporteren wat het oplevert.'),
+    ],
+    'social-media-adverteren': [
+        ('Kan ik Meta Ads uitbesteden?', 'Ja. Meta Ads zijn de advertenties op Facebook en Instagram, beheerd in Meta Business Suite. De student zet je campagnes op in je eigen advertentieaccount, test advertenties en stuurt wekelijks bij.'),
+        ('Wat maakt een social media campagne succesvol?', 'Een duidelijk doel, een doelgroep die past, advertenties die in de eerste seconden opvallen en een goede meting op je website. Zonder meting weet je niet welke campagne klanten oplevert.'),
+    ],
+    'linkbuilding-specialist-inhuren': [
+        ('Kan ik backlinks laten maken?', 'Ja, maar niet door ze te kopen. De student zoekt websites die echt bij je bedrijf passen, zoals branchesites, partners en lokale organisaties, en zorgt voor een vermelding met een link. Zo bouw je veilig autoriteit op.'),
+        ('Is linkbuilding ook zinvol voor het mkb?', 'Ja. Vooral in concurrerende markten bepalen links vaak het verschil tussen pagina één en twee. Voor mkb-bedrijven werken lokale en branchegerichte links meestal het best.'),
+    ],
+    'recruitment-marketing-uitbesteden': [
+        ('Wat is een vacaturecampagne?', 'Een vacaturecampagne is een advertentiecampagne die je vacature laat zien aan mensen die passen, ook als ze niet actief zoeken. Bijvoorbeeld op Instagram, Facebook, LinkedIn of TikTok, met een korte video of foto en een link naar de vacature.'),
+        ('Wat is arbeidsmarktcommunicatie?', 'Arbeidsmarktcommunicatie is alles wat je als werkgever communiceert om nieuwe medewerkers aan te trekken: je werkenbij-pagina, vacatureteksten, campagnes en wat medewerkers over je vertellen. Recruitment marketing is het actieve deel daarvan.'),
+    ],
+    'website-laten-maken': [
+        ('Kan ik ook een webshop laten maken?', 'Ja. Voor webshops bouwt de student meestal in Shopify: producten, betalingen, verzending en een ontwerp dat bij je merk past. Een senior controleert de webshop voordat hij live gaat.'),
+    ],
+}
+for _s, _f in VARIANT_FAQ.items():
+    D[_s]["faq"] = D[_s]["faq"][:-1] + _f + D[_s]["faq"][-1:]

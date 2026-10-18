@@ -44,3 +44,6 @@ Netlify Forms: `offerte`, `contact` en `student-aanmelding`. Formulierdetectie s
 ## Publiceren
 
 Netlify-project `marketing-student` (https://marketing-student.netlify.app) publiceert vanaf de `main`-branch van github.com/Careerguys/marketing-student. De repository is openbaar: op het huidige Netlify-abonnement worden bij privé-repositories alleen commits van één GitHub-gebruiker gebouwd. Er is geen bouwstap op Netlify: de gebouwde HTML staat in de repository.
+
+## IndexNow (Bing)
+Na elke push die live staat: `python3 tools/indexnow.py`. Dat meldt de pagina's die sinds de vorige melding zijn gewijzigd bij IndexNow (Bing, Yandex, Seznam, Naver). Met `--all` meld je alle pagina's uit de sitemap. De sleutel staat in het `.txt`-bestand met de hexnaam in de root.

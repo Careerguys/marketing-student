@@ -945,6 +945,7 @@ def layout(path, title, desc, body, current, graph, noindex=False, og_type="webs
 <meta property="og:image:alt" content="Marketing Student: marketing uitbesteden aan een student">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0f2741">
+<meta name="msvalidate.01" content="0B7903E879FB45353D1D8152F19376BA">
 <link rel="icon" href="/assets/img/favicon-48.png?v={ico_v["favicon-48"]}" sizes="48x48" type="image/png">
 <link rel="icon" href="/assets/img/favicon-32.png?v={ico_v["favicon-32"]}" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v={ico_v["apple-touch-icon"]}">
@@ -1556,7 +1557,8 @@ REDIRECTS = [
     ("/linkedin-marketing-student-inhuren-blog/", "/linkedin-marketing-uitbesteden/"),
 ]
 GONE = ["/feed/", "/comments/feed/", "/search/*", "/test-bericht/", "/test-bericht-2/", "/category/uncategorized/", "/wp-json/*", "/xmlrpc.php", "/wp-admin/*", "/wp-login.php"]
-BLOCK = ["/tools/*", "/artikelen_website.py", "/artikelen_oktober.py", "/lastmod.json", "/gids_data.py", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
+# Broncode nooit uitleveren: elk .py-bestand in de root wordt automatisch geblokkeerd.
+BLOCK = ["/tools/*", "/lastmod.json", "/brands.json", "/privacy.html", "/README.md"] + sorted(f"/{f.name}" for f in ROOT.glob("*.py"))
 
 
 # ---------------------------------------------------------------- bouwen

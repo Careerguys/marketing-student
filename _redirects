@@ -6,20 +6,21 @@ http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  30
 
 # Broncode niet uitleveren
 /tools/*                                                       /404.html  404!
-/artikelen_website.py                                          /404.html  404!
-/artikelen_oktober.py                                          /404.html  404!
 /lastmod.json                                                  /404.html  404!
-/gids_data.py                                                  /404.html  404!
-/build.py                                                      /404.html  404!
-/artikelen.py                                                  /404.html  404!
-/diensten_data.py                                              /404.html  404!
-/faq_data.py                                                   /404.html  404!
-/story_data.py                                                 /404.html  404!
-/vacatures_data.py                                             /404.html  404!
 /brands.json                                                   /404.html  404!
 /privacy.html                                                  /404.html  404!
 /README.md                                                     /404.html  404!
+/artikelen.py                                                  /404.html  404!
+/artikelen_oktober.py                                          /404.html  404!
+/artikelen_website.py                                          /404.html  404!
+/build.py                                                      /404.html  404!
 /check.py                                                      /404.html  404!
+/diensten_data.py                                              /404.html  404!
+/faq_data.py                                                   /404.html  404!
+/gids_data.py                                                  /404.html  404!
+/story_data.py                                                 /404.html  404!
+/vacatures_data.py                                             /404.html  404!
+/vacatures_extra.py                                            /404.html  404!
 
 # Oude URL's van de WordPress-site (permanent)
 /seo-student-inhuren/                                          /seo-specialist-inhuren/                       301!

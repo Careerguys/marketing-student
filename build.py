@@ -1307,7 +1307,12 @@ def page_artikel(a):
     datum = a.get("datum", PUBLISHED)
     j, m, d = (int(x) for x in datum.split("-"))
     maanden = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"]
-    meta_line = f'<p class="meta-line">Redactie Marketing Student · <time datetime="{datum}">{d} {maanden[m - 1]} {j}</time></p>'
+    bijgewerkt = a.get("bijgewerkt", datum)
+    meta_line = f'<p class="meta-line">Redactie Marketing Student · <time datetime="{datum}">{d} {maanden[m - 1]} {j}</time>'
+    if bijgewerkt != datum:
+        bj, bm, bd = (int(x) for x in bijgewerkt.split("-"))
+        meta_line += f' · bijgewerkt <time datetime="{bijgewerkt}">{bd} {maanden[bm - 1]} {bj}</time>'
+    meta_line += '</p>'
     body = hero([("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)], a["titel"], "", a["meta"], meta_line, cls="hero--article")
     img = foto(ART_FOTO.get(a["slug"], "team-tafel"), "(min-width: 1000px) 760px, 100vw", "article__img")
     body += section(f'<div class="article-grid"><article class="prose">{img}{"".join(prose)}</article>{aside}</div>', "section--flush-top")
@@ -1323,7 +1328,7 @@ def page_artikel(a):
     graph = [ld_webpage(url, a["title"], a["meta"], main=url + "#artikel"),
              ld_crumbs(url, [("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)]),
              {"@type": "Article", "@id": url + "#artikel", "headline": a["titel"], "description": a["meta"], "image": f'{SITE}/assets/img/foto/{ART_FOTO.get(a["slug"], "team-tafel")}-1600.webp',
-              "datePublished": datum, "dateModified": datum, "inLanguage": "nl-NL",
+              "datePublished": datum, "dateModified": bijgewerkt, "inLanguage": "nl-NL",
               "author": {"@type": "Organization", "@id": ORG, "name": SITE_NAME}, "publisher": {"@id": ORG},
               "mainEntityOfPage": {"@id": url + "#webpage"}}]
     if a["dienst"]:

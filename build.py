@@ -1556,7 +1556,8 @@ REDIRECTS = [
     ("/linkedin-marketing-student-inhuren-blog/", "/linkedin-marketing-uitbesteden/"),
 ]
 GONE = ["/feed/", "/comments/feed/", "/search/*", "/test-bericht/", "/test-bericht-2/", "/category/uncategorized/", "/wp-json/*", "/xmlrpc.php", "/wp-admin/*", "/wp-login.php"]
-BLOCK = ["/tools/*", "/artikelen_website.py", "/artikelen_oktober.py", "/lastmod.json", "/gids_data.py", "/build.py", "/artikelen.py", "/diensten_data.py", "/faq_data.py", "/story_data.py", "/vacatures_data.py", "/brands.json", "/privacy.html", "/README.md", "/check.py"]
+# Broncode nooit uitleveren: elk .py-bestand in de root wordt automatisch geblokkeerd.
+BLOCK = ["/tools/*", "/lastmod.json", "/brands.json", "/privacy.html", "/README.md"] + sorted(f"/{f.name}" for f in ROOT.glob("*.py"))
 
 
 # ---------------------------------------------------------------- bouwen

@@ -585,7 +585,7 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .footer a:hover { color: #fff; text-decoration: underline; }
 .footer__intro p { max-width: 300px; color: var(--muted); margin-top: 16px; }
 .footer__contact { display: grid; gap: 8px; color: var(--muted); }
-.footer__contact a.strong { color: #fff; font-weight: 800; font-size: 1.0625rem; gap: 8px; }
+.footer__contact a.strong { color: var(--muted); font-weight: 400; font-size: inherit; gap: 8px; }
 .footer__contact a.strong svg { width: 18px; height: 18px; color: var(--green); }
 .footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); }
 .footer__legal nav { display: flex; flex-wrap: wrap; gap: 4px 18px; }

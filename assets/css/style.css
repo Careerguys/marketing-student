@@ -158,6 +158,8 @@ h3 { font-size: 1.1875rem; line-height: 1.25; letter-spacing: -0.02em; }
 @media (min-width: 1100px) { .logo img { height: 34px; } }
 .nav { display: none; }
 @media (min-width: 1100px) { .nav { display: flex; align-items: center; gap: 2px; } }
+/* Drie kolommen met gelijke zijkanten, zodat het menu precies in het midden van de balk staat. */
+@media (min-width: 1100px) { .header__bar { display: grid; grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr); } .nav > ul { gap: 0; } .nav a, .nav button { padding-inline: 9px; } .header__bar > .header__actions { gap: 4px; } .header__phone { padding-inline: 6px; gap: 6px; } .header__cta { padding-inline: 14px; } .header__bar { padding-inline: 17px; } .header__bar > .logo { justify-self: start; } .header__bar > .header__actions { justify-self: end; } }
 .nav > ul { display: flex; align-items: center; gap: 2px; list-style: none; }
 .nav a, .nav button {
   display: inline-flex; align-items: center; gap: 5px;

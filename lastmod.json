@@ -81,11 +81,11 @@
  },
  "/kennisbank/": {
   "d": "2026-10-18",
-  "h": "4d6242be88473b97"
+  "h": "a57322f002526948"
  },
  "/kennisbank/claude-vs-chatgpt/": {
-  "d": "2026-10-11",
-  "h": "e3799913462bab82"
+  "d": "2026-10-18",
+  "h": "edd077fb05483cf3"
  },
  "/kennisbank/contentkalender-maken/": {
   "d": "2026-10-18",
@@ -93,11 +93,15 @@
  },
  "/kennisbank/freelance-marketeer-of-marketing-student/": {
   "d": "2026-10-18",
-  "h": "58410cb2dbdd7048"
+  "h": "44d951fb5397b626"
+ },
+ "/kennisbank/goedkope-website-laten-maken/": {
+  "d": "2026-10-18",
+  "h": "1d8ab40663bd10e7"
  },
  "/kennisbank/nieuwsbrief-maken/": {
-  "d": "2026-10-11",
-  "h": "b59262a909f915f1"
+  "d": "2026-10-18",
+  "h": "8ea276c0e82ea268"
  },
  "/kennisbank/online-marketing-mkb/": {
   "d": "2026-10-18",
@@ -113,7 +117,7 @@
  },
  "/kennisbank/verschil-seo-en-sea/": {
   "d": "2026-10-18",
-  "h": "07756955208e34cf"
+  "h": "f4251207dd08f199"
  },
  "/kennisbank/wat-doet-een-head-of-marketing/": {
   "d": "2026-10-18",
@@ -125,31 +129,47 @@
  },
  "/kennisbank/wat-doet-een-seo-specialist/": {
   "d": "2026-10-18",
-  "h": "527eeb4b5a0d671f"
+  "h": "05cdc454a665bf67"
  },
  "/kennisbank/wat-is-contentmarketing/": {
-  "d": "2026-10-11",
-  "h": "e7ff16603a080571"
+  "d": "2026-10-18",
+  "h": "400c6b8fdaf50bd3"
  },
  "/kennisbank/wat-is-een-huisstijl/": {
-  "d": "2026-10-11",
-  "h": "e29aa5805865bb31"
+  "d": "2026-10-18",
+  "h": "11fc591d5ef2448f"
  },
  "/kennisbank/wat-is-employer-branding/": {
-  "d": "2026-10-12",
-  "h": "4ff084d5e2c94322"
+  "d": "2026-10-18",
+  "h": "e40819c2b9826a86"
  },
  "/kennisbank/wat-is-sea/": {
   "d": "2026-10-18",
-  "h": "bb990ba6c7aff26e"
+  "h": "bc044ab19ff2ad4c"
+ },
+ "/kennisbank/wat-kost-een-website-laten-maken/": {
+  "d": "2026-10-18",
+  "h": "7ae2e9e336a99631"
  },
  "/kennisbank/wat-voor-type-marketeers-zijn-er/": {
   "d": "2026-10-18",
   "h": "12c6ea1fa9a60192"
  },
+ "/kennisbank/website-laten-maken-checklist/": {
+  "d": "2026-10-18",
+  "h": "0c6a3e68d8ed61be"
+ },
+ "/kennisbank/website-laten-maken-zzp/": {
+  "d": "2026-10-18",
+  "h": "b58b4cda9c79f9ae"
+ },
  "/kennisbank/welke-social-media-kiezen/": {
   "d": "2026-10-18",
   "h": "7779df0f5c98fb93"
+ },
+ "/landingspagina-laten-maken/": {
+  "d": "2026-10-18",
+  "h": "8e5cbe3bfa33881b"
  },
  "/linkbuilding-specialist-inhuren/": {
   "d": "2026-10-18",
@@ -216,8 +236,8 @@
   "h": "8e26adac0654965e"
  },
  "/specialisaties/": {
-  "d": "2026-10-15",
-  "h": "490d3b163f7c6e4e"
+  "d": "2026-10-18",
+  "h": "bf7f82fc01f72002"
  },
  "/tiktok-uitbesteden/": {
   "d": "2026-10-13",
@@ -267,9 +287,21 @@
   "d": "2026-10-14",
   "h": "1c0881b67878ac5c"
  },
+ "/website-laten-maken-den-haag/": {
+  "d": "2026-10-18",
+  "h": "838b87bd9df05beb"
+ },
+ "/website-laten-maken-utrecht/": {
+  "d": "2026-10-18",
+  "h": "6a42cada2bd07c97"
+ },
  "/website-laten-maken/": {
   "d": "2026-10-18",
-  "h": "0dd78e2a9ac35951"
+  "h": "8348e5145d985507"
+ },
+ "/website-laten-onderhouden/": {
+  "d": "2026-10-18",
+  "h": "50d1698c15f58615"
  },
  "/werken-als-student/": {
   "d": "2026-10-01",
@@ -281,7 +313,7 @@
  },
  "/wordpress-specialist-inhuren/": {
   "d": "2026-10-18",
-  "h": "497f89f1757571b9"
+  "h": "3e2060ccfc01a8f4"
  },
  "/youtube-adverteren-uitbesteden/": {
   "d": "2026-10-18",

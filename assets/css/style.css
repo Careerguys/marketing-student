@@ -1089,3 +1089,5 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .gids__item p { margin: 0; font-size: 1.0625rem; line-height: 1.7; color: rgba(255, 255, 255, 0.88); }
 .gids__item a { color: var(--green); }
 .section-head .lead a { color: var(--green); }
+.vac-tools { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.vac-tools li { padding: 6px 12px; border-radius: 999px; background: rgba(121, 199, 158, 0.12); border: 1px solid rgba(121, 199, 158, 0.3); font-size: 0.875rem; font-weight: 600; color: #fff; }

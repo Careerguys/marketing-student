@@ -70,4 +70,4 @@ VACATURES = [
 ]
 
 BIEDEN = ["Werk voor echte mkb-klanten, geen oefenopdrachten", "Een ervaren marketeer die je begeleidt en feedback geeft",
-          "Uren in overleg, naast je studie", "Remote, of hybride vanuit Den Haag of Mijdrecht", "Je leert de tools die marketeers dagelijks gebruiken"]
+          "Uren in overleg, naast je studie", "Remote, of hybride vanuit ons kantoor in Den Haag", "Je leert de tools die marketeers dagelijks gebruiken"]

@@ -24,6 +24,7 @@ ARTIKELEN = _WEB + _NIEUW + _OUD  # nieuwste eerst
 from diensten_data import D as DIENST, SC as SHOWCASES, PLAT as PLATFORMS
 from story_data import STORY
 from vacatures_data import VACATURES, BIEDEN
+from vacatures_extra import EXTRA as VAC_EXTRA, BEGELEIDING, WERKVORM, VAC_FAQ
 from faq_data import antwoord
 from gids_data import GIDS
 
@@ -745,7 +746,7 @@ def cta_block(title="Klaar om je marketing *te versterken?*", text="Vertel wat j
 
 
 # ---------------------------------------------------------------- header en footer
-NAV = [("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"), ("Kennisbank", "/kennisbank/"), ("Contact", "/contact/")]
+NAV = [("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"), ("Contact", "/contact/")]  # Kennisbank alleen in de footer
 # Voor studenten: eigen kopje in het menu (desktop: uitklapmenu "Werken bij", mobiel: losse links).
 WERK = [("Vacatures", "/vacatures/", "briefcase", "Openstaande functies naast je studie"), ("Werken als student", "/werken-als-student/", "user-search", "Zo werk je bij ons, en algemeen aanmelden")]
 
@@ -809,7 +810,7 @@ def footer():
       <div><h2>Contact</h2><div class="footer__contact">
         <a class="strong" href="{PHONE_HREF}">{icon("phone")}{PHONE}</a>
         <a class="strong" href="mailto:{EMAIL}">{icon("mail")}{EMAIL}</a>
-        <span>Koninginnegracht 5<br>2514 AA Den Haag</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Koninginnegracht+5,+2514+AA+Den+Haag" target="_blank" rel="noopener">Koninginnegracht 5<br>2514 AA Den Haag<span class="sr-only"> (opent Google Maps)</span></a>
         <span>Ma–vr 09:00–17:00</span>
         <span>KvK 90875206</span>
       </div></div>
@@ -1348,7 +1349,7 @@ def page_student():
     cards = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in krijg)
     secs = photo_band("studenten-laptop", "section--flush-top")
     secs += section(section_head("Waarom studenten *bij ons werken*") + f'<div class="grid grid--4">{cards}</div>')
-    student_steps = [("Aanmelden", "Vul het formulier in met je opleiding en je LinkedIn of portfolio."),
+    student_steps = [("Aanmelden", "Vul het formulier in met je contactgegevens en je LinkedIn of portfolio."),
                      ("Kennismaking", "We maken kennis en bespreken welke specialisatie bij je past."),
                      ("Inwerktraject", "Je leert onze werkwijze en de tools, samen met een senior."),
                      ("Eerste opdracht", "Je gaat aan de slag voor een mkb-klant, met een senior die meekijkt.")]
@@ -1367,15 +1368,18 @@ def page_student():
 
 # ---------------------------------------------------------------- vacatures
 VAC_POSTED, VAC_VALID = "2026-09-30", "2026-12-31T23:59"
-VAC_STEPS = [("Solliciteren", "Vul het formulier in met je opleiding en je LinkedIn of portfolio."),
+VAC_STEPS = [("Solliciteren", "Vul het formulier in met je contactgegevens en je LinkedIn of portfolio."),
              ("Kennismaking", "We maken kennis en bespreken wat je wilt leren."),
              ("Inwerktraject", "Je leert onze werkwijze en de tools, samen met een senior."),
              ("Eerste opdracht", "Je gaat aan de slag voor een mkb-klant, met een senior die meekijkt.")]
-VAC_CHIPS = ["Naast je studie", "Remote of hybride", "Den Haag of Mijdrecht"]
+# Locatie alleen op de vacaturepagina zelf, niet in het overzicht.
+VAC_CHIPS = [("clock", "Naast je studie"), ("zap", "Remote of hybride")]
+VAC_PLAATS = ("map-pin", "Den Haag")
 
 
-def vac_chips():
-    return '<ul class="vac-chips">' + "".join(f"<li>{icon(i)}{t}</li>" for i, t in zip(["clock", "zap", "map-pin"], VAC_CHIPS)) + "</ul>"
+def vac_chips(plaats=False):
+    chips = VAC_CHIPS + ([VAC_PLAATS] if plaats else [])
+    return '<ul class="vac-chips">' + "".join(f"<li>{icon(i)}{t}</li>" for i, t in chips) + "</ul>"
 
 
 def vac_cards(items):
@@ -1395,7 +1399,7 @@ def student_form(n, slug, page, title="Meld je aan", vacature=None):
   <div class="form-grid">
     {field(f"naam-{n}", "Naam", ph="Voor- en achternaam", ac="name")}
     {field(f"email-{n}", "E-mailadres", "email", "naam@student.nl", ac="email")}
-    {field(f"opleiding-{n}", "Opleiding en onderwijsinstelling", ph="Bijvoorbeeld: Commerciële Economie, HvA")}
+    {field(f"telefoon-{n}", "Telefoonnummer", "tel", "06 12345678", ac="tel")}
     {field(f"profiel-{n}", "LinkedIn-profiel of portfolio", "url", "https://", required=False)}
     {extra}
   </div>
@@ -1428,20 +1432,37 @@ def page_vacature(v):
     n = uid("v")
     crumb_items = [("Home", "/"), ("Vacatures", "/vacatures/"), (v["titel"], path)]
     form = student_form(n, "solliciteren", f"vacatures/{v['slug']}/", "Solliciteer direct", v["titel"])
-    body = hero(crumb_items, "Vacature", v["titel"], v["intro"], vac_chips() + f'<div class="btn-row btn-row--stack">{btn("Solliciteer direct", "#solliciteren", "grad", "arrow-right", True)}</div>',
+    x = VAC_EXTRA[v["slug"]]
+    body = hero(crumb_items, "Vacature", v["titel"], v["intro"], vac_chips(True) + f'<div class="btn-row btn-row--stack">{btn("Solliciteer direct", "#solliciteren", "grad", "arrow-right", True)}</div>',
                 form, movable=True)
     lists = [("Wat ga je *doen?*", v["taken"]), ("Wat vragen *we?*", v["vragen"]), ("Wat bieden *we?*", BIEDEN)]
     check = icon("check")
     cols = "".join(f'<div class="card vac-list"><h2>{accent(t)}</h2><ul class="story__list">{"".join(f"<li>{check}{x}</li>" for x in items)}</ul></div>' for t, items in lists)
+    rol = "".join(f"<p>{t}</p>" for t in x["rol"])
+    body += section(f'<div class="vac-about">{section_head("Over *de functie*")}<div class="prose">{rol}</div></div>', "section--flush-top")
     body += section(f'<div class="grid grid--3">{cols}</div>', "section--flush-top")
+    body += section(section_head(f"Een week als *{x['wie']}*", "Zo ziet je werk er in een gewone week uit. De uren spreek je samen af.") + steps(x["week"]))
+    opdr = "".join(f'<div class="card"><h3>{t}</h3><p>{d}</p></div>' for t, d in x["opdrachten"])
+    body += section(section_head("Voorbeelden van *opdrachten*", "Je werkt voor echte mkb-klanten. Dit zijn opdrachten zoals je ze bij ons tegenkomt.") + f'<div class="grid grid--3">{opdr}</div>')
+    tools = "".join(f"<li>{t}</li>" for t in x["tools"])
+    leer = "".join(f"<li>{check}{t}</li>" for t in x["leer"])
+    body += section(f'''<div class="grid grid--2">
+  <div class="card vac-list"><h2>{accent("Tools waar *je mee werkt*")}</h2><ul class="vac-tools">{tools}</ul></div>
+  <div class="card vac-list"><h2>{accent("Wat *je leert*")}</h2><ul class="story__list">{leer}</ul></div>
+</div>''')
+    vorm = "".join(f'<div class="card"><h3>{t}</h3><p>{d}</p></div>' for t, d in WERKVORM)
+    body += section(section_head("Zo *werk je bij ons*", BEGELEIDING) + f'<div class="grid grid--3">{vorm}</div>')
     body += section(section_head("Zo verloopt *je sollicitatie*", 'Geen vacature die past? <a href="/werken-als-student/">Meld je algemeen aan</a>.') + steps(VAC_STEPS))
     body += section(section_head("Meer *vacatures*") + vac_cards([VACATURES[(VACATURES.index(v) + i) % len(VACATURES)] for i in (1, 2, 3)]))
+    faq_sec, faq_items = faq_block("Vragen over *deze vacature*", [q for q, _ in x["faq"] + VAC_FAQ], dict(x["faq"] + VAC_FAQ))
+    body += faq_sec
     body += FORM_SLOT
     body += cta_block("Klaar om *te solliciteren?*", "Het kost je een paar minuten. We nemen contact met je op voor een kennismaking.",
                       buttons=btn("Solliciteer direct", "#solliciteren", "navy", "arrow-right", True))
-    desc_html = (f"<p>{v['intro']}</p><h3>Wat ga je doen?</h3><ul>{''.join(f'<li>{x}</li>' for x in v['taken'])}</ul>"
+    desc_html = (f"<p>{v['intro']}</p>{''.join(f'<p>{t}</p>' for t in x['rol'])}<h3>Wat ga je doen?</h3><ul>{''.join(f'<li>{x}</li>' for x in v['taken'])}</ul>"
                  f"<h3>Wat vragen we?</h3><ul>{''.join(f'<li>{x}</li>' for x in v['vragen'])}</ul>"
-                 f"<h3>Wat bieden we?</h3><ul>{''.join(f'<li>{x}</li>' for x in BIEDEN)}</ul>")
+                 f"<h3>Wat bieden we?</h3><ul>{''.join(f'<li>{b}</li>' for b in BIEDEN)}</ul>"
+                 f"<h3>Wat je leert</h3><ul>{''.join(f'<li>{t}</li>' for t in x['leer'])}</ul><p>{BEGELEIDING}</p>")
     title = f"Vacature {v['titel']} | Marketing Student"
     meta = f"Vacature {v['titel']}: {v['kort'][0].lower() + v['kort'][1:]} Naast je studie, begeleid door een senior."
     graph = [ld_webpage(url, title, meta, main=url + "#vacature"), ld_crumbs(url, crumb_items),
@@ -1449,8 +1470,9 @@ def page_vacature(v):
               "validThrough": VAC_VALID, "employmentType": "PART_TIME", "directApply": True, "industry": "Marketing",
               "hiringOrganization": {"@type": "Organization", "@id": ORG, "name": SITE_NAME, "sameAs": SITE + "/", "logo": LOGO_URL},
               "jobLocation": {"@type": "Place", "address": {"@type": "PostalAddress", "streetAddress": "Koninginnegracht 5", "postalCode": "2514 AA",
-                                                           "addressLocality": "Den Haag", "addressCountry": "NL"}},
-              "educationRequirements": {"@type": "EducationalOccupationalCredential", "credentialCategory": "bachelor degree"}}]
+                                                           "addressLocality": "Den Haag", "addressRegion": "Zuid-Holland", "addressCountry": "NL"}},
+              "skills": ", ".join(x["tools"]),
+              "educationRequirements": {"@type": "EducationalOccupationalCredential", "credentialCategory": "bachelor degree"}}, ld_faq(url, faq_items)]
     return path, title, meta, body, "werken", graph
 
 

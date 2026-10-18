@@ -1374,9 +1374,10 @@ def vac_chips():
 def vac_cards(items):
     out = ""
     for v in items:
-        out += (f'<a class="card vac-card" href="/vacatures/{v["slug"]}/">{spec_icon(SPEC[v["spec"]][2])}<h3>{nobreak(v["titel"])}</h3><p>{v["kort"]}</p>'
-                f'{vac_chips()}<span class="link-arrow">Bekijk vacature{icon("arrow-right")}</span></a>')
-    return f'<div class="grid grid--3 vac-grid">{out}</div>'
+        out += (f'<li><a class="card vac-card" href="/vacatures/{v["slug"]}/">{spec_icon(SPEC[v["spec"]][2])}'
+                f'<div class="vac-card__body"><h3>{nobreak(v["titel"])}</h3><p>{v["kort"]}</p>{vac_chips()}</div>'
+                f'<span class="link-arrow">Bekijk vacature{icon("arrow-right")}</span></a></li>')
+    return f'<ul class="vac-rows">{out}</ul>'
 
 
 def student_form(n, slug, page, title="Meld je aan", vacature=None):

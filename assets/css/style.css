@@ -1040,7 +1040,14 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .vac-card { text-decoration: none; color: inherit; transition: border-color 160ms var(--ease), transform 160ms var(--ease); }
 .vac-card:hover { border-color: var(--green); transform: translateY(-2px); }
 .vac-card h3 { font-size: 1.125rem; }
-.vac-card .link-arrow { margin-top: auto; }
+.vac-rows { list-style: none; margin: 0 auto; padding: 0; display: flex; flex-direction: column; gap: 12px; max-width: 960px; }
+.vac-card { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 16px; align-items: start; }
+.vac-card__body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.vac-card .link-arrow { grid-column: 2; }
+@media (min-width: 768px) {
+  .vac-card { grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0 24px; padding: 22px 28px; }
+  .vac-card .link-arrow { grid-column: auto; white-space: nowrap; }
+}
 .vac-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8125rem; color: var(--muted); }
 .vac-chips li { display: inline-flex; align-items: center; gap: 6px; }
 .vac-chips svg { width: 14px; height: 14px; color: var(--green); }

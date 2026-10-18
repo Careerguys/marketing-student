@@ -758,11 +758,13 @@ def header(current):
     cur = ' aria-current="page"'
     links = "".join(f'<li><a href="{u}"{cur if current == n else ""}>{n}</a></li>' for n, u in NAV[:-1])
     werk_cur = cur if current == "werken" else ""
+    n_vac = len(VACATURES)
+    count = f'<span class="nav-count" aria-hidden="true">{n_vac}</span><span class="sr-only"> ({n_vac} open vacatures)</span>'
     werk_items = "".join(f'<li><a class="navitem" href="{u}"><span class="navitem__ico">{icon(ic)}</span><span><b>{n}</b><small>{x}</small></span></a></li>' for n, u, ic, x in WERK)
-    links += (f'<li class="has-dropdown has-dropdown--small"><button type="button" aria-expanded="false" aria-controls="dropdown-werken"{werk_cur}>Werken bij{icon("chevron-down")}</button>'
+    links += (f'<li class="has-dropdown has-dropdown--small"><button type="button" aria-expanded="false" aria-controls="dropdown-werken"{werk_cur}>Werken bij{count}{icon("chevron-down")}</button>'
               f'<div class="dropdown dropdown--small" id="dropdown-werken"><ul class="dropdown__list">{werk_items}</ul></div></li>')
     links += "".join(f'<li><a href="{u}"{cur if current == n else ""}>{n}</a></li>' for n, u in NAV[-1:])
-    mob_links = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in NAV[:-1] + [(n, u) for n, u, _, _ in WERK] + NAV[-1:])
+    mob_links = "".join(f'<li><a href="{u}">{n}{count if u == "/vacatures/" else ""}</a></li>' for n, u in NAV[:-1] + [(n, u) for n, u, _, _ in WERK] + NAV[-1:])
     return f'''<a class="skip-link" href="#main">Naar de inhoud</a>
 <header class="header">
   <div class="header__bar">

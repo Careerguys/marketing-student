@@ -4,7 +4,7 @@
     python3 build.py
 
 Genereert alle HTML, sitemap.xml, robots.txt, _redirects, netlify.toml,
-llms.txt en site.webmanifest, en controleert daarna het resultaat.
+llms.txt en site.webmanifest en controleert daarna het resultaat.
 Bewerk nooit de gegenereerde HTML: pas dit bestand of de databestanden aan.
 """
 import datetime
@@ -24,6 +24,7 @@ ARTIKELEN = _WEB + _NIEUW + _OUD  # nieuwste eerst
 from diensten_data import D as DIENST, SC as SHOWCASES, PLAT as PLATFORMS
 from story_data import STORY
 from vacatures_data import VACATURES, BIEDEN
+from seo_data import SEO, VAC_SEO
 from vacatures_extra import EXTRA as VAC_EXTRA, BEGELEIDING, WERKVORM, VAC_FAQ
 from faq_data import antwoord
 from gids_data import GIDS
@@ -91,7 +92,7 @@ SPECS = [
     ("podcast-laten-maken", "Podcast laten maken", ("icon", "mic"), "Podcast of videopodcast, opgenomen en gepubliceerd.", "Social media en content"),
     ("recruitment-marketing-uitbesteden", "Recruitment marketing", ("icon", "users"), "Vacatures, campagnes en employer branding.", "Social media en content"),
     ("huisstijl-laten-maken", "Huisstijl laten maken", ("icon", "pen"), "Logo, huisstijl, tone of voice en merkverhaal.", "Merk en e-mail"),
-    ("email-marketing-uitbesteden", "E-mailmarketing uitbesteden", ("icon", "mail"), "Nieuwsbrieven en automatische flows.", "Merk en e-mail"),
+    ("email-marketing-uitbesteden", "Email marketing uitbesteden", ("icon", "mail"), "Nieuwsbrieven en automatische flows.", "Merk en e-mail"),
     ("website-laten-maken", "Website laten maken", ("icon", "globe"), "In WordPress of Shopify, snel en vindbaar.", "Web en AI"),
     ("website-laten-maken-den-haag", "Website laten maken Den Haag", ("icon", "map-pin"), "Kom langs aan de Koninginnegracht.", "Web en AI"),
     ("website-laten-maken-utrecht", "Website laten maken Utrecht", ("icon", "map-pin"), "Vanuit onze vestiging in Mijdrecht.", "Web en AI"),
@@ -179,7 +180,7 @@ REL_DEFAULT = ["online-marketing-mkb", "freelance-marketeer-of-marketing-student
 
 STEPS = [
     ("Beschrijf je vraag", "Vul het korte formulier in of bel ons. Dat kost je een paar minuten."),
-    ("Ontvang een voorstel", "Je krijgt een voorstel met de student die past bij je vraag, en de senior die meekijkt."),
+    ("Ontvang een voorstel", "Je krijgt een voorstel met de student die past bij je vraag en de senior die meekijkt."),
     ("Start", "Kennismaken, toegang tot je tools regelen en aan de slag."),
 ]
 COMPARE = [
@@ -739,7 +740,7 @@ def faq_block(title, questions, answers_override=None):
     return section(inner), items
 
 
-def cta_block(title="Klaar om je marketing *te versterken?*", text="Vertel wat je nodig hebt. Je krijgt een voorstel met de student die past bij jouw vraag, en de senior die meekijkt.", buttons=None):
+def cta_block(title="Klaar om je marketing *te versterken?*", text="Vertel wat je nodig hebt. Je krijgt een voorstel met de student die past bij jouw vraag en de senior die meekijkt.", buttons=None):
     buttons = buttons or (btn("Vraag een offerte aan", "/offerte-aanvragen/", "navy", "arrow-right", True) + btn("Bel " + PHONE, PHONE_HREF, "navy-outline", "phone", True))
     return (f'<section class="section section--flush-top"><div class="container"><div class="cta-block"><h2>{accent(nobreak(title), "accent")}</h2><p>{text}</p>'
             f'<div class="btn-row">{buttons}</div></div></div></section>')
@@ -748,7 +749,7 @@ def cta_block(title="Klaar om je marketing *te versterken?*", text="Vertel wat j
 # ---------------------------------------------------------------- header en footer
 NAV = [("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"), ("Contact", "/contact/")]  # Kennisbank alleen in de footer
 # Voor studenten: eigen kopje in het menu (desktop: uitklapmenu "Werken bij", mobiel: losse links).
-WERK = [("Vacatures", "/vacatures/", "briefcase", "Openstaande functies naast je studie"), ("Werken als student", "/werken-als-student/", "user-search", "Zo werk je bij ons, en algemeen aanmelden")]
+WERK = [("Vacatures", "/vacatures/", "briefcase", "Openstaande functies naast je studie"), ("Werken als student", "/werken-als-student/", "user-search", "Zo werk je bij ons en algemeen aanmelden")]
 
 
 def header(current):
@@ -910,7 +911,19 @@ def ld_faq(url, items):
 
 
 # ---------------------------------------------------------------- layout
+def seo_override(path, title, desc, graph):
+    """Titel en meta uit seo_data.py winnen van wat de pagina zelf meegeeft, ook in de schema-graph."""
+    m = re.fullmatch(r"/vacatures/([^/]+)/", path)
+    new = SEO.get(path) or (VAC_SEO.get(m.group(1)) if m else None)
+    if not new:
+        return title, desc, graph
+    swap = {title: new[0], desc: new[1]}
+    fix = lambda n: {k: (swap.get(v, v) if isinstance(v, str) else v) for k, v in n.items()}
+    return new[0], new[1], [fix(n) for n in graph]
+
+
 def layout(path, title, desc, body, current, graph, noindex=False, og_type="website"):
+    title, desc, graph = seo_override(path, title, desc, graph)
     url = SITE + path
     js_v = asset_v("assets/js/main.js")
     ico_v = {n: asset_v(f"assets/img/{n}.png") for n in ("favicon-32", "favicon-48", "apple-touch-icon")}
@@ -1158,7 +1171,7 @@ def page_specialisaties():
     secs += section(section_head("Twee manieren om *samen te werken*") + plans(href="/offerte-aanvragen/"))
     faq = faq_block("Vragen over *de specialisaties*", ["Welke specialisatie past bij mij?", "Kan één student meerdere taken doen?", "Wie begeleidt de student?", "Zit ik vast aan een contract?"])
     secs_after = cta_block()
-    p = simple_page("/specialisaties/", "Specialisaties", "Alle specialisaties", "op een rij",
+    p = simple_page("/specialisaties/", "Specialisaties", "Marketing specialisaties", "op een rij",
                     f"Van SEO tot video: {len(SPECS)} specialisaties. Elke student is getraind in het vak en werkt onder een ervaren marketeer. Kies wat je nodig hebt, of laat ons meedenken.",
                     "Specialisaties: van SEO tot video | Marketing Student",
                     f"{len(SPECS)} specialisaties, van SEO tot video. Getrainde marketingstudenten, begeleid door ervaren marketeers. Bekijk welke student past.",
@@ -1173,7 +1186,7 @@ def page_werkwijze():
     secs += section(section_head("Student, freelance marketeer *of bureau?*") + compare(COMPARE), "glow-right")
     faq = faq_block("Vragen over *de werkwijze*", ["Hoe snel kan een student beginnen?", "Werken studenten remote of op locatie?", "Wat als de student niet bevalt?", "Zit ik vast aan een contract?"])
     p = simple_page("/werkwijze/", "Werkwijze", "Zo werkt marketing", "uitbesteden",
-                    "Van eerste vraag tot vaste student in je team. Een senior marketeer kijkt altijd mee, en je zit nergens aan vast.",
+                    "Van eerste vraag tot vaste student in je team. Een senior marketeer kijkt altijd mee en je zit nergens aan vast.",
                     "Zo werkt marketing uitbesteden | Marketing Student",
                     "Van eerste vraag tot vaste student in je team: zo werkt marketing uitbesteden aan een student. Begeleid door seniors, zonder contract.",
                     secs, "Werkwijze", faq=faq)
@@ -1184,7 +1197,7 @@ def page_over():
     princ = [("users", "Altijd senior begeleiding", "Geen student werkt alleen. Een ervaren marketeer controleert het werk en stuurt bij."),
              ("clock", "Transparant in tijd", "Je ziet waar de uren naartoe gaan en wat ze opleveren."),
              ("target", "Resultaatgericht", "We sturen op wat jouw bedrijf verder helpt, niet op uren."),
-             ("zap", "Frisse blik", "Studenten kennen de nieuwste tools en platforms, en kijken met nieuwe ogen naar je marketing.")]
+             ("zap", "Frisse blik", "Studenten kennen de nieuwste tools en platforms en kijken met nieuwe ogen naar je marketing.")]
     cards = "".join(f'<div class="card"><span class="card__icon">{icon(i)}</span><h3>{t}</h3><p>{x}</p></div>' for i, t, x in princ)
     secs = photo_band("team-tafel", "section--flush-top")
     secs += section(section_head("Vier afspraken waar je *op kunt rekenen*") + f'<div class="grid grid--4">{cards}</div>')
@@ -1204,7 +1217,7 @@ def page_over():
 
 
 OFFICES = [
-    ("den-haag", "Den Haag", "Hoofdkantoor", "Koninginnegracht 5", "2514 AA Den Haag", "Kantoorpand CLIQ Offices aan de Koninginnegracht in Den Haag", True),
+    ("den-haag", "Den Haag", "", "Koninginnegracht 5", "2514 AA Den Haag", "Kantoorpand CLIQ Offices aan de Koninginnegracht in Den Haag", True),
     ("mijdrecht", "Mijdrecht", "", "Industrieweg 6", "3641 RM Mijdrecht", "De Kompastoren aan de Industrieweg in Mijdrecht", False),
 ]
 
@@ -1270,7 +1283,7 @@ def page_kennisbank():
     items = [{"@type": "ListItem", "position": i, "url": f"{SITE}/kennisbank/{a['slug']}/", "name": a["titel"]} for i, a in enumerate(ARTIKELEN, 1)]
     secs = section('<h2 class="sr-only">Alle artikelen</h2>' + post_cards([a["slug"] for a in ARTIKELEN], scroll=False), "section--flush-top")
     secs += cta_block()
-    return simple_page("/kennisbank/", "Kennisbank", "De", "kennisbank", "Praktische artikelen over marketing uitbesteden, SEO en social media.",
+    return simple_page("/kennisbank/", "Kennisbank", "Kennisbank", "over marketing", "Praktische artikelen over marketing uitbesteden, SEO en social media.",
                        "Kennisbank marketing uitbesteden | Marketing Student",
                        "Praktische artikelen over marketing uitbesteden, SEO, social media en het kiezen van de juiste marketeer.",
                        secs, "Kennisbank", "CollectionPage", hero_extra="",
@@ -1636,6 +1649,15 @@ def main():
     red += "# Netlify-subdomein naar het hoofddomein (voorkomt dubbele content)\n"
     red += "https://marketing-student.netlify.app/*  https://marketing-student.nl/:splat  301!\n"
     red += "http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  301!\n\n"
+    # http, www en zonder slash in één stap naar de juiste URL (anders twee of drie redirects achter elkaar)
+    red += "# Eén redirect naar https, zonder www en met slash\n"
+    for u in sitemap:
+        if u == "/":
+            continue
+        for host in ("http://marketing-student.nl", "http://www.marketing-student.nl", "https://www.marketing-student.nl"):
+            red += f"{host}{u.rstrip('/'):<50} {SITE}{u}  301!\n"
+    red += "http://www.marketing-student.nl/*   https://marketing-student.nl/:splat  301!\n"
+    red += "https://www.marketing-student.nl/*  https://marketing-student.nl/:splat  301!\n\n"
     red += "# Broncode niet uitleveren\n"
     red += "".join(f"{b:<62} /404.html  404!\n" for b in BLOCK)
     red += "\n# Oude URL's van de WordPress-site (permanent)\n"

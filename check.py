@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Controleert de gebouwde site. Draai na elke `python3 build.py`."""
-import json, re, sys
+import html, json, re, sys
 from pathlib import Path
 from html.parser import HTMLParser
 
@@ -66,8 +66,13 @@ for f, (p, h) in parsed.items():
     for a, b in zip(p.heads, p.heads[1:]):
         if b > a + 1: probs.append(f"{name}: kopsprong h{a}->h{b}"); break
     if len(p.title) > 60: probs.append(f"{name}: title {len(p.title)} tekens")
-    d = re.search(r'name="description" content="([^"]*)"', h).group(1)
-    if not 50 <= len(d) <= 160: probs.append(f"{name}: description {len(d)} tekens")
+    d = html.unescape(re.search(r'name="description" content="([^"]*)"', h).group(1))
+    # Regels uit SEO-WERKWIJZE.md voor indexeerbare pagina's: titel 50-60, meta 140-155, geen dubbele punt
+    if "noindex" not in h:
+        if len(p.title) < 50: probs.append(f"{name}: title {len(p.title)} tekens (min 50)")
+        if not 140 <= len(d) <= 155: probs.append(f"{name}: description {len(d)} tekens (140-155)")
+        if ":" in p.title or ":" in d: probs.append(f"{name}: dubbele punt in title of description")
+        if ", en " in p.title + " " + d: probs.append(f"{name}: komma voor 'en' in title of description")
     if not noindex:
         if p.title in titles: probs.append(f"{name}: dubbele title met {titles[p.title]}")
         if d in descs: probs.append(f"{name}: dubbele description met {descs[d]}")

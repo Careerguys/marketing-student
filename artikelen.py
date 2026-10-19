@@ -16,25 +16,25 @@ dict(
     dienst="seo-specialist-inhuren",
     secties=[
         ("Wat is een SEO-specialist?", [
-            "SEO staat voor zoekmachineoptimalisatie. Een SEO-specialist is iemand die websites zo inricht dat ze hoger in de organische zoekresultaten van Google verschijnen. Organisch betekent: de resultaten waar je niet voor betaalt, onder de advertenties. Voor de betaalde advertenties is er een aparte specialist; het verschil lees je in <a href=\"/kennisbank/verschil-seo-en-sea/\">SEO of SEA: wat is het verschil?</a>",
+            "SEO staat voor zoekmachineoptimalisatie. Een SEO-specialist is iemand die websites zo inricht dat ze hoger in de organische zoekresultaten van Google verschijnen. Organisch betekent: de resultaten waar je niet voor betaalt, onder de advertenties. Voor de betaalde advertenties is er een aparte specialist; het verschil lees je in <a href=\"/kennisbank/verschil-seo-en-sea/\">Wat is het verschil tussen SEO en SEA?</a>",
             "Het vak raakt aan techniek, tekst en marketing. Een goede SEO-specialist begrijpt hoe Google pagina's leest, wat een bezoeker zoekt en hoe je die twee bij elkaar brengt.",
         ]),
         ("Taken van een SEO-specialist", [
             "Het werk bestaat uit een paar vaste onderdelen die steeds terugkomen:",
-            "- Zoekwoordonderzoek: welke woorden gebruiken je klanten, en welke pagina hoort bij welk zoekwoord?\n- Technische SEO: snelheid, indexering, foutmeldingen en de structuur van je website.\n- On-page optimalisatie: titels, meta descriptions, koppen en interne links op je belangrijkste pagina's.\n- Content: nieuwe pagina's en artikelen die aansluiten op wat mensen zoeken.\n- Autoriteit: vermeldingen en links van andere relevante websites.\n- Rapportage: posities, klikken en de volgende stappen, meestal uit Google Search Console.",
+            "- Zoekwoordonderzoek: welke woorden gebruiken je klanten en welke pagina hoort bij welk zoekwoord?\n- Technische SEO: snelheid, indexering, foutmeldingen en de structuur van je website.\n- On-page optimalisatie: titels, meta descriptions, koppen en interne links op je belangrijkste pagina's.\n- Content: nieuwe pagina's en artikelen die aansluiten op wat mensen zoeken.\n- Autoriteit: vermeldingen en links van andere relevante websites.\n- Rapportage: posities, klikken en de volgende stappen, meestal uit Google Search Console.",
             "SEO is geen eenmalige klus. Zoekgedrag verandert, concurrenten verbeteren hun sites en Google past zijn manier van beoordelen aan. Daarom werkt een SEO-specialist het liefst structureel aan een website.",
         ]),
         ("Een werkweek van een SEO-specialist", [
-            "Wie voor het eerst met een SEO-specialist werkt, begint meestal met een analyse. Die laat zien hoe de website er technisch voor staat, op welke zoekwoorden je al gevonden wordt en waar de grootste kansen liggen. Daaruit volgt een plan met prioriteiten: eerst de fouten die Google tegenhouden, daarna de pagina's die al bijna op de eerste pagina staan, en dan pas nieuwe content.",
+            "Wie voor het eerst met een SEO-specialist werkt, begint meestal met een analyse. Die laat zien hoe de website er technisch voor staat, op welke zoekwoorden je al gevonden wordt en waar de grootste kansen liggen. Daaruit volgt een plan met prioriteiten: eerst de fouten die Google tegenhouden, daarna de pagina's die al bijna op de eerste pagina staan en dan pas nieuwe content.",
             "Daarna wordt het ritme rustiger. Elke week wordt er iets verbeterd: een paar titels herschreven, een nieuwe pagina opgezet, interne links toegevoegd of een technische fout opgelost. Elke maand kijkt de specialist in Search Console wat het heeft opgeleverd en past het plan aan.",
         ]),
         ("Welke tools gebruikt een SEO-specialist?", [
             "De belangrijkste tool is gratis: Google Search Console. Daarin zie je op welke zoekwoorden je gevonden wordt, hoe vaak er geklikt wordt en welke technische problemen Google tegenkomt. Google Analytics laat daarnaast zien wat bezoekers op je website doen.",
-            "Verder gebruiken SEO-specialisten vaak betaalde tools voor zoekwoordonderzoek en analyse, zoals SE Ranking of Ahrefs, en een crawler zoals Screaming Frog om een website technisch door te lichten. Steeds vaker helpen AI-tools bij het opzetten van teksten en het groeperen van zoekwoorden; de keuzes blijven mensenwerk.",
+            "Verder gebruiken SEO-specialisten vaak betaalde tools voor zoekwoordonderzoek en analyse, zoals SE Ranking of Ahrefs en een crawler zoals Screaming Frog om een website technisch door te lichten. Steeds vaker helpen AI-tools bij het opzetten van teksten en het groeperen van zoekwoorden; de keuzes blijven mensenwerk.",
         ]),
         ("Welke vaardigheden heeft een goede SEO-specialist?", [
             "Een SEO-specialist hoeft geen programmeur te zijn, maar moet wel snappen hoe een website technisch in elkaar zit. Daarnaast zijn deze vaardigheden belangrijk:",
-            "- Analytisch denken: cijfers lezen en zien waar een daling of kans vandaan komt.\n- Schrijven: teksten die prettig lezen en tegelijk duidelijk maken waar een pagina over gaat.\n- Denken vanuit de zoeker: wat wil iemand weten als hij dit intypt?\n- Geduld en prioriteren: niet alles tegelijk, maar eerst wat het meeste oplevert.\n- Bijblijven: Google verandert regelmatig, en wat vorig jaar werkte, werkt nu misschien minder.",
+            "- Analytisch denken: cijfers lezen en zien waar een daling of kans vandaan komt.\n- Schrijven: teksten die prettig lezen en tegelijk duidelijk maken waar een pagina over gaat.\n- Denken vanuit de zoeker: wat wil iemand weten als hij dit intypt?\n- Geduld en prioriteren: niet alles tegelijk, maar eerst wat het meeste oplevert.\n- Bijblijven: Google verandert regelmatig en wat vorig jaar werkte, werkt nu misschien minder.",
             "Wil je zelf SEO-specialist worden? Veel specialisten beginnen tijdens hun studie. Bij Marketing Student kun je aan de slag als <a href=\"/vacatures/seo-student/\">SEO-student</a>, met een senior die je werk controleert.",
         ]),
         ("Hoe lang duurt het voordat SEO resultaat heeft?", [
@@ -42,7 +42,7 @@ dict(
             "Wees voorzichtig met partijen die snelle garanties geven. Niemand bepaalt de posities in Google, behalve Google zelf.",
         ]),
         ("Wanneer huur je een SEO-specialist in?", [
-            "Een SEO-specialist inhuren loont als je website een belangrijke bron van klanten is of kan worden, en je zelf niet de tijd of kennis hebt om er structureel aan te werken. Ook bij een nieuwe website of een verhuizing naar een ander domein is het verstandig om een specialist mee te laten kijken, zodat je bestaande posities niet verliest.",
+            "Een SEO-specialist inhuren loont als je website een belangrijke bron van klanten is of kan worden en je zelf niet de tijd of kennis hebt om er structureel aan te werken. Ook bij een nieuwe website of een verhuizing naar een ander domein is het verstandig om een specialist mee te laten kijken, zodat je bestaande posities niet verliest.",
             "Je hoeft daarvoor niet altijd een bureau in te schakelen. Een getrainde SEO-student die begeleid wordt door een senior SEO-specialist kan het uitvoerende werk doen, terwijl de senior de aanpak bewaakt. Heb je vooral behoefte aan vermeldingen op andere websites, dan is een <a href=\"/linkbuilding-specialist-inhuren/\">linkbuilding-specialist</a> een aanvulling.",
         ]),
     ],
@@ -64,7 +64,7 @@ dict(
     dienst=None,
     secties=[
         ("Wat doet een freelance marketeer?", [
-            "Een freelance marketeer is een zelfstandige, vaak een zzp'er, die marketingtaken voor meerdere opdrachtgevers uitvoert. Vaak heeft een freelancer een specialisme, zoals SEO, Google Ads of social media, en werkt hij per opdracht of voor een vast aantal uren per week.",
+            "Een freelance marketeer is een zelfstandige, vaak een zzp'er, die marketingtaken voor meerdere opdrachtgevers uitvoert. Vaak heeft een freelancer een specialisme, zoals SEO, Google Ads of social media en werkt hij per opdracht of voor een vast aantal uren per week.",
             "Het voordeel: je haalt direct ervaring in huis. Het nadeel: een freelancer werkt meestal alleen. Valt hij uit, of klikt het niet, dan moet je zelf een vervanger zoeken. En omdat een freelancer meerdere klanten heeft, moet je soms wachten tot er ruimte in de planning is.",
         ]),
         ("Wat doet een marketing student?", [
@@ -76,7 +76,7 @@ dict(
         ]),
         ("Waar let je op bij het inhuren van een marketeer?", [
             "Of je nu een freelancer of een student inhuurt, een paar dingen gelden altijd:",
-            "- Begin met een concreet doel, zoals meer aanvragen via je website of een vaste planning op social media.\n- Vraag naar eerder werk en hoe de marketeer resultaten meet.\n- Spreek af hoe vaak je contact hebt en hoe er gerapporteerd wordt.\n- Houd zelf de toegang tot je accounts, zoals Google Ads, Search Console en social media.\n- Start met een korte periode, en evalueer voordat je uitbreidt.",
+            "- Begin met een concreet doel, zoals meer aanvragen via je website of een vaste planning op social media.\n- Vraag naar eerder werk en hoe de marketeer resultaten meet.\n- Spreek af hoe vaak je contact hebt en hoe er gerapporteerd wordt.\n- Houd zelf de toegang tot je accounts, zoals Google Ads, Search Console en social media.\n- Start met een korte periode en evalueer voordat je uitbreidt.",
             "Zo voorkom je dat je na een paar maanden niet weet wat er gedaan is, of afhankelijk bent van één persoon.",
         ]),
         ("Wanneer kies je voor een freelancer?", [
@@ -84,7 +84,7 @@ dict(
             "Houd er rekening mee dat je zelf de kwaliteit moet kunnen beoordelen. Heb je daar de kennis niet voor, dan is een vorm met begeleiding vaak veiliger.",
         ]),
         ("Wanneer kies je voor een marketing student?", [
-            "Een marketing student past goed als je structureel uitvoerend werk hebt, zoals SEO, social media of campagnebeheer, en je zekerheid wilt over de kwaliteit. Door de begeleiding van een senior hoef je zelf geen marketingexpert te zijn om het werk te beoordelen.",
+            "Een marketing student past goed als je structureel uitvoerend werk hebt, zoals SEO, social media of campagnebeheer en je zekerheid wilt over de kwaliteit. Door de begeleiding van een senior hoef je zelf geen marketingexpert te zijn om het werk te beoordelen.",
             "Studenten zijn vaak sterk in nieuwe tools en platforms, zoals TikTok, Reels en AI-tools. Bekijk welke <a href=\"/specialisaties/\">specialisaties</a> er zijn, of lees over <a href=\"/social-media-uitbesteden/\">social media uitbesteden</a> en een <a href=\"/seo-specialist-inhuren/\">SEO-specialist inhuren</a>.",
         ]),
     ],
@@ -102,32 +102,32 @@ dict(
     titel="Welke social media past bij jouw bedrijf?",
     title="Welke social media past bij je bedrijf? | Marketing Student",
     meta="Instagram, LinkedIn, TikTok of Facebook? Zo kies je de social media-kanalen die passen bij je doelgroep en je bedrijf, zonder je tijd te versnipperen.",
-    intro="Je hoeft niet op elk social media-kanaal actief te zijn. Sterker nog: wie overal een beetje post, valt nergens echt op. In dit artikel lees je hoe je kiest welke kanalen bij jouw bedrijf passen, wat de grote platforms van elkaar onderscheidt, welke kanalen werken voor B2B en B2C, en hoe je meet of een kanaal iets oplevert.",
+    intro="Je hoeft niet op elk social media-kanaal actief te zijn. Sterker nog: wie overal een beetje post, valt nergens echt op. In dit artikel lees je hoe je kiest welke kanalen bij jouw bedrijf passen, wat de grote platforms van elkaar onderscheidt, welke kanalen werken voor B2B en B2C en hoe je meet of een kanaal iets oplevert.",
     dienst="social-media-uitbesteden",
     secties=[
         ("Begin bij je doelgroep, niet bij het kanaal", [
             "De belangrijkste vraag is niet welk kanaal het populairst is, maar waar jouw klanten zitten. Een installatiebedrijf dat particulieren in de regio bedient, heeft andere kanalen nodig dan een softwarebedrijf dat aan inkopers verkoopt.",
-            "Kijk daarom eerst naar wie je klant is: particulier of zakelijk, welke leeftijd, en hoe die zich oriënteert voordat hij iets koopt. Vraag een paar klanten waar ze je gevonden hebben en welke apps ze dagelijks openen. Dat zegt vaak meer dan algemene lijstjes.",
+            "Kijk daarom eerst naar wie je klant is: particulier of zakelijk, welke leeftijd en hoe die zich oriënteert voordat hij iets koopt. Vraag een paar klanten waar ze je gevonden hebben en welke apps ze dagelijks openen. Dat zegt vaak meer dan algemene lijstjes.",
         ]),
         ("De grote kanalen in het kort", [
             "- <a href=\"/instagram-uitbesteden/\">Instagram</a>: visueel, sterk voor producten, horeca, retail en alles wat je goed kunt laten zien.\n- Facebook: breed publiek, sterk voor lokale bedrijven en community's.\n- <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn</a>: zakelijk, sterk voor B2B, werving en het profileren van jezelf als expert.\n- <a href=\"/tiktok-uitbesteden/\">TikTok</a>: korte video, sterk om een groot en vaak jonger publiek te bereiken.\n- <a href=\"/youtube-uitbesteden/\">YouTube</a>: langere video en uitleg; mensen zoeken er actief naar how-to's en reviews.\n- Pinterest: inspiratie, sterk voor interieur, mode, eten en evenementen.",
         ]),
         ("Social media voor B2B en B2C", [
-            "Verkoop je aan bedrijven, dan is LinkedIn bijna altijd het eerste kanaal. Beslissers oriënteren zich daar, en een bedrijfspagina gecombineerd met berichten van de eigenaar of medewerkers werkt vaak beter dan alleen een bedrijfspagina. YouTube is een goede tweede keuze als je product uitleg nodig heeft.",
+            "Verkoop je aan bedrijven, dan is LinkedIn bijna altijd het eerste kanaal. Beslissers oriënteren zich daar en een bedrijfspagina gecombineerd met berichten van de eigenaar of medewerkers werkt vaak beter dan alleen een bedrijfspagina. YouTube is een goede tweede keuze als je product uitleg nodig heeft.",
             "Verkoop je aan consumenten, dan liggen Instagram, Facebook en TikTok meer voor de hand. Lokale bedrijven, zoals een kapper of installateur, halen veel uit Facebook en Instagram omdat je daar makkelijk in je eigen regio zichtbaar bent. Merken die jongere klanten willen bereiken, kunnen niet om TikTok heen.",
             "Social media is ook een sterk kanaal voor werving. Wil je nieuwe medewerkers bereiken, lees dan meer over <a href=\"/kennisbank/wat-is-employer-branding/\">employer branding</a>.",
         ]),
         ("Welke social media is het populairst in Nederland?", [
-            "Gemeten naar het aantal gebruikers horen WhatsApp, YouTube, Facebook en Instagram bij de grootste platforms in Nederland. LinkedIn is het grootste zakelijke netwerk, en TikTok groeit vooral onder jongere doelgroepen.",
+            "Gemeten naar het aantal gebruikers horen WhatsApp, YouTube, Facebook en Instagram bij de grootste platforms in Nederland. LinkedIn is het grootste zakelijke netwerk en TikTok groeit vooral onder jongere doelgroepen.",
             "Het populairste kanaal is niet vanzelf het beste kanaal voor jouw bedrijf. Een kleiner kanaal waar precies jouw klanten actief zijn, levert vaak meer op dan een groot kanaal waar je tussen alles verdwijnt.",
         ]),
-        ("Kies er twee, en doe die goed", [
-            "Voor de meeste mkb-bedrijven werkt het beter om twee kanalen goed te doen dan vijf kanalen half. Kies één kanaal waar je doelgroep het meest actief is, en één kanaal dat past bij het soort content dat je makkelijk kunt maken.",
-            "Houd een vast ritme aan dat je volhoudt. Regelmaat werkt beter dan af en toe een piek. Een <a href=\"/kennisbank/contentkalender-maken/\">contentkalender</a> helpt je om dat ritme vast te houden, en met korte video zoals <a href=\"/kennisbank/reels-maken/\">Reels</a> bereik je vaak meer mensen dan met alleen foto's.",
+        ("Kies er twee en doe die goed", [
+            "Voor de meeste mkb-bedrijven werkt het beter om twee kanalen goed te doen dan vijf kanalen half. Kies één kanaal waar je doelgroep het meest actief is en één kanaal dat past bij het soort content dat je makkelijk kunt maken.",
+            "Houd een vast ritme aan dat je volhoudt. Regelmaat werkt beter dan af en toe een piek. Een <a href=\"/kennisbank/contentkalender-maken/\">contentkalender</a> helpt je om dat ritme vast te houden en met korte video zoals <a href=\"/kennisbank/reels-maken/\">Reels</a> bereik je vaak meer mensen dan met alleen foto's.",
         ]),
         ("Organisch of adverteren?", [
             "Op elk kanaal kun je gratis posten of betalen voor bereik. Organische berichten bouwen aan vertrouwen en een vaste groep volgers. Advertenties zorgen dat je precies de mensen bereikt die je zoekt, ook als ze je nog niet volgen.",
-            "Een goede aanpak combineert die twee: je post regelmatig, en zet de berichten die goed werken in als advertentie. Meer daarover lees je bij <a href=\"/social-media-adverteren/\">social media adverteren</a>.",
+            "Een goede aanpak combineert die twee: je post regelmatig en zet de berichten die goed werken in als advertentie. Meer daarover lees je bij <a href=\"/social-media-adverteren/\">social media adverteren</a>.",
         ]),
         ("Hoe weet je of een kanaal werkt?", [
             "Kijk niet alleen naar volgers. Belangrijker zijn bereik, reacties, berichten en of mensen doorklikken naar je website of contact opnemen. Evalueer na een paar maanden en schuif tijd en budget naar het kanaal dat het meest oplevert.",
@@ -168,7 +168,7 @@ dict(
             "Daarnaast zijn er specialisten voor betaalde social media: zij zetten advertenties op in Meta, LinkedIn of TikTok en sturen bij op resultaat.",
         ]),
         ("Contentmarketeer en copywriter", [
-            "Een contentmarketeer bedenkt welke artikelen, gidsen, video's en nieuwsbrieven je doelgroep helpen, en zorgt dat die content ook gevonden wordt. Een copywriter is gespecialiseerd in schrijven: websiteteksten, advertenties en mails. Meer over het vak lees je in <a href=\"/kennisbank/wat-is-contentmarketing/\">wat is contentmarketing?</a>",
+            "Een contentmarketeer bedenkt welke artikelen, gidsen, video's en nieuwsbrieven je doelgroep helpen en zorgt dat die content ook gevonden wordt. Een copywriter is gespecialiseerd in schrijven: websiteteksten, advertenties en mails. Meer over het vak lees je in <a href=\"/kennisbank/wat-is-contentmarketing/\">wat is contentmarketing?</a>",
         ]),
         ("Video-editor en motion designer", [
             "Video is een vast onderdeel van marketing geworden. Een video-editor monteert beeldmateriaal tot Reels, bedrijfsfilms en YouTube-video's. Een motion designer maakt animaties en bewegende graphics, bijvoorbeeld voor uitlegvideo's of advertenties.",
@@ -203,8 +203,8 @@ dict(
     categorie="Marketing",
     titel="Wat doet een head of marketing?",
     title="Wat doet een head of marketing? Taken en rol",
-    meta="Wat doet een head of marketing? De taken, competenties en het verschil met een marketingmanager en CMO, en of je er in het mkb een nodig hebt.",
-    intro="Een head of marketing is eindverantwoordelijk voor de marketing van een bedrijf. Maar wat houdt dat precies in, waarin verschilt de rol van een marketingmanager of CMO, en heeft een mkb-bedrijf er een nodig? In dit artikel lees je de taken en competenties, hoe je head of marketing wordt en welke alternatieven er zijn als een fulltime functie te veel is.",
+    meta="Wat doet een head of marketing? De taken, competenties en het verschil met een marketingmanager en CMO en of je er in het mkb een nodig hebt.",
+    intro="Een head of marketing is eindverantwoordelijk voor de marketing van een bedrijf. Maar wat houdt dat precies in, waarin verschilt de rol van een marketingmanager of CMO en heeft een mkb-bedrijf er een nodig? In dit artikel lees je de taken en competenties, hoe je head of marketing wordt en welke alternatieven er zijn als een fulltime functie te veel is.",
     dienst=None,
     secties=[
         ("De rol in het kort", [
@@ -212,7 +212,7 @@ dict(
             "Waar een marketeer vooral uitvoert, kijkt een head of marketing naar het geheel: welke kanalen krijgen aandacht, wat mag dat kosten en wat moet het opleveren? Wat een marketeer doet, lees je in <a href=\"/kennisbank/wat-doet-een-marketeer/\">wat doet een marketeer?</a>",
         ]),
         ("Taken van een head of marketing", [
-            "- Een marketingstrategie en jaarplan opstellen.\n- Het budget verdelen over kanalen en campagnes.\n- Het team aansturen, en externe partijen of specialisten inhuren.\n- Resultaten meten en rapporteren aan de directie.\n- Het merk bewaken, zodat alles wat naar buiten gaat herkenbaar is.\n- Samenwerken met sales, zodat marketing ook echt klanten oplevert.",
+            "- Een marketingstrategie en jaarplan opstellen.\n- Het budget verdelen over kanalen en campagnes.\n- Het team aansturen en externe partijen of specialisten inhuren.\n- Resultaten meten en rapporteren aan de directie.\n- Het merk bewaken, zodat alles wat naar buiten gaat herkenbaar is.\n- Samenwerken met sales, zodat marketing ook echt klanten oplevert.",
         ]),
         ("Head of marketing, marketingmanager of CMO?", [
             "De titels lopen in de praktijk door elkaar, maar grofweg is het zo:",
@@ -224,14 +224,14 @@ dict(
             "Belangrijk is ook het vermogen om keuzes te maken. Er zijn altijd meer kanalen en ideeën dan budget. Een head of marketing durft dingen te laten liggen en zet in op wat het meest oplevert.",
         ]),
         ("Hoe word je head of marketing?", [
-            "Bijna niemand begint als head of marketing. De meeste mensen in deze rol hebben jaren ervaring als marketeer, vaak in meerdere specialisaties, en zijn doorgegroeid via een functie als marketingmanager. Een hbo- of wo-opleiding in marketing, communicatie of bedrijfskunde is gebruikelijk.",
+            "Bijna niemand begint als head of marketing. De meeste mensen in deze rol hebben jaren ervaring als marketeer, vaak in meerdere specialisaties en zijn doorgegroeid via een functie als marketingmanager. Een hbo- of wo-opleiding in marketing, communicatie of bedrijfskunde is gebruikelijk.",
             "Wie het vak breed wil leren, doet er goed aan om vroeg ervaring op te doen met verschillende kanalen. Dat kan al tijdens je studie, bijvoorbeeld via <a href=\"/werken-als-student/\">werken als marketingstudent</a>.",
         ]),
         ("Heeft een mkb-bedrijf een head of marketing nodig?", [
-            "Voor veel mkb-bedrijven is een fulltime head of marketing te veel. Vaak neemt de ondernemer of een marketingmanager die rol op zich, en is er vooral behoefte aan handen om het werk uit te voeren.",
+            "Voor veel mkb-bedrijven is een fulltime head of marketing te veel. Vaak neemt de ondernemer of een marketingmanager die rol op zich en is er vooral behoefte aan handen om het werk uit te voeren.",
             "Sommige bedrijven huren een interim of parttime head of marketing in voor een paar dagen per maand. Die maakt het plan en bewaakt de koers, terwijl anderen het werk uitvoeren.",
         ]),
-        ("Een alternatief: regie zelf, uitvoering uitbesteden", [
+        ("Zelf de regie houden en de uitvoering uitbesteden", [
             "Heb je het plan al, maar niet de handen? Dan kan het slim zijn om uitvoerend werk uit te besteden aan specialisten, zoals een getrainde marketing student onder begeleiding van een senior. Zo houd je de regie, zonder zelf alles te hoeven doen.",
             "Lees meer over <a href=\"/kennisbank/online-marketing-mkb/\">online marketing voor het mkb</a>, bekijk de <a href=\"/specialisaties/\">specialisaties</a> of lees hoe onze <a href=\"/werkwijze/\">werkwijze</a> eruitziet.",
         ]),
@@ -247,13 +247,13 @@ dict(
     slug="social-media-uitbesteden-waar-let-je-op",
     bijgewerkt=B,
     categorie="Social media",
-    titel="Social media uitbesteden: waar let je op?",
+    titel="Waar let je op bij social media uitbesteden?",
     title="Social media uitbesteden: 8 tips | Marketing Student",
     meta="Social media uitbesteden? Met deze tips kies je de juiste hulp, maak je goede afspraken en houd je zelf de regie over je merk en je accounts.",
     intro="Social media uitbesteden scheelt tijd, maar alleen als je het goed regelt. Met deze punten voorkom je dat je merk ongemerkt een andere kant op gaat, of dat je de toegang tot je eigen accounts kwijtraakt. Je leest wat je wel en niet kunt uitbesteden, welke afspraken je maakt en hoe je beoordeelt of het werkt.",
     dienst="social-media-uitbesteden",
     secties=[
-        ("Wat kun je uitbesteden, en wat niet?", [
+        ("Wat kun je uitbesteden en wat niet?", [
             "Bijna alles aan social media kun je uitbesteden: de strategie, het maken van foto's en video's, het schrijven van berichten, de planning, het beantwoorden van reacties en het opzetten van advertenties. Sommige bedrijven besteden alles uit, andere alleen het maken van content.",
             "Wat je niet kunt uitbesteden, is de kennis van je eigen bedrijf. Een social media-marketeer heeft input van jou nodig: wat speelt er, welke projecten zijn klaar, wie zijn je klanten? Hoe beter je die informatie deelt, hoe beter de content wordt.",
         ]),
@@ -270,7 +270,7 @@ dict(
             "Een vaste planning voorkomt dat er weken niets gebeurt en daarna drie berichten op één dag. Vraag om een <a href=\"/kennisbank/contentkalender-maken/\">contentkalender</a> voor de komende weken, zodat je vooraf ziet wat er geplaatst wordt en op tijd input kunt geven.",
         ]),
         ("5. Spreek af wie reacties en berichten beantwoordt", [
-            "Social media is geen zender alleen. Spreek af wie reacties en berichten beantwoordt, hoe snel, en wanneer iets naar jou wordt doorgezet, bijvoorbeeld bij klachten of offerteaanvragen.",
+            "Social media is geen zender alleen. Spreek af wie reacties en berichten beantwoordt, hoe snel en wanneer iets naar jou wordt doorgezet, bijvoorbeeld bij klachten of offerteaanvragen.",
         ]),
         ("6. Zorg voor eigen beeldmateriaal", [
             "Stockfoto's vallen niet op. Echte foto's en video's van je team, je werk en je klanten werken bijna altijd beter. Plan daarom af en toe een moment waarop er beeld gemaakt wordt, of laat <a href=\"/foto-en-video-laten-maken/\">foto en video maken</a> door iemand die weet wat er op social media werkt. Korte video's zoals <a href=\"/kennisbank/reels-maken/\">Reels</a> verdienen daarbij extra aandacht.",
@@ -282,14 +282,14 @@ dict(
             "Start met één of twee kanalen en een ritme dat haalbaar is. Werkt het, dan kun je uitbreiden met een extra kanaal of met <a href=\"/social-media-adverteren/\">social media-advertenties</a>. Zo houd je overzicht en weet je welke stap wat oplevert.",
         ]),
         ("Social media uitbesteden aan een student", [
-            "Bij Marketing Student plant en maakt een getrainde student je content, en bewaakt een senior content- en brandingspecialist je toon en merk. Je houdt zelf de regie en de toegang tot je accounts. Lees meer over <a href=\"/social-media-uitbesteden/\">social media uitbesteden</a>, of per kanaal over <a href=\"/instagram-uitbesteden/\">Instagram</a>, <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn</a> en <a href=\"/tiktok-uitbesteden/\">TikTok</a>.",
+            "Bij Marketing Student plant en maakt een getrainde student je content en bewaakt een senior content- en brandingspecialist je toon en merk. Je houdt zelf de regie en de toegang tot je accounts. Lees meer over <a href=\"/social-media-uitbesteden/\">social media uitbesteden</a>, of per kanaal over <a href=\"/instagram-uitbesteden/\">Instagram</a>, <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn</a> en <a href=\"/tiktok-uitbesteden/\">TikTok</a>.",
         ]),
     ],
     faq=[
         ("Is social media uitbesteden de moeite waard?", "Als je zelf geen tijd hebt om regelmatig goede content te maken, wel. Een vaste planning en goede content leveren meer op dan af en toe een bericht. Belangrijk is dat je vooraf een doel afspreekt, zodat je kunt zien of het werkt."),
         ("Moet ik mijn wachtwoord delen als ik social media uitbesteed?", "Nee. Geef toegang via de beheeromgeving van het platform, zoals Meta Business Suite of de beheerdersrol op LinkedIn. Zo houd je zelf de controle en kun je de toegang altijd intrekken."),
-        ("Hoeveel tijd kost het mij als ik social media uitbesteed?", "In het begin wat meer, voor de kennismaking, afspraken over toon en het goedkeuren van de eerste planning. Daarna vooral het aanleveren van nieuws en input, en een korte maandelijkse evaluatie."),
-        ("Kan ik alleen het maken van content uitbesteden?", "Ja. Sommige bedrijven plaatsen en beantwoorden zelf, en besteden alleen het maken van foto's, video's en teksten uit. Andere besteden alles uit. Dat spreek je af bij de start."),
+        ("Hoeveel tijd kost het mij als ik social media uitbesteed?", "In het begin wat meer, voor de kennismaking, afspraken over toon en het goedkeuren van de eerste planning. Daarna vooral het aanleveren van nieuws en input en een korte maandelijkse evaluatie."),
+        ("Kan ik alleen het maken van content uitbesteden?", "Ja. Sommige bedrijven plaatsen en beantwoorden zelf en besteden alleen het maken van foto's, video's en teksten uit. Andere besteden alles uit. Dat spreek je af bij de start."),
     ],
 ),
 dict(
@@ -297,7 +297,7 @@ dict(
     datum="2026-10-01",
     bijgewerkt=B,
     categorie="SEO en SEA",
-    titel="SEO of SEA: wat is het verschil?",
+    titel="Wat is het verschil tussen SEO en SEA?",
     title="Verschil SEO en SEA uitgelegd | Marketing Student",
     meta="Wat is het verschil tussen SEO en SEA? Kosten, snelheid en resultaat naast elkaar, wat SEM is en wanneer je kiest voor SEO, SEA of allebei.",
     intro="SEO en SEA zorgen er allebei voor dat je gevonden wordt in Google. Het verschil zit in hoe: bij SEO verdien je een plek in de gewone zoekresultaten, bij SEA betaal je voor een advertentie bovenaan. In dit artikel zetten we de verschillen op een rij, leggen we uit wat SEM is en lees je wanneer je voor welke kiest.",
@@ -319,7 +319,7 @@ dict(
             "- Kosten: bij SEO investeer je in tijd en werk aan je website, bij SEA betaal je per klik.\n- Snelheid: SEA werkt vanaf de eerste dag, SEO bouwt zich op over maanden.\n- Blijvend: een goede positie met SEO blijft vaak staan, een advertentie stopt als je budget stopt.\n- Plek in Google: SEA staat met een label Gesponsord, SEO in de gewone resultaten die veel mensen meer vertrouwen.\n- Controle: bij SEA bepaal je zelf wanneer en voor wie je zichtbaar bent, bij SEO beslist Google over je positie.\n- Meten: bij SEA zie je per zoekwoord wat een klik kost en oplevert, bij SEO zie je in Search Console hoe je posities en klikken zich ontwikkelen.",
         ]),
         ("Wanneer kies je voor SEO?", [
-            "SEO past bij je als je op lange termijn wilt bouwen aan vindbaarheid, en je website een belangrijke bron van klanten is of kan worden. Het werkt goed voor diensten waar mensen veel over zoeken en lezen voordat ze kiezen.",
+            "SEO past bij je als je op lange termijn wilt bouwen aan vindbaarheid en je website een belangrijke bron van klanten is of kan worden. Het werkt goed voor diensten waar mensen veel over zoeken en lezen voordat ze kiezen.",
             "Je moet wel geduld hebben. De eerste maanden investeer je vooral, pas daarna zie je de posities stijgen. Content zoals artikelen en gidsen helpt daarbij; lees meer in <a href=\"/kennisbank/wat-is-contentmarketing/\">wat is contentmarketing?</a>",
         ]),
         ("Wanneer kies je voor SEA?", [
@@ -338,7 +338,7 @@ dict(
         ("Wat is beter, SEO of SEA?", "Geen van beide is altijd beter. SEA levert direct zichtbaarheid op en past bij korte termijn of nieuwe diensten. SEO bouwt aan blijvende posities en past bij de lange termijn. Veel bedrijven combineren ze."),
         ("Wat is het verschil tussen SEO, SEA en SEM?", "SEO is het verbeteren van je website voor de gewone zoekresultaten, SEA is betaald adverteren in zoekmachines. SEM, zoekmachinemarketing, is de verzamelnaam voor allebei."),
         ("Hoe snel werkt SEO vergeleken met SEA?", "SEA werkt vanaf de dag dat je campagne live staat. Bij SEO zie je technische verbeteringen soms binnen weken terug, maar een blijvende stijging op belangrijke zoekwoorden kost meestal enkele maanden."),
-        ("Helpt adverteren in Google ook voor mijn SEO?", "Niet direct: advertenties hebben geen invloed op je organische posities. Wel leer je uit je advertenties welke zoekwoorden klanten opleveren, en die kennis gebruik je voor je SEO."),
+        ("Helpt adverteren in Google ook voor mijn SEO?", "Niet direct: advertenties hebben geen invloed op je organische posities. Wel leer je uit je advertenties welke zoekwoorden klanten opleveren en die kennis gebruik je voor je SEO."),
     ],
 ),
 ]

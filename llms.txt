@@ -37,7 +37,7 @@ Contact: 085-060 8631, info@marketing-student.nl. Vestigingen in Den Haag en Mij
 - [Podcast laten maken](https://marketing-student.nl/podcast-laten-maken/): Podcast of videopodcast, opgenomen en gepubliceerd.
 - [Recruitment marketing](https://marketing-student.nl/recruitment-marketing-uitbesteden/): Vacatures, campagnes en employer branding.
 - [Huisstijl laten maken](https://marketing-student.nl/huisstijl-laten-maken/): Logo, huisstijl, tone of voice en merkverhaal.
-- [E-mailmarketing uitbesteden](https://marketing-student.nl/email-marketing-uitbesteden/): Nieuwsbrieven en automatische flows.
+- [Email marketing uitbesteden](https://marketing-student.nl/email-marketing-uitbesteden/): Nieuwsbrieven en automatische flows.
 - [Website laten maken](https://marketing-student.nl/website-laten-maken/): In WordPress of Shopify, snel en vindbaar.
 - [Website laten maken Den Haag](https://marketing-student.nl/website-laten-maken-den-haag/): Kom langs aan de Koninginnegracht.
 - [Website laten maken Utrecht](https://marketing-student.nl/website-laten-maken-utrecht/): Vanuit onze vestiging in Mijdrecht.
@@ -50,14 +50,14 @@ Contact: 085-060 8631, info@marketing-student.nl. Vestigingen in Den Haag en Mij
 
 ## Kennisbank
 
-- [Wat kost een website laten maken?](https://marketing-student.nl/kennisbank/wat-kost-een-website-laten-maken/): Wat kost een website laten maken? Alle factoren die de prijs bepalen, van pagina's en ontwerp tot onderhoud, en hoe je een offerte goed vergelijkt.
+- [Wat kost een website laten maken?](https://marketing-student.nl/kennisbank/wat-kost-een-website-laten-maken/): Wat kost een website laten maken? Alle factoren die de prijs bepalen, van pagina's en ontwerp tot onderhoud en hoe je een offerte goed vergelijkt.
 - [Goedkope website laten maken](https://marketing-student.nl/kennisbank/goedkope-website-laten-maken/): Een goedkope website laten maken zonder later spijt? Waar je op let, welke valkuilen er zijn en hoe je bespaart zonder in te leveren op kwaliteit.
 - [Website laten maken als zzp'er](https://marketing-student.nl/kennisbank/website-laten-maken-zzp/): Website laten maken als zzp'er: welke pagina's je nodig hebt, hoe je klanten trekt en waar je op let.
-- [Checklist: website laten maken](https://marketing-student.nl/kennisbank/website-laten-maken-checklist/): Checklist voor als je een website laat maken: wat je vooraf regelt, waar je op let bij de bouw en wat je controleert voor de livegang.
+- [Checklist website laten maken](https://marketing-student.nl/kennisbank/website-laten-maken-checklist/): Checklist voor als je een website laat maken: wat je vooraf regelt, waar je op let bij de bouw en wat je controleert voor de livegang.
 - [Wat doet een marketeer?](https://marketing-student.nl/kennisbank/wat-doet-een-marketeer/): Wat doet een marketeer precies? De taken, de verschillende rollen, de vaardigheden die je nodig hebt en hoe je als student begint.
 - [Wat is SEA? Uitleg voor het mkb](https://marketing-student.nl/kennisbank/wat-is-sea/): Wat is SEA en hoe werkt adverteren in Google? Uitleg over de veiling, campagnevormen, kosten per klik en wanneer SEA past bij je bedrijf.
 - [Nieuwsbrief maken in 8 stappen](https://marketing-student.nl/kennisbank/nieuwsbrief-maken/): Zelf een nieuwsbrief maken? Dit stappenplan helpt je van doel en tool tot ontwerp, onderwerpregel, privacy en meten wat werkt.
-- [Claude vs ChatGPT voor je marketing](https://marketing-student.nl/kennisbank/claude-vs-chatgpt/): Claude of ChatGPT voor je marketing? De verschillen in schrijven, analyseren en werken met documenten, en wanneer je welke kiest.
+- [Claude vs ChatGPT voor je marketing](https://marketing-student.nl/kennisbank/claude-vs-chatgpt/): Claude of ChatGPT voor je marketing? De verschillen in schrijven, analyseren en werken met documenten en wanneer je welke kiest.
 - [Reels maken voor je bedrijf](https://marketing-student.nl/kennisbank/reels-maken/): Reels maken voor je bedrijf? Zo bedenk je onderwerpen, film je met je telefoon, monteer je met ondertiteling en meet je wat werkt.
 - [Contentkalender maken (met template)](https://marketing-student.nl/kennisbank/contentkalender-maken/): Zo maak je een contentkalender voor social media, blog en nieuwsbrief.
 - [Wat is employer branding?](https://marketing-student.nl/kennisbank/wat-is-employer-branding/): Wat is employer branding en hoe bouw je een sterk werkgeversmerk? Uitleg, de verschillen met recruitment marketing en praktische tips.
@@ -68,9 +68,9 @@ Contact: 085-060 8631, info@marketing-student.nl. Vestigingen in Den Haag en Mij
 - [Freelance marketeer of marketing student?](https://marketing-student.nl/kennisbank/freelance-marketeer-of-marketing-student/): Freelance marketeer of marketing student inhuren? De verschillen in begeleiding, vervanging en flexibiliteit, zodat je de juiste keuze maakt.
 - [Welke social media past bij jouw bedrijf?](https://marketing-student.nl/kennisbank/welke-social-media-kiezen/): Instagram, LinkedIn, TikTok of Facebook? Zo kies je de social media-kanalen die passen bij je doelgroep en je bedrijf, zonder je tijd te versnipperen.
 - [Wat voor type marketeers zijn er?](https://marketing-student.nl/kennisbank/wat-voor-type-marketeers-zijn-er/): Van SEO-specialist tot content creator: de soorten marketeers en marketingfuncties op een rij, wat ze doen en welke je nodig hebt.
-- [Wat doet een head of marketing?](https://marketing-student.nl/kennisbank/wat-doet-een-head-of-marketing/): Wat doet een head of marketing? De taken, competenties en het verschil met een marketingmanager en CMO, en of je er in het mkb een nodig hebt.
-- [Social media uitbesteden: waar let je op?](https://marketing-student.nl/kennisbank/social-media-uitbesteden-waar-let-je-op/): Social media uitbesteden? Met deze tips kies je de juiste hulp, maak je goede afspraken en houd je zelf de regie over je merk en je accounts.
-- [SEO of SEA: wat is het verschil?](https://marketing-student.nl/kennisbank/verschil-seo-en-sea/): Wat is het verschil tussen SEO en SEA? Kosten, snelheid en resultaat naast elkaar, wat SEM is en wanneer je kiest voor SEO, SEA of allebei.
+- [Wat doet een head of marketing?](https://marketing-student.nl/kennisbank/wat-doet-een-head-of-marketing/): Wat doet een head of marketing? De taken, competenties en het verschil met een marketingmanager en CMO en of je er in het mkb een nodig hebt.
+- [Waar let je op bij social media uitbesteden?](https://marketing-student.nl/kennisbank/social-media-uitbesteden-waar-let-je-op/): Social media uitbesteden? Met deze tips kies je de juiste hulp, maak je goede afspraken en houd je zelf de regie over je merk en je accounts.
+- [Wat is het verschil tussen SEO en SEA?](https://marketing-student.nl/kennisbank/verschil-seo-en-sea/): Wat is het verschil tussen SEO en SEA? Kosten, snelheid en resultaat naast elkaar, wat SEM is en wanneer je kiest voor SEO, SEA of allebei.
 
 ## Overig
 

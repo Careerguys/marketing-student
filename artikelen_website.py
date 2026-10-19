@@ -9,7 +9,7 @@ NIEUW_WEB = [
         slug="wat-kost-een-website-laten-maken", datum=D, categorie="Website",
         titel="Wat kost een website laten maken?",
         title="Wat kost een website laten maken? | Marketing Student",
-        meta="Wat kost een website laten maken? Alle factoren die de prijs bepalen, van pagina's en ontwerp tot onderhoud, en hoe je een offerte goed vergelijkt.",
+        meta="Wat kost een website laten maken? Alle factoren die de prijs bepalen, van pagina's en ontwerp tot onderhoud en hoe je een offerte goed vergelijkt.",
         intro="Wie een website wil laten maken, vraagt zich al snel af wat dat kost. Het eerlijke antwoord: dat hangt af van wat je nodig hebt. Twee websites die er op het eerste gezicht hetzelfde uitzien, kunnen heel verschillend in elkaar zitten. In dit artikel lees je welke factoren de prijs bepalen, welke kosten je niet moet vergeten en hoe je offertes goed met elkaar vergelijkt.",
         dienst="website-laten-maken",
         secties=[
@@ -19,16 +19,16 @@ NIEUW_WEB = [
                 "Hoe meer maatwerk en hoe meer functies, hoe meer uren er in de website gaan zitten.",
             ]),
             ("Wie bouwt de website?", [
-                "Een groot bureau heeft een team met projectmanagers, ontwerpers en ontwikkelaars, en dat zie je terug in de prijs. Een freelancer is vaak goedkoper, maar je bent afhankelijk van één persoon. Met een doe-het-zelf-websitebouwer betaal je weinig, maar kost het je vooral eigen tijd, en is vindbaarheid lastiger goed te krijgen.",
+                "Een groot bureau heeft een team met projectmanagers, ontwerpers en ontwikkelaars en dat zie je terug in de prijs. Een freelancer is vaak goedkoper, maar je bent afhankelijk van één persoon. Met een doe-het-zelf-websitebouwer betaal je weinig, maar kost het je vooral eigen tijd en is vindbaarheid lastiger goed te krijgen.",
                 "Bij Marketing Student bouwt een getrainde student je website en controleert een senior webspecialist het werk. Daardoor betaal je minder dan bij een bureau, met de zekerheid van een senior die meekijkt. Wat dat voor jouw website betekent, staat in een offerte op maat.",
             ]),
             ("Kosten die je niet moet vergeten", [
                 "Naast het bouwen zijn er kosten die vaak pas later opduiken:",
                 "- Hosting: de server waar je website op staat\n- Een domeinnaam, elk jaar te verlengen\n- Licenties voor betaalde thema's of plugins\n- Onderhoud: updates, back-ups en beveiliging\n- Teksten en fotografie, als je die niet zelf aanlevert\n- Kosten voor betaalproviders bij een webshop",
-                "Vraag daarom altijd wat er wel en niet in een offerte zit, en wat je na de livegang nog betaalt.",
+                "Vraag daarom altijd wat er wel en niet in een offerte zit en wat je na de livegang nog betaalt.",
             ]),
             ("Eenmalig en doorlopend", [
-                "Een website heeft eenmalige kosten voor ontwerp en bouw, en doorlopende kosten voor hosting, domein en onderhoud. Sommige partijen werken met een vast bedrag per maand waarin alles zit. Dat lijkt overzichtelijk, maar reken na wat je over een paar jaar betaalt, en check of de website van jou blijft als je stopt.",
+                "Een website heeft eenmalige kosten voor ontwerp en bouw en doorlopende kosten voor hosting, domein en onderhoud. Sommige partijen werken met een vast bedrag per maand waarin alles zit. Dat lijkt overzichtelijk, maar reken na wat je over een paar jaar betaalt en check of de website van jou blijft als je stopt.",
                 "Laat je website onderhouden, dan voorkom je grotere kosten later door hacks of een verouderde website. Lees meer over <a href=\"/website-laten-onderhouden/\">website laten onderhouden</a>.",
             ]),
             ("Zo vergelijk je offertes", [
@@ -37,7 +37,7 @@ NIEUW_WEB = [
                 "Een lage prijs met veel uitzonderingen is uiteindelijk vaak duurder dan een iets hogere prijs waarin alles zit.",
             ]),
             ("Waar besparen verstandig is", [
-                "Je kunt besparen door teksten en foto's zelf aan te leveren, te beginnen met de belangrijkste pagina's en later uit te breiden, en te kiezen voor een goed bestaand thema in plaats van een volledig eigen ontwerp. Bespaar niet op snelheid, mobiel gebruik en de SEO-basis: die bepalen of je website gevonden wordt en aanvragen oplevert.",
+                "Je kunt besparen door teksten en foto's zelf aan te leveren, te beginnen met de belangrijkste pagina's en later uit te breiden en te kiezen voor een goed bestaand thema in plaats van een volledig eigen ontwerp. Bespaar niet op snelheid, mobiel gebruik en de SEO-basis: die bepalen of je website gevonden wordt en aanvragen oplevert.",
                 "Lees ook <a href=\"/kennisbank/goedkope-website-laten-maken/\">goedkope website laten maken: waar let je op?</a>",
             ]),
             ("Website laten maken bij Marketing Student", [
@@ -46,7 +46,7 @@ NIEUW_WEB = [
         ],
         faq=[
             ("Waarom verschillen de prijzen van websites zo veel?", "Omdat er veel verschil zit in het aantal pagina's, het ontwerp, de functies en wie het werk doet. Een standaardthema met een paar pagina's vraagt veel minder werk dan een maatwerkwebsite met een webshop en koppelingen."),
-            ("Wat zijn de jaarlijkse kosten van een website?", "Naast het bouwen betaal je doorlopend voor hosting en de domeinnaam, en eventueel voor licenties en onderhoud. Vraag bij elke offerte welke kosten na de livegang terugkomen."),
+            ("Wat zijn de jaarlijkse kosten van een website?", "Naast het bouwen betaal je doorlopend voor hosting en de domeinnaam en eventueel voor licenties en onderhoud. Vraag bij elke offerte welke kosten na de livegang terugkomen."),
             ("Is een website via een abonnement goedkoper?", "Soms in het begin, maar reken uit wat je over meerdere jaren betaalt en check of de website van jou blijft als je stopt. Bij een eenmalige bouw op je eigen hosting ben je eigenaar."),
             ("Hoe krijg ik een prijs voor mijn website?", "Vraag een offerte op maat aan. Beschrijf hoeveel pagina's je ongeveer nodig hebt, welke functies en of je teksten en foto's zelf aanlevert. Dan krijg je een voorstel dat bij jouw situatie past."),
         ],
@@ -72,7 +72,7 @@ NIEUW_WEB = [
                 "Let op een paar veelvoorkomende valkuilen. Een lage prijs met een vast maandbedrag waarbij de website niet van jou is. Een website die je niet zelf kunt aanpassen, waardoor elke wijziging extra kost. Een standaardthema vol plugins dat traag laadt. Geen doorverwijzingen bij een overstap, waardoor je posities in Google verliest. En geen onderhoud, waardoor de website na een jaar verouderd en kwetsbaar is.",
             ]),
             ("Hoe Marketing Student betaalbaar blijft", [
-                "Bij ons bouwt een getrainde student je website en controleert een senior webspecialist het ontwerp, de techniek en de oplevering. Studenten werken tegen een lager tarief dan een bureau, en de senior zorgt dat de kwaliteit klopt. Je krijgt dus een betaalbare website zonder in te leveren op snelheid, vindbaarheid of uitstraling.",
+                "Bij ons bouwt een getrainde student je website en controleert een senior webspecialist het ontwerp, de techniek en de oplevering. Studenten werken tegen een lager tarief dan een bureau en de senior zorgt dat de kwaliteit klopt. Je krijgt dus een betaalbare website zonder in te leveren op snelheid, vindbaarheid of uitstraling.",
                 f"Meer over onze aanpak lees je bij {L}.",
             ]),
             ("Doe-het-zelf of laten maken?", [
@@ -86,7 +86,7 @@ NIEUW_WEB = [
         faq=[
             ("Kan een goedkope website goed scoren in Google?", "Ja, als de basis klopt: snelheid, mobiel gebruik, een duidelijke opbouw met een pagina per dienst en goede titels. Die basis is belangrijker dan een duur ontwerp."),
             ("Wat is het grootste risico van een goedkope website?", "Dat je er niet zelf aan kunt werken, dat hij niet van jou is of dat hij traag en slecht vindbaar is. Dan betaal je later alsnog, in extra kosten of gemiste klanten."),
-            ("Hoe kan Marketing Student goedkoper zijn dan een bureau?", "Omdat een getrainde student het werk doet, tegen een lager tarief, en een senior de kwaliteit controleert. Je betaalt dus geen bureautarief, maar krijgt wel een gecontroleerde oplevering."),
+            ("Hoe kan Marketing Student goedkoper zijn dan een bureau?", "Omdat een getrainde student het werk doet, tegen een lager tarief en een senior de kwaliteit controleert. Je betaalt dus geen bureautarief, maar krijgt wel een gecontroleerde oplevering."),
             ("Kan ik later uitbreiden?", "Ja. Begin met de belangrijkste pagina's en voeg later pagina's, een blog of een webshop toe. Een goede opbouw maakt uitbreiden eenvoudig."),
         ],
     ),
@@ -95,11 +95,11 @@ NIEUW_WEB = [
         titel="Website laten maken als zzp'er",
         title="Website laten maken als zzp'er | Marketing Student",
         meta="Website laten maken als zzp'er: welke pagina's je nodig hebt, hoe je klanten trekt en waar je op let. Praktisch, zonder onnodige kosten.",
-        intro="Als zzp'er is je website vaak je belangrijkste visitekaartje. Potentiële klanten zoeken je op voordat ze contact opnemen, en vergelijken je met anderen. Toch heb je geen grote website nodig. In dit artikel lees je welke pagina's een zzp-website nodig heeft, hoe je gevonden wordt en waar je op let als je een website laat maken.",
+        intro="Als zzp'er is je website vaak je belangrijkste visitekaartje. Potentiële klanten zoeken je op voordat ze contact opnemen en vergelijken je met anderen. Toch heb je geen grote website nodig. In dit artikel lees je welke pagina's een zzp-website nodig heeft, hoe je gevonden wordt en waar je op let als je een website laat maken.",
         dienst="website-laten-maken",
         secties=[
             ("Wat moet je website doen?", [
-                "Een goede zzp-website doet drie dingen: hij maakt in een paar seconden duidelijk wat je doet en voor wie, hij laat zien dat je te vertrouwen bent, en hij maakt contact opnemen makkelijk. Alles op je website staat in dienst van die drie doelen.",
+                "Een goede zzp-website doet drie dingen: hij maakt in een paar seconden duidelijk wat je doet en voor wie, hij laat zien dat je te vertrouwen bent en hij maakt contact opnemen makkelijk. Alles op je website staat in dienst van die drie doelen.",
             ]),
             ("Welke pagina's heb je nodig?", [
                 "Voor de meeste zzp'ers is dit genoeg om mee te beginnen:",
@@ -110,10 +110,10 @@ NIEUW_WEB = [
                 "Klanten kiezen voor een zzp'er omdat ze de persoon vertrouwen. Laat daarom zien wie je bent: een echte foto, je ervaring en je werkwijze. Echte reviews en voorbeelden van eerder werk zeggen meer dan mooie woorden. Een duidelijke werkwijze, met wat de klant kan verwachten, neemt twijfel weg. Ook je KvK-nummer en contactgegevens horen erbij.",
             ]),
             ("Gevonden worden als zzp'er", [
-                "Veel opdrachten komen via netwerk en LinkedIn, maar ook via Google. Werk je in een regio, vul dan een Google Bedrijfsprofiel in en noem je werkgebied op je website. Geef elke dienst een eigen pagina met de woorden die klanten gebruiken. Een paar goede artikelen over vragen van klanten helpen ook. Meer over vindbaarheid lees je bij <a href=\"/seo-specialist-inhuren/\">SEO-specialist inhuren</a>, en over LinkedIn bij <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn-marketing uitbesteden</a>.",
+                "Veel opdrachten komen via netwerk en LinkedIn, maar ook via Google. Werk je in een regio, vul dan een Google Bedrijfsprofiel in en noem je werkgebied op je website. Geef elke dienst een eigen pagina met de woorden die klanten gebruiken. Een paar goede artikelen over vragen van klanten helpen ook. Meer over vindbaarheid lees je bij <a href=\"/seo-specialist-inhuren/\">SEO-specialist inhuren</a> en over LinkedIn bij <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn-marketing uitbesteden</a>.",
             ]),
             ("Zelf maken of laten maken?", [
-                "Met een websitebouwer kun je zelf een eenvoudige website maken. Dat kost vooral tijd, en snelheid, opbouw en vindbaarheid zijn lastig zelf goed te krijgen. Laat je hem maken, dan heb je sneller een website die werkt, en houd je tijd over voor je opdrachten.",
+                "Met een websitebouwer kun je zelf een eenvoudige website maken. Dat kost vooral tijd en snelheid, opbouw en vindbaarheid zijn lastig zelf goed te krijgen. Laat je hem maken, dan heb je sneller een website die werkt en houd je tijd over voor je opdrachten.",
                 f"Een {L} bij Marketing Student is betaalbaar, omdat een getrainde student bouwt en een senior controleert. Je kunt de website daarna zelf aanpassen. Lees ook <a href=\"/kennisbank/goedkope-website-laten-maken/\">goedkope website laten maken</a>.",
             ]),
             ("Een herkenbare uitstraling", [
@@ -124,22 +124,22 @@ NIEUW_WEB = [
             ("Hoeveel pagina's heeft een zzp-website nodig?", "Vaak zijn vijf tot tien pagina's genoeg: een homepage, een pagina per dienst, een over-mij-pagina, voorbeelden of reviews en een contactpagina. Je kunt later uitbreiden."),
             ("Heb ik als zzp'er een blog nodig?", "Niet per se. Een blog helpt om gevonden te worden op vragen van klanten, maar alleen als je het volhoudt. Begin met je dienstpagina's en voeg later artikelen toe."),
             ("Moet ik mijn tarieven op mijn website zetten?", "Dat is een keuze. Tarieven op je website filteren klanten vooraf, maar kunnen ook afschrikken. Veel zzp'ers noemen een vanaf-prijs of werken met een offerte op maat."),
-            ("Kan ik de website zelf aanpassen?", "Ja. We bouwen de website zo dat je zelf teksten en foto's kunt wijzigen, en leggen bij de oplevering uit hoe dat werkt."),
+            ("Kan ik de website zelf aanpassen?", "Ja. We bouwen de website zo dat je zelf teksten en foto's kunt wijzigen en leggen bij de oplevering uit hoe dat werkt."),
         ],
     ),
     dict(
         slug="website-laten-maken-checklist", datum=D, categorie="Website",
-        titel="Checklist: website laten maken",
-        title="Checklist: website laten maken | Marketing Student",
+        titel="Checklist website laten maken",
+        title="Checklist website laten maken | Marketing Student",
         meta="Checklist voor als je een website laat maken: wat je vooraf regelt, waar je op let bij de bouw en wat je controleert voor de livegang.",
-        intro="Een nieuwe website laten maken gaat sneller en beter als je goed voorbereid bent. Met deze checklist weet je wat je vooraf regelt, waar je op let tijdens de bouw en wat je controleert voordat de website live gaat. Handig als je een offerte opvraagt, en om fouten te voorkomen die je later geld of klanten kosten.",
+        intro="Een nieuwe website laten maken gaat sneller en beter als je goed voorbereid bent. Met deze checklist weet je wat je vooraf regelt, waar je op let tijdens de bouw en wat je controleert voordat de website live gaat. Handig als je een offerte opvraagt en om fouten te voorkomen die je later geld of klanten kosten.",
         dienst="website-laten-maken",
         secties=[
-            ("Vooraf: je doel en je klant", [
-                "Begin niet bij het ontwerp, maar bij de vraag wat je website moet doen. Een website voor offerteaanvragen ziet er anders uit dan een website die vooral vertrouwen moet wekken bij sollicitanten, of een webshop die producten verkoopt. Schrijf je doel en je ideale klant in een paar zinnen op. Dat helpt bij elke keuze die volgt, en de partij die je website bouwt, kan er een scherpere offerte op maken.",
-                "- Wat moet de website opleveren: aanvragen, verkopen, sollicitaties?\n- Wie is je ideale klant, en wat zoekt die?\n- Welke diensten of producten wil je laten zien?\n- Welke vragen stellen klanten vaak?\n- Welke websites vind je goed, en waarom?",
+            ("Vooraf je doel en je klant bepalen", [
+                "Begin niet bij het ontwerp, maar bij de vraag wat je website moet doen. Een website voor offerteaanvragen ziet er anders uit dan een website die vooral vertrouwen moet wekken bij sollicitanten, of een webshop die producten verkoopt. Schrijf je doel en je ideale klant in een paar zinnen op. Dat helpt bij elke keuze die volgt en de partij die je website bouwt, kan er een scherpere offerte op maken.",
+                "- Wat moet de website opleveren: aanvragen, verkopen, sollicitaties?\n- Wie is je ideale klant en wat zoekt die?\n- Welke diensten of producten wil je laten zien?\n- Welke vragen stellen klanten vaak?\n- Welke websites vind je goed en waarom?",
             ]),
-            ("Vooraf: inhoud en beeld", [
+            ("Vooraf inhoud en beeld regelen", [
                 "- Een lijst met pagina's die je nodig hebt\n- Teksten per pagina, of afspraken over wie ze schrijft\n- Je logo en huisstijl\n- Foto's van je team, je werk en je locatie\n- Reviews of voorbeelden van klanten\n- Je contactgegevens, KvK-nummer en openingstijden",
                 "Teksten en foto's zijn vaak de reden dat een website later live gaat dan gepland. Begin er daarom op tijd mee.",
             ]),
@@ -162,7 +162,7 @@ NIEUW_WEB = [
         faq=[
             ("Wat moet ik regelen voordat ik een website laat maken?", "Je doel, je doelgroep, een lijst met pagina's, teksten of afspraken daarover, je logo en foto's. Hoe beter je voorbereid bent, hoe sneller en scherper de offerte."),
             ("Wat is het belangrijkste bij een nieuwe website?", "Dat hij snel is, goed werkt op mobiel, duidelijk maakt wat je doet en een duidelijke volgende stap heeft. Bij een overstap zijn doorverwijzingen van oude pagina's cruciaal."),
-            ("Wat controleer ik voor de livegang?", "Mobiel en desktop, formulieren, snelheid, titels per pagina, doorverwijzingen, Analytics en Search Console, en een back-up."),
+            ("Wat controleer ik voor de livegang?", "Mobiel en desktop, formulieren, snelheid, titels per pagina, doorverwijzingen, Analytics en Search Console en een back-up."),
             ("Hoe lang duurt het om een website te laten maken?", "Dat hangt af van het aantal pagina's en hoe snel teksten en foto's klaar zijn. Een goede voorbereiding met deze checklist maakt het traject korter."),
         ],
     ),

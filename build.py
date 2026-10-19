@@ -1649,15 +1649,6 @@ def main():
     red += "# Netlify-subdomein naar het hoofddomein (voorkomt dubbele content)\n"
     red += "https://marketing-student.netlify.app/*  https://marketing-student.nl/:splat  301!\n"
     red += "http://marketing-student.netlify.app/*   https://marketing-student.nl/:splat  301!\n\n"
-    # http, www en zonder slash in één stap naar de juiste URL (anders twee of drie redirects achter elkaar)
-    red += "# Eén redirect naar https, zonder www en met slash\n"
-    for u in sitemap:
-        if u == "/":
-            continue
-        for host in ("http://marketing-student.nl", "http://www.marketing-student.nl", "https://www.marketing-student.nl"):
-            red += f"{host}{u.rstrip('/'):<50} {SITE}{u}  301!\n"
-    red += "http://www.marketing-student.nl/*   https://marketing-student.nl/:splat  301!\n"
-    red += "https://www.marketing-student.nl/*  https://marketing-student.nl/:splat  301!\n\n"
     red += "# Broncode niet uitleveren\n"
     red += "".join(f"{b:<62} /404.html  404!\n" for b in BLOCK)
     red += "\n# Oude URL's van de WordPress-site (permanent)\n"

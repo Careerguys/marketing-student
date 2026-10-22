@@ -21,6 +21,8 @@ from artikelen import ARTIKELEN as _OUD
 from artikelen_oktober import NIEUW as _NIEUW
 from artikelen_website import NIEUW_WEB as _WEB
 ARTIKELEN = _WEB + _NIEUW + _OUD  # nieuwste eerst
+from artikelen_upgrade import upgrade as _upgrade
+ARTIKELEN = [_upgrade(a) for a in ARTIKELEN]
 from diensten_data import D as DIENST, SC as SHOWCASES, PLAT as PLATFORMS
 from story_data import STORY
 from vacatures_data import VACATURES, BIEDEN
@@ -1306,6 +1308,8 @@ def page_artikel(a):
         for al in alineas:
             if al.startswith("- "):
                 prose.append("<ul>" + "".join(f"<li>{x[2:]}</li>" for x in al.split("\n")) + "</ul>")
+            elif al.startswith("<table"):
+                prose.append(f'<div class="prose-table">{al}</div>')
             else:
                 prose.append(f"<p>{al}</p>")
         if i == 1 and a.get("cta"):

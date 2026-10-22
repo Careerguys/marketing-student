@@ -24,10 +24,10 @@ D = {
     cta="Huur een SEO-specialist in"),
 
 "google-ads-specialist-inhuren": dict(
-    short="Google Ads", noun="Google Ads-specialist", h1=("Google Ads-specialist", "inhuren"),
+    short="Google Ads", noun="Google Ads-specialist", h1=("Google Ads- en SEA-specialist", "inhuren"),
     title='Google Ads uitbesteden (SEA) | Marketing Student',
     meta='Google Ads uitbesteden aan een getrainde SEA-specialist: campagnes opzetten, beheren en bijsturen, begeleid door een senior. Geen contract.',
-    lead='Google Ads uitbesteden of een Google Ads-specialist inhuren die elke week je campagnes bijstuurt: een getrainde SEA-student, begeleid door een senior SEA-specialist. Jij houdt je eigen account en al je data.',
+    lead='Een Google Ads-specialist of SEA-specialist inhuren die elke week je campagnes bijstuurt? Je krijgt een getrainde SEA-student, begeleid door een senior SEA-specialist. Jij houdt je eigen account en al je data.',
     mentor="Jeroen B.", sc="ads", platforms="ads",
     tasks=[("search","Zoekwoorden en structuur","Campagnes en advertentiegroepen die aansluiten op wat je klant zoekt."),
            ("pen","Advertentieteksten","Responsieve advertenties, getest en verbeterd op basis van resultaat."),
@@ -37,7 +37,8 @@ D = {
            ("bar-chart","Rapportage","Elke maand kosten, conversies en volgende stappen.")],
     faq=[("Wat doet een Google Ads-specialist?","Een Google Ads-specialist zet je advertenties in Google op, bewaakt het budget en verbetert de campagnes op basis van resultaat. Onze SEA-student doet dat werk, een senior SEA-specialist controleert het."),
          ("Wat kost een Google Ads-specialist inhuren?",""),("Wat is het verschil met een Google Ads-freelancer?",""),
-         ("Wat heb je van mij nodig?","Toegang tot je Google Ads-account en je website, een budget voor de advertenties en een kennismaking over wat je verkoopt."),("Wanneer zie ik resultaat?","De eerste klikken zie je direct na de start. Na een paar weken is er genoeg data om goed bij te sturen. Wat haalbaar is, bespreken we vooraf."),("Werkt de student in mijn eigen account?",""),("Hoe snel kan de student starten?",""),("Zit ik vast aan een contract?","")],
+         ("Wat is het verschil tussen een SEA-specialist en een Google Ads-specialist?","Bijna geen. SEA staat voor Search Engine Advertising, adverteren in zoekmachines. In Nederland gebeurt dat vrijwel altijd in Google Ads, daarom worden de twee termen door elkaar gebruikt. Een SEA-specialist kan daarnaast ook campagnes in Microsoft Advertising voor Bing beheren."),
+          ("Wat heb je van mij nodig?","Toegang tot je Google Ads-account en je website, een budget voor de advertenties en een kennismaking over wat je verkoopt."),("Wanneer zie ik resultaat?","De eerste klikken zie je direct na de start. Na een paar weken is er genoeg data om goed bij te sturen. Wat haalbaar is, bespreken we vooraf."),("Werkt de student in mijn eigen account?",""),("Hoe snel kan de student starten?",""),("Zit ik vast aan een contract?","")],
     blog=[("SEA","Google Ads uitbesteden of zelf doen?","Wanneer een specialist het verschil maakt."),
           ("SEA","Zo lees je je Google Ads-rapport","De cijfers die ertoe doen en welke je mag negeren."),
           ("SEA","SEO of Google Ads: waar begin je?","Het verschil in snelheid, kosten en effect.")],

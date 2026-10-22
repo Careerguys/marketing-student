@@ -452,3 +452,41 @@ GIDS.update({
          "<p>Een landingspagina is sneller klaar dan een hele website. We bouwen hem op je eigen domein in <a href=\"/wordpress-specialist-inhuren/\">WordPress</a> of <a href=\"/shopify-specialist-inhuren/\">Shopify</a>, in je huisstijl en koppelen de meting. Heb je beeld nodig, dan maken we foto's of een korte <a href=\"/social-media-video-laten-maken/\">video</a> voor op de pagina.</p>"),
     ]),
 })
+
+# ---- Uitbreiding dunne dienstpagina's (audit 2026-10-22) ----
+GIDS.update({
+    "instagram-uitbesteden": ("Alles over *Instagram uitbesteden*", "Wat je kunt uitbesteden, hoe de samenwerking werkt en waar je op let bij Instagram voor je bedrijf.", [
+        ("Wat kun je op Instagram uitbesteden?",
+         "<p>Bijna alles wat tijd kost: het contentplan, het maken van posts, reels en stories, de captions en hashtags, het inplannen en het beantwoorden van reacties en berichten. Ook Instagram-advertenties kun je uitbesteden. Wat je zelf blijft doen, is de richting bepalen en de content goedkeuren. Jij kent je klanten en je product het best, dus jouw input over nieuws, acties en klantverhalen maakt de content sterker.</p>"),
+        ("Posts, reels en stories",
+         "<p>Elk formaat heeft een eigen rol. Reels zijn korte verticale video's die ook buiten je volgers worden getoond en zijn daarom sterk voor bereik. Posts en carrousels werken goed voor uitleg, voorbeelden en een herkenbare feed. Stories zijn vluchtig en persoonlijk, handig voor een kijkje achter de schermen, polls en aankondigingen. Een goede mix houdt je account levendig zonder dat je elke dag iets nieuws hoeft te bedenken.</p>"),
+        ("Een herkenbare feed",
+         "<p>Bezoekers beslissen in een paar seconden of ze je gaan volgen. Een feed met vaste kleuren, lettertypes en een herkenbare stijl van foto's helpt daarbij. Daarom werken we vanuit je <a href=\"/huisstijl-laten-maken/\">huisstijl</a> en maken we vaste sjablonen voor terugkerende posts. Zo ziet alles er professioneel uit, ook als er snel iets online moet.</p>"),
+        ("Hoe vaak posten op Instagram?",
+         "<p>Een vast ritme dat je maanden volhoudt, werkt beter dan een week elke dag posten en daarna een maand niets. Voor de meeste mkb-bedrijven is een paar keer per week een goed begin, aangevuld met stories. Hoeveel posts je per maand krijgt, spreken we vooraf af in de offerte. Een <a href=\"/kennisbank/contentkalender-maken/\">contentkalender</a> zorgt dat je ritme niet afhangt van inspiratie.</p>"),
+        ("Instagram en je andere kanalen",
+         "<p>Instagram staat zelden alleen. Een reel die goed loopt, kan ook op TikTok of als YouTube Short. Een post met uitleg kan terugkomen in je <a href=\"/email-marketing-uitbesteden/\">nieuwsbrief</a> of op LinkedIn. Door content zo slim te hergebruiken, haal je meer uit elke opname. Wil je meerdere kanalen tegelijk laten beheren, kijk dan bij <a href=\"/social-media-uitbesteden/\">social media uitbesteden</a>.</p>"),
+        ("Meten wat Instagram oplevert",
+         "<p>Volgers zijn leuk, maar ze zeggen weinig over wat Instagram je bedrijf oplevert. Elke maand kijken we naar bereik, opgeslagen en gedeelde posts, profielbezoeken en klikken naar je website. Die cijfers laten zien welke onderwerpen en formaten werken. Op basis daarvan passen we het plan voor de volgende maand aan.</p>"),
+    ]),
+    "contentmarketing-uitbesteden": ("Alles over *contentmarketing uitbesteden*", "Wat contentmarketing is, wat je kunt uitbesteden en hoe je zorgt dat content iets oplevert.", [
+        ("Wat is contentmarketing?",
+         "<p>Contentmarketing (ook wel content marketing) is het maken en verspreiden van nuttige content voor je doelgroep: artikelen, video's, foto's, posts en nieuwsbrieven die vragen beantwoorden of laten zien wat je doet. Het doel is niet direct verkopen, maar vertrouwen opbouwen en gevonden worden op het moment dat iemand een vraag heeft. Meer uitleg lees je in <a href=\"/kennisbank/wat-is-contentmarketing/\">wat is contentmarketing</a>.</p>"),
+        ("Wat kun je uitbesteden?",
+         "<p>Je kunt het hele proces uitbesteden of alleen een deel. Denk aan het contentplan, het schrijven van blogs en pagina's, het maken van foto's en video's, het vormgeven van posts en het verspreiden via social media en <a href=\"/email-marketing-uitbesteden/\">e-mail</a>. Veel bedrijven houden zelf de inhoudelijke kennis en laten het maken en plannen over aan een content creator. Dat werkt goed, zolang je vaste momenten afspreekt om input te geven.</p>"),
+        ("Begin bij een plan",
+         "<p>Content zonder plan levert weinig op. We beginnen met je doelgroep, de vragen die zij stellen en wat jij wilt bereiken: meer aanvragen, meer bezoekers of een sterker merk. Daaruit volgen een paar vaste onderwerpen en een ritme dat je volhoudt. Alles komt in een <a href=\"/kennisbank/contentkalender-maken/\">contentkalender</a>, zodat je precies ziet wat er wanneer verschijnt.</p>"),
+        ("Eén onderwerp, veel content",
+         "<p>De slimste contentmarketing maakt van één onderwerp meerdere stukken. Een interview met een klant wordt een blog, een korte video, een paar quotes voor social media en een stuk in je nieuwsbrief. Zo haal je meer uit elke opname of elk gesprek en blijft je boodschap op alle kanalen hetzelfde. Een <a href=\"/ai-specialist-inhuren/\">AI-specialist</a> kan helpen om die varianten sneller te maken.</p>"),
+        ("Content die gevonden wordt",
+         "<p>Een goed artikel blijft jarenlang bezoekers trekken als het goed vindbaar is in Google. Daarom schrijven we vanuit de vragen die je klanten echt zoeken en letten we op titels, koppen en interne links. Content en <a href=\"/seo-specialist-inhuren/\">SEO</a> versterken elkaar: de content geeft Google iets om te tonen, SEO zorgt dat het ook gevonden wordt.</p>"),
+        ("Meten of het werkt",
+         "<p>Contentmarketing is een investering op langere termijn. Elke maand kijken we naar bezoekers, posities in Google, bereik op social media en vooral naar wat het oplevert: aanvragen, inschrijvingen en verkopen. Wat goed werkt, maken we vaker. Wat niets doet, stoppen we.</p>"),
+    ]),
+})
+GIDS["productfotos-laten-maken"][2].extend([
+    ("Hoeveel foto's per product?",
+     "<p>Dat hangt af van je product. Een eenvoudig product heeft genoeg aan een vooraanzicht en een detail. Bij kleding, meubels of techniek wil een koper meer zien: voor-, zij- en achterkant, details van materiaal en afwerking, de maat ten opzichte van iets herkenbaars en een foto in gebruik. Kijk ook naar de vragen die klanten nu stellen of de redenen waarom ze retourneren. Wat daar steeds terugkomt, laat je zien op een foto.</p>"),
+    ("Productfoto's en vindbaarheid",
+     "<p>Ook productfoto's helpen je gevonden te worden. Een beschrijvende bestandsnaam en een goede alt-tekst vertellen Google wat er op de foto staat, en lichte bestanden zorgen dat je webshop snel laadt. We leveren de foto's daarom in de juiste formaten en met duidelijke bestandsnamen, zodat je ze direct in je webshop kunt zetten.</p>"),
+])

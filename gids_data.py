@@ -488,5 +488,5 @@ GIDS["productfotos-laten-maken"][2].extend([
     ("Hoeveel foto's per product?",
      "<p>Dat hangt af van je product. Een eenvoudig product heeft genoeg aan een vooraanzicht en een detail. Bij kleding, meubels of techniek wil een koper meer zien: voor-, zij- en achterkant, details van materiaal en afwerking, de maat ten opzichte van iets herkenbaars en een foto in gebruik. Kijk ook naar de vragen die klanten nu stellen of de redenen waarom ze retourneren. Wat daar steeds terugkomt, laat je zien op een foto.</p>"),
     ("Productfoto's en vindbaarheid",
-     "<p>Ook productfoto's helpen je gevonden te worden. Een beschrijvende bestandsnaam en een goede alt-tekst vertellen Google wat er op de foto staat, en lichte bestanden zorgen dat je webshop snel laadt. We leveren de foto's daarom in de juiste formaten en met duidelijke bestandsnamen, zodat je ze direct in je webshop kunt zetten.</p>"),
+     "<p>Ook productfoto's helpen je gevonden te worden. Een beschrijvende bestandsnaam en een goede alt-tekst vertellen Google wat er op de foto staat. Lichte bestanden zorgen dat je webshop snel laadt. We leveren de foto's daarom in de juiste formaten en met duidelijke bestandsnamen, zodat je ze direct in je webshop kunt zetten.</p>"),
 ])

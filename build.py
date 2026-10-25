@@ -1433,7 +1433,7 @@ def page_vacatures():
     secs += section(section_head("Zo verloopt *je sollicitatie*", 'Geen vacature die past? <a href="/werken-als-student/">Meld je algemeen aan</a>.') + steps(VAC_STEPS))
     items = [{"@type": "ListItem", "position": i, "url": f"{SITE}/vacatures/{v['slug']}/", "name": v["titel"]} for i, v in enumerate(VACATURES, 1)]
     p = simple_page(path, "Vacatures", "Vacatures", "voor studenten",
-                    "Studeer je marketing, communicatie of iets vergelijkbaars op HBO- of WO-niveau? Werk naast je studie voor echte klanten, begeleid door ervaren marketeers.",
+                    "Ben je marketingstudent op HBO- of WO-niveau, of studeer je communicatie of iets vergelijkbaars? Werk naast je studie voor echte klanten, begeleid door ervaren marketeers.",
                     "Vacatures voor marketingstudenten | Marketing Student",
                     "Vacatures voor HBO- en WO-studenten: SEO, social media, video, Google Ads, WordPress en AI. Naast je studie, begeleid door een senior.",
                     secs, "werken", "CollectionPage",

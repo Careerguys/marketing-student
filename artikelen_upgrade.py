@@ -63,7 +63,8 @@ UPGRADE = {
         ],
     ),
     "social-media-uitbesteden-waar-let-je-op": dict(
-        bijgewerkt="2026-10-22",
+        bijgewerkt="2026-10-25",
+        intro="Wil je <a href=\"/social-media-uitbesteden/\">social media uitbesteden</a>? Dat scheelt tijd, maar alleen als je het goed regelt. Met deze 8 tips voorkom je dat je merk ongemerkt een andere kant op gaat of dat je de toegang tot je eigen accounts kwijtraakt. Je leest wat je wel en niet kunt uitbesteden, welke afspraken je maakt en hoe je beoordeelt of het werkt.",
         secties=[
             ("De voor- en nadelen van uitbesteden", [
                 "Uitbesteden levert tijd en kennis op, maar het heeft ook risico's. Zet ze naast elkaar voordat je kiest.",

@@ -826,7 +826,9 @@ def footer():
 def mobile_cta(current):
     if current in ("offerte", "bedankt"):
         return ""
-    return f'<div class="mobile-cta">{btn("Bellen", PHONE_HREF, "outline", "phone")}{btn("Offerte", "/offerte-aanvragen/", "grad", "arrow-right")}</div>'
+    # Verborgen tot de knoppen in de hero uit beeld zijn gescrold (main.js); zonder JS altijd zichtbaar.
+    return (f'<div class="mobile-cta is-hidden">{btn("Bellen", PHONE_HREF, "outline", "phone")}{btn("Offerte", "/offerte-aanvragen/", "grad", "arrow-right")}</div>'
+            '<noscript><style>.mobile-cta.is-hidden{transform:none;visibility:visible}</style></noscript>')
 
 
 def cookie_banner():

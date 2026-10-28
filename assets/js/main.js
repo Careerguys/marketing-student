@@ -34,6 +34,21 @@
     });
   }
 
+  /* ---------- Vaste belbalk op mobiel: pas tonen als de knoppen in de hero uit beeld zijn ---------- */
+  var bar = document.querySelector(".mobile-cta");
+  if (bar) {
+    var heroBtns = document.querySelector(".hero .btn-row");
+    if (!heroBtns || !("IntersectionObserver" in window)) {
+      bar.classList.remove("is-hidden");
+    } else {
+      new IntersectionObserver(function (entries) {
+        var e = entries[0];
+        // Alleen tonen als de knoppen boven de rand van het scherm zijn verdwenen
+        bar.classList.toggle("is-hidden", e.isIntersecting || e.boundingClientRect.top > 0);
+      }).observe(heroBtns);
+    }
+  }
+
   /* ---------- Dropdown desktop ---------- */
   document.querySelectorAll(".has-dropdown").forEach(function (li) {
     var btn = li.querySelector("button");

@@ -18,6 +18,11 @@
     burger.addEventListener("click", function () {
       setMenu(burger.getAttribute("aria-expanded") !== "true");
     });
+    // Tik op de lege ruimte in het menu sluit het menu; tik op een link sluit het ook (ankers op dezelfde pagina).
+    panel.addEventListener("click", function (e) {
+      var hit = e.target.closest("a, button, summary, input, textarea, select, li");
+      if (!hit || hit.tagName === "A") setMenu(false);
+    });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && panel.classList.contains("is-open")) {
         setMenu(false);

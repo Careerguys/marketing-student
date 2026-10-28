@@ -34,18 +34,27 @@
     });
   }
 
-  /* ---------- Vaste belbalk op mobiel: pas tonen als de knoppen in de hero uit beeld zijn ---------- */
+  /* ---------- Vaste belbalk op mobiel: schuift mee omhoog zodra de knoppen in de hero uit beeld scrollen ---------- */
   var bar = document.querySelector(".mobile-cta");
   if (bar) {
     var heroBtns = document.querySelector(".hero .btn-row");
-    if (!heroBtns || !("IntersectionObserver" in window)) {
+    if (!heroBtns) {
       bar.classList.remove("is-hidden");
     } else {
-      new IntersectionObserver(function (entries) {
-        var e = entries[0];
-        // Alleen tonen als de knoppen boven de rand van het scherm zijn verdwenen
-        bar.classList.toggle("is-hidden", e.isIntersecting || e.boundingClientRect.top > 0);
-      }).observe(heroBtns);
+      var ticking = false;
+      var update = function () {
+        ticking = false;
+        // Hoe ver de onderkant van de knoppen voorbij de bovenrand is, ten opzichte van de hoogte van de balk
+        var p = Math.max(0, Math.min(1, -heroBtns.getBoundingClientRect().bottom / bar.offsetHeight));
+        bar.style.transform = "translateY(" + ((1 - p) * 110).toFixed(1) + "%)";
+        bar.classList.toggle("is-hidden", p === 0);
+      };
+      bar.classList.add("is-scrolllinked");
+      window.addEventListener("scroll", function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      window.addEventListener("resize", update);
+      update();
     }
   }
 

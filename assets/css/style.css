@@ -607,9 +607,9 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
   background: rgba(11, 30, 51, 0.96); border-top: 1px solid var(--line-2); box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
 }
 .mobile-cta .btn { width: 100%; }
-.mobile-cta { transition: transform 220ms var(--ease), visibility 0s linear 0s; }
-.mobile-cta.is-hidden { transform: translateY(110%); visibility: hidden; transition: transform 220ms var(--ease), visibility 0s linear 220ms; }
-@media (prefers-reduced-motion: reduce) { .mobile-cta, .mobile-cta.is-hidden { transition: none; } }
+.mobile-cta.is-hidden { transform: translateY(110%); visibility: hidden; }
+/* Met JS volgt de balk de scroll (transform per frame), dus zonder eigen transitie */
+.mobile-cta.is-scrolllinked { will-change: transform; transition: none; }
 @media (min-width: 900px) { .mobile-cta { display: none; } }
 
 /* ---------- Cookiebanner ---------- */

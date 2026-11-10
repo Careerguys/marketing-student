@@ -1098,6 +1098,7 @@ body.menu-open .cookie, body.menu-open .mobile-cta { display: none; }
 .section-head .lead a { color: var(--green); }
 .vac-tools { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .vac-tools li { padding: 6px 12px; border-radius: 999px; background: rgba(121, 199, 158, 0.12); border: 1px solid rgba(121, 199, 158, 0.3); font-size: 0.875rem; font-weight: 600; color: #fff; }
+.article-grid > .prose { min-width: 0; }
 .prose-table { overflow-x: auto; margin: 0 0 1.2em; border-radius: 12px; border: 1px solid var(--line); }
 .prose-table table { width: 100%; border-collapse: collapse; font-size: 0.875rem; line-height: 1.45; overflow-wrap: break-word; hyphens: auto; }
 @media (min-width: 640px) { .prose-table table { font-size: 0.9375rem; } }

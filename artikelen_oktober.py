@@ -79,7 +79,7 @@ NIEUW = [
             ]),
             ("Wanneer past SEA bij jouw bedrijf?", [
                 "SEA past goed als je snel resultaat wilt, als je een nieuwe dienst of actie wilt testen, of als je in een markt zit waar organisch bovenaan komen lang duurt. Ook seizoensgebonden bedrijven hebben er veel aan: je zet de campagne aan wanneer de vraag er is.",
-                "Voor de lange termijn is SEA het sterkst in combinatie met <a href=\"/seo-specialist-inhuren/\">SEO</a>. Advertenties laten snel zien welke zoekwoorden klanten opleveren; die kennis gebruik je om je website organisch sterker te maken. Wil je SEA uitbesteden? Een <a href=\"/google-ads-specialist-inhuren/\">Google Ads-specialist</a> zet de campagne op en houdt hem elke week bij.",
+                "Voor de lange termijn is SEA het sterkst in combinatie met <a href=\"/seo-specialist-inhuren/\">SEO</a>. Advertenties laten snel zien welke zoekwoorden klanten opleveren; die kennis gebruik je om je website organisch sterker te maken. Wil je SEA uitbesteden? Dan kun je een <a href=\"/google-ads-specialist-inhuren/\">SEA-specialist inhuren</a> die de campagne opzet en elke week bijhoudt.",
             ]),
         ],
         faq=[

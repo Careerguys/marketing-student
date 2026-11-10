@@ -490,3 +490,15 @@ GIDS["productfotos-laten-maken"][2].extend([
     ("Productfoto's en vindbaarheid",
      "<p>Ook productfoto's helpen je gevonden te worden. Een beschrijvende bestandsnaam en een goede alt-tekst vertellen Google wat er op de foto staat. Lichte bestanden zorgen dat je webshop snel laadt. We leveren de foto's daarom in de juiste formaten en met duidelijke bestandsnamen, zodat je ze direct in je webshop kunt zetten.</p>"),
 ])
+
+# ---- Productvideo: extra gidsblokken na top-3-analyse (audit 2026-11-10) ----
+GIDS["productvideo-laten-maken"][2].extend([
+    ("Van briefing tot oplevering",
+     "<p>Het begint met een kennismaking. Je vertelt wat je verkoopt, wat kopers willen weten en waar de video komt te staan. Daarna krijg je een voorstel met de opzet per video, de opnamedag en de versies die je ontvangt. Op de opnamedag filmt de student je producten, bij jou op locatie of in een opstelling met vaste achtergrond en licht. Na de montage krijg je een eerste versie om op te reageren. Je feedback wordt verwerkt en je ontvangt de definitieve bestanden.</p>"),
+    ("Waar hangen de kosten van af?",
+     "<p>Vooral van de hoeveelheid werk. Het aantal producten en het aantal video's per product tellen het zwaarst. Daarna komt de soort video: een product van alle kanten is sneller gemaakt dan een demo met een model of een uitleg met voice-over. Ook de locatie, extra's zoals animatie of ondertiteling en het aantal formaten spelen mee. Je krijgt vooraf een offerte op maat, zodat je weet wat je krijgt.</p>"),
+    ("Het juiste formaat per kanaal",
+     "<p>Elk kanaal stelt eigen eisen. Voor productvermeldingen in Google kun je in Merchant Center een video toevoegen van 6 tot 240 seconden, staand, liggend of vierkant en in minimaal 720p (<a href=\"https://support.google.com/merchants/answer/15216925?hl=nl\" rel=\"noopener\" target=\"_blank\">Google Merchant Center Help</a>). Shopify accepteert op de productpagina bestanden in mp4, mov en webm (<a href=\"https://help.shopify.com/nl/manual/products/product-media/product-media-types\" rel=\"noopener\" target=\"_blank\">Shopify Helpcentrum</a>). Voor de feed van Facebook raadt Meta een staande verhouding van 4:5 aan (<a href=\"https://www.facebook.com/business/ads-guide/update/video/facebook-feed\" rel=\"noopener\" target=\"_blank\">Meta-advertentiegids</a>). Wij leveren per kanaal de juiste versie, zodat je niets hoeft om te zetten.</p>"),
+    ("Feedback, planning en rechten",
+     "<p>Je reageert op de eerste versie en wij passen de montage aan. De planning staat vooraf in je offerte, zodat je weet wanneer je wat ontvangt. Alle video's die de student voor je maakt, zijn van jou. Je mag ze gebruiken op je website, in advertenties en op marktplaatsen. Let alleen op de licentie van muziek als je die zelf aanlevert.</p>"),
+])

@@ -161,7 +161,7 @@ dict(
             "Een SEO-specialist zorgt dat je website hoger in Google komt, met zoekwoordonderzoek, technische verbeteringen en content. Lees ook: <a href=\"/kennisbank/wat-doet-een-seo-specialist/\">wat doet een SEO-specialist?</a> Een linkbuilding-specialist is een specialisatie daarbinnen, gericht op vermeldingen op andere websites.",
         ]),
         ("Google Ads-specialist", [
-            "Een Google Ads-specialist, ook wel SEA-specialist, beheert je advertenties in Google. Hij kiest zoekwoorden, schrijft advertenties en stuurt het budget bij op basis van resultaat. Wat dat inhoudt, lees je in <a href=\"/kennisbank/wat-is-sea/\">wat is SEA?</a>",
+            "Een Google Ads-specialist, ook wel SEA-specialist, beheert je advertenties in Google. Hij kiest zoekwoorden, schrijft advertenties en stuurt het budget bij op basis van resultaat. Wat dat inhoudt, lees je in <a href=\"/kennisbank/wat-is-sea/\">wat is SEA?</a> Zoek je iemand die het voor je doet, dan kun je een <a href=\"/google-ads-specialist-inhuren/\">SEA-specialist inhuren</a>.",
         ]),
         ("Social media-marketeer en content creator", [
             "Een social media-marketeer plant en beheert je kanalen en je community. Een content creator maakt de foto's, video's en teksten. In kleinere teams doet één persoon vaak allebei.",
@@ -324,7 +324,7 @@ dict(
         ]),
         ("Wanneer kies je voor SEA?", [
             "SEA past bij je als je snel klanten wilt, bijvoorbeeld bij een nieuwe dienst, een actie of een seizoen. Ook als je nog weinig bezoekers hebt, helpt SEA om direct te testen welke zoekwoorden aanvragen opleveren.",
-            "Zorg wel dat je meet wat een klik oplevert. Zonder conversiemeting weet je niet of je budget goed besteed is. Een <a href=\"/google-ads-specialist-inhuren/\">Google Ads-specialist</a> zet die meting op en houdt de campagnes bij.",
+            "Zorg wel dat je meet wat een klik oplevert. Zonder conversiemeting weet je niet of je budget goed besteed is. Wil je dat niet zelf doen, dan kun je een <a href=\"/google-ads-specialist-inhuren/\">SEA-specialist inhuren</a> die de meting opzet en de campagnes bijhoudt.",
         ]),
         ("SEO en SEA samen", [
             "Veel bedrijven gebruiken allebei. Met SEA ben je direct zichtbaar, terwijl je met SEO bouwt aan posities die blijven. De zoekwoorden die in je advertenties goed werken, zijn vaak ook de onderwerpen waar je met SEO op in kunt zetten.",

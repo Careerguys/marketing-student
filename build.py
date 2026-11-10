@@ -1387,7 +1387,7 @@ def page_student():
 
 
 # ---------------------------------------------------------------- vacatures
-VAC_POSTED, VAC_VALID = "2026-09-30", "2026-12-31T23:59"
+VAC_POSTED, VAC_VALID = "2026-09-30", "2027-06-30T23:59"
 VAC_STEPS = [("Solliciteren", "Vul het formulier in met je contactgegevens en je LinkedIn of portfolio."),
              ("Kennismaking", "We maken kennis en bespreken wat je wilt leren."),
              ("Inwerktraject", "Je leert onze werkwijze en de tools, samen met een senior."),

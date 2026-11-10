@@ -814,7 +814,7 @@ def footer():
         <a class="strong" href="{PHONE_HREF}">{icon("phone")}{PHONE}</a>
         <a class="strong" href="mailto:{EMAIL}">{icon("mail")}{EMAIL}</a>
         <a href="https://www.google.com/maps/search/?api=1&amp;query=Koninginnegracht+5,+2514+AA+Den+Haag" target="_blank" rel="noopener">Koninginnegracht 5<br>2514 AA Den Haag<span class="sr-only"> (opent Google Maps)</span></a>
-        <span>Ma–vr 09:00–17:00</span>
+        <span>Ma t/m vr 09:00 tot 17:00</span>
         <span>KvK 90875206</span>
       </div></div>
     </div>
@@ -1263,7 +1263,7 @@ def page_contact():
   {PRIVACY_NOTE}
 </form>'''
     cards = f'''<div class="contact-cards">
-  <div class="contact-card">{icon("phone")}<h2>Bellen</h2><a href="{PHONE_HREF}">{PHONE}</a><span>Ma–vr 09:00–17:00</span></div>
+  <div class="contact-card">{icon("phone")}<h2>Bellen</h2><a href="{PHONE_HREF}">{PHONE}</a><span>Ma t/m vr 09:00 tot 17:00</span></div>
   <div class="contact-card">{icon("mail")}<h2>Mailen</h2><a href="mailto:{EMAIL}">{EMAIL}</a></div>
   <div class="contact-card">{icon("map-pin")}<h2>Langskomen</h2><strong>Den Haag of Mijdrecht</strong><span>Op afspraak. <a href="#vestigingen">Bekijk de vestigingen</a></span></div>
 </div>'''
@@ -1332,7 +1332,7 @@ def page_artikel(a):
     meta_line = f'<p class="meta-line">Redactie Marketing Student · <time datetime="{datum}">{d} {maanden[m - 1]} {j}</time>'
     if bijgewerkt != datum:
         bj, bm, bd = (int(x) for x in bijgewerkt.split("-"))
-        meta_line += f' · bijgewerkt <time datetime="{bijgewerkt}">{bd} {maanden[bm - 1]} {bj}</time>'
+        meta_line += f', bijgewerkt <time datetime="{bijgewerkt}">{bd} {maanden[bm - 1]} {bj}</time>'
     meta_line += '</p>'
     body = hero([("Home", "/"), ("Kennisbank", "/kennisbank/"), (a["titel"], path)], a["titel"], "", a["meta"], meta_line, cls="hero--article")
     img = foto(ART_FOTO.get(a["slug"], "team-tafel"), "(min-width: 1000px) 760px, 100vw", "article__img")

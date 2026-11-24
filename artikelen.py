@@ -43,7 +43,7 @@ dict(
         ]),
         ("Wanneer huur je een SEO-specialist in?", [
             "Een SEO-specialist inhuren loont als je website een belangrijke bron van klanten is of kan worden en je zelf niet de tijd of kennis hebt om er structureel aan te werken. Ook bij een nieuwe website of een verhuizing naar een ander domein is het verstandig om een specialist mee te laten kijken, zodat je bestaande posities niet verliest.",
-            "Je hoeft daarvoor niet altijd een bureau in te schakelen. Een getrainde SEO-student die begeleid wordt door een senior SEO-specialist kan het uitvoerende werk doen, terwijl de senior de aanpak bewaakt. Heb je vooral behoefte aan vermeldingen op andere websites, dan is een <a href=\"/linkbuilding-specialist-inhuren/\">linkbuilding-specialist</a> een aanvulling.",
+            "Je hoeft daarvoor niet altijd een bureau in te schakelen. Een getrainde SEO-student die begeleid wordt door een senior SEO-specialist kan het uitvoerende werk doen, terwijl de senior de aanpak bewaakt. Hoe dat werkt, lees je bij <a href=\"/seo-specialist-inhuren/\">SEO-specialist inhuren</a>. Heb je vooral behoefte aan vermeldingen op andere websites, dan is een <a href=\"/linkbuilding-specialist-inhuren/\">linkbuilding-specialist</a> een aanvulling.",
         ]),
     ],
     faq=[
@@ -331,7 +331,7 @@ dict(
             "Na verloop van tijd kun je je advertentiebudget verlagen op zoekwoorden waar je organisch al hoog staat. En omgekeerd: zoekwoorden waar je met SEO moeilijk hoog komt, kun je met SEA toch afdekken.",
         ]),
         ("Hulp bij SEO of SEA?", [
-            "Bij Marketing Student werkt een getrainde student aan je <a href=\"/seo-specialist-inhuren/\">SEO</a> of je <a href=\"/google-ads-specialist-inhuren/\">Google Ads-campagnes</a>, begeleid door een senior specialist. Je zit niet vast aan een contract en krijgt eerst een offerte op maat.",
+            "Bij Marketing Student kun je een <a href=\"/seo-specialist-inhuren/\">SEO-specialist inhuren</a> of een <a href=\"/google-ads-specialist-inhuren/\">Google Ads-specialist inhuren</a>: een getrainde student werkt aan je SEO of je Google Ads-campagnes, begeleid door een senior specialist. Je zit niet vast aan een contract en krijgt eerst een offerte op maat.",
         ]),
     ],
     faq=[

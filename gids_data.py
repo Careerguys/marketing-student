@@ -33,7 +33,9 @@ GIDS = {
         ("Veilig en eerlijk",
          "<p>Elke link die de student aanvraagt, zou je ook zonder SEO-belang willen hebben: een vermelding op een site die je klanten lezen, of een verwijzing van een partner. Je krijgt een overzicht van alle websites die benaderd zijn en van de links die zijn geplaatst. Zo weet je altijd waar je bedrijf genoemd wordt en loop je geen risico met links die je later moet laten verwijderen.</p>"),
     ]),
-    "google-ads-specialist-inhuren": ("Alles over *Google Ads uitbesteden*", "Hoe Google Ads werkt, welke campagnes er zijn en waar je op let.", [
+    "google-ads-specialist-inhuren": ("Alles over *een SEA-specialist inhuren*", "Hoe Google Ads werkt, welke campagnes er zijn en waar je op let als je SEA uitbesteedt.", [
+        ("SEA-specialist of Google Ads-specialist?",
+         "<p>Dat is in de praktijk hetzelfde. SEA staat voor Search Engine Advertising, adverteren in zoekmachines. In Nederland gebeurt dat bijna altijd in Google Ads, daarom heet een SEA-specialist ook wel Google Ads-specialist. Soms komt Microsoft Advertising erbij, voor advertenties in Bing. Een SEA-specialist inhuren betekent dus dat iemand je zoekcampagnes opzet, je budget bewaakt en elke week bijstuurt op wat klanten oplevert. Wat SEA precies is, lees je in <a href=\"/kennisbank/wat-is-sea/\">wat is SEA</a>.</p>"),
         ("Hoe werkt Google Ads?",
          "<p>Bij elke zoekopdracht houdt Google een veiling. Wie het hoogst biedt, staat niet automatisch bovenaan: Google kijkt ook naar hoe goed je advertentie en je landingspagina aansluiten op de zoekopdracht. Een relevante advertentie met een goede pagina kan daardoor beter scoren dan een hoger bod. Je betaalt per klik en je bepaalt zelf het budget, de regio en de momenten waarop je advertenties draaien.</p>"),
         ("Welke campagnes zijn er?",

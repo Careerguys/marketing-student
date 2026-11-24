@@ -17,6 +17,8 @@ SEO = {
           "Instagram uitbesteden aan een getrainde student. Posts, stories en reels bedacht, gemaakt en ingepland in je huisstijl. Begeleid door een senior."),
     "/tiktok-uitbesteden/": ("TikTok uitbesteden | Video's die bereik en volgers opleveren",
           "TikTok uitbesteden aan een getrainde student. Video's bedenken, filmen, monteren en posten in de stijl van het platform. Begeleid door een senior."),
+    "/student-inhuren/": ("Student inhuren voor je marketing | Getraind en begeleid",
+          "Student inhuren voor je marketing. Een getrainde HBO- of WO-student voor SEO, social media of content, begeleid door een senior en zonder contract."),
     "/linkedin-marketing-uitbesteden/": ("LinkedIn-marketing uitbesteden | Zakelijk zichtbaar",
           "LinkedIn-marketing uitbesteden aan een getrainde student. Je bedrijfspagina, posts en advertenties verzorgd voor zakelijke klanten. Met een senior."),
     "/youtube-uitbesteden/": ("YouTube uitbesteden | Een kanaal dat gevonden wordt",

@@ -125,10 +125,12 @@ PARENT = {"instagram-uitbesteden": "social-media-uitbesteden", "tiktok-uitbested
           "bedrijfsfotograaf-inhuren": "foto-en-video-laten-maken", "productfotos-laten-maken": "foto-en-video-laten-maken"}
 # Hoofdcategorieën in menu, homepage en footer, in deze volgorde (rij voor rij in twee kolommen).
 # Huisstijl, e-mailmarketing en AI staan bewust niet in het menu; ze zijn bereikbaar via /specialisaties/.
+# Contentmarketing en LinkedIn-marketing staan sinds 25 november 2026 wel in het menu (zoekvolume), met behoud van hun broodkruimel onder social media.
 NAV_SPECS = [("foto-en-video-laten-maken", "Content creatie (foto &amp; video)", "video"), ("social-media-adverteren", "Social media campagnes", "megaphone"),
              ("seo-specialist-inhuren", "SEO", "search"), ("linkbuilding-specialist-inhuren", "Linkbuilding", "link"),
              ("google-ads-specialist-inhuren", "SEA", "target"), ("recruitment-marketing-uitbesteden", "Recruitment marketing", "user-search"),
-             ("social-media-uitbesteden", "Social media beheer", "hash"), ("website-laten-maken", "Website ontwikkeling", "globe")]
+             ("social-media-uitbesteden", "Social media beheer", "hash"), ("website-laten-maken", "Website ontwikkeling", "globe"),
+             ("contentmarketing-uitbesteden", "Contentmarketing", "pen"), ("linkedin-marketing-uitbesteden", "LinkedIn-marketing", "linkedin")]
 NAV_LABEL = {slug: label for slug, label, _ in NAV_SPECS}
 MAIN = [SPEC[slug] for slug, _, _ in NAV_SPECS]
 CHILDREN = {p: [s for s in SPECS if PARENT.get(s[0]) == p] for p in set(PARENT.values())}
@@ -800,7 +802,7 @@ def header(current):
 
 def footer():
     specs = "".join(f'<li><a href="/{slug}/">{label}</a></li>' for slug, label, _ in NAV_SPECS)
-    bedrijf = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in [("Alle specialisaties", "/specialisaties/"), ("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"),
+    bedrijf = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in [("Alle specialisaties", "/specialisaties/"), ("Student inhuren", "/student-inhuren/"), ("Werkwijze", "/werkwijze/"), ("Over ons", "/over-ons/"),
                                                                      ("Kennisbank", "/kennisbank/"), ("Werken als student", "/werken-als-student/"), ("Vacatures", "/vacatures/"),
                                                                      ("Offerte aanvragen", "/offerte-aanvragen/"), ("Contact", "/contact/")])
     cookie_link = '<button type="button" class="footer__cookie" data-cookie-settings>Cookie-instellingen</button>' if GTM_ID else ""
@@ -1006,7 +1008,7 @@ def page_home():
     desc = "Marketing uitbesteden aan getrainde HBO/WO-studenten, begeleid door ervaren marketeers. Geen contract. Vraag vrijblijvend een offerte aan."
     faq_html, faq_items = faq_block("Vragen over *marketing uitbesteden*", FAQ_HOME)
     body = hero(None, "Marketing uitbesteden", "aan een student",
-                "Marketing student inhuren in plaats van een bureau: getrainde HBO/WO-studenten die direct meebouwen aan je online marketing. Altijd begeleid door ervaren marketeers, zonder contract.",
+                '<a href="/student-inhuren/">Marketing student inhuren</a> in plaats van een bureau: getrainde HBO/WO-studenten die direct meebouwen aan je online marketing. Altijd begeleid door ervaren marketeers, zonder contract.',
                 hero_buttons(), offerte_form(""), home=True, movable=True)
     body += showcase(HOME_SC)
     body += section(section_head("Kies de student die past bij *jouw vraag*", "Elke specialisatie heeft een eigen pagina met taken en voorbeelden. Zo vind je sneller wat je zoekt.") + spec_grid(), "glow-left")
@@ -1182,6 +1184,52 @@ def page_specialisaties():
                     secs, "specialisaties", "CollectionPage", faq,
                     [{"@type": "ItemList", "@id": SITE + "/specialisaties/#lijst", "name": "Specialisaties", "numberOfItems": len(items), "itemListElement": items}])
     return p[0], p[1], p[2], p[3] + secs_after, p[4], p[5], p[6]
+
+
+STUDENT_INHUREN_GIDS = [
+    ("Waarom een student inhuren voor je marketing?",
+     "<p>Marketing is voor veel bedrijven werk dat blijft liggen. Er is te weinig tijd, een vaste marketeer past (nog) niet in de begroting en een bureau voelt als een te grote stap. Een student inhuren is dan een flexibele middenweg. Je krijgt iemand die het vak leert op een HBO- of WO-opleiding, de nieuwste tools kent en meewerkt in jouw team. Bij Marketing Student werkt de student altijd onder een ervaren marketeer, zodat je niet zelf hoeft te controleren of het werk goed is. Hoe dat in de praktijk gaat, lees je bij onze <a href=\"/werkwijze/\">werkwijze</a>.</p>"),
+    ("Welke taken kan een student oppakken?",
+     "<p>Bijna alles wat met online marketing te maken heeft. Denk aan <a href=\"/seo-specialist-inhuren/\">SEO</a> en <a href=\"/google-ads-specialist-inhuren/\">Google Ads</a>, het beheer van je <a href=\"/social-media-uitbesteden/\">social media</a>, <a href=\"/linkedin-marketing-uitbesteden/\">LinkedIn-marketing</a>, <a href=\"/contentmarketing-uitbesteden/\">contentmarketing</a>, <a href=\"/foto-en-video-laten-maken/\">foto en video</a> en het bijhouden van je <a href=\"/website-laten-maken/\">website</a>. Elke student heeft een eigen specialisatie. We koppelen je daarom aan de student die past bij jouw vraag, in plaats van aan een generalist die alles een beetje doet.</p>"),
+    ("Stagiair, werkstudent of een ingehuurde student?",
+     "<p>Er zijn drie manieren om een student in je bedrijf te laten werken. Een stagiair komt om te leren: de opleiding stelt leerdoelen en jij begeleidt de student inhoudelijk. Een werkstudent neem je zelf in dienst, met een arbeidsovereenkomst, loonadministratie en de begeleiding bij jou. Een student inhuren via Marketing Student werkt anders. Wij selecteren de student, werken die in en zorgen voor de begeleiding door een senior. Jij geeft de opdracht en houdt de regie over wat er gebeurt. Past de student niet, dan regelen wij een vervanger.</p>"),
+    ("Via een uitzendbureau of via Marketing Student?",
+     "<p>Een uitzendbureau levert studenten voor allerlei soorten werk, van horeca tot administratie. Dat is handig als je vooral handen nodig hebt. Voor marketing heb je meer nodig: iemand die het vak beheerst en iemand die meekijkt of het werk iets oplevert. Daarom werken bij ons alleen studenten met een opleiding in marketing of een verwante richting. Een ervaren marketeer houdt elke week contact, controleert het werk voor oplevering en stuurt bij waar nodig. Het verschil met een freelancer lees je in <a href=\"/kennisbank/freelance-marketeer-of-marketing-student/\">freelance marketeer of marketing student</a>.</p>"),
+    ("Hoeveel uur per week werkt een student?",
+     "<p>Dat bepaal je zelf. Je kunt een student vanaf 4 uur per week inhuren, structureel of voor één afgebakende opdracht. Onze studenten werken standaard remote. Op verzoek werken ze ook hybride of een dag per week bij jou op kantoor. De student werkt in je eigen accounts en tools, zodat alles van jou blijft.</p>"),
+    ("Wat kost een student inhuren?",
+     "<p>De kosten hangen af van het aantal uren per maand en de werkvorm. Er is geen langlopend contract en geen opzegtermijn: je betaalt alleen voor de uren die gewerkt worden. Beschrijf je vraag in het formulier en je krijgt een vrijblijvende offerte op maat, met de student die past en de senior die meekijkt.</p>"),
+]
+
+
+def page_student_inhuren():
+    path = "/student-inhuren/"
+    url = SITE + path
+    title = "Student inhuren voor je marketing | Getraind en begeleid"
+    desc = "Student inhuren voor je marketing. Een getrainde HBO- of WO-student voor SEO, social media of content, begeleid door een senior en zonder contract."
+    crumb_items = [("Home", "/"), ("Student inhuren", path)]
+    body = hero(crumb_items, "Student inhuren", "voor je marketing",
+                "Een student inhuren voor je marketing doe je bij Marketing Student. Je krijgt een getrainde HBO- of WO-student voor je SEO, social media, advertenties of content. Een ervaren marketeer begeleidt de student en je zit niet vast aan een contract.",
+                hero_buttons(), offerte_form("student-inhuren"), movable=True)
+    body += section(section_head("Voor welke taak wil je *een student inhuren?*", "Elke specialisatie heeft een eigen pagina met taken en voorbeelden.") + spec_grid())
+    items = "".join(f'<div class="gids__item"><h3>{h}</h3>{x}</div>' for h, x in STUDENT_INHUREN_GIDS)
+    body += section(section_head("Alles over *een student inhuren*", "Wat een student voor je marketing kan doen, hoe het verschilt van een stagiair of uitzendkracht en waar je op let.") + f'<div class="gids">{items}</div>')
+    body += section(with_photo("team-computer", section_head("Zo staat jouw student *klaar*") + steps()))
+    body += section(section_head("Twee manieren om *samen te werken*", "Structureel meewerken of één afgebakende opdracht. Je kiest wat past, zonder contract.") + plans())
+    body += section(section_head("Student, freelance marketeer *of bureau?*", "Een eerlijke vergelijking op de punten die voor het mkb tellen.") + compare(COMPARE), "glow-right")
+    faq_html, faq_items = faq_block("Vragen over *een student inhuren*",
+                                    ["Kan ik een student inhuren voor mijn marketing?", "Wat kost een student inhuren?", "Wie begeleidt de student?", "Hoe snel kan een student beginnen?",
+                                     "Zijn de studenten goed genoeg?", "Zit ik vast aan een contract?", "Wat als de student niet bevalt?", "Werken studenten remote of op locatie?"])
+    body += faq_html
+    body += section(section_head("Meer *lezen*") + post_cards(["freelance-marketeer-of-marketing-student", "wat-voor-type-marketeers-zijn-er", "wat-doet-een-marketeer"]))
+    body += FORM_SLOT
+    body += cta_block("Klaar om *een student in te huren?*")
+    graph = [ld_webpage(url, title, desc, main=url + "#service"), ld_crumbs(url, crumb_items),
+             {"@type": "Service", "@id": url + "#service", "name": "Marketing student inhuren", "serviceType": "Student inhuren voor marketing",
+              "description": desc, "url": url, "provider": {"@id": ORG}, "areaServed": NL,
+              "audience": {"@type": "BusinessAudience", "audienceType": "mkb-ondernemers en marketingmanagers"}},
+             ld_faq(url, faq_items)]
+    return path, title, desc, body, "", graph
 
 
 def page_werkwijze():
@@ -1628,7 +1676,7 @@ def write(path, htmltext):
 
 def main():
     pages = [page_home()] + [page_dienst(s[0]) for s in SPECS]
-    pages += [page_specialisaties(), page_werkwijze(), page_over(), page_contact(), page_offerte(), page_kennisbank()]
+    pages += [page_student_inhuren(), page_specialisaties(), page_werkwijze(), page_over(), page_contact(), page_offerte(), page_kennisbank()]
     pages += [page_artikel(a) for a in ARTIKELEN]
     pages += [page_student(), page_vacatures()] + [page_vacature(v) for v in VACATURES]
     pages += [page_privacy(), page_bedankt(), page_404()]

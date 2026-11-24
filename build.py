@@ -490,6 +490,18 @@ def v_calendar(posts=None, status="posts ingepland", month="Oktober"):
             f'<div class="cal__grid">{days}{cells}</div></div>')
 
 
+def img_alt(src):
+    """Alt-tekst voor foto's en videostills op basis van de bestandsnaam (FOTO en REELS)."""
+    naam = src.rsplit("/", 1)[-1].split(".")[0]
+    for key, alt in FOTO.items():
+        if naam.startswith(key):
+            return alt
+    for key, label, *_ in REELS:
+        if naam.startswith(key):
+            return "Still uit " + label[0].lower() + label[1:]
+    return ""
+
+
 def v_adpost(img="/assets/video/speedboot-reel-360.webp", cta="Boek je vaartocht", btn="Meer informatie", meta="Gesponsord", counter="reacties en shares"):
     hearts = "".join(f'<span class="heart" style="--x:{x}px;--d:{d}s;--s:{sc}">{HEART}</span>'
                      for x, d, sc in [(20, 0, 1), (70, 0.2, 0.8), (40, 0.4, 1.2), (110, 0.6, 0.9), (5, 0.8, 0.75), (140, 1.0, 1.1),
@@ -497,7 +509,7 @@ def v_adpost(img="/assets/video/speedboot-reel-360.webp", cta="Boek je vaartocht
                                       (15, 2.4, 1.15), (85, 2.6, 0.95)])
     return (f'<div class="adpost" data-anim aria-hidden="true">'
             f'<div class="adpost__head"><span class="adpost__avatar">JB</span><span><b>Jouw bedrijf</b><small>{meta}</small></span></div>'
-            f'<img src="{img}" width="360" height="640" alt="" loading="lazy" decoding="async">'
+            f'<img src="{img}" width="360" height="640" alt="{esc(img_alt(img))}" loading="lazy" decoding="async">'
             f'<div class="adpost__cta"><span>{cta}</span><span class="adpost__btn">{btn}</span></div>'
             f'<div class="adpost__bar"><span class="adpost__like">{HEART}<span class="hearts">{hearts}</span></span>'
             f'<b data-likes>128</b><span class="adpost__meta">{counter}</span></div></div>')
@@ -605,7 +617,7 @@ def v_gauge():
 
 def v_editor(img="/assets/video/studio-walkthrough-360.webp"):
     wave = "".join(f'<i style="height:{h}%"></i>' for h in [30, 60, 45, 80, 55, 70, 35, 90, 50, 65, 40, 75, 60, 85, 45, 30, 70, 55, 80, 40, 60, 35, 75, 50])
-    return (f'<div class="editor" data-anim aria-hidden="true"><div class="editor__top"><img src="{img}" width="540" height="960" alt="" loading="lazy" decoding="async">'
+    return (f'<div class="editor" data-anim aria-hidden="true"><div class="editor__top"><img src="{img}" width="540" height="960" alt="{esc(img_alt(img))}" loading="lazy" decoding="async">'
             f'<div class="editor__info"><b>Montage</b><small>Reel · 9:16</small><span class="editor__tc">00:00:12</span></div></div>'
             f'<div class="editor__tl"><div class="editor__track"><small>Video</small><span><i style="--x:0;--w:30%"></i><i style="--x:31%;--w:26%"></i><i style="--x:58%;--w:40%"></i></span></div>'
             f'<div class="editor__track editor__track--txt"><small>Tekst</small><span><i style="--x:6%;--w:20%"></i><i style="--x:40%;--w:22%"></i><i style="--x:70%;--w:24%"></i></span></div>'
@@ -1112,8 +1124,8 @@ def page_dienst(slug):
     work = ""
     if slug in REEL_PAGES:
         pri = ' fetchpriority="high"'
-        imgs = "".join(f'<img src="/assets/video/{k}-thumb.webp" width="92" height="160" alt=""{pri if i == 0 else ""}>' for i, (k, *_) in enumerate(REELS[:3]))
-        work = f'<a class="hero-work" href="#ons-werk"><span class="hero-work__imgs">{imgs}</span><span>Bekijk ons werk{icon("arrow-right")}</span></a>'
+        imgs = "".join(f'<img src="/assets/video/{k}-thumb.webp" width="92" height="160" alt="{esc("Still uit " + lab[0].lower() + lab[1:])}"{pri if i == 0 else ""}>' for i, (k, lab, *_) in enumerate(REELS[:3]))
+        work = f'<a class="hero-work" href="#ons-werk"><span class="hero-work__imgs" aria-hidden="true">{imgs}</span><span>Bekijk ons werk{icon("arrow-right")}</span></a>'
     body = hero(crumb_items, d["h1"][0], d["h1"][1], d["lead"], hero_buttons() + work, offerte_form(slug), movable=True)
     body += dienst_story(slug, noun)
     tools = PLATFORMS[d["platforms"]] if d["platforms"] else []

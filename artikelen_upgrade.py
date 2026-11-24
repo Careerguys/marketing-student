@@ -95,7 +95,7 @@ UPGRADE = {
         bijgewerkt="2026-10-22",
         secties=[
             ("Een freelancer inhuren, waar moet je rekening mee houden?", [
-                "Huur je een zzp'er in, dan moet het echt een opdracht zijn en geen verkapt dienstverband. De overheid wijst erop dat jij als opdrachtgever moet controleren dat er geen sprake is van loondienst. Is dat wel zo, dan kun je alsnog loonbelasting en premies moeten betalen (<a href=\"https://business.gov.nl/running-your-business/staff/recruiting-and-hiring-staff/hire-a-self-employed-professional/\" rel=\"noopener\" target=\"_blank\">Business.gov.nl</a>).",
+                "Huur je een zzp'er in, dan moet het echt een opdracht zijn en geen verkapt dienstverband. De overheid wijst erop dat jij als opdrachtgever moet controleren dat er geen sprake is van loondienst. Is dat wel zo, dan kun je alsnog loonbelasting en premies moeten betalen (<a href=\"https://business.gov.nl/staff/hiring-and-secondment/hire-a-self-employed-professional/\" rel=\"noopener\" target=\"_blank\">Business.gov.nl</a>).",
                 "- Leg de opdracht vast in een overeenkomst met het resultaat, de planning en wie eigenaar is van het werk.\n- Stuur op het resultaat, niet op hoe en wanneer de freelancer werkt.\n- Spreek af wat er wel en niet onder de opdracht valt, zodat de klus niet ongemerkt groter wordt.\n- Maak afspraken over geheimhouding als de freelancer met klantgegevens werkt.",
             ]),
             ("Op uurbasis of per project?", [
